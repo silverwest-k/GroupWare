@@ -11,7 +11,7 @@ function ApprovalMenu() {
 
                 <div className={styles.mainLink}>
                     <Link to="/page/write">작성하기</Link>
-                    <Link to="">결재라인관리</Link>
+                    <Link to="/page/approvalpath">결재라인관리</Link>
                 </div>
             </div>
         </>

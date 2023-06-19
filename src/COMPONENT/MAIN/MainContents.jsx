@@ -1,7 +1,7 @@
-import PageMenu from "../MAIN/MENU_ICON/PageMenu";
-import Profile from "../MAIN/Profile";
-import ApprovalNotice from "../MAIN/ApprovalNotice";
-import Notice from "../MAIN/Notice";
+import MenuPage from "./MENU_ICON/MenuPage";
+import Profile from "./Profile";
+import ApprovalNotice from "./ApprovalNotice";
+import Notice from "./Notice";
 import styles from "./MainContents.module.css"
 
 function MainContents() {
@@ -13,7 +13,7 @@ function MainContents() {
                 <Notice/>
             </div>
             <div className={styles.lowerContents}>
-                <PageMenu/>
+                <MenuPage/>
             </div>
         </>
     )

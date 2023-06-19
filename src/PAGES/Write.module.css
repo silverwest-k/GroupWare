@@ -1,0 +1,15 @@
+.writeContainer {
+    display: flex;
+    flex-direction: row;
+}
+
+.select {
+    width: 500px;
+    height: 100%;
+    background-color: rgba(125, 121, 242, 0.37);
+    margin: 0 50px;
+}
+
+.document {
+    background: #9b9b9d;
+}

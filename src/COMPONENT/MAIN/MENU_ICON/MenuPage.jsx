@@ -1,19 +1,19 @@
 import ApprovalMenu from "./ApprovalMenu";
-import PapersMenu from "./PapersMenu";
+import DocumentMenu from "./DocumentMenu";
 import MyPageMenu from "./MyPageMenu";
-import PaperManagementMenu from "./PaperManagementMenu";
+import DocumentManagementMenu from "./DocumentManagementMenu";
 import AccountManagementMenu from "./AccountManagementMenu";
 import styles from "./Menu.module.css"
-function PageMenu() {
+function MenuPage() {
     return(
         <div className={styles.container}>
             <ApprovalMenu/>
-            <PapersMenu/>
+            <DocumentMenu/>
             <MyPageMenu/>
-            <PaperManagementMenu/>
+            <DocumentManagementMenu/>
             <AccountManagementMenu/>
         </div>
     )
 }
 
-export default PageMenu
+export default MenuPage

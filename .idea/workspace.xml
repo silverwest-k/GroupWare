@@ -1,24 +1,32 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
   <component name="ChangeListManager">
     <list default="true" id="671d336a-3897-4ae7-9dd4-06de78af820f" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/groupware/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/groupware/package-lock.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/groupware/package.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/groupware/public/favicon.ico" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/groupware/public/index.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/groupware/public/logo192.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/groupware/public/logo512.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/groupware/public/manifest.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/groupware/public/robots.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/groupware/src/App.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/groupware/src/App.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/groupware/src/App.test.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/groupware/src/index.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/groupware/src/index.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/groupware/src/logo.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/groupware/src/reportWebVitals.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/groupware/src/setupTests.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/PAGES/Page.jsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/PAGES/Page.module.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/PAGES/ReceiveDocument.jsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/PAGES/ReportDocument.jsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/PAGES/Write.module.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/App.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/COMPONENT/LAYOUT/Header.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/COMPONENT/LAYOUT/Header.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/COMPONENT/LAYOUT/Header.module.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/COMPONENT/LAYOUT/Header.module.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/COMPONENT/LAYOUT/MainContents.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/COMPONENT/MAIN/MainContents.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/COMPONENT/LAYOUT/MainContents.module.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/COMPONENT/MAIN/MainContents.module.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/COMPONENT/LAYOUT/Page.jsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/COMPONENT/LAYOUT/Sidebar.module.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/COMPONENT/LAYOUT/Sidebar.module.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/COMPONENT/MAIN/MENU_ICON/ApprovalMenu.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/COMPONENT/MAIN/MENU_ICON/ApprovalMenu.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/COMPONENT/MAIN/MENU_ICON/PageMenu.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/COMPONENT/MAIN/MENU_ICON/MenuPage.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/COMPONENT/MAIN/MENU_ICON/PaperManagementMenu.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/COMPONENT/MAIN/MENU_ICON/DocumentManagementMenu.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/COMPONENT/MAIN/MENU_ICON/PapersMenu.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/COMPONENT/MAIN/MENU_ICON/DocumentMenu.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/PAGES/ApprovalPath.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/PAGES/ApprovalPath.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/PAGES/PageContents.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/PAGES/PageContents.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/PAGES/Write.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/PAGES/Write.jsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -39,16 +47,27 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "ASKED_ADD_EXTERNAL_FILES": "true",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "last_opened_file_path": "C:/Users/codepc/Desktop/PROJECT/JUICYFRESH",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\codepc\Desktop\GroupWare\src\COMPONENT\MAIN" />
+      <recent name="C:\Users\codepc\Desktop\GroupWare\src\PAGES" />
+    </key>
+  </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
@@ -59,6 +78,7 @@
       <updated>1686982446645</updated>
       <workItem from="1686982448159" duration="120000" />
       <workItem from="1686982573221" duration="234000" />
+      <workItem from="1687134084982" duration="14527000" />
     </task>
     <servers />
   </component>

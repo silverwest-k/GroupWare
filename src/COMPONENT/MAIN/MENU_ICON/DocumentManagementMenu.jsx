@@ -1,7 +1,7 @@
 import {Link} from "react-router-dom";
 import styles from "./Menu.module.css"
 
-function PaperManagementMenu() {
+function DocumentManagementMenu() {
     return(
         <>
             <div className={styles.mainMenu}
@@ -19,4 +19,4 @@ function PaperManagementMenu() {
     )
 }
 
-export default PaperManagementMenu
+export default DocumentManagementMenu
