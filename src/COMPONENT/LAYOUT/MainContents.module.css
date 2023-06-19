@@ -1,0 +1,4 @@
+.upperContents, .lowerContents {
+    display: flex;
+    flex-direction: row;
+}

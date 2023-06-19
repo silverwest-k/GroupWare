@@ -1,0 +1,34 @@
+.profile {
+    margin: 40px 40px;
+}
+
+.profile h5 {
+    color: black;
+    margin: 10px 0;
+}
+
+.container {
+    width: 320px;
+    height: 190px;
+    background-color: rgba(68, 41, 242, 0.11);
+    display: flex;
+    flex-direction: row;
+}
+
+.profileImg img {
+    width: 120px;
+    height: 150px;
+    margin: 20px;
+}
+
+.info {
+    color: black;
+    font-size: 15px;
+    margin: 15px 15px;
+}
+
+.logOut {
+    color: grey;
+    text-decoration: underline;
+    padding: 15px 15px 10px 50px;
+}

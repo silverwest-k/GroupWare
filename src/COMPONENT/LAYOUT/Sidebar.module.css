@@ -1,0 +1,58 @@
+.wrapper {
+    background: rgba(224, 224, 224, 0.3);
+    width: 300px;
+    height: 100%;
+    margin: 0;
+}
+
+/* 프로필영역 */
+.profile {
+    width: 210px;
+    height: 300px;
+    background: rgba(68, 41, 242, 0.11);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin: 20px auto;
+}
+
+.profile img {
+    width: 115px;
+    height: 150px;
+    margin: 10px auto;
+}
+
+.profile p {
+    font-size: 15px;
+    margin: 5px auto;
+}
+
+/* 메뉴 */
+.menuContainer {
+    display: flex;
+    flex-direction: column;
+}
+
+.menu {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.menu img {
+    width: 50px;
+    height: 50px;
+    padding: 10px 30px;
+}
+
+.menu a {
+    text-decoration: none;
+    color: #4429f2;
+    width: 30%;
+}
+
+.mng a {
+    color: #fa3e0c;
+}
