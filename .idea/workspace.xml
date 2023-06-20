@@ -5,28 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="671d336a-3897-4ae7-9dd4-06de78af820f" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/PAGES/Page.jsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/PAGES/Page.module.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/PAGES/ReceiveDocument.jsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/PAGES/ReportDocument.jsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/PAGES/Write.module.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/PAGES/ReportDocument.module.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/App.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/COMPONENT/LAYOUT/Header.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/COMPONENT/LAYOUT/Header.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/COMPONENT/LAYOUT/Header.module.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/COMPONENT/LAYOUT/Header.module.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/COMPONENT/LAYOUT/MainContents.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/COMPONENT/MAIN/MainContents.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/COMPONENT/LAYOUT/MainContents.module.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/COMPONENT/MAIN/MainContents.module.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/COMPONENT/LAYOUT/Page.jsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/COMPONENT/LAYOUT/Sidebar.module.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/COMPONENT/LAYOUT/Sidebar.module.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/COMPONENT/MAIN/MENU_ICON/ApprovalMenu.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/COMPONENT/MAIN/MENU_ICON/ApprovalMenu.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/COMPONENT/MAIN/MENU_ICON/PageMenu.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/COMPONENT/MAIN/MENU_ICON/MenuPage.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/COMPONENT/MAIN/MENU_ICON/PaperManagementMenu.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/COMPONENT/MAIN/MENU_ICON/DocumentManagementMenu.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/COMPONENT/MAIN/MENU_ICON/PapersMenu.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/COMPONENT/MAIN/MENU_ICON/DocumentMenu.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/PAGES/ApprovalPath.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/PAGES/ApprovalPath.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/PAGES/PageContents.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/PAGES/PageContents.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/PAGES/Write.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/PAGES/Write.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/PAGES/ReportDocument.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/PAGES/ReportDocument.jsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -59,6 +40,7 @@
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
+    "settings.editor.selected.configurable": "preferences.pluginManager",
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
@@ -78,7 +60,8 @@
       <updated>1686982446645</updated>
       <workItem from="1686982448159" duration="120000" />
       <workItem from="1686982573221" duration="234000" />
-      <workItem from="1687134084982" duration="14527000" />
+      <workItem from="1687134084982" duration="15124000" />
+      <workItem from="1687172713503" duration="9577000" />
     </task>
     <servers />
   </component>
