@@ -13,5 +13,11 @@
     background-color: #4429f2;
     color: white;
     font-weight: bold;
+    height: 40px;
+}
+
+.headerLine p {
+    justify-content: center;
     padding: 5px 40px;
+    margin: 0;
 }

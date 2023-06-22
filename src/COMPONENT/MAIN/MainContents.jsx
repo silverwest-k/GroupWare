@@ -6,7 +6,7 @@ import styles from "./MainContents.module.css"
 
 function MainContents() {
     return(
-        <>
+        <div className={styles.wrapper}>
             <div className={styles.upperContents}>
                 <Profile/>
                 <ApprovalNotice/>
@@ -15,7 +15,7 @@ function MainContents() {
             <div className={styles.lowerContents}>
                 <MenuPage/>
             </div>
-        </>
+        </div>
     )
 }
 

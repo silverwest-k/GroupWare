@@ -1,15 +1,51 @@
+.wrapper {
+    display: flex;
+    flex-direction: row;
+    font-weight: bold;
+    /*height: 100%;*/
+}
+
 .writeContainer {
+    height: 100%;
+    background-color: rgba(125, 121, 242, 0.37);
+    margin: 20px 20px 0 70px;
+    width: 440px;
+    padding: 30px;
+}
+
+/* 결재라인 선택영역 */
+.documentSelect {
+    margin-bottom: 50px;
+}
+
+.select {
+    margin-bottom: 50px;
+}
+
+.title {
     display: flex;
     flex-direction: row;
 }
 
-.select {
-    width: 500px;
-    height: 100%;
-    background-color: rgba(125, 121, 242, 0.37);
-    margin: 0 50px;
+.title img {
+    width: 40px;
+    height: 40px;
+    margin-left: 20px;
+    cursor: pointer;
 }
 
+.selectContainer input {
+    width: 400px;
+    height: 150px;
+    border: 1px solid lightgray;
+    border-radius: 10px;
+    box-shadow: -3px 3px 10px 2px gainsboro inset;
+}
+
+/* 결재문서 영역 */
 .document {
-    background: #9b9b9d;
+    height: 1100px;
+    width: 800px;
+    background: darkgray;
+    margin: 20px 50px;
 }

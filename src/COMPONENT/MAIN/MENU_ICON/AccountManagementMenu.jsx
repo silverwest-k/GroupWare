@@ -13,7 +13,7 @@ function AccountManagementMenu() {
 
                 <div className={styles.mainLink}>
                     <Link style={{color: "#FA3E0C"}} to="">계정등록</Link>
-                    <Link style={{color: "#FA3E0C"}} to="">계정관리</Link>
+                    <Link style={{color: "#FA3E0C"}} to="/page/accountmanagement">계정관리</Link>
                 </div>
             </div>
         </>

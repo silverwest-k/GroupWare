@@ -8,7 +8,7 @@ function Header() {
                 <Link to="/">원 인터내셔널</Link>
             </div>
             <div className={styles.headerLine}>
-                메인
+                <p>메인</p>
             </div>
         </>
     )

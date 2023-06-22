@@ -1,5 +1,6 @@
 import {Link} from "react-router-dom";
 import styles from "./Menu.module.css";
+import MyPage from "../../../PAGES/MyPage";
 
 function MyPageMenu() {
     return(
@@ -10,7 +11,7 @@ function MyPageMenu() {
                 <div className={styles.divisionLine}/>
 
                 <div className={styles.mainLink}>
-                    <Link to="">내정보관리</Link>
+                    <Link to="/page/mypage">내정보관리</Link>
                 </div>
             </div>
         </>

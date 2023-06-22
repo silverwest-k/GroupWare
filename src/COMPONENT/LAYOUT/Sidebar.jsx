@@ -14,27 +14,27 @@ function Sidebar() {
             <div className={styles.menuContainer}>
                 <div className={styles.menu}>
                     <img src={require("../../IMAGES/checklist.png")}/>
-                    <Link to="/page/write">전자결재</Link>
+                    <Link to="/page/write" className={`${styles.underline} ${styles.blue}`}>전자결재</Link>
                 </div>
 
                 <div className={styles.menu}>
                     <img src={require("../../IMAGES/folder.png")}/>
-                    <Link to="">문서함</Link>
+                    <Link to="" className={`${styles.underline} ${styles.blue}`}>문서함</Link>
                 </div>
 
                 <div className={styles.menu}>
                     <img src={require("../../IMAGES/profile.png")}/>
-                    <Link to="">마이페이지</Link>
+                    <Link to="/page/mypage" className={`${styles.underline} ${styles.blue}`}>마이페이지</Link>
                 </div>
 
                 <div className={`${styles.menu} ${styles.mng}`}>
                     <img src={require("../../IMAGES/process.png")}/>
-                    <Link to="">문서관리</Link>
+                    <Link to="" className={`${styles.underline} ${styles.orange}`}>문서관리</Link>
                 </div>
 
                 <div className={`${styles.menu} ${styles.mng}`}>
                     <img src={require("../../IMAGES/management.png")}/>
-                    <Link to="">계정관리</Link>
+                    <Link to="" className={`${styles.underline} ${styles.orange}`}>계정관리</Link>
                 </div>
             </div>
         </div>

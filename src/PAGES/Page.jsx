@@ -6,18 +6,22 @@ import ApprovalPath from "./ApprovalPath";
 import ReceiveDocument from "./ReceiveDocument";
 import ReportDocument from "./ReportDocument";
 import styles from "./Page.module.css"
+import MyPage from "./MyPage";
+import AccountManagement from "./AccountManagement";
 
 function Page() {
     return(
-        <div className={styles.container}>
+        <div className={styles.wrapper}>
             <Sidebar />
-            <div>
+            <div className={styles.container}>
                 <Routes>
                     <Route path="/" element={<PageContents />}>
                         <Route path="write" element={<Write />} />
                         <Route path="approvalpath" element={<ApprovalPath/>} />
                         <Route path="receivedocument" element={<ReceiveDocument/>} />
                         <Route path="reportdocument" element={<ReportDocument/>} />
+                        <Route path="mypage" element={<MyPage/>} />
+                        <Route path="accountmanagement" element={<AccountManagement/>} />
                     </Route>
                 </Routes>
             </div>
