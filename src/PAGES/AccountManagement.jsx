@@ -14,7 +14,7 @@ function AccountManagement() {
     return(
         <div className={styles.wrapper}>
             <div className={styles.container}>
-                <div>
+                <div >
                     계정관리
                     <button>불러오기</button>
                 </div>
@@ -48,7 +48,7 @@ function AccountManagement() {
                             <img src={require("../IMAGES/more.png")} />
                         </div>
 
-                        <div>
+                        <div className={styles.toggleButton}>
                             계정상태
                             <ToggleButtonGroup
                                 color="primary"

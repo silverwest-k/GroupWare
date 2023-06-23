@@ -19,7 +19,7 @@ function Sidebar() {
 
                 <div className={styles.menu}>
                     <img src={require("../../IMAGES/folder.png")}/>
-                    <Link to="" className={`${styles.underline} ${styles.blue}`}>문서함</Link>
+                    <Link to="/page/receivedocument" className={`${styles.underline} ${styles.blue}`}>문서함</Link>
                 </div>
 
                 <div className={styles.menu}>
@@ -29,12 +29,12 @@ function Sidebar() {
 
                 <div className={`${styles.menu} ${styles.mng}`}>
                     <img src={require("../../IMAGES/process.png")}/>
-                    <Link to="" className={`${styles.underline} ${styles.orange}`}>문서관리</Link>
+                    <Link to="/page/documentregistration" className={`${styles.underline} ${styles.orange}`}>문서관리</Link>
                 </div>
 
                 <div className={`${styles.menu} ${styles.mng}`}>
                     <img src={require("../../IMAGES/management.png")}/>
-                    <Link to="" className={`${styles.underline} ${styles.orange}`}>계정관리</Link>
+                    <Link to="/page/accountmanagement" className={`${styles.underline} ${styles.orange}`}>계정관리</Link>
                 </div>
             </div>
         </div>

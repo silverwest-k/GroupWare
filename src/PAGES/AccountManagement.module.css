@@ -23,7 +23,20 @@
     height: 200px;
 }
 
-.MuiButton-containedSizeSmall {
+.profile Button {
     width: 80px;
+    background: #fa3e0c;
+    font-weight: bold;
+    font-size: 14px;
+}
+
+.toggleButton Button {
+    color: #fa3e0c;
+    border: 1px solid #fa3e0c;
+    font-weight: bold;
+}
+
+.toggleButton.Mui-selected {
+    color: white;
     background: #fa3e0c;
 }

@@ -8,6 +8,7 @@ import ReportDocument from "./ReportDocument";
 import styles from "./Page.module.css"
 import MyPage from "./MyPage";
 import AccountManagement from "./AccountManagement";
+import DocumentRegistration from "./DocumentRegistration";
 
 function Page() {
     return(
@@ -22,6 +23,7 @@ function Page() {
                         <Route path="reportdocument" element={<ReportDocument/>} />
                         <Route path="mypage" element={<MyPage/>} />
                         <Route path="accountmanagement" element={<AccountManagement/>} />
+                        <Route path="documentregistration" element={<DocumentRegistration/>}/>
                     </Route>
                 </Routes>
             </div>
