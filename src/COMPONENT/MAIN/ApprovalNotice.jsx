@@ -1,4 +1,5 @@
 import styles from "./ApprovalNotice.module.css"
+import {Link} from "react-router-dom";
 
 function ApprovalNotice() {
     return(
@@ -8,26 +9,20 @@ function ApprovalNotice() {
             </div>
             <div className={styles.container}>
                 <div className={styles.notice}>
-                    <p>결재할 문서</p>
-                    <p>12</p>
+                    <p>수신 문서</p>
+                    <Link to="/page/receivedocument">12</Link>
                 </div>
                 <div className={styles.divisionLine}></div>
 
                 <div className={styles.notice}>
-                    <p>상신한 문서</p>
-                    <p>6</p>
+                    <p>상신 문서</p>
+                    <Link to="/page/reportdocument">6</Link>
                 </div>
                 <div className={styles.divisionLine}></div>
 
                 <div className={styles.notice}>
-                    <p>진행중 문서</p>
-                    <p>3</p>
-                </div>
-                <div className={styles.divisionLine}></div>
-
-                <div className={styles.notice}>
-                    <p>대기 문서</p>
-                    <p>0</p>
+                    <p>임시 보관함</p>
+                    <Link to="">3</Link>
                 </div>
             </div>
         </div>

@@ -1,17 +1,24 @@
 import styles from "./Header.module.css"
-import {Link} from "react-router-dom";
+import {Link, useParams} from "react-router-dom";
+import {useEffect} from "react";
 
 function Header() {
-    return(
+    const params = useParams();
+
+    useEffect(() => {
+        console.log(params);
+    }, [params]);
+
+    return (
         <>
             <div className={styles.headerTitle}>
                 <Link to="/">원 인터내셔널</Link>
             </div>
             <div className={styles.headerLine}>
-                <p>메인</p>
+                params
             </div>
         </>
-    )
+    );
 }
 
-export default Header
+export default Header;

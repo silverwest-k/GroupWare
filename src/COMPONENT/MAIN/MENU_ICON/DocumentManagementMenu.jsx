@@ -13,6 +13,7 @@ function DocumentManagementMenu() {
 
                 <div className={styles.mainLink}>
                     <Link style={{color: "#FA3E0C"}} to="">양식등록</Link>
+                    <Link style={{color: "#FA3E0C"}} to="">결재문서</Link>
                 </div>
             </div>
         </>

@@ -1,27 +1,33 @@
+import {Button, ToggleButton} from "react-bootstrap";
 import styles from "./AccountManagement.module.css"
-import ToggleButton from "@mui/material/ToggleButton";
-import ToggleButtonGroup from "@mui/material/ToggleButtonGroup";
 import {useState} from "react";
-import {Button} from "@mui/material";
+import {ButtonGroup} from "reactstrap";
 
 function AccountManagement() {
-    const [alignment, setAlignment] = useState('web');
+    const [radioValue, setRadioValue] = useState('1');
 
-    const handleChange = (event, newAlignment) => {
-        setAlignment(newAlignment);
-    };
+    const radios = [
+        { name: '사용중', value: '1' },
+        { name: '접속차단', value: '2' }
+    ];
+
+
 
     return(
         <div className={styles.wrapper}>
             <div className={styles.container}>
-                <div >
-                    계정관리
-                    <button>불러오기</button>
+                <div className={styles.upperButton}>
+                    <div>
+                        계정관리
+                        <Button variant="primary" className={styles.button}>불러오기</Button>
+                    </div>
+                    <Button variant="primary" className={styles.button}>삭제</Button>
                 </div>
+                
                 <div>
                     <div className={styles.profile}>
                         <img src={require("../IMAGES/profile.jpeg")}/>
-                        <Button variant="contained" size="small">사진등록</Button>
+                        <Button variant="primary" className={styles.button}>사진등록</Button>
                     </div>
 
                     <div>
@@ -31,7 +37,7 @@ function AccountManagement() {
 
                         <div>
                             비밀번호 <input/>
-                            <button>초기화</button>
+                            <Button variant="primary" className={styles.button}>초기화</Button>
                         </div>
 
                         <div>
@@ -48,18 +54,24 @@ function AccountManagement() {
                             <img src={require("../IMAGES/more.png")} />
                         </div>
 
-                        <div className={styles.toggleButton}>
+                        <div>
                             계정상태
-                            <ToggleButtonGroup
-                                color="primary"
-                                value={alignment}
-                                exclusive
-                                onChange={handleChange}
-                                aria-label="Platform"
-                            >
-                                <ToggleButton value="web">사용중</ToggleButton>
-                                <ToggleButton value="android">접속차단</ToggleButton>
-                            </ToggleButtonGroup>
+                            <ButtonGroup>
+                                {radios.map((radio, idx) => (
+                                    <ToggleButton
+                                        key={idx}
+                                        id={`radio-${idx}`}
+                                        type="radio"
+                                        variant={idx % 2 ? 'outline-danger' : 'outline-success'}
+                                        name="radio"
+                                        value={radio.value}
+                                        checked={radioValue === radio.value}
+                                        onChange={(e) => setRadioValue(e.currentTarget.value)}
+                                    >
+                                        {radio.name}
+                                    </ToggleButton>
+                                ))}
+                            </ButtonGroup>
                         </div>
                     </div>
                 </div>

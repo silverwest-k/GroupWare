@@ -3,6 +3,7 @@ import Header from "./COMPONENT/LAYOUT/Header";
 import MainContents from "./COMPONENT/MAIN/MainContents";
 import Page from "./PAGES/Page";
 import {Route, Routes} from "react-router-dom";
+import LogIn from "./PAGES/LogIn";
 
 function App() {
   return (
@@ -11,6 +12,7 @@ function App() {
         <Routes>
             <Route path="/" element={<MainContents/>} />
             <Route path="/page/*" element={<Page />} />
+            <Route path="/login" element={<LogIn/>} />
         </Routes>
     </div>
   );

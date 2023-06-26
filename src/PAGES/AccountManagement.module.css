@@ -8,9 +8,16 @@
 
 .container {
     width: 70%;
-    height: 90%;
+    height: 80%;
     background: rgba(250, 62, 12, 0.08);
-    margin: 50px 200px;
+    margin: 50px 200px 0 200px;
+    padding: 50px;
+}
+
+.upperButton {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
 }
 
 .profile {
@@ -23,20 +30,12 @@
     height: 200px;
 }
 
-.profile Button {
-    width: 80px;
+.button {
+    width: 90px;
+    color: white;
     background: #fa3e0c;
+    border: 1px solid #fa3e0c;
     font-weight: bold;
     font-size: 14px;
 }
 
-.toggleButton Button {
-    color: #fa3e0c;
-    border: 1px solid #fa3e0c;
-    font-weight: bold;
-}
-
-.toggleButton.Mui-selected {
-    color: white;
-    background: #fa3e0c;
-}

@@ -1,6 +1,4 @@
 import styles from "./Write.module.css"
-import TextField from '@mui/material/TextField';
-import Autocomplete from '@mui/material/Autocomplete';
 
 // 작성하기
 function Write() {
@@ -14,13 +12,13 @@ function Write() {
             <div className={styles.writeContainer}>
                 <div className={styles.documentSelect}>
                     <h3>양식선택</h3>
-                    <Autocomplete
-                        disablePortal
-                        id="combo-box-demo"
-                        options={documents}
-                        sx={{ width: 300 }}
-                        renderInput={(params) => <TextField {...params} label="양식을 선택하세요"/>}
-                    />
+                    {/*<Autocomplete*/}
+                    {/*    disablePortal*/}
+                    {/*    id="combo-box-demo"*/}
+                    {/*    options={documents}*/}
+                    {/*    sx={{ width: 300 }}*/}
+                    {/*    renderInput={(params) => <TextField {...params} label="양식을 선택하세요"/>}*/}
+                    {/*/>*/}
                 </div>
 
                 <div className={styles.selectContainer}>
