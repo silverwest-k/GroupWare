@@ -14,10 +14,15 @@
     padding: 50px;
 }
 
+.inputContainer div {
+    margin-top: 30px;
+}
+
 .upperButton {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
+    margin : 0 0 50px 0;
 }
 
 .profile {
@@ -37,5 +42,20 @@
     border: 1px solid #fa3e0c;
     font-weight: bold;
     font-size: 14px;
+    --bs-btn-hover-bg:#c32d04;
+    --bs-btn-hover-border-color:#c32d04;
+    --bs-btn-active-bg:#c32d04;
+    --bs-btn-active-border-color:#c32d04;
+}
+
+.icon {
+    width: 40px;
+    height: 40px;
+}
+
+.modify {
+    display: flex;
+    justify-content: center;
+    margin-top: 50px;
 }
 

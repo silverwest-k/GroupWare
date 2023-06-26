@@ -1,7 +1,7 @@
 import {Button, ToggleButton} from "react-bootstrap";
 import styles from "./AccountManagement.module.css"
 import {useState} from "react";
-import {ButtonGroup} from "reactstrap";
+import ButtonGroup from 'react-bootstrap/ButtonGroup';
 
 function AccountManagement() {
     const [radioValue, setRadioValue] = useState('1');
@@ -26,11 +26,11 @@ function AccountManagement() {
                 
                 <div>
                     <div className={styles.profile}>
-                        <img src={require("../IMAGES/profile.jpeg")}/>
+                        <img src={require("../IMAGES/profile.jpeg")} />
                         <Button variant="primary" className={styles.button}>사진등록</Button>
                     </div>
 
-                    <div>
+                    <div className={styles.inputContainer}>
                         <div>
                             이름 <input/>
                         </div>
@@ -46,12 +46,12 @@ function AccountManagement() {
 
                         <div>
                             부서 <input/>
-                            <img src={require("../IMAGES/more.png")} />
+                            <img src={require("../IMAGES/more.png")} className={styles.icon} />
                         </div>
 
                         <div>
                             직급 <input/>
-                            <img src={require("../IMAGES/more.png")} />
+                            <img src={require("../IMAGES/more.png")} className={styles.icon} />
                         </div>
 
                         <div>
@@ -72,6 +72,10 @@ function AccountManagement() {
                                     </ToggleButton>
                                 ))}
                             </ButtonGroup>
+                        </div>
+
+                        <div className={styles.modify}>
+                            <Button variant="primary" className={styles.button}>수정</Button>
                         </div>
                     </div>
                 </div>
