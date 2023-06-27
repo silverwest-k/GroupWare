@@ -15,7 +15,7 @@ function Header() {
                 <Link to="/">원 인터내셔널</Link>
             </div>
             <div className={styles.headerLine}>
-                params
+                dd
             </div>
         </>
     );

@@ -1,24 +1,25 @@
 import styles from "./Write.module.css"
+import Dropdown from 'react-bootstrap/Dropdown';
 
 // 작성하기
 function Write() {
-    const documents = [
-        { label: '휴가 신청서', id: 1 },
-        { label: '지출 결의서', id: 2 },
-        ]
 
     return(
         <div className={styles.wrapper}>
             <div className={styles.writeContainer}>
                 <div className={styles.documentSelect}>
                     <h3>양식선택</h3>
-                    {/*<Autocomplete*/}
-                    {/*    disablePortal*/}
-                    {/*    id="combo-box-demo"*/}
-                    {/*    options={documents}*/}
-                    {/*    sx={{ width: 300 }}*/}
-                    {/*    renderInput={(params) => <TextField {...params} label="양식을 선택하세요"/>}*/}
-                    {/*/>*/}
+                    <Dropdown>
+                        <Dropdown.Toggle variant="success" id="dropdown-basic" className={styles.dropToggle} >
+                            양식을 선택하세요
+                        </Dropdown.Toggle>
+
+                        <Dropdown.Menu className={styles.dropMenu}>
+                            <Dropdown.Item>근태신청서</Dropdown.Item>
+                            <Dropdown.Item>지출결의서</Dropdown.Item>
+                            <Dropdown.Item>외근신청서</Dropdown.Item>
+                        </Dropdown.Menu>
+                    </Dropdown>
                 </div>
 
                 <div className={styles.selectContainer}>

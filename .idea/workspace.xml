@@ -5,14 +5,20 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="671d336a-3897-4ae7-9dd4-06de78af820f" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/src/PAGES/AccountRegistration.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/COMPONENT/MAIN/ApprovalNotice.module.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/COMPONENT/MAIN/ApprovalNotice.module.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/COMPONENT/MAIN/MENU_ICON/Menu.module.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/COMPONENT/MAIN/MENU_ICON/Menu.module.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/COMPONENT/MAIN/Notice.module.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/COMPONENT/MAIN/Notice.module.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/PAGES/AccountManagement.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/PAGES/AccountManagement.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/PAGES/AccountManagement.module.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/PAGES/AccountManagement.module.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/COMPONENT/LAYOUT/Header.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/COMPONENT/LAYOUT/Header.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/COMPONENT/LAYOUT/Sidebar.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/COMPONENT/LAYOUT/Sidebar.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/COMPONENT/LAYOUT/Sidebar.module.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/COMPONENT/LAYOUT/Sidebar.module.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/COMPONENT/MAIN/MENU_ICON/AccountManagementMenu.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/COMPONENT/MAIN/MENU_ICON/AccountManagementMenu.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/COMPONENT/MAIN/MENU_ICON/DocumentManagementMenu.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/COMPONENT/MAIN/MENU_ICON/DocumentManagementMenu.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/PAGES/DocumentRegistration.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/PAGES/DocumentRegistration.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/PAGES/Page.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/PAGES/Page.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/PAGES/PageContents.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/PAGES/PageContents.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/PAGES/ReportDocument.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/PAGES/ReportDocument.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/PAGES/ReportDocument.module.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/PAGES/ReportDocument.module.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/PAGES/Write.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/PAGES/Write.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/PAGES/Write.module.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/PAGES/Write.module.css" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -39,13 +45,14 @@
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "WebServerToolWindowFactoryState": "false",
-    "last_opened_file_path": "C:/Users/rnqh9/OneDrive/Desktop/GroupWare",
+    "last_opened_file_path": "C:/Users/codepc/Desktop/PROJECT/Eunseo-Diary",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
     "settings.editor.selected.configurable": "preferences.pluginManager",
+    "ts.external.directory.path": "C:\\Program Files\\JetBrains\\IntelliJ IDEA 2023.1\\plugins\\javascript-impl\\jsLanguageServicesImpl\\external",
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
@@ -70,6 +77,7 @@
       <workItem from="1687397868782" duration="12566000" />
       <workItem from="1687738908424" duration="19229000" />
       <workItem from="1687786357298" duration="2530000" />
+      <workItem from="1687842133471" duration="14663000" />
     </task>
     <servers />
   </component>

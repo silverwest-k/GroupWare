@@ -6,19 +6,21 @@ import ReportDocument from "./ReportDocument";
 import MyPage from "./MyPage";
 import AccountManagement from "./AccountManagement";
 import DocumentRegistration from "./DocumentRegistration";
+import AccountRegistration from "./AccountRegistration";
 
 function PageContents() {
     return(
         <div>
             <Routes>
-                <Route path="/" element={<div> </div>} />
+                <Route path="*" element={<div> </div>} />
                 <Route path="write" element={<Write />} />
                 <Route path="approvalpath" element={<ApprovalPath />} />
                 <Route path="receivedocument" element={<ReceiveDocument/>} />
                 <Route path="reportdocument" element={<ReportDocument/>} />
                 <Route path="mypage" element={<MyPage/>} />
+                <Route path="documentregistration" element={<DocumentRegistration/>} />
+                <Route path="accountregistration" element={<AccountRegistration/>} />
                 <Route path="accountmanagement" element={<AccountManagement/>} />
-                <Route path="documentregistration" element={<DocumentRegistration/>}/>
             </Routes>
         </div>
     )

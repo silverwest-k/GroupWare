@@ -13,7 +13,7 @@
     display: flex;
     flex-direction: column;
     justify-content: center;
-    margin: 20px auto;
+    margin: 40px auto;
 }
 
 .profile img {
@@ -31,48 +31,69 @@
 .menuContainer {
     display: flex;
     flex-direction: column;
-    margin-top: 70px;
+    margin-top: 50px;
 }
 
+/* 아코디언 헤드 */
 .menu {
     display: flex;
     flex-direction: row;
     align-items: center;
-    margin-bottom: 30px;
-    margin-left: 12%;
+    margin-left: 10%;
+    padding: 10px 0;
     width: 80%;
 }
 
 .menu img {
-    width: 50px;
-    height: 50px;
-    padding: 10px 25px;
+    width: 40px;
+    height: 40px;
 }
 
-.menu a {
-    text-decoration: none;
+.menu p {
+    margin: auto;
+    font-weight: bold;
     color: #4429f2;
 }
-.mng a {
+.mng p {
     color: #fa3e0c;
 }
 
 .underline {
-    line-height: 1.3;
+    line-height: 1.4;
     background-image: linear-gradient(transparent calc(100% - 3px), #000 3px);
     background-repeat: no-repeat;
     background-size: 0% 100%;
     transition: background-size 0.5s;
     cursor: pointer;
 }
-.underline.orange {
-    background-image: linear-gradient(transparent 50%, rgba(250, 62, 12, 0.21));
-}
-.underline.blue {
-    background-image: linear-gradient(transparent 50%, rgba(125, 121, 242, 0.37));
-}
 .underline:hover {
     font-weight: 700;
     background-size: 100% 100%;
+}
+.underline.orange {
+    color: #fa3e0c;
+    background-image: linear-gradient(transparent 50%, rgba(250, 62, 12, 0.21));
+}
+.underline.blue {
+    color: #4429f2;
+    background-image: linear-gradient(transparent 50%, rgba(125, 121, 242, 0.37));
+}
+
+.link {
+    font-size: 18px;
+    /*font-weight: bold;*/
+    text-decoration: none;
+}
+
+.accordion {
+    background: #F6F6F6;
+    --bs-accordion-active-bg: #F6F6F6;
+    --bs-accordion-border-color: none;
+    --bs-accordion-btn-bg: #F6F6F6;
+    --bs-accordion-btn-focus-box-shadow: none;
+}
+
+.accordionBody {
+    padding: 10px 0 10px 90px;
 }
 
