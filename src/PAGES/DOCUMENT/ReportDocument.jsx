@@ -3,35 +3,23 @@ import Pagination from 'react-bootstrap/Pagination';
 import ToggleButton from 'react-bootstrap/ToggleButton';
 import ToggleButtonGroup from 'react-bootstrap/ToggleButtonGroup';
 import {Table} from "react-bootstrap";
-import {useState} from "react";
+import {useEffect, useState} from "react";
+import button from "bootstrap/js/src/button";
 
 function ReportDocument() {
-    const data = [
-        {
-            date:'2023-06-20',
-            form:"휴가신청서",
-            title:"비품 구매 요청서",
-            state:"진행중"
-        },
-        {
-            date:'2023-06-05',
-            form:"외근신청서",
-            title:"근태관련 신청서",
-            state:"결재완료"
-        },
-        {
-            date:'2023-05-30',
-            form:"휴가신청서",
-            title:"근태관련 신청서",
-            state:"진행중"
-        },
-        {
-            date:'2023-05-24',
-            form:"업무협조",
-            title:"사원증 신청서",
-            state:"반려"
-        }
-    ]
+    const [post, setPost] = useState([]);
+    const [limit, setLimit] = useState(10);
+    const [page, setPage] = useState(1);
+
+    const offset= (page - 1) * limit;
+    const total = post.length;
+    const pageNum = Math.ceil(total/limit);
+
+    useEffect(() => {
+        fetch("https://jsonplaceholder.typicode.com/posts")
+            .then((res) => res.json())
+            .then((data) => setPost(data));
+    }, []);
 
     return(
         <div className={styles.wrapper}>
@@ -48,48 +36,46 @@ function ReportDocument() {
                 <Table hover>
                     <thead className={styles.tableHead}>
                         <tr>
-                            <th>기안일</th>
-                            <th>문서양식</th>
+                            <th>NO</th>
                             <th>제목</th>
-                            <th>결재상태</th>
+                            <th>내용</th>
                         </tr>
                     </thead>
 
                     <tbody>
-                    {data.map((data, index)=>{
+                    {post.slice(offset, offset + limit).map((data)=>{
                         return(
-                            <tr key={index}>
-                                <td>{data.date}</td>
-                                <td>{data.form}</td>
+                            <tr key={data.id}>
+                                <td>{data.id}</td>
                                 <td>{data.title}</td>
-                                <td className={`${styles.stateButton} 
-                                    ${data.state === "진행중" ? styles.ongoing 
-                                    : data.state === "결재완료" ? styles.completed 
-                                    : data.state === "반려" ? styles.return : ""}`}
-                                >{data.state}</td>
-
+                                <td>{data.body}</td>
                             </tr>
                         )
                     })}
                     </tbody>
                 </Table>
-
             </div>
 
             <div className={styles.pagination}>
                 <Pagination>
-                    <Pagination.First />
-                    <Pagination.Prev />
-                    <Pagination.Item>{1}</Pagination.Item>
-                    <Pagination.Item>{2}</Pagination.Item>
-                    <Pagination.Item>{3}</Pagination.Item>
-                    <Pagination.Item>{4}</Pagination.Item>
-                    <Pagination.Item>{5}</Pagination.Item>
-                    <Pagination.Ellipsis />
-                    <Pagination.Item>{10}</Pagination.Item>
-                    <Pagination.Next />
-                    <Pagination.Last />
+                    <Pagination.First onClick={()=>setPage(1)} disabled={page===1}/>
+                    <Pagination.Prev onClick={()=>setPage(page-1)} disabled={page===1}/>
+                    {Array(pageNum)
+                        .fill()
+                        .map((_, i)=>(
+                            <Pagination.Item
+                                key={i+1}
+                                onClick = {()=> setPage(i+1)}
+                                aria-current={page === i+1 && "page"}
+                            >
+                                {i+1}
+                            </Pagination.Item>
+                        ))
+                    }
+                    <Pagination.Next onClick={()=>setPage(page+1)} disabled={page===pageNum}/>
+                    <Pagination.Last onClick={()=>setPage(pageNum)} disabled={page===pageNum}/>
                 </Pagination>
+                    {/*<Pagination.Ellipsis />*/}
             </div>
         </div>
     )
