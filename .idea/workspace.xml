@@ -5,20 +5,26 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="671d336a-3897-4ae7-9dd4-06de78af820f" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/PAGES/AccountRegistration.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/COMPONENT/LAYOUT/Header.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/COMPONENT/LAYOUT/Header.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/COMPONENT/LAYOUT/Sidebar.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/COMPONENT/LAYOUT/Sidebar.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/COMPONENT/LAYOUT/Sidebar.module.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/COMPONENT/LAYOUT/Sidebar.module.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/COMPONENT/MAIN/MENU_ICON/AccountManagementMenu.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/COMPONENT/MAIN/MENU_ICON/AccountManagementMenu.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/COMPONENT/MAIN/MENU_ICON/DocumentManagementMenu.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/COMPONENT/MAIN/MENU_ICON/DocumentManagementMenu.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/PAGES/DocumentRegistration.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/PAGES/DocumentRegistration.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/COMPONENT/MAIN/MENU_ICON/MyPageMenu.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/COMPONENT/MAIN/MENU_ICON/MyPageMenu.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/PAGES/AccountManagement.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/PAGES/ACCOUNT-MNG/AccountManagement.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/PAGES/AccountManagement.module.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/PAGES/ACCOUNT-MNG/AccountManagement.module.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/PAGES/AccountRegistration.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/PAGES/ACCOUNT-MNG/AccountRegistration.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/PAGES/ApprovalPath.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/PAGES/APPROVAL/ApprovalPath.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/PAGES/DocumentRegistration.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/PAGES/DOCUMENT-MNG/DocumentRegistration.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/PAGES/DocumentRegistration.module.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/PAGES/DOCUMENT-MNG/DocumentRegistration.module.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/PAGES/MyPage.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/PAGES/MYPAGE/MyPage.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/PAGES/MyPage.module.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/PAGES/MYPAGE/MyPage.module.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/PAGES/Page.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/PAGES/Page.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/PAGES/PageContents.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/PAGES/PageContents.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/PAGES/ReportDocument.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/PAGES/ReportDocument.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/PAGES/ReportDocument.module.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/PAGES/ReportDocument.module.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/PAGES/Write.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/PAGES/Write.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/PAGES/Write.module.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/PAGES/Write.module.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/PAGES/ReceiveDocument.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/PAGES/DOCUMENT/ReceiveDocument.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/PAGES/ReportDocument.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/PAGES/DOCUMENT/ReportDocument.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/PAGES/ReportDocument.module.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/PAGES/DOCUMENT/ReportDocument.module.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/PAGES/Write.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/PAGES/APPROVAL/Write.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/PAGES/Write.module.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/PAGES/APPROVAL/Write.module.css" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -58,8 +64,11 @@
 }]]></component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
-      <recent name="C:\Users\codepc\Desktop\GroupWare\src\COMPONENT\MAIN" />
+      <recent name="C:\Users\codepc\Desktop\GroupWare\src\PAGES\MYPAGE" />
+      <recent name="C:\Users\codepc\Desktop\GroupWare\src\PAGES\DOCUMENT-MNG" />
       <recent name="C:\Users\codepc\Desktop\GroupWare\src\PAGES" />
+      <recent name="C:\Users\codepc\Desktop\GroupWare\src\PAGES\DOCUMENT" />
+      <recent name="C:\Users\codepc\Desktop\GroupWare\src\PAGES\APPROVAL" />
     </key>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
@@ -77,7 +86,7 @@
       <workItem from="1687397868782" duration="12566000" />
       <workItem from="1687738908424" duration="19229000" />
       <workItem from="1687786357298" duration="2530000" />
-      <workItem from="1687842133471" duration="14663000" />
+      <workItem from="1687842133471" duration="25956000" />
     </task>
     <servers />
   </component>

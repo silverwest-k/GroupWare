@@ -1,12 +1,12 @@
-import Write from "./Write";
-import ApprovalPath from "./ApprovalPath";
+import Write from "./APPROVAL/Write";
+import ApprovalPath from "./APPROVAL/ApprovalPath";
 import {Route, Routes} from "react-router-dom";
-import ReceiveDocument from "./ReceiveDocument";
-import ReportDocument from "./ReportDocument";
-import MyPage from "./MyPage";
-import AccountManagement from "./AccountManagement";
-import DocumentRegistration from "./DocumentRegistration";
-import AccountRegistration from "./AccountRegistration";
+import ReceiveDocument from "./DOCUMENT/ReceiveDocument";
+import ReportDocument from "./DOCUMENT/ReportDocument";
+import MyPage from "./MYPAGE/MyPage";
+import AccountManagement from "./ACCOUNT-MNG/AccountManagement";
+import DocumentRegistration from "./DOCUMENT-MNG/DocumentRegistration";
+import AccountRegistration from "./ACCOUNT-MNG/AccountRegistration";
 
 function PageContents() {
     return(

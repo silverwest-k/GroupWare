@@ -6,8 +6,6 @@ import {Table} from "react-bootstrap";
 import {useState} from "react";
 
 function ReportDocument() {
-    // const [stateButton, setStateButton] = useState("");
-
     const data = [
         {
             date:'2023-06-20',
@@ -59,17 +57,17 @@ function ReportDocument() {
 
                     <tbody>
                     {data.map((data, index)=>{
-                        const buttonClass =
-                            data.state === "진행중" && styles.ongoing ||
-                            data.state === "결재완료" && styles.completed ||
-                            data.state === "반려" && styles.return;
-
                         return(
                             <tr key={index}>
                                 <td>{data.date}</td>
                                 <td>{data.form}</td>
                                 <td>{data.title}</td>
-                                <td  className={`${styles.stateButton} ${buttonClass}`}>{data.state}</td>
+                                <td className={`${styles.stateButton} 
+                                    ${data.state === "진행중" ? styles.ongoing 
+                                    : data.state === "결재완료" ? styles.completed 
+                                    : data.state === "반려" ? styles.return : ""}`}
+                                >{data.state}</td>
+
                             </tr>
                         )
                     })}
@@ -83,16 +81,12 @@ function ReportDocument() {
                     <Pagination.First />
                     <Pagination.Prev />
                     <Pagination.Item>{1}</Pagination.Item>
+                    <Pagination.Item>{2}</Pagination.Item>
+                    <Pagination.Item>{3}</Pagination.Item>
+                    <Pagination.Item>{4}</Pagination.Item>
+                    <Pagination.Item>{5}</Pagination.Item>
                     <Pagination.Ellipsis />
-
                     <Pagination.Item>{10}</Pagination.Item>
-                    <Pagination.Item>{11}</Pagination.Item>
-                    <Pagination.Item active>{12}</Pagination.Item>
-                    <Pagination.Item>{13}</Pagination.Item>
-                    <Pagination.Item>{14}</Pagination.Item>
-
-                    <Pagination.Ellipsis />
-                    <Pagination.Item>{20}</Pagination.Item>
                     <Pagination.Next />
                     <Pagination.Last />
                 </Pagination>

@@ -1,15 +1,15 @@
 import Sidebar from "../COMPONENT/LAYOUT/Sidebar";
 import {Route, Routes} from "react-router-dom";
-import Write from "./Write";
+import Write from "./APPROVAL/Write";
 import PageContents from "./PageContents";
-import ApprovalPath from "./ApprovalPath";
-import ReceiveDocument from "./ReceiveDocument";
-import ReportDocument from "./ReportDocument";
+import ApprovalPath from "./APPROVAL/ApprovalPath";
+import ReceiveDocument from "./DOCUMENT/ReceiveDocument";
+import ReportDocument from "./DOCUMENT/ReportDocument";
 import styles from "./Page.module.css"
-import MyPage from "./MyPage";
-import AccountManagement from "./AccountManagement";
-import DocumentRegistration from "./DocumentRegistration";
-import AccountRegistration from "./AccountRegistration";
+import MyPage from "./MYPAGE/MyPage";
+import AccountManagement from "./ACCOUNT-MNG/AccountManagement";
+import DocumentRegistration from "./DOCUMENT-MNG/DocumentRegistration";
+import AccountRegistration from "./ACCOUNT-MNG/AccountRegistration";
 function Page() {
     return(
         <div className={styles.wrapper}>

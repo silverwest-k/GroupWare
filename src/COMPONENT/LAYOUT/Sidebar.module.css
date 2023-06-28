@@ -38,35 +38,39 @@
 .menu {
     display: flex;
     flex-direction: row;
-    align-items: center;
-    margin-left: 10%;
-    padding: 10px 0;
-    width: 80%;
+    height: 80px;
+    width: 100%;
 }
 
 .menu img {
     width: 40px;
     height: 40px;
+    margin: 0 25px 0 50px ;
 }
 
 .menu p {
-    margin: auto;
+    margin: auto 0;
     font-weight: bold;
     color: #4429f2;
+}
+.mng {
+    --bs-accordion-active-bg: rgba(250, 62, 12, 0.21);
 }
 .mng p {
     color: #fa3e0c;
 }
 
 .underline {
+    font-size: 18px;
+    text-decoration: none;
     line-height: 1.4;
     background-image: linear-gradient(transparent calc(100% - 3px), #000 3px);
     background-repeat: no-repeat;
     background-size: 0% 100%;
-    transition: background-size 0.5s;
+    transition: background-size 0.3s;
     cursor: pointer;
 }
-.underline:hover {
+.underline:hover, .active {
     font-weight: 700;
     background-size: 100% 100%;
 }
@@ -79,18 +83,13 @@
     background-image: linear-gradient(transparent 50%, rgba(125, 121, 242, 0.37));
 }
 
-.link {
-    font-size: 18px;
-    /*font-weight: bold;*/
-    text-decoration: none;
-}
 
 .accordion {
-    background: #F6F6F6;
-    --bs-accordion-active-bg: #F6F6F6;
+    /*background: #F6F6F6;*/
     --bs-accordion-border-color: none;
     --bs-accordion-btn-bg: #F6F6F6;
     --bs-accordion-btn-focus-box-shadow: none;
+    --bs-accordion-active-bg: rgba(125, 121, 242, 0.37);
 }
 
 .accordionBody {

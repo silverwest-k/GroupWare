@@ -3,11 +3,12 @@ import {Link, useParams} from "react-router-dom";
 import {useEffect} from "react";
 
 function Header() {
-    const params = useParams();
+    let params = useParams();
+    console.log(params);
 
-    useEffect(() => {
-        console.log(params);
-    }, [params]);
+    // useEffect(() => {
+    //     console.log(params);
+    // }, [params]);
 
     return (
         <>

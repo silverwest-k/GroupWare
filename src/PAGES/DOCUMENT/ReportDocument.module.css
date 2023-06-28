@@ -59,9 +59,10 @@ tr {
 
 .pagination li{
     --bs-pagination-color: #4429f2;
-    --bs-pagination-active-bg: #4429f2;
-    --bs-pagination-active-border-color: #4429f2;
+    /*--bs-pagination-active-bg: #4429f2;*/
+    /*--bs-pagination-active-border-color: #4429f2;*/
     --bs-pagination-hover-color: #180882;
-    --bs-pagination-focus-color: #180882;
+    --bs-pagination-focus-color: white;
+    --bs-pagination-focus-bg: #4429f2;
     --bs-pagination-focus-box-shadow: none;
 }

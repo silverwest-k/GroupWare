@@ -27,7 +27,7 @@ function Write() {
                     <div className={styles.select}>
                         <div className={styles.title}>
                             <p>결재</p>
-                            <img src={require("../IMAGES/team.png")}/>
+                            <img src={require("../../IMAGES/team.png")}/>
                         </div>
                             <input/>
                     </div>
@@ -35,7 +35,7 @@ function Write() {
                     <div className={styles.select}>
                         <div className={styles.title}>
                             <p>참조</p>
-                            <img src={require("../IMAGES/team.png")}/>
+                            <img src={require("../../IMAGES/team.png")}/>
                         </div>
                             <input/>
                     </div>
@@ -43,7 +43,7 @@ function Write() {
                     <div className={styles.select}>
                         <div className={styles.title}>
                             <p>첨부파일</p>
-                            <img src={require("../IMAGES/upload.png")}/>
+                            <img src={require("../../IMAGES/upload.png")}/>
                         </div>
                             <input/>
                     </div>

@@ -26,7 +26,7 @@ function AccountManagement() {
                 
                 <div>
                     <div className={styles.profile}>
-                        <img src={require("../IMAGES/profile.jpeg")} />
+                        <img src={require("../../IMAGES/profile.jpeg")} />
                         <Button variant="primary" className={styles.button}>사진등록</Button>
                     </div>
 
@@ -46,12 +46,12 @@ function AccountManagement() {
 
                         <div>
                             부서 <input/>
-                            <img src={require("../IMAGES/more.png")} className={styles.icon} />
+                            <img src={require("../../IMAGES/more.png")} className={styles.icon} />
                         </div>
 
                         <div>
                             직급 <input/>
-                            <img src={require("../IMAGES/more.png")} className={styles.icon} />
+                            <img src={require("../../IMAGES/more.png")} className={styles.icon} />
                         </div>
 
                         <div>
