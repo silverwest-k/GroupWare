@@ -2,9 +2,8 @@ import styles from "./ReportDocument.module.css"
 import Pagination from 'react-bootstrap/Pagination';
 import ToggleButton from 'react-bootstrap/ToggleButton';
 import ToggleButtonGroup from 'react-bootstrap/ToggleButtonGroup';
-import {Table} from "react-bootstrap";
+import {Button, Form, FormControl, InputGroup, Table} from "react-bootstrap";
 import {useEffect, useState} from "react";
-import button from "bootstrap/js/src/button";
 
 function ReportDocument() {
     const [post, setPost] = useState([]);
@@ -23,16 +22,26 @@ function ReportDocument() {
 
     return(
         <div className={styles.wrapper}>
-            <div className={styles.buttonGroup}>
-                <ToggleButtonGroup type="radio" name="options" defaultValue={1}>
-                    <ToggleButton id="tbg-radio-1" value={1} className={styles.button}>전체</ToggleButton>
-                    <ToggleButton id="tbg-radio-2" value={2} className={styles.button}>진행중</ToggleButton>
-                    <ToggleButton id="tbg-radio-3" value={3} className={styles.button}>결재완료</ToggleButton>
-                    <ToggleButton id="tbg-radio-4" value={4} className={styles.button}>반려</ToggleButton>
-                </ToggleButtonGroup>
-            </div>
+            <div className={styles.divisionLine}></div>
+                <div className={styles.buttonGroup}>
+                    <ToggleButtonGroup type="radio" name="options" defaultValue={1}>
+                        <ToggleButton id="tbg-radio-1" value={1} className={styles.button}>전체</ToggleButton>
+                        <ToggleButton id="tbg-radio-2" value={2} className={styles.button}>진행중</ToggleButton>
+                        <ToggleButton id="tbg-radio-3" value={3} className={styles.button}>결재완료</ToggleButton>
+                        <ToggleButton id="tbg-radio-4" value={4} className={styles.button}>반려</ToggleButton>
+                    </ToggleButtonGroup>
+                </div>
+            <div className={styles.divisionLine}></div>
 
             <div className={styles.tableContainer}>
+
+                <Form className={styles.search}>
+                    <InputGroup className="mb-3">
+                        <FormControl type="text" className="form-control-lg" placeholder="Search Here" />
+                        <Button className={styles.searchButton}> 검색 </Button>
+                    </InputGroup>
+                </Form>
+
                 <Table hover>
                     <thead className={styles.tableHead}>
                         <tr>
@@ -72,7 +81,7 @@ function ReportDocument() {
                             </Pagination.Item>
                         ))
                     }
-                    <Pagination.Next onClick={()=>setPage(page+1)} disabled={page===pageNum}/>
+                    <Pagination.Next onClick={()=>setPage(page+1)} disabled={page===pageNum} />
                     <Pagination.Last onClick={()=>setPage(pageNum)} disabled={page===pageNum}/>
                 </Pagination>
                     {/*<Pagination.Ellipsis />*/}

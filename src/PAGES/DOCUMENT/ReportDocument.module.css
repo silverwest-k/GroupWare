@@ -1,8 +1,13 @@
-
 .wrapper {
-    margin: 100px;
+    margin: 20px;
     height: 100%;
     width: 100%;
+}
+
+.divisionLine {
+    border-bottom: 1.5px solid #4429f2;
+    margin: 20px auto;
+    width: 600px;
 }
 
 .buttonGroup, .pagination {
@@ -20,12 +25,26 @@
 }
 
 .button {
-    --bs-btn-bg: rgba(68, 41, 242, 0.5);
+    --bs-btn-bg: rgba(68, 41, 242, 0.7);
     --bs-btn-active-bg:#4429f2;
+    border-bottom: 1px solid #4429f2;
+}
+
+.search {
+    width: 30%;
+    float: right;
+}
+.searchButton {
+    --bs-btn-bg:#4429f2;
+    --bs-btn-border-color:#4429f2;
+    --bs-btn-hover-bg: rgba(68, 41, 242, 0.7);
+    --bs-btn-hover-border-color: none;
+    --bs-btn-active-bg:#4429f2;
+    --bs-btn-active-border-color:#4429f2;
 }
 
 .tableContainer {
-    margin: 100px 50px;
+    margin: 50px 50px;
     width: 1000px;
 }
 
@@ -59,10 +78,9 @@ tr {
 
 .pagination li{
     --bs-pagination-color: #4429f2;
-    /*--bs-pagination-active-bg: #4429f2;*/
-    /*--bs-pagination-active-border-color: #4429f2;*/
     --bs-pagination-hover-color: #180882;
     --bs-pagination-focus-color: white;
     --bs-pagination-focus-bg: #4429f2;
     --bs-pagination-focus-box-shadow: none;
 }
+

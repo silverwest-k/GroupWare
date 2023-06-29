@@ -1,17 +1,18 @@
-import {Button, ToggleButton} from "react-bootstrap";
+import {Button, Modal, ToggleButton} from "react-bootstrap";
 import styles from "./AccountManagement.module.css"
 import {useState} from "react";
 import ButtonGroup from 'react-bootstrap/ButtonGroup';
 
 function AccountManagement() {
     const [radioValue, setRadioValue] = useState('1');
+    const [show, setShow] = useState(false);
 
     const radios = [
         { name: '사용중', value: '1' },
         { name: '접속차단', value: '2' }
     ];
-
-
+    const handleClose = () => setShow(false);
+    const handleShow = () => setShow(true);
 
     return(
         <div className={styles.wrapper}>
@@ -21,7 +22,10 @@ function AccountManagement() {
                         계정관리
                         <Button variant="primary" className={styles.button} style={{marginLeft:"15px"}}>불러오기</Button>
                     </div>
-                    <Button variant="primary" className={styles.button}>삭제</Button>
+                    <Button variant="primary"
+                            className={styles.button}
+                            onClick={handleShow}
+                    >삭제</Button>
                 </div>
 
                 <div className={styles.contents}>
@@ -36,7 +40,7 @@ function AccountManagement() {
                         </div>
 
                         <div className={styles.line}>
-                            비밀번호 <input/>
+                            비밀번호 <input type="password" />
                             <Button variant="primary" className={styles.button}>초기화</Button>
                         </div>
 
@@ -81,6 +85,30 @@ function AccountManagement() {
                     </div>
                 </div>
             </div>
+
+            <Modal
+                show={show}
+                onHide={handleClose}
+                backdrop="static"
+                keyboard={false}
+                centered
+                className={styles.modal}
+            >
+                <Modal.Header closeButton className={styles.modalHeader}>
+                    <Modal.Title style={{fontWeight:"bold"}}>계정삭제</Modal.Title>
+                </Modal.Header>
+                <Modal.Body>
+                    계정을 완전히 삭제하시겠습니까?
+                </Modal.Body>
+                <Modal.Footer>
+                    <Button variant="secondary" onClick={handleClose}>
+                        취소
+                    </Button>
+                    <Button variant="primary"
+                            className={styles.button}
+                    >확인</Button>
+                </Modal.Footer>
+            </Modal>
         </div>
     )
 }

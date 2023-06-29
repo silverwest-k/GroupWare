@@ -6,6 +6,19 @@ function LogIn() {
     const [userId, setUserId] = useState("")
     const [userPassword, setUserPassword] = useState("")
 
+    const login = ()=> {
+        axios.post("http://172.20.10.8:9091/members/login", {
+            mid: userId,
+            password: userPassword
+        })
+            .then(function (res) {
+                console.log(res);
+            })
+            .catch(function (error){
+                console.log(error);
+            })
+    }
+
     return(
         <>
             id <input value={userId}
@@ -15,19 +28,8 @@ function LogIn() {
             pw <input value={userPassword}
                       onChange={(e)=>{setUserPassword(e.currentTarget.value)}}
             />
-            
-            <button
-                onClick={()=>{axios.post("http://172.20.10.8:9091/login_proc", {
-                    userId:"userId", userPassword:"userPassword"
-                })
-                    .then(function (res) {
-                        console.log(res);
-                    })
-                    .catch(function (error){
-                    console.log(error);
-                })
-                }}
-            >로그인</button>
+
+            <button onClick={login}>로그인</button>
         </>
     )
 }
