@@ -1,6 +1,5 @@
 import {Link} from "react-router-dom";
 import styles from "./Menu.module.css";
-import MyPage from "../../../PAGES/MYPAGE/MyPage";
 
 function MyPageMenu() {
     return(

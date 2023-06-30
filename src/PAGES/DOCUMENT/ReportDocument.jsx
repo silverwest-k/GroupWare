@@ -37,7 +37,7 @@ function ReportDocument() {
 
                 <Form className={styles.search}>
                     <InputGroup className="mb-3">
-                        <FormControl type="text" className="form-control-lg" placeholder="Search Here" />
+                        <FormControl type="text" className="form-control-lg" placeholder="제목" />
                         <Button className={styles.searchButton}> 검색 </Button>
                     </InputGroup>
                 </Form>

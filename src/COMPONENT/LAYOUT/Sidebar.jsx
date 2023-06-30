@@ -2,9 +2,17 @@ import styles from "./Sidebar.module.css"
 import Accordion from 'react-bootstrap/Accordion';
 import {Link} from "react-router-dom";
 import {useState} from "react";
+import useStore from "../../store";
+
 
 function Sidebar() {
     const [activeLink, setActiveLink] = useState("");
+
+    const {changeTitle} = useStore(state => state)
+    const menuName = (e) =>{
+        const selectMenu = e.target.textContent;
+        changeTitle(selectMenu);
+    }
 
     const handleLink = (link) => {
         setActiveLink(link);
@@ -25,13 +33,13 @@ function Sidebar() {
                             <img src={require("../../IMAGES/checklist.png")}/>
                             <p>전자결재</p>
                         </Accordion.Header>
-                        <Accordion.Body className={styles.accordionBody}>
+                        <Accordion.Body className={styles.accordionBody} onClick={menuName}>
                             <Link to="/page/write"
                                   className={`${styles.underline} ${styles.blue} ${activeLink === "write" ? styles.active : ""}`}
                                   onClick={()=>handleLink("write")}
                             >작성하기</Link>
                         </Accordion.Body>
-                        <Accordion.Body className={styles.accordionBody}>
+                        <Accordion.Body className={styles.accordionBody} onClick={menuName}>
                             <Link to="/page/approvalpath"
                                   className={`${styles.underline} ${styles.blue} ${activeLink === "approvalpath" ? styles.active : ""}`}
                                   onClick={()=>handleLink("approvalpath")}
@@ -44,19 +52,19 @@ function Sidebar() {
                             <img src={require("../../IMAGES/folder.png")}/>
                             <p>문서함</p>
                         </Accordion.Header>
-                        <Accordion.Body className={styles.accordionBody}>
+                        <Accordion.Body className={styles.accordionBody} onClick={menuName}>
                             <Link to="/page/receivedocument"
                                   className={`${styles.underline} ${styles.blue} ${activeLink === "receivedocument" ? styles.active : ""}`}
                                   onClick={()=>handleLink("receivedocument")}
                             >수신문서</Link>
                         </Accordion.Body>
-                        <Accordion.Body className={styles.accordionBody}>
+                        <Accordion.Body className={styles.accordionBody} onClick={menuName}>
                             <Link to="/page/reportdocument"
                                   className={`${styles.underline} ${styles.blue} ${activeLink === "reportdocument" ? styles.active : ""}`}
                                   onClick={()=>handleLink("reportdocument")}
                             >상신문서</Link>
                         </Accordion.Body>
-                        <Accordion.Body className={styles.accordionBody}>
+                        <Accordion.Body className={styles.accordionBody} onClick={menuName}>
                             <Link to=""
                                   className={`${styles.underline} ${styles.blue}`}
                             >임시보관함</Link>
@@ -68,7 +76,7 @@ function Sidebar() {
                             <img src={require("../../IMAGES/profile.png")}/>
                             <p>마이페이지</p>
                         </Accordion.Header>
-                        <Accordion.Body className={styles.accordionBody}>
+                        <Accordion.Body className={styles.accordionBody} onClick={menuName}>
                             <Link to="/page/mypage"
                                   className={`${styles.underline} ${styles.blue} ${activeLink === "mypage" ? styles.active : ""}`}
                                   onClick={()=>handleLink("mypage")}
@@ -81,13 +89,13 @@ function Sidebar() {
                             <img src={require("../../IMAGES/process.png")}/>
                             <p>문서관리</p>
                         </Accordion.Header>
-                        <Accordion.Body className={styles.accordionBody}>
+                        <Accordion.Body className={styles.accordionBody} onClick={menuName}>
                             <Link to="/page/documentregistration"
                                   className={`${styles.underline} ${styles.orange} ${activeLink === "documentregistration" ? styles.active : ""}`}
                                   onClick={()=>handleLink("documentregistration")}
                             >양식등록</Link>
                         </Accordion.Body>
-                        <Accordion.Body className={styles.accordionBody}>
+                        <Accordion.Body className={styles.accordionBody} onClick={menuName}>
                             <Link to=""
                                   className={`${styles.underline} ${styles.orange}`}
 
@@ -100,13 +108,13 @@ function Sidebar() {
                             <img src={require("../../IMAGES/management.png")}/>
                             <p>계정관리</p>
                         </Accordion.Header>
-                        <Accordion.Body className={styles.accordionBody}>
+                        <Accordion.Body className={styles.accordionBody} onClick={menuName}>
                             <Link to="/page/accountregistration"
                                   className={`${styles.underline} ${styles.orange} ${activeLink === "accountregistration" ? styles.active : ""}`}
                                   onClick={()=>handleLink("accountregistration")}
                             >계정등록</Link>
                         </Accordion.Body>
-                        <Accordion.Body className={styles.accordionBody}>
+                        <Accordion.Body className={styles.accordionBody} onClick={menuName}>
                             <Link to="/page/accountmanagement"
                                   className={`${styles.underline} ${styles.orange} ${activeLink === "accountmanagement" ? styles.active : ""}`}
                                   onClick={()=>handleLink("accountmanagement")}
@@ -120,3 +128,4 @@ function Sidebar() {
 }
 
 export default Sidebar
+

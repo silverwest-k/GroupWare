@@ -1,14 +1,10 @@
 import styles from "./Header.module.css"
 import {Link, useParams} from "react-router-dom";
-import {useEffect} from "react";
+import useStore from "../../store";
+
 
 function Header() {
-    let params = useParams();
-    console.log(params);
-
-    // useEffect(() => {
-    //     console.log(params);
-    // }, [params]);
+    const {headerTitle} = useStore(state => state)
 
     return (
         <>
@@ -16,7 +12,7 @@ function Header() {
                 <Link to="/">원 인터내셔널</Link>
             </div>
             <div className={styles.headerLine}>
-                dd
+                <p>{headerTitle}</p>
             </div>
         </>
     );
