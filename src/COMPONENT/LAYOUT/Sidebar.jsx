@@ -9,6 +9,7 @@ function Sidebar() {
     const [activeLink, setActiveLink] = useState("");
 
     const {changeTitle} = useStore(state => state)
+
     const menuName = (e) =>{
         const selectMenu = e.target.textContent;
         changeTitle(selectMenu);

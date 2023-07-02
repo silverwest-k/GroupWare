@@ -1,0 +1,56 @@
+.wrapper {
+    width: 100%;
+    height: 100%;
+    color: black;
+}
+
+.cardContainer {
+    width: 800px;
+    height: 200px;
+    border: 1px solid #afb0b1;
+    border-radius: 20px;
+    display: flex;
+    flex-direction: row;
+    margin: 30px;
+}
+
+.contents {
+    display: flex;
+    flex-direction: column;
+    width: 80%;
+}
+
+.cardUpper {
+    display: flex;
+    flex-direction: column;
+    height: 200px;
+    padding: 20px;
+}
+
+.upperState {
+    font-size: 15px;
+    padding: 8px 20px;
+    border-top-left-radius: 20px;
+}
+
+.cardLower {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 20px;
+    font-size: 15px;
+    color: grey;
+}
+
+.divisionLine{
+    border-right: 1px solid #afb0b1;
+    margin: auto;
+    height: 200px;
+}
+
+.approvalButton {
+    width: 20%;
+    margin: auto;
+    text-align: center;
+    /*cursor: pointer;*/
+}
