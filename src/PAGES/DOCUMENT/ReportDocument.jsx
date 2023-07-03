@@ -6,18 +6,18 @@ import {Button, Form, FormControl, InputGroup, Table} from "react-bootstrap";
 import {useEffect, useState} from "react";
 
 function ReportDocument() {
-    const [post, setPost] = useState([]);
+    const [data, setData] = useState([]);
     const [limit, setLimit] = useState(10);
     const [page, setPage] = useState(1);
 
     const offset= (page - 1) * limit;
-    const total = post.length;
+    const total = data.length;
     const pageNum = Math.ceil(total/limit);
 
     useEffect(() => {
         fetch("https://jsonplaceholder.typicode.com/posts")
             .then((res) => res.json())
-            .then((data) => setPost(data));
+            .then((data) => setData(data));
     }, []);
 
     return(
@@ -35,12 +35,12 @@ function ReportDocument() {
 
             <div className={styles.tableContainer}>
 
-                <Form className={styles.search}>
+                <div className={styles.search}>
                     <InputGroup className="mb-3">
                         <FormControl type="text" className="form-control-lg" placeholder="제목" />
                         <Button className={styles.searchButton}> 검색 </Button>
                     </InputGroup>
-                </Form>
+                </div>
 
                 <Table hover>
                     <thead className={styles.tableHead}>
@@ -52,7 +52,7 @@ function ReportDocument() {
                     </thead>
 
                     <tbody>
-                    {post.slice(offset, offset + limit).map((data)=>{
+                    {data.slice(offset, offset + limit).map((data)=>{
                         return(
                             <tr key={data.id}>
                                 <td>{data.id}</td>
@@ -84,7 +84,7 @@ function ReportDocument() {
                     <Pagination.Next onClick={()=>setPage(page+1)} disabled={page===pageNum} />
                     <Pagination.Last onClick={()=>setPage(pageNum)} disabled={page===pageNum}/>
                 </Pagination>
-                    {/*<Pagination.Ellipsis />*/}
+                {/*<Pagination.Ellipsis />*/}
             </div>
         </div>
     )

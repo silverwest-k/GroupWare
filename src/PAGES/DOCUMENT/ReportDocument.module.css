@@ -1,12 +1,11 @@
 .wrapper {
-    margin: 20px;
     height: 100%;
     width: 100%;
 }
 
 .divisionLine {
     border-bottom: 1.5px solid #4429f2;
-    margin: 20px auto;
+    margin: 10px auto;
     width: 600px;
 }
 
@@ -21,7 +20,7 @@
     background: rgba(68, 41, 242, 0.11);
     color: #4429f2;
     font-size: 20px;
-    padding: 8px 30px;
+    padding: 5px 30px;
 }
 
 .button {
@@ -34,6 +33,7 @@
     width: 30%;
     float: right;
 }
+
 .searchButton {
     --bs-btn-bg:#4429f2;
     --bs-btn-border-color:#4429f2;
@@ -44,8 +44,9 @@
 }
 
 .tableContainer {
-    margin: 50px 50px;
-    width: 1000px;
+    margin: 50px 100px;
+    width: 80%;
+    height: 900px;
 }
 
 .tableHead th {

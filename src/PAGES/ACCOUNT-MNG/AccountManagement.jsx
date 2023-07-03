@@ -2,6 +2,7 @@ import {Button, Modal, ToggleButton} from "react-bootstrap";
 import styles from "./AccountManagement.module.css"
 import {useState} from "react";
 import ButtonGroup from 'react-bootstrap/ButtonGroup';
+import DeleteModal from "./DeleteModal";
 
 function AccountManagement() {
     const [radioValue, setRadioValue] = useState('1');
@@ -36,7 +37,7 @@ function AccountManagement() {
 
                     <div className={styles.inputContainer}>
                         <div className={styles.line}>
-                            이름 <input/>
+                            이　　름 <input/>
                         </div>
 
                         <div className={styles.line}>
@@ -45,16 +46,16 @@ function AccountManagement() {
                         </div>
 
                         <div className={styles.line}>
-                            사번 <input/>
+                            사　　번 <input/>
                         </div>
 
                         <div className={styles.line}>
-                            부서 <input/>
+                            부　　서 <input/>
                             <img src={require("../../IMAGES/more.png")} className={styles.icon} />
                         </div>
 
                         <div className={styles.line}>
-                            직급 <input/>
+                            직　　급 <input/>
                             <img src={require("../../IMAGES/more.png")} className={styles.icon} />
                         </div>
 
@@ -89,25 +90,12 @@ function AccountManagement() {
             <Modal
                 show={show}
                 onHide={handleClose}
-                backdrop="static"
+                // backdrop="static"
                 keyboard={false}
                 centered
                 className={styles.modal}
             >
-                <Modal.Header closeButton className={styles.modalHeader}>
-                    <Modal.Title style={{fontWeight:"bold"}}>계정삭제</Modal.Title>
-                </Modal.Header>
-                <Modal.Body>
-                    계정을 완전히 삭제하시겠습니까?
-                </Modal.Body>
-                <Modal.Footer>
-                    <Button variant="secondary" onClick={handleClose}>
-                        취소
-                    </Button>
-                    <Button variant="primary"
-                            className={styles.button}
-                    >확인</Button>
-                </Modal.Footer>
+                <DeleteModal handleClose={handleClose} />
             </Modal>
         </div>
     )

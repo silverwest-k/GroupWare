@@ -4,20 +4,47 @@
     color: black;
 }
 
+.container {
+    width: 80%;
+    margin: auto;
+}
+
+.search {
+    width: 30%;
+    float: right;
+    margin: 20px 50px 0 0 ;
+}
+
+.searchButton {
+    --bs-btn-bg:#4429f2;
+    --bs-btn-border-color:#4429f2;
+    --bs-btn-hover-bg: rgba(68, 41, 242, 0.7);
+    --bs-btn-hover-border-color: none;
+    --bs-btn-active-bg:#4429f2;
+    --bs-btn-active-border-color:#4429f2;
+}
+
 .cardContainer {
-    width: 800px;
-    height: 200px;
+    width: 900px;
+    height: 160px;
     border: 1px solid #afb0b1;
-    border-radius: 20px;
+    border-radius: 15px;
     display: flex;
     flex-direction: row;
-    margin: 30px;
+    margin: 30px auto;
 }
 
 .contents {
     display: flex;
     flex-direction: column;
-    width: 80%;
+    width: 85%;
+}
+
+.upperState {
+    font-size: 15px;
+    font-weight: bold;
+    padding: 5px 20px;
+    border-top-left-radius: 15px;
 }
 
 .cardUpper {
@@ -25,12 +52,6 @@
     flex-direction: column;
     height: 200px;
     padding: 20px;
-}
-
-.upperState {
-    font-size: 15px;
-    padding: 8px 20px;
-    border-top-left-radius: 20px;
 }
 
 .cardLower {
@@ -45,12 +66,25 @@
 .divisionLine{
     border-right: 1px solid #afb0b1;
     margin: auto;
-    height: 200px;
+    height: 160px;
 }
 
 .approvalButton {
-    width: 20%;
+    width: 15%;
     margin: auto;
     text-align: center;
     /*cursor: pointer;*/
+}
+
+.pagination {
+    display: flex;
+    justify-content: center;
+}
+
+.pagination li{
+    --bs-pagination-color: #4429f2;
+    --bs-pagination-hover-color: #180882;
+    --bs-pagination-focus-color: white;
+    --bs-pagination-focus-bg: #4429f2;
+    --bs-pagination-focus-box-shadow: none;
 }
