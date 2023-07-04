@@ -1,7 +1,7 @@
 import {Link} from "react-router-dom";
 import styles from "./Menu.module.css"
 
-function DocumentManagementMenu() {
+function DocumentManagementMenu({menuName}) {
     return(
         <>
             <div className={styles.mainMenu}
@@ -12,8 +12,12 @@ function DocumentManagementMenu() {
                 <div className={styles.divisionLine}/>
 
                 <div className={styles.mainLink}>
-                    <Link style={{color: "#FA3E0C"}} to="/page/documentregistration">양식등록</Link>
-                    <Link style={{color: "#FA3E0C"}} to="">결재문서</Link>
+                    <Link style={{color: "#FA3E0C"}} to="/page/documentregistration"
+                          onClick={menuName}
+                    >양식등록</Link>
+                    <Link style={{color: "#FA3E0C"}} to=""
+                          onClick={menuName}
+                    >결재문서</Link>
                 </div>
             </div>
         </>

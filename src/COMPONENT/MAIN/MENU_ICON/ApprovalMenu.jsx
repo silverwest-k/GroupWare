@@ -1,7 +1,7 @@
 import {Link} from "react-router-dom";
 import styles from "./Menu.module.css"
 
-function ApprovalMenu() {
+function ApprovalMenu({menuName}) {
     return(
         <>
             <div className={styles.mainMenu}>
@@ -10,8 +10,8 @@ function ApprovalMenu() {
                 <div className={styles.divisionLine}/>
 
                 <div className={styles.mainLink}>
-                    <Link to="/page/write">작성하기</Link>
-                    <Link to="/page/approvalpath">결재라인관리</Link>
+                    <Link to="/page/write" onClick={menuName}>작성하기</Link>
+                    <Link to="/page/approvalpath" onClick={menuName}>결재라인관리</Link>
                 </div>
             </div>
         </>

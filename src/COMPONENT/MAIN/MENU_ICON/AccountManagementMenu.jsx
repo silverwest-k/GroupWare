@@ -1,7 +1,7 @@
 import {Link} from "react-router-dom";
 import styles from "./Menu.module.css";
 
-function AccountManagementMenu() {
+function AccountManagementMenu({menuName}) {
     return(
         <>
             <div className={styles.mainMenu}
@@ -12,8 +12,12 @@ function AccountManagementMenu() {
                 <div className={styles.divisionLine}/>
 
                 <div className={styles.mainLink}>
-                    <Link style={{color: "#FA3E0C"}} to="/page/accountregistration">계정등록</Link>
-                    <Link style={{color: "#FA3E0C"}} to="/page/accountmanagement">계정관리</Link>
+                    <Link style={{color: "#FA3E0C"}} to="/page/accountregistration"
+                          onClick={menuName}
+                    >계정등록</Link>
+                    <Link style={{color: "#FA3E0C"}} to="/page/accountmanagement"
+                          onClick={menuName}
+                    >계정관리</Link>
                 </div>
             </div>
         </>

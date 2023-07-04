@@ -1,7 +1,7 @@
 import {Link} from "react-router-dom";
 import styles from "./Menu.module.css";
 
-function DocumentMenu() {
+function DocumentMenu({menuName}) {
     return(
         <>
             <div className={styles.mainMenu}>
@@ -10,9 +10,9 @@ function DocumentMenu() {
                 <div className={styles.divisionLine}/>
 
                 <div className={styles.mainLink}>
-                    <Link to="/page/receivedocument">수신문서</Link>
-                    <Link to="/page/reportdocument">상신문서</Link>
-                    <Link to="">임시보관함</Link>
+                    <Link to="/page/receivedocument" onClick={menuName}>수신문서</Link>
+                    <Link to="/page/reportdocument" onClick={menuName}>상신문서</Link>
+                    <Link to="" onClick={menuName}>임시보관함</Link>
                 </div>
             </div>
         </>
