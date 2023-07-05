@@ -8,8 +8,8 @@
 }
 
 .container {
-    width: 320px;
-    height: 190px;
+    width: 350px;
+    height: 230px;
     background-color: rgba(68, 41, 242, 0.11);
     display: flex;
     flex-direction: row;
@@ -18,13 +18,13 @@
 .profileImg img {
     width: 120px;
     height: 150px;
-    margin: 20px;
+    margin: 35px;
 }
 
 .info {
     color: black;
     font-size: 15px;
-    margin: 15px 15px;
+    margin: 50px 10px;
 }
 
 .logOut {
