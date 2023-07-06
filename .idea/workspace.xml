@@ -5,13 +5,21 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="671d336a-3897-4ae7-9dd4-06de78af820f" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/IMAGES/login.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/PAGES/Login.module.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/PAGES/ACCOUNT-MNG/PartModal.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/COMPONENT/LAYOUT/Header.module.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/COMPONENT/LAYOUT/Header.module.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/App.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/COMPONENT/LAYOUT/Header.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/COMPONENT/LAYOUT/Header.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/COMPONENT/LAYOUT/Sidebar.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/COMPONENT/LAYOUT/Sidebar.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/COMPONENT/LAYOUT/Sidebar.module.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/COMPONENT/LAYOUT/Sidebar.module.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/COMPONENT/MAIN/MainContents.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/COMPONENT/MAIN/MainContents.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/COMPONENT/MAIN/Profile.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/COMPONENT/MAIN/Profile.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/COMPONENT/MAIN/Profile.module.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/COMPONENT/MAIN/Profile.module.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/PAGES/ACCOUNT-MNG/AccountManagement.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/PAGES/ACCOUNT-MNG/AccountManagement.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/PAGES/ACCOUNT-MNG/AccountRegistration.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/PAGES/ACCOUNT-MNG/AccountRegistration.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/PAGES/ACCOUNT-MNG/DeleteModal.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/PAGES/ACCOUNT-MNG/DeleteModal.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/PAGES/LogIn.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/PAGES/LogIn.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/PAGES/Login.module.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/PAGES/Login.module.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/PAGES/Page.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/PAGES/Page.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/store.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/store.jsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -75,7 +83,7 @@
       <workItem from="1687786357298" duration="2530000" />
       <workItem from="1687842133471" duration="55669000" />
       <workItem from="1688206665504" duration="1791000" />
-      <workItem from="1688466562162" duration="17559000" />
+      <workItem from="1688466562162" duration="41982000" />
     </task>
     <servers />
   </component>

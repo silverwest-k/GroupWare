@@ -83,7 +83,6 @@
     background-image: linear-gradient(transparent 50%, rgba(125, 121, 242, 0.37));
 }
 
-
 .accordion {
     /*background: #F6F6F6;*/
     --bs-accordion-border-color: none;
@@ -96,3 +95,8 @@
     padding: 10px 0 10px 90px;
 }
 
+.logOut {
+    color: grey;
+    text-decoration: underline;
+    padding: 15px 15px 10px 50px;
+}

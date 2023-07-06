@@ -1,7 +1,7 @@
 import create from 'zustand'
 
 const useStore = create(set => ({
-    headerTitle: "Main",
+    headerTitle: "메인",
     changeTitle: (e)=> set(state =>({headerTitle:e}))
 }))
 

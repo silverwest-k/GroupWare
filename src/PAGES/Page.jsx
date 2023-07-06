@@ -10,25 +10,29 @@ import MyPage from "./MYPAGE/MyPage";
 import AccountManagement from "./ACCOUNT-MNG/AccountManagement";
 import DocumentRegistration from "./DOCUMENT-MNG/DocumentRegistration";
 import AccountRegistration from "./ACCOUNT-MNG/AccountRegistration";
+import Header from "../COMPONENT/LAYOUT/Header";
 function Page() {
     return(
-        <div className={styles.wrapper}>
-            <Sidebar />
-            <div className={styles.container}>
-                <Routes>
-                    <Route path="*" element={<PageContents />}>
-                        <Route path="write" element={<Write />} />
-                        <Route path="approvalpath" element={<ApprovalPath/>} />
-                        <Route path="receivedocument" element={<ReceiveDocument/>} />
-                        <Route path="reportdocument" element={<ReportDocument/>} />
-                        <Route path="mypage" element={<MyPage/>} />
-                        <Route path="documentregistration" element={<DocumentRegistration/>}/>
-                        <Route path="accountmanagement" element={<AccountManagement/>} />
-                        <Route path="accountregistration" element={<AccountRegistration/>} />
-                    </Route>
-                </Routes>
+        <>
+            <Header/>
+            <div className={styles.wrapper}>
+                <Sidebar />
+                <div className={styles.container}>
+                    <Routes>
+                        <Route path="*" element={<PageContents />}>
+                            <Route path="write" element={<Write />} />
+                            <Route path="approvalpath" element={<ApprovalPath/>} />
+                            <Route path="receivedocument" element={<ReceiveDocument/>} />
+                            <Route path="reportdocument" element={<ReportDocument/>} />
+                            <Route path="mypage" element={<MyPage/>} />
+                            <Route path="documentregistration" element={<DocumentRegistration/>}/>
+                            <Route path="accountmanagement" element={<AccountManagement/>} />
+                            <Route path="accountregistration" element={<AccountRegistration/>} />
+                        </Route>
+                    </Routes>
+                </div>
             </div>
-        </div>
+        </>
     )
 }
 

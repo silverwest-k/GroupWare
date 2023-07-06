@@ -3,10 +3,12 @@ import Profile from "./Profile";
 import ApprovalNotice from "./ApprovalNotice";
 import Notice from "./Notice";
 import styles from "./MainContents.module.css"
+import Header from "../LAYOUT/Header";
 
 function MainContents() {
     return(
         <div className={styles.wrapper}>
+            <Header/>
             <div className={styles.upperContents}>
                 <Profile/>
                 <ApprovalNotice/>

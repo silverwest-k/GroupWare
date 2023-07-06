@@ -3,17 +3,22 @@ import styles from "./AccountManagement.module.css"
 import {useState} from "react";
 import ButtonGroup from 'react-bootstrap/ButtonGroup';
 import DeleteModal from "./DeleteModal";
+import PartModal from "./PartModal";
 
 function AccountManagement() {
     const [radioValue, setRadioValue] = useState('1');
-    const [show, setShow] = useState(false);
+    const [showPartModal, setShowPartModal] = useState(false);
+    const [showDeleteModal, setShowDeleteModal] = useState(false);
 
     const radios = [
         { name: '사용중', value: '1' },
         { name: '접속차단', value: '2' }
     ];
-    const handleClose = () => setShow(false);
-    const handleShow = () => setShow(true);
+    const handlePartModalOpen = () => setShowPartModal(true);
+    const handlePartModalClose = () => setShowPartModal(false);
+
+    const handleDeleteModalOpen = () => setShowDeleteModal(true);
+    const handleDeleteModalClose = () => setShowDeleteModal(false);
 
     return(
         <div className={styles.wrapper}>
@@ -25,7 +30,7 @@ function AccountManagement() {
                     </div>
                     <Button variant="primary"
                             className={styles.button}
-                            onClick={handleShow}
+                            onClick={handleDeleteModalOpen}
                     >삭제</Button>
                 </div>
 
@@ -51,7 +56,9 @@ function AccountManagement() {
 
                         <div className={styles.line}>
                             부　　서 <input/>
-                            <img src={require("../../IMAGES/more.png")} className={styles.icon} />
+                            <img src={require("../../IMAGES/more.png")} className={styles.icon}
+                                 onClick={handlePartModalOpen}
+                            />
                         </div>
 
                         <div className={styles.line}>
@@ -87,16 +94,8 @@ function AccountManagement() {
                 </div>
             </div>
 
-            <Modal
-                show={show}
-                onHide={handleClose}
-                // backdrop="static"
-                keyboard={false}
-                centered
-                className={styles.modal}
-            >
-                <DeleteModal handleClose={handleClose} />
-            </Modal>
+            <PartModal showPartModal={showPartModal} handlePartModalClose={handlePartModalClose} />
+            <DeleteModal showDeleteModal={showDeleteModal} handleDeleteModalClose={handleDeleteModalClose} />
         </div>
     )
 }

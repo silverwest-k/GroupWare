@@ -25,7 +25,7 @@ function Sidebar() {
                 <img src={require("../../IMAGES/profile.jpeg")}/>
                 <p>장그래</p>
                 <p>영업3팀 / 사원</p>
-                <p>로그아웃</p>
+                <Link to="/"><p className={styles.logOut}>로그아웃</p></Link>
             </div>
             <div className={styles.menuContainer}>
                 <Accordion eventKey="0" flush>

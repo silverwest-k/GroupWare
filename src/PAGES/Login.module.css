@@ -2,21 +2,30 @@
     background: url('../IMAGES/login.jpg') no-repeat center fixed;
     background-size: cover;
     height: 100%;
+    width: 100%;
+    margin: 0;
+    padding: 0;
     color: white;
+}
+
+.container {
+    margin: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .loginContainer {
     margin: auto;
-    justify-content: center;
     width: 500px;
-    height: 350px;
-    background: rgba(0, 0, 0, 0.9);
+    height: 360px;
+    background: rgba(0, 0, 0, 0.93);
     border-radius: 15px;
+    transform: translate(0, 130%);
 }
-
 .loginContainer h2 {
     text-align: center;
-    padding: 40px;
+    padding: 50px;
 }
 
 .inputWrap {
@@ -33,15 +42,19 @@
     background: darkgray;
     border:none ;
 }
-
 .button:hover {
     background: linear-gradient(90deg, rgba(194,117,245,1) 0%, rgba(112,34,171,1) 44%, rgba(14,5,187,1) 100%);
     border:none ;
 }
 
 .alert {
-    margin: 30px auto;
     width: 500px;
     font-size: 18px;
     text-align: center;
+    --bs-alert-bg: #e82139;
+    --bs-alert-color: white;
+    --bs-alert-border-color: #e82139;
+    position: absolute;
+    right: calc(50% - 250px);
+    bottom: calc(50% + 200px);
 }

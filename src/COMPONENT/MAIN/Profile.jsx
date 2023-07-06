@@ -13,7 +13,7 @@ function Profile() {
                     <p>장그래 사원</p>
                     <p>부서 : 영업3팀</p>
                     <p>사번 : 213327</p>
-                    <Link to="/login"><p className={styles.logOut}>로그아웃</p></Link>
+                    <Link to="/"><p className={styles.logOut}>로그아웃</p></Link>
                 </div>
             </div>
         </div>
