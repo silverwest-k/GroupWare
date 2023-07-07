@@ -77,14 +77,3 @@
     justify-content: center;
     margin-top: 250px;
 }
-
-.modal {
-    --bs-modal-border-color: #fa3e0c;
-    --bs-modal-header-border-color: #fa3e0c;
-    --bs-modal-footer-border-color: #fa3e0c;
-    --bs-modal-footer-bg: rgba(250, 62, 12, 0.08);
-}
-.modalHeader {
-    color: white;
-    background:#fa3e0c;
-}

@@ -4,21 +4,31 @@ import {useState} from "react";
 import ButtonGroup from 'react-bootstrap/ButtonGroup';
 import DeleteModal from "./DeleteModal";
 import PartModal from "./PartModal";
+import useStore from "../../store";
+import PositionModal from "./PositionModal";
 
 function AccountManagement() {
     const [radioValue, setRadioValue] = useState('1');
-    const [showPartModal, setShowPartModal] = useState(false);
     const [showDeleteModal, setShowDeleteModal] = useState(false);
+    const [showPartModal, setShowPartModal] = useState(false);
+    const [showPositionModal, setShowPositionModal] = useState(false);
+    const {teamName} = useStore(state => state);
+    const {position} = useStore(state => state);
 
-    const radios = [
+    const radioState = [
         { name: '사용중', value: '1' },
         { name: '접속차단', value: '2' }
     ];
-    const handlePartModalOpen = () => setShowPartModal(true);
-    const handlePartModalClose = () => setShowPartModal(false);
 
     const handleDeleteModalOpen = () => setShowDeleteModal(true);
     const handleDeleteModalClose = () => setShowDeleteModal(false);
+
+    const handlePartModalOpen = () => setShowPartModal(true);
+    const handlePartModalClose = () => setShowPartModal(false);
+
+    const handlePositionModalOpen = () => setShowPositionModal(true);
+    const handlePositionModalClose = () => setShowPositionModal(false);
+
 
     return(
         <div className={styles.wrapper}>
@@ -47,7 +57,7 @@ function AccountManagement() {
 
                         <div className={styles.line}>
                             비밀번호 <input type="password" />
-                            <Button variant="primary" className={styles.button}>초기화</Button>
+                            {/*<Button variant="primary" className={styles.button}>초기화</Button>*/}
                         </div>
 
                         <div className={styles.line}>
@@ -55,21 +65,23 @@ function AccountManagement() {
                         </div>
 
                         <div className={styles.line}>
-                            부　　서 <input/>
+                            부　　서 <input value={teamName} />
                             <img src={require("../../IMAGES/more.png")} className={styles.icon}
                                  onClick={handlePartModalOpen}
                             />
                         </div>
 
                         <div className={styles.line}>
-                            직　　급 <input/>
-                            <img src={require("../../IMAGES/more.png")} className={styles.icon} />
+                            직　　급 <input value={position} />
+                            <img src={require("../../IMAGES/more.png")} className={styles.icon}
+                                 onClick={handlePositionModalOpen}
+                            />
                         </div>
 
                         <div className={styles.line} style={{alignItems:"baseline"}}>
                             계정상태
                             <ButtonGroup style={{marginLeft:"15px"}}>
-                                {radios.map((radio, idx) => (
+                                {radioState.map((radio, idx) => (
                                     <ToggleButton
                                         key={idx}
                                         id={`radio-${idx}`}
@@ -96,6 +108,7 @@ function AccountManagement() {
 
             <PartModal showPartModal={showPartModal} handlePartModalClose={handlePartModalClose} />
             <DeleteModal showDeleteModal={showDeleteModal} handleDeleteModalClose={handleDeleteModalClose} />
+            <PositionModal showPositionModal={showPositionModal} handlePositionModalClose={handlePositionModalClose} />
         </div>
     )
 }

@@ -1,12 +1,20 @@
 import {Button, Modal} from "react-bootstrap";
-import styles from "./AccountManagement.module.css";
+import styles from "./Modal.module.css";
 import {useEffect, useState} from "react";
 import axios from "axios";
 import Accordion from "react-bootstrap/Accordion";
+import useStore from "../../store";
 
 function PartModal({showPartModal, handlePartModalClose}) {
 
     const [part, setPart] = useState([]);
+    const {selectTeam} = useStore(state => state);
+
+    const changeTeam = (e) => {
+        selectTeam(e);
+        handlePartModalClose();
+    }
+
 
     useEffect(() => {
         fetchPartData();
@@ -24,7 +32,7 @@ function PartModal({showPartModal, handlePartModalClose}) {
             .catch((error) => console.error("Error fetching part data:", error));
     };
 
-    const fetchTeamData = async ()=>{
+    const fetchTeamData = async () => {
         for (let i = 1; i <= 7; i++) {
             try {
                 const res = await axios.get(`http://172.20.10.26:9091/part/${i}/team`);
@@ -39,32 +47,24 @@ function PartModal({showPartModal, handlePartModalClose}) {
         }
     }
 
-    return(
-        <>
+    return (
+        <div className={styles.wrap}>
             <Modal show={showPartModal} onHide={handlePartModalClose} className={styles.modal} centered>
                 <Modal.Header closeButton className={styles.modalHeader}>
-                    <Modal.Title style={{fontWeight:"bold"}}>부서선택</Modal.Title>
+                    <Modal.Title style={{fontWeight: "bold"}}>부서 선택</Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
                     <div>
                         <ul>
-                            {part.map((data, i) => (
-                                // <li key={data.id}>
-                                //     {data.name}
-                                //     <ul>
-                                //         {data.teams &&
-                                //             data.teams.map((team) => (
-                                //                 <li key={team.id}>
-                                //                     {team.name}
-                                //                 </li>
-                                //             ))}
-                                //     </ul>
-                                // </li>
+                            {part.map((data, index) => (
                                 <Accordion>
-                                    <Accordion.Item eventKey={i}>
-                                        <Accordion.Header key={data.id}>{data.name}</Accordion.Header>
+                                    <Accordion.Item eventKey={index}>
+                                        <Accordion.Header key={data.id} className={styles.partHeader}
+                                        >{data.name}</Accordion.Header>
                                         {data.teams && data.teams.map((team) => (
-                                            <Accordion.Body key={team.id}>
+                                            <Accordion.Body key={team.id} value={team.name} style={{cursor: "pointer"}}
+                                                            onClick={() => changeTeam(team.name)}
+                                            >
                                                 {team.name}
                                             </Accordion.Body>
                                         ))}
@@ -74,20 +74,15 @@ function PartModal({showPartModal, handlePartModalClose}) {
                         </ul>
                     </div>
 
-                    <div style={{float:"right"}}>
+                    <div style={{float: "right"}}>
                         <Button variant="secondary"
+                                className={styles.button}
                                 onClick={handlePartModalClose}
-                                style={{margin:"40px 15px 10px 0"}}
                         >취소</Button>
-
-                        {/*<Button variant="primary"*/}
-                        {/*        className={styles.button}*/}
-                        {/*        style={{margin:"40px 10px 10px 0"}}*/}
-                        {/*>확인</Button>*/}
                     </div>
                 </Modal.Body>
             </Modal>
-        </>
+        </div>
     )
 }
 
