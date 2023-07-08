@@ -10,11 +10,10 @@ function PartModal({showPartModal, handlePartModalClose}) {
     const [part, setPart] = useState([]);
     const {selectTeam} = useStore(state => state);
 
-    const changeTeam = (e) => {
-        selectTeam(e);
+    const pickTeam = (team) => {
+        selectTeam(team);
         handlePartModalClose();
     }
-
 
     useEffect(() => {
         fetchPartData();
@@ -48,7 +47,7 @@ function PartModal({showPartModal, handlePartModalClose}) {
     }
 
     return (
-        <div className={styles.wrap}>
+        <>
             <Modal show={showPartModal} onHide={handlePartModalClose} className={styles.modal} centered>
                 <Modal.Header closeButton className={styles.modalHeader}>
                     <Modal.Title style={{fontWeight: "bold"}}>부서 선택</Modal.Title>
@@ -60,10 +59,12 @@ function PartModal({showPartModal, handlePartModalClose}) {
                                 <Accordion>
                                     <Accordion.Item eventKey={index}>
                                         <Accordion.Header key={data.id} className={styles.partHeader}
-                                        >{data.name}</Accordion.Header>
+                                        >{data.name}
+                                        </Accordion.Header>
+
                                         {data.teams && data.teams.map((team) => (
                                             <Accordion.Body key={team.id} value={team.name} style={{cursor: "pointer"}}
-                                                            onClick={() => changeTeam(team.name)}
+                                                            onClick={() => pickTeam(team.name)}
                                             >
                                                 {team.name}
                                             </Accordion.Body>
@@ -82,7 +83,7 @@ function PartModal({showPartModal, handlePartModalClose}) {
                     </div>
                 </Modal.Body>
             </Modal>
-        </div>
+        </>
     )
 }
 

@@ -6,14 +6,15 @@ import DeleteModal from "./DeleteModal";
 import PartModal from "./PartModal";
 import useStore from "../../store";
 import PositionModal from "./PositionModal";
+import AccountModal from "./AccountModal";
 
 function AccountManagement() {
     const [radioValue, setRadioValue] = useState('1');
     const [showDeleteModal, setShowDeleteModal] = useState(false);
     const [showPartModal, setShowPartModal] = useState(false);
     const [showPositionModal, setShowPositionModal] = useState(false);
-    const {teamName} = useStore(state => state);
-    const {position} = useStore(state => state);
+    const [showAccountModal, setShowAccountModal] = useState(false);
+    const {account, teamName, position} = useStore(state => state);
 
     const radioState = [
         { name: '사용중', value: '1' },
@@ -22,12 +23,12 @@ function AccountManagement() {
 
     const handleDeleteModalOpen = () => setShowDeleteModal(true);
     const handleDeleteModalClose = () => setShowDeleteModal(false);
-
     const handlePartModalOpen = () => setShowPartModal(true);
     const handlePartModalClose = () => setShowPartModal(false);
-
     const handlePositionModalOpen = () => setShowPositionModal(true);
     const handlePositionModalClose = () => setShowPositionModal(false);
+    const handleAccountModalOpen = () => setShowAccountModal(true);
+    const handleAccountModalClose = () => setShowAccountModal(false);
 
 
     return(
@@ -36,7 +37,9 @@ function AccountManagement() {
                 <div className={styles.upperButton}>
                     <div>
                         계정관리
-                        <Button variant="primary" className={styles.button} style={{marginLeft:"15px"}}>불러오기</Button>
+                        <Button variant="primary" className={styles.button} style={{marginLeft:"15px"}}
+                                onClick={handleAccountModalOpen}
+                        >불러오기</Button>
                     </div>
                     <Button variant="primary"
                             className={styles.button}
@@ -52,27 +55,27 @@ function AccountManagement() {
 
                     <div className={styles.inputContainer}>
                         <div className={styles.line}>
-                            이　　름 <input/>
+                            이　　름 <input value={account.name}/>
                         </div>
 
                         <div className={styles.line}>
-                            비밀번호 <input type="password" />
+                            비밀번호 <input value={account.value}/>
                             {/*<Button variant="primary" className={styles.button}>초기화</Button>*/}
                         </div>
 
                         <div className={styles.line}>
-                            사　　번 <input/>
+                            사　　번 <input value={account.no}/>
                         </div>
 
                         <div className={styles.line}>
-                            부　　서 <input value={teamName} />
+                            부　　서 <input value={teamName || account.team} />
                             <img src={require("../../IMAGES/more.png")} className={styles.icon}
                                  onClick={handlePartModalOpen}
                             />
                         </div>
 
                         <div className={styles.line}>
-                            직　　급 <input value={position} />
+                            직　　급 <input value={position || account.position} />
                             <img src={require("../../IMAGES/more.png")} className={styles.icon}
                                  onClick={handlePositionModalOpen}
                             />
@@ -109,6 +112,7 @@ function AccountManagement() {
             <PartModal showPartModal={showPartModal} handlePartModalClose={handlePartModalClose} />
             <DeleteModal showDeleteModal={showDeleteModal} handleDeleteModalClose={handleDeleteModalClose} />
             <PositionModal showPositionModal={showPositionModal} handlePositionModalClose={handlePositionModalClose} />
+            <AccountModal showAccountModal={showAccountModal} handleAccountModalClose={handleAccountModalClose} />
         </div>
     )
 }

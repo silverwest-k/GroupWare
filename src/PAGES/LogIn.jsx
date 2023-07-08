@@ -52,7 +52,6 @@ function LogIn() {
     return(
         <div className={styles.wrapper}>
             <div className={styles.container}>
-
                 {showAlert && (
                     <div>
                         <Alert variant="danger" className={styles.alert}>
@@ -60,6 +59,7 @@ function LogIn() {
                         </Alert>
                     </div>
                 )}
+
                 <div className={styles.loginContainer}>
                     <h2>ACCOUNT LOGIN</h2>
                     <div className={styles.inputWrap}>

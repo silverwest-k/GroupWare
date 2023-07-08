@@ -8,7 +8,16 @@ const useStore = create(set => ({
     selectTeam: (e)=> set(state=>({teamName:e})),
 
     position: "",
-    selectPosition: (e) => set(state => ({position:e}))
+    selectPosition: (e) => set(state => ({position:e})),
+
+    account: {
+        "name": "",
+        "password": "",
+        "no": "",
+        "team": "",
+        "position": ""
+    },
+    selectAccount: (e) => set(sate =>({account:e}))
 }))
 
 export default useStore

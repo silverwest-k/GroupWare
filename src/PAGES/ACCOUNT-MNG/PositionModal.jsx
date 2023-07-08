@@ -18,13 +18,13 @@ function PositionModal({showPositionModal,handlePositionModalClose}) {
         FetchPositionData();
     },[])
 
-    const changePosition =(e)=> {
-        selectPosition(e);
+    const pickPosition =(position)=> {
+        selectPosition(position);
         handlePositionModalClose();
     }
 
     return(
-        <div className={styles.wrap}>
+        <>
             <Modal show={showPositionModal} onHide={handlePositionModalClose} className={styles.modal} centered>
                 <Modal.Header closeButton className={styles.modalHeader}>
                     <Modal.Title style={{fontWeight: "bold"}}>직급 선택</Modal.Title>
@@ -33,7 +33,7 @@ function PositionModal({showPositionModal,handlePositionModalClose}) {
                     {position.map((data)=>{
                         return(
                             <p className={styles.position} style={{cursor:"pointer"}}
-                               onClick={()=>changePosition(data.name)}
+                               onClick={()=>pickPosition(data.name)}
                             >{data.name}</p>
                         )
                     })}
@@ -46,7 +46,7 @@ function PositionModal({showPositionModal,handlePositionModalClose}) {
                     </div>
                 </Modal.Body>
             </Modal>
-        </div>
+        </>
     )
 }
 
