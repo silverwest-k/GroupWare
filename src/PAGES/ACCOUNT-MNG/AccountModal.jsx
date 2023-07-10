@@ -41,7 +41,7 @@ function AccountModal({showAccountModal,handleAccountModalClose}) {
                    className={`${styles.modal} ${tableStyles.wrap}`} centered
             >
                 <Modal.Header closeButton className={styles.modalHeader}>
-                    <Modal.Title style={{fontWeight: "bold"}}>부서 선택</Modal.Title>
+                    <Modal.Title style={{fontWeight: "bold"}}>계정 선택</Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
                     <div>

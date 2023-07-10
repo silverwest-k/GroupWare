@@ -5,13 +5,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="671d336a-3897-4ae7-9dd4-06de78af820f" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/PAGES/ACCOUNT-MNG/AccountModal.jsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/PAGES/ACCOUNT-MNG/AccountModal.module.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/PAGES/ACCOUNT-MNG/RegistrationModal.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/PAGES/ACCOUNT-MNG/AccountManagement.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/PAGES/ACCOUNT-MNG/AccountManagement.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/PAGES/ACCOUNT-MNG/PartModal.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/PAGES/ACCOUNT-MNG/PartModal.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/PAGES/ACCOUNT-MNG/PositionModal.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/PAGES/ACCOUNT-MNG/PositionModal.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/PAGES/LogIn.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/PAGES/LogIn.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/PAGES/ACCOUNT-MNG/AccountModal.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/PAGES/ACCOUNT-MNG/AccountModal.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/PAGES/ACCOUNT-MNG/AccountRegistration.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/PAGES/ACCOUNT-MNG/AccountRegistration.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/PAGES/ACCOUNT-MNG/DeleteModal.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/PAGES/ACCOUNT-MNG/DeleteModal.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/store.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/store.jsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />

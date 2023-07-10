@@ -7,8 +7,8 @@ const useStore = create(set => ({
     teamName: "",
     selectTeam: (e)=> set(state=>({teamName:e})),
 
-    position: "",
-    selectPosition: (e) => set(state => ({position:e})),
+    positionName: "",
+    selectPosition: (e) => set(state => ({positionName:e})),
 
     account: {
         "name": "",
