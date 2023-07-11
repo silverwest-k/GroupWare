@@ -14,6 +14,7 @@ function AccountManagement() {
     const [showPartModal, setShowPartModal] = useState(false);
     const [showPositionModal, setShowPositionModal] = useState(false);
     const [showAccountModal, setShowAccountModal] = useState(false);
+
     const {account, teamName, positionName} = useStore(state => state);
     const [name, setName] = useState("");
     const [password, setPassword] = useState("");
@@ -90,7 +91,8 @@ function AccountManagement() {
                             부　　서 <input value={teamName || account.team}
                                         onChange={(e)=>setTeam(e.target.value)}
                         />
-                            <img src={require("../../IMAGES/more.png")} className={styles.icon}
+                            <img src={require("../../IMAGES/more.png")}
+                                 className={styles.icon}
                                  onClick={handlePartModalOpen}
                             />
                         </div>
@@ -133,12 +135,14 @@ function AccountManagement() {
                 </div>
             </div>
 
-            <PartModal showPartModal={showPartModal} handlePartModalClose={handlePartModalClose} />
-            <DeleteModal resetInput={resetInput}
-                         showDeleteModal={showDeleteModal} handleDeleteModalClose={handleDeleteModalClose}
+            <DeleteModal
+                resetInput={resetInput}
+                showDeleteModal={showDeleteModal}
+                handleDeleteModalClose={handleDeleteModalClose}
             />
-            <PositionModal showPositionModal={showPositionModal} handlePositionModalClose={handlePositionModalClose} />
             <AccountModal showAccountModal={showAccountModal} handleAccountModalClose={handleAccountModalClose} />
+            <PartModal showPartModal={showPartModal} handlePartModalClose={handlePartModalClose} />
+            <PositionModal showPositionModal={showPositionModal} handlePositionModalClose={handlePositionModalClose} />
         </div>
     )
 }

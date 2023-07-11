@@ -11,7 +11,6 @@ function PositionModal({showPositionModal,handlePositionModalClose}) {
     const FetchPositionData= () => {
         axios.get("http://172.20.10.26:9091/position")
             .then(res=> setPosition(res.data))
-            .catch((error) => console.log(error));
     }
 
     useEffect(()=>{

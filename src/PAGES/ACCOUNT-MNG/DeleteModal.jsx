@@ -1,11 +1,11 @@
 import {Button, Modal} from "react-bootstrap";
 import styles from "./Modal.module.css";
 
-function DeleteModal({showDeleteModal, handleDeleteModalClose, resetInput}) {
-    const deleteAcc=()=>{
+function DeleteModal({ showDeleteModal, handleDeleteModalClose, resetInput }) {
+    const deleteAcc = () => {
         handleDeleteModalClose();
         resetInput();
-    }
+    };
 
     return (
         <>

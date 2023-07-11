@@ -1,4 +1,4 @@
-import {useState} from "react";
+import {useRef, useState} from "react";
 import styles from "./AccountManagement.module.css";
 import {Button, Modal} from "react-bootstrap";
 import axios from "axios";
@@ -6,11 +6,22 @@ import RegistrationModal from "./RegistrationModal";
 
 function AccountRegistration() {
     const [showRegisterModal, setShowRegisterModal] = useState(false);
+    const [imgFile, setImgFile] = useState("");
+    const imgRef = useRef();
     const [name, setName] = useState("");
     const [password, setPassword] = useState("");
     const [no, setNo] = useState("");
     const [position, setPosition] = useState("");
     const [team, setTeam] = useState("");
+
+    const saveImgFile = () =>{
+        const file = imgRef.current.files[0];
+        const reader = new FileReader();
+        reader.readAsDataURL(file);
+        reader.onload = ()=>{
+            setImgFile(reader .result);
+        }
+    }
 
     const Register = ()=>{
         axios.post("http://172.20.10.8:9091/auth/admin/signup", {
@@ -50,9 +61,25 @@ function AccountRegistration() {
                 </div>
 
                 <div className={styles.contents}>
-                    <div className={styles.profile}>
-                        <img src={require("../../IMAGES/profile.jpeg")} />
-                        <Button variant="primary" className={styles.button}>사진등록</Button>
+                    <div>
+                        <form className={styles.profile}>
+                            <img src={imgFile ? imgFile : require("../../IMAGES/profile.jpg")}
+                                 alt="프로필 이미지"
+                            />
+                            <label
+                                className={styles.profileImgLabel}
+                                htmlFor="profileImg"
+                            > 이미지 업로드
+                            </label>
+                            <input
+                                style={{display: "none"}}
+                                type="file"
+                                accept="image/*"
+                                id="profileImg"
+                                onChange={saveImgFile}
+                                ref={imgRef}
+                            />
+                        </form>
                     </div>
 
                     <div className={styles.inputContainer}>
@@ -104,8 +131,11 @@ function AccountRegistration() {
                 </div>
             </div>
 
-            <RegistrationModal showRegisterModal={showRegisterModal} Register={Register}
-                               handleRegisterModalClose={handleRegisterModalClose} />
+            <RegistrationModal
+                showRegisterModal={showRegisterModal}
+                Register={Register}
+                handleRegisterModalClose={handleRegisterModalClose}
+            />
         </div>
     )
 }
