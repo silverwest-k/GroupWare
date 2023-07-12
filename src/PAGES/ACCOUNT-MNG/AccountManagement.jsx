@@ -14,12 +14,26 @@ function AccountManagement() {
     const [showPartModal, setShowPartModal] = useState(false);
     const [showPositionModal, setShowPositionModal] = useState(false);
     const [showAccountModal, setShowAccountModal] = useState(false);
-    const {account, teamName, position} = useStore(state => state);
+
+    const {account, teamName, positionName} = useStore(state => state);
+    const [name, setName] = useState("");
+    const [password, setPassword] = useState("");
+    const [no, setNo] = useState("");
+    const [team, setTeam] = useState("");
+    const [position, setPosition] = useState("");
 
     const radioState = [
         { name: '사용중', value: '1' },
         { name: '접속차단', value: '2' }
     ];
+
+    const resetInput = () =>{
+        setName("")
+        setPassword("")
+        setNo("")
+        setTeam("")
+        setPosition("")
+    }
 
     const handleDeleteModalOpen = () => setShowDeleteModal(true);
     const handleDeleteModalClose = () => setShowDeleteModal(false);
@@ -37,7 +51,8 @@ function AccountManagement() {
                 <div className={styles.upperButton}>
                     <div>
                         계정관리
-                        <Button variant="primary" className={styles.button} style={{marginLeft:"15px"}}
+                        <Button variant="primary"
+                                className={styles.button} style={{marginLeft:"15px"}}
                                 onClick={handleAccountModalOpen}
                         >불러오기</Button>
                     </div>
@@ -55,28 +70,39 @@ function AccountManagement() {
 
                     <div className={styles.inputContainer}>
                         <div className={styles.line}>
-                            이　　름 <input value={account.name}/>
+                            이　　름 <input value={account.name}
+                                        onChange={(e)=>setName(e.target.value)}
+                        />
                         </div>
 
                         <div className={styles.line}>
-                            비밀번호 <input value={account.value}/>
-                            {/*<Button variant="primary" className={styles.button}>초기화</Button>*/}
+                            비밀번호 <input value={account.password}
+                                        onChange={(e)=>setPassword(e.target.value)}
+                        />
                         </div>
 
                         <div className={styles.line}>
-                            사　　번 <input value={account.no}/>
+                            사　　번 <input value={account.no}
+                                        onChange={(e)=>setNo(e.target.value)}
+                        />
                         </div>
 
                         <div className={styles.line}>
-                            부　　서 <input value={teamName || account.team} />
-                            <img src={require("../../IMAGES/more.png")} className={styles.icon}
+                            부　　서 <input value={teamName || account.team}
+                                        onChange={(e)=>setTeam(e.target.value)}
+                        />
+                            <img src={require("../../IMAGES/more.png")}
+                                 className={styles.icon}
                                  onClick={handlePartModalOpen}
                             />
                         </div>
 
                         <div className={styles.line}>
-                            직　　급 <input value={position || account.position} />
-                            <img src={require("../../IMAGES/more.png")} className={styles.icon}
+                            직　　급 <input value={positionName || account.position}
+                                        onChange={(e)=>setPosition(e.target.value)}
+                        />
+                            <img src={require("../../IMAGES/more.png")}
+                                 className={styles.icon}
                                  onClick={handlePositionModalOpen}
                             />
                         </div>
@@ -109,10 +135,14 @@ function AccountManagement() {
                 </div>
             </div>
 
-            <PartModal showPartModal={showPartModal} handlePartModalClose={handlePartModalClose} />
-            <DeleteModal showDeleteModal={showDeleteModal} handleDeleteModalClose={handleDeleteModalClose} />
-            <PositionModal showPositionModal={showPositionModal} handlePositionModalClose={handlePositionModalClose} />
+            <DeleteModal
+                resetInput={resetInput}
+                showDeleteModal={showDeleteModal}
+                handleDeleteModalClose={handleDeleteModalClose}
+            />
             <AccountModal showAccountModal={showAccountModal} handleAccountModalClose={handleAccountModalClose} />
+            <PartModal showPartModal={showPartModal} handlePartModalClose={handlePartModalClose} />
+            <PositionModal showPositionModal={showPositionModal} handlePositionModalClose={handlePositionModalClose} />
         </div>
     )
 }

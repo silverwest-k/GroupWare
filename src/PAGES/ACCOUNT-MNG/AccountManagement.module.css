@@ -37,6 +37,19 @@
     margin: 50px 100px 0 20px
 }
 
+.profileImgLabel {
+    width: 150px;
+    height: 37px;
+    font-size: 16px;
+    font-weight: normal;
+    text-align: center;
+    color: white;
+    background: #fa3e0c;
+    padding: 6px 12px;
+    border-radius: 7px;
+    cursor: pointer;
+}
+
 .profile img {
     width: 150px;
     height: 200px;
@@ -77,3 +90,4 @@
     justify-content: center;
     margin-top: 250px;
 }
+

@@ -1,31 +1,55 @@
-import {useState} from "react";
+import {useRef, useState} from "react";
 import styles from "./AccountManagement.module.css";
-import modalStyles from "./Modal.module.css";
 import {Button, Modal} from "react-bootstrap";
 import axios from "axios";
+import RegistrationModal from "./RegistrationModal";
 
 function AccountRegistration() {
-    const [show, setShow] = useState(false);
+    const [showRegisterModal, setShowRegisterModal] = useState(false);
+    const [imgFile, setImgFile] = useState("");
+    const imgRef = useRef();
     const [name, setName] = useState("");
     const [password, setPassword] = useState("");
     const [no, setNo] = useState("");
     const [position, setPosition] = useState("");
     const [team, setTeam] = useState("");
 
+    const saveImgFile = () =>{
+        const file = imgRef.current.files[0];
+        const reader = new FileReader();
+        reader.readAsDataURL(file);
+        reader.onload = ()=>{
+            setImgFile(reader .result);
+        }
+    }
+
     const Register = ()=>{
-        axios.post("http://172.20.10.8:9091/admin/signup", {
+        axios.post("http://172.20.10.8:9091/auth/admin/signup", {
             "name": name,
             "password": password,
             "no": no,
-            "position": position,
-            "team": team
+            "team": team,
         })
-            .then((res)=>console.log(res))
-            .catch((error) => console.log(error))
+          .then(()=> {
+              handleRegisterModalClose();
+              resetInput();
+          })
+            .catch((error) => {
+                alert("값을 입력하세요");
+                console.log(error);
+            })
     }
 
-    const handleClose = () => setShow(false);
-    const handleShow = () => setShow(true);
+    const resetInput = () =>{
+        setName("")
+        setPassword("")
+        setNo("")
+        setPosition("")
+        setTeam("")
+    }
+
+    const handleRegisterModalClose = () => setShowRegisterModal(false);
+    const handleRegisterModalShow = () => setShowRegisterModal(true);
 
     return(
         <div className={styles.wrapper}>
@@ -37,36 +61,62 @@ function AccountRegistration() {
                 </div>
 
                 <div className={styles.contents}>
-                    <div className={styles.profile}>
-                        <img src={require("../../IMAGES/profile.jpeg")} />
-                        <Button variant="primary" className={styles.button}>사진등록</Button>
+                    <div>
+                        <form className={styles.profile}>
+                            <img src={imgFile ? imgFile : require("../../IMAGES/profile.jpg")}
+                                 alt="프로필 이미지"
+                            />
+                            <label
+                                className={styles.profileImgLabel}
+                                htmlFor="profileImg"
+                            > 이미지 업로드
+                            </label>
+                            <input
+                                style={{display: "none"}}
+                                type="file"
+                                accept="image/*"
+                                id="profileImg"
+                                onChange={saveImgFile}
+                                ref={imgRef}
+                            />
+                        </form>
                     </div>
 
                     <div className={styles.inputContainer}>
                         <div className={styles.line}>
                             이　　름
-                            <input onChange={(e)=>setName(e.target.value)}/>
+                            <input  value={name}
+                                onChange={(e)=>setName(e.target.value)}
+                            />
                         </div>
 
                         <div className={styles.line}>
                             비밀번호
-                            <input type="password" onChange={(e)=>setPassword(e.target.value)}/>
+                            <input value={password} type="password"
+                                   onChange={(e)=>setPassword(e.target.value)}
+                            />
                         </div>
 
                         <div className={styles.line}>
                             사　　번
-                            <input onChange={(e)=>setNo(e.target.value)}/>
+                            <input value={no}
+                                onChange={(e)=>setNo(e.target.value)}
+                            />
                         </div>
 
                         <div className={styles.line}>
                             부　　서
-                            <input onChange={(e)=>setTeam(e.target.value)}/>
+                            <input value={team}
+                                onChange={(e)=>setTeam(e.target.value)}
+                            />
                             <img src={require("../../IMAGES/more.png")} className={styles.icon} />
                         </div>
 
                         <div className={styles.line}>
                             직　　급
-                            <input onChange={(e)=>setPosition(e.target.value)}/>
+                            <input value={position}
+                                onChange={(e)=>setPosition(e.target.value)}
+                            />
                             <img src={require("../../IMAGES/more.png")} className={styles.icon} />
                         </div>
                         
@@ -75,34 +125,17 @@ function AccountRegistration() {
                 <div>
                     <div className={styles.modify}>
                         <Button variant="primary" className={styles.button}
-                                onClick={handleShow}
+                                onClick={handleRegisterModalShow}
                         >등록</Button>
                     </div>
                 </div>
             </div>
 
-
-            <Modal show={show} onHide={handleClose} className={modalStyles.modal} centered>
-                <Modal.Header closeButton className={modalStyles.modalHeader}>
-                    <Modal.Title style={{fontWeight: "bold"}}>계정 등록</Modal.Title>
-                </Modal.Header>
-                <Modal.Body>
-                    계정을 등록 하시겠습니까?
-                </Modal.Body>
-                <Modal.Footer>
-                    {/*<div style={{float: "right"}}>*/}
-                        <Button variant="danger"
-                                className={modalStyles.button}
-                                onClick={handleClose}
-                        >취소</Button>
-
-                        <Button variant="primary"
-                                className={modalStyles.button}
-                                onClick={Register}
-                        >확인</Button>
-                    {/*</div>*/}
-                </Modal.Footer>
-            </Modal>
+            <RegistrationModal
+                showRegisterModal={showRegisterModal}
+                Register={Register}
+                handleRegisterModalClose={handleRegisterModalClose}
+            />
         </div>
     )
 }
