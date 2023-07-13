@@ -28,6 +28,7 @@ function AccountRegistration() {
             "name": name,
             "password": password,
             "no": no,
+            "position": position,
             "team": team,
         })
           .then(()=> {

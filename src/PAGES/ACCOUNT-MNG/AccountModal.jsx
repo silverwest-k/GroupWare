@@ -2,33 +2,17 @@ import styles from "./Modal.module.css";
 import tableStyles from "./AccountModal.module.css";
 import {Button, FormControl, InputGroup, Modal, Table} from "react-bootstrap";
 import useStore from "../../store";
+import {useEffect, useState} from "react";
+import axios from "axios";
 
 function AccountModal({showAccountModal,handleAccountModalClose}) {
-    const members = [
-        {
-            "name": "구은서",
-            "password": "1234",
-            "no": "212341",
-            "team": "영업1팀",
-            "position": "사원"
-        },
-        {
-            "name": "박해규",
-            "password": "1234",
-            "no": "312342",
-            "team": "지원1팀",
-            "position": "사원"
-        },
-        {
-            "name": "장그래",
-            "password": "1234",
-            "no": "213327",
-            "team": "영업3팀",
-            "position": "사원"
-        }
-    ]
-
     const {selectAccount} = useStore(state => state)
+    const [members, setMembers] = useState([]);
+
+    useEffect(()=>{
+        axios.get("http://172.20.10.8:9091/auth/admin/members")
+            .then((res) => setMembers(res.data))
+    },[])
 
     const pickAccount = (account) => {
         selectAccount(account);
