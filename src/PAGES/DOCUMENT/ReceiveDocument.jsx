@@ -1,83 +1,25 @@
 import styles from "./ReceiveDocument.module.css"
 import Pagination from "react-bootstrap/Pagination";
-import {useState} from "react";
+import {useEffect, useState} from "react";
 import {Button, FormControl, InputGroup} from "react-bootstrap";
+import axios from "axios";
 
 function ReceiveDocument() {
-    const data = [
-        {
-            title: "연차소진관련 근태신청",
-            name: "장그래 사원",
-            date: "2023-07-01",
-            form: "휴가신청서",
-            state: "진행중"
-        },
-        {
-            title: "떡볶이 구매 관련 지출결의서",
-            name: "구은서 사원",
-            date: "2023-07-01",
-            form: "지출결의서",
-            state: "완료"
-        },
-        {
-            title: "사원증 재발급 신청",
-            name: "안영이 사원",
-            date: "2023-06-30",
-            form: "업무협조",
-            state: "반려"
-        },
-        {
-            title: "떡볶이 구매 관련 지출결의서",
-            name: "구은서 사원",
-            date: "2023-07-01",
-            form: "지출결의서",
-            state: "완료"
-        },
-        {
-            title: "떡볶이 구매 관련 지출결의서",
-            name: "구은서 사원",
-            date: "2023-07-01",
-            form: "지출결의서",
-            state: "완료"
-        },
-        {
-            title: "떡볶이 구매 관련 지출결의서",
-            name: "구은서 사원",
-            date: "2023-07-01",
-            form: "지출결의서",
-            state: "완료"
-        },
-        {
-            title: "떡볶이 구매 관련 지출결의서",
-            name: "구은서 사원",
-            date: "2023-07-01",
-            form: "지출결의서",
-            state: "완료"
-        },
-        {
-            title: "떡볶이 구매 관련 지출결의서",
-            name: "구은서 사원",
-            date: "2023-07-01",
-            form: "지출결의서",
-            state: "완료"
-        },
-        {
-            title: "떡볶이 구매 관련 지출결의서",
-            name: "구은서 사원",
-            date: "2023-07-01",
-            form: "지출결의서",
-            state: "완료"
-        },
-    ]
-
+    const [data, setData] = useState([]);
     const [limit, setLimit] = useState(5);
     const [page, setPage] = useState(1);
 
     const offset= (page - 1) * limit;
     const total = data.length;
     const pageNum = Math.ceil(total/limit);
+
+    useEffect(()=>{
+        axios.get("http://localhost:8080/receiveDocument")
+            .then((res)=>setData(res.data))
+    })
+
     const getBackgroundColor = (state) => {
-        return state === "진행중" ? "#f6c76a" : state === "완료" ? "#afb0b1" : state === "반려" ? "#f6736a" : "white";
+        return state === "진행중" ? "#f6c76a" : state === "완료" ? "#87ea85" : state === "반려" ? "#fb6a76" : "white";
     };
 
     return(

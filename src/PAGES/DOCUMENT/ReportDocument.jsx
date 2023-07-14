@@ -4,6 +4,7 @@ import ToggleButton from 'react-bootstrap/ToggleButton';
 import ToggleButtonGroup from 'react-bootstrap/ToggleButtonGroup';
 import {Button, Form, FormControl, InputGroup, Table} from "react-bootstrap";
 import {useEffect, useState} from "react";
+import axios from "axios";
 
 function ReportDocument() {
     const [data, setData] = useState([]);
@@ -15,13 +16,17 @@ function ReportDocument() {
     const pageNum = Math.ceil(total/limit);
 
     useEffect(() => {
-        fetch("https://jsonplaceholder.typicode.com/posts")
-            .then((res) => res.json())
-            .then((data) => setData(data));
+        axios.get("http://localhost:8080/documents")
+            .then((res) => setData(res.data))
     }, []);
+
+    const getBackgroundColor = (state) => {
+        return state === "진행중" ? "#f6c76a" : state === "완료" ? "#87ea85" : state === "반려" ? "#fb6a76" : "white";
+    };
 
     return(
         <div className={styles.wrapper}>
+            <div style={{height:"10%"}}/>
             <div className={styles.divisionLine}></div>
                 <div className={styles.buttonGroup}>
                     <ToggleButtonGroup type="radio" name="options" defaultValue={1}>
@@ -46,18 +51,22 @@ function ReportDocument() {
                     <thead className={styles.tableHead}>
                         <tr>
                             <th>NO</th>
+                            <th>기안일</th>
                             <th>제목</th>
-                            <th>내용</th>
+                            <th>상태</th>
                         </tr>
                     </thead>
 
-                    <tbody>
+                    <tbody className={styles.tableBody}>
                     {data.slice(offset, offset + limit).map((data)=>{
                         return(
                             <tr key={data.id}>
                                 <td>{data.id}</td>
+                                <td>{data.date}</td>
                                 <td>{data.title}</td>
-                                <td>{data.body}</td>
+                                <td><p className={styles.stateButton}
+                                        style={{background:getBackgroundColor(data.state)}}
+                                >{data.state}</p></td>
                             </tr>
                         )
                     })}

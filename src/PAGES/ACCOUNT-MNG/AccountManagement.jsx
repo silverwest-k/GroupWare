@@ -3,15 +3,16 @@ import styles from "./AccountManagement.module.css"
 import {useState} from "react";
 import ButtonGroup from 'react-bootstrap/ButtonGroup';
 import DeleteModal from "./DeleteModal";
-import PartModal from "./PartModal";
+import TeamModal from "./TeamModal";
 import useStore from "../../store";
 import PositionModal from "./PositionModal";
 import AccountModal from "./AccountModal";
+import axios from "axios";
 
 function AccountManagement() {
     const [radioValue, setRadioValue] = useState('1');
     const [showDeleteModal, setShowDeleteModal] = useState(false);
-    const [showPartModal, setShowPartModal] = useState(false);
+    const [showTeamModal, setShowTeamModal] = useState(false);
     const [showPositionModal, setShowPositionModal] = useState(false);
     const [showAccountModal, setShowAccountModal] = useState(false);
 
@@ -35,10 +36,25 @@ function AccountManagement() {
         setPosition("")
     }
 
+    const deleteAccount = () => {
+        axios.delete(`http://172.20.10.8:9091/admin/members/${no}`, {
+            headers: {
+                'Content-Type': 'application/json',
+                // 'Authorization': `Bearer ${accessToken}`
+            }
+        })
+            .then(() => {
+                console.log(no);
+            })
+            .catch(error => {
+                console.error(error);
+            });
+    }
+
     const handleDeleteModalOpen = () => setShowDeleteModal(true);
     const handleDeleteModalClose = () => setShowDeleteModal(false);
-    const handlePartModalOpen = () => setShowPartModal(true);
-    const handlePartModalClose = () => setShowPartModal(false);
+    const handleTeamModalOpen = () => setShowTeamModal(true);
+    const handleTeamModalClose = () => setShowTeamModal(false);
     const handlePositionModalOpen = () => setShowPositionModal(true);
     const handlePositionModalClose = () => setShowPositionModal(false);
     const handleAccountModalOpen = () => setShowAccountModal(true);
@@ -93,7 +109,7 @@ function AccountManagement() {
                         />
                             <img src={require("../../IMAGES/more.png")}
                                  className={styles.icon}
-                                 onClick={handlePartModalOpen}
+                                 onClick={handleTeamModalOpen}
                             />
                         </div>
 
@@ -130,7 +146,10 @@ function AccountManagement() {
                 </div>
                 <div>
                     <div className={styles.modify}>
-                        <Button variant="primary" className={styles.button}>수정</Button>
+                        <Button variant="primary"
+                                className={styles.button}
+                                onClick={deleteAccount}
+                        >계정삭제</Button>
                     </div>
                 </div>
             </div>
@@ -141,7 +160,7 @@ function AccountManagement() {
                 handleDeleteModalClose={handleDeleteModalClose}
             />
             <AccountModal showAccountModal={showAccountModal} handleAccountModalClose={handleAccountModalClose} />
-            <PartModal showPartModal={showPartModal} handlePartModalClose={handlePartModalClose} />
+            <TeamModal showTeamModal={showTeamModal} handleTeamModalClose={handleTeamModalClose} />
             <PositionModal showPositionModal={showPositionModal} handlePositionModalClose={handlePositionModalClose} />
         </div>
     )

@@ -9,7 +9,8 @@ function PositionModal({showPositionModal,handlePositionModalClose}) {
     const [position, setPosition] =useState([]);
     const {selectPosition} = useStore(state => state);
     const FetchPositionData= () => {
-        axios.get("http://172.20.10.26:9091/position")
+        // axios.get("http://172.20.10.26:9091/position")
+        axios.get("http://localhost:8080/position")
             .then(res=> setPosition(res.data))
     }
 

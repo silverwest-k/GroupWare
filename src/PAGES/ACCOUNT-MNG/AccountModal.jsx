@@ -10,7 +10,8 @@ function AccountModal({showAccountModal,handleAccountModalClose}) {
     const [members, setMembers] = useState([]);
 
     useEffect(()=>{
-        axios.get("http://172.20.10.8:9091/auth/admin/members")
+        // axios.get("http://172.20.10.8:9091/auth/admin/members")
+        axios.get("http://localhost:8080/members")
             .then((res) => setMembers(res.data))
     },[])
 
