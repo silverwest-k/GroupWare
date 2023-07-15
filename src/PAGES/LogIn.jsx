@@ -8,7 +8,7 @@ import {useNavigate} from "react-router-dom";
 function LogIn() {
     const [no, setNo] = useState("")
     const [password, setPassword] = useState("")
-    const [showAlert, setShowAlert] = useState(false);
+    const [isShowAlert, setIsShowAlert] = useState(false);
     const [alertMessage, setAlertMessage] = useState('');
     const navigate = useNavigate();
 
@@ -17,10 +17,10 @@ function LogIn() {
     const submit = () => {
         if (no.trim() === '') {
             setAlertMessage("사번을 입력하세요.");
-            setShowAlert(true);
+            setIsShowAlert(true);
         } else if (password.trim() === "") {
             setAlertMessage("비밀번호를 입력하세요.");
-            setShowAlert(true);
+            setIsShowAlert(true);
         } else {
             axios.post("http://172.20.10.8:9091/auth/login", {
                 "no": no,
@@ -33,7 +33,7 @@ function LogIn() {
                 })
                 .catch((error) =>{
                     setAlertMessage("사번 또는 비밀번호가 틀렸습니다.");
-                    setShowAlert(true);
+                    setIsShowAlert(true);
                     console.log("Error Login:", error);
                 })
         }
@@ -41,37 +41,37 @@ function LogIn() {
 
     useEffect(() => {
         let timeout;
-        if (showAlert) {
+        if (isShowAlert) {
             timeout = setTimeout(() => {
-                setShowAlert(false);
-            }, 1500);
+                setIsShowAlert(false);
+            }, 99999);
         }
         return () => clearTimeout(timeout);
-    }, [showAlert]);
+    }, [isShowAlert]);
 
     return(
         <div className={styles.wrapper}>
             <div className={styles.container}>
-                {showAlert && (
+
+                {isShowAlert && (
                     <div>
                         <Alert variant="danger" className={styles.alert}>
                             {alertMessage}
                         </Alert>
                     </div>
                 )}
-
                 <div className={styles.loginContainer}>
-                    <h2>ACCOUNT LOGIN</h2>
+                    <div className={styles.title}>ACCOUNT LOGIN</div>
                     <div className={styles.inputWrap}>
-                        <div className="my-3">
+                        <div>
                            <input type="text" className="form-control" id="email"
                                   placeholder="사번"
                                   value={no}
                                   onChange={(e)=>{setNo(e.currentTarget.value)}}
                         />
                         </div>
-                        <div className="my-3">
-                           <input type="password" className="form-control" id="password"
+                        <div>
+                           <input type="password" className={`form-control ${styles.m10}`} id="password"
                                   placeholder="비밀번호"
                                   value={password}
                                   onChange={(e)=>{setPassword(e.currentTarget.value)}}

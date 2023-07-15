@@ -7,10 +7,11 @@ import MyPage from "./MYPAGE/MyPage";
 import AccountManagement from "./ACCOUNT-MNG/AccountManagement";
 import DocumentRegistration from "./DOCUMENT-MNG/DocumentRegistration";
 import AccountRegistration from "./ACCOUNT-MNG/AccountRegistration";
+import styles from "./Page.module.css"
 
 function PageContents() {
     return(
-        <div>
+        <div className={styles.contentsContainer}>
             <Routes>
                 <Route path="*" element={<div> </div>} />
                 <Route path="write" element={<Write />} />

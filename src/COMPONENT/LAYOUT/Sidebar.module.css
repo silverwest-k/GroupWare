@@ -2,56 +2,56 @@
     background: rgba(224, 224, 224, 0.3);
     width: 300px;
     height: 100%;
-    margin: 0;
 }
 
 /* 프로필영역 */
+.profileContainer {
+    height: 40%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
 .profile {
-    width: 210px;
-    height: 300px;
-    background: rgba(68, 41, 242, 0.11);
     display: flex;
     flex-direction: column;
     justify-content: center;
-    margin: 40px auto;
+    align-items: center;
+    width: 200px;
+    height: 260px;
+    background: rgba(68, 41, 242, 0.11);
 }
 
 .profile img {
-    width: 115px;
-    height: 150px;
-    margin: 10px auto;
+    width: 110px;
+    height: 110px;
+    border-radius: 50%;
+    object-fit: cover;
+    object-position: center;
 }
-
 .profile p {
-    font-size: 15px;
-    margin: 5px auto;
+    margin-block-start: 0;
+    margin-block-end: 0;
+    padding: 5px 0;
 }
 
 /* 메뉴 */
 .menuContainer {
+    height: 60%;
     display: flex;
     flex-direction: column;
-    margin-top: 50px;
-}
-
-/* 아코디언 헤드 */
-.menu {
-    display: flex;
-    flex-direction: row;
-    height: 80px;
-    width: 100%;
 }
 
 .menu img {
     width: 40px;
     height: 40px;
-    margin: 0 25px 0 50px ;
 }
-
 .menu p {
-    margin: auto 0;
     font-weight: bold;
     color: #4429f2;
+    margin-block-start: 0;
+    margin-block-end: 0;
+    padding-left: 20px;
 }
 .mng {
     --bs-accordion-active-bg: rgba(250, 62, 12, 0.21);
@@ -89,10 +89,14 @@
     --bs-accordion-btn-bg: #F6F6F6;
     --bs-accordion-btn-focus-box-shadow: none;
     --bs-accordion-active-bg: rgba(125, 121, 242, 0.37);
+    --bs-accordion-btn-padding-x:4rem;
+    --bs-accordion-body-padding-x:4rem;
+    --bs-accordion-btn-padding-y:0.7rem;
+    --bs-accordion-body-padding-y:0.5rem;
 }
 
 .accordionBody {
-    padding: 10px 0 10px 90px;
+
 }
 
 .logOut {
