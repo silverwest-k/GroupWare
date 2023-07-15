@@ -8,14 +8,14 @@ function Header() {
     const {changeTitle} = useStore(state => state)
 
     return (
-        <>
+        <div className={styles.header}>
             <div className={styles.headerTitle}  onClick={()=>changeTitle("메인")}>
                 <Link to="/main">원 인터내셔널</Link>
             </div>
             <div className={styles.headerLine}>
                 <p>{headerTitle}</p>
             </div>
-        </>
+        </div>
     );
 }
 

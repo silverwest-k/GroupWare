@@ -7,15 +7,15 @@
     <list default="true" id="671d336a-3897-4ae7-9dd4-06de78af820f" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/db/db.json" beforeDir="false" afterPath="$PROJECT_DIR$/db/db.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/App.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/COMPONENT/LAYOUT/Sidebar.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/COMPONENT/LAYOUT/Sidebar.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/COMPONENT/LAYOUT/Header.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/COMPONENT/LAYOUT/Header.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/COMPONENT/LAYOUT/Header.module.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/COMPONENT/LAYOUT/Header.module.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/COMPONENT/LAYOUT/Sidebar.module.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/COMPONENT/LAYOUT/Sidebar.module.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/COMPONENT/MAIN/MENU_ICON/Menu.module.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/COMPONENT/MAIN/MENU_ICON/Menu.module.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/COMPONENT/MAIN/MainContents.module.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/COMPONENT/MAIN/MainContents.module.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/PAGES/ACCOUNT-MNG/AccountManagement.module.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/PAGES/ACCOUNT-MNG/AccountManagement.module.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/PAGES/DOCUMENT/ReceiveDocument.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/PAGES/DOCUMENT/ReceiveDocument.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/PAGES/DOCUMENT/ReceiveDocument.module.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/PAGES/DOCUMENT/ReceiveDocument.module.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/PAGES/LogIn.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/PAGES/LogIn.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/PAGES/Login.module.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/PAGES/Login.module.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/PAGES/Page.module.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/PAGES/Page.module.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/PAGES/PageContents.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/PAGES/PageContents.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/PAGES/DOCUMENT/ReportDocument.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/PAGES/DOCUMENT/ReportDocument.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/PAGES/DOCUMENT/ReportDocument.module.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/PAGES/DOCUMENT/ReportDocument.module.css" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -86,6 +86,7 @@
       <workItem from="1689232709526" duration="9457000" />
       <workItem from="1689309471995" duration="2148000" />
       <workItem from="1689319156089" duration="10814000" />
+      <workItem from="1689417716968" duration="5842000" />
     </task>
     <servers />
   </component>

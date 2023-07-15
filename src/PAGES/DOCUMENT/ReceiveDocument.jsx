@@ -16,7 +16,7 @@ function ReceiveDocument() {
     useEffect(() => {
         axios.get("http://localhost:8080/receiveDocument")
             .then((res) => setData(res.data))
-    })
+    },[])
 
     const getBackgroundColor = (state) => {
         return state === "진행중" ? "#f6c76a" : state === "완료" ? "#87ea85" : state === "반려" ? "#fb6a76" : "white";

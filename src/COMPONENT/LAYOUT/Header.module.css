@@ -1,3 +1,7 @@
+.header {
+    height: 95px;
+}
+
 .headerTitle {
     padding: 5px 20px;
     font-size: 30px;
@@ -17,9 +21,10 @@
 }
 
 .headerLine p {
-    justify-content: center;
-    padding: 5px 40px;
+    display: flex;
+    align-items: center;
     margin: 0;
+    padding: 8px 40px;
 }
 
 

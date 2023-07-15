@@ -26,7 +26,7 @@ function ReportDocument() {
 
     return(
         <div className={styles.wrapper}>
-            <div style={{height:"10%"}}/>
+            <div className={styles.buttonContainer}>
             <div className={styles.divisionLine}></div>
                 <div className={styles.buttonGroup}>
                     <ToggleButtonGroup type="radio" name="options" defaultValue={1}>
@@ -37,6 +37,7 @@ function ReportDocument() {
                     </ToggleButtonGroup>
                 </div>
             <div className={styles.divisionLine}></div>
+            </div>
 
             <div className={styles.tableContainer}>
 
@@ -47,7 +48,7 @@ function ReportDocument() {
                     </InputGroup>
                 </div>
 
-                <Table hover>
+                <Table hover className={styles.table}>
                     <thead className={styles.tableHead}>
                         <tr>
                             <th>NO</th>
@@ -64,9 +65,11 @@ function ReportDocument() {
                                 <td>{data.id}</td>
                                 <td>{data.date}</td>
                                 <td>{data.title}</td>
-                                <td><p className={styles.stateButton}
-                                        style={{background:getBackgroundColor(data.state)}}
-                                >{data.state}</p></td>
+                                <td style={{display:"flex", justifyContent:"center"}}>
+                                    <div className={styles.stateButton}
+                                         style={{background:getBackgroundColor(data.state)}}
+                                    >{data.state}</div>
+                                </td>
                             </tr>
                         )
                     })}

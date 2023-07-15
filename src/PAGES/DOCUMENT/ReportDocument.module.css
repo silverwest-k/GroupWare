@@ -1,15 +1,25 @@
 .wrapper {
     height: 100%;
     width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.buttonContainer {
+    height: 15%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
 }
 
 .divisionLine {
     border-bottom: 1.5px solid #4429f2;
-    margin: 10px auto;
     width: 600px;
 }
 
-.buttonGroup, .pagination {
+.buttonGroup {
     display: flex;
     justify-content: center;
 }
@@ -20,7 +30,6 @@
     background: rgba(68, 41, 242, 0.11);
     color: #4429f2;
     font-size: 20px;
-    padding: 5px 30px;
 }
 
 .button {
@@ -31,7 +40,7 @@
 
 /* 검색창 */
 .search {
-    width: 30%;
+    width: 25%;
     float: right;
 }
 .searchButton {
@@ -44,10 +53,13 @@
 }
 
 /* 테이블 영역 */
+.table {
+    margin: 0;
+}
+
 .tableContainer {
-    margin: 50px 100px;
-    width: 90%;
-    height: 50%;
+    width: 85%;
+    height: 70%;
 }
 
 .tableHead th {
@@ -55,34 +67,36 @@
     font-weight: bold;
     font-size: 23px;
     background: rgba(68, 41, 242, 0.11);
-}
-tr {
-    margin: auto;
     text-align: center;
 }
 
 .tableBody tr{
+    vertical-align: center;
     cursor: pointer;
+    text-align: center;
 }
 
 .stateButton {
-    background: gray;
-    margin: auto;
-    text-align: center;
+    width: 70px;
     border-radius: 20px;
-    padding: 5px 0px;
+    text-align: center;
+    padding: 4px;
 }
 
+/* 상태버튼 */
 .ongoing{
     color: orange;
 }
-
 .completed{
     color: yellowgreen;
 }
-
 .return {
     color:#fb5b68;
+}
+
+/* 페이지네이션 */
+.pagination {
+    height: 15%;
 }
 
 .pagination li{
