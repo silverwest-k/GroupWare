@@ -37,7 +37,7 @@
 }
 
 .inputContainer {
-    width: 300px;
+    width: 400px;
     height: 80%;
     display: flex;
     flex-direction: column;
@@ -64,13 +64,13 @@
     margin-bottom: 20px;
 }
 
-.line {
+.inputLine {
     display: flex;
     flex-direction: row;
     align-items: center;
     justify-content: flex-start;
 }
-.line input {
+.inputLine input {
     margin-left: 15px;
 }
 

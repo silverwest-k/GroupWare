@@ -85,25 +85,25 @@ function AccountManagement() {
                     </div>
 
                     <div className={styles.inputContainer}>
-                        <div className={styles.line}>
+                        <div className={styles.inputLine}>
                             이　　름 <input value={account.name}
                                         onChange={(e)=>setName(e.target.value)}
                         />
                         </div>
 
-                        <div className={styles.line}>
+                        <div className={styles.inputLine}>
                             비밀번호 <input value={account.password}
                                         onChange={(e)=>setPassword(e.target.value)}
                         />
                         </div>
 
-                        <div className={styles.line}>
+                        <div className={styles.inputLine}>
                             사　　번 <input value={account.no}
                                         onChange={(e)=>setNo(e.target.value)}
                         />
                         </div>
 
-                        <div className={styles.line}>
+                        <div className={styles.inputLine}>
                             부　　서 <input value={teamName || account.team}
                                         onChange={(e)=>setTeam(e.target.value)}
                         />
@@ -113,7 +113,7 @@ function AccountManagement() {
                             />
                         </div>
 
-                        <div className={styles.line}>
+                        <div className={styles.inputLine}>
                             직　　급 <input value={positionName || account.position}
                                         onChange={(e)=>setPosition(e.target.value)}
                         />
@@ -123,7 +123,7 @@ function AccountManagement() {
                             />
                         </div>
 
-                        <div className={styles.line} style={{alignItems:"baseline"}}>
+                        <div className={styles.inputLine} style={{alignItems:"baseline"}}>
                             계정상태
                             <ButtonGroup style={{marginLeft:"15px"}}>
                                 {radioState.map((radio, idx) => (
