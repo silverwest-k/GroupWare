@@ -1,12 +1,13 @@
 import styles from "./Write.module.css"
 import Dropdown from 'react-bootstrap/Dropdown';
+import {Button} from "react-bootstrap";
 
 // 작성하기
 function Write() {
 
     return(
         <div className={styles.wrapper}>
-            <div className={styles.writeContainer}>
+            <div className={styles.formContainer}>
                 <div className={styles.documentSelect}>
                     <h3>양식선택</h3>
                     <Dropdown>
@@ -47,11 +48,24 @@ function Write() {
                         </div>
                             <input/>
                     </div>
+
+                    <diV className={styles.buttonGroup}>
+                        <Button variant="primary" className={styles.button}>작성취소</Button>
+                        <Button variant="primary" className={styles.button}>임시저장</Button>
+                        <Button variant="primary" className={styles.button}>상신하기</Button>
+                    </diV>
                 </div>
             </div>
 
             <div className={styles.document}>
-                문서양식
+                <form action="" method="POST">
+                    <textarea name="text" id="editor"></textarea>
+                    <button type="submit">전송</button>
+                </form>
+                <script src="../../COMPONENT/LAYOUT/ckeditor.js"></script>
+                <script>
+                    ClassicEditor.create( document.querySelector( '#editor' ) );
+                </script>
             </div>
 
         </div>

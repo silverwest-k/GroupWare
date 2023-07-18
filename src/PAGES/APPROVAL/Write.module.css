@@ -1,16 +1,16 @@
 .wrapper {
+    width: 100%;
+    height: 100%;
     display: flex;
     flex-direction: row;
-    font-weight: bold;
-    /*height: 100%;*/
+    justify-content: space-evenly
 }
 
-.writeContainer {
-    height: 100%;
-    background-color: rgba(125, 121, 242, 0.37);
-    margin: 20px 20px 0 70px;
+.formContainer {
     width: 470px;
-    padding: 30px;
+    height: 100%;
+    background-color: rgba(68, 41, 242, 0.13);
+    padding: 60px 30px;
 }
 
 /* 양식 선택영역 */
@@ -33,19 +33,22 @@
 }
 
 .title {
+    font-weight: bold;
+    font-size: 20px;
+    color: #4429f2;
     display: flex;
     flex-direction: row;
-    margin: auto;
 }
 
 .title img {
     width: 40px;
     height: 40px;
-    margin-left: 20px;
     cursor: pointer;
+    margin-left: 15px;
 }
 
 h3 {
+    color: #4429f2;
     margin-bottom: 20px;
     font-weight: bold;
 }
@@ -58,10 +61,29 @@ h3 {
     box-shadow: -3px 3px 10px 2px gainsboro inset;
 }
 
+.buttonGroup {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.button {
+    color: white;
+    background: #4429f2;
+    border: 1px solid #4429f2;
+    --bs-btn-hover-bg:#c32d04;
+    --bs-btn-hover-border-color:#c32d04;
+    --bs-btn-active-bg:#c32d04;
+    --bs-btn-active-border-color:#c32d04;
+}
+
+
 /* 결재문서 영역 */
 .document {
-    height: 1100px;
-    width: 800px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 40%;
+    height: 100%;
     background: darkgray;
-    margin: 20px 50px;
 }

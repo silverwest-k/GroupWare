@@ -3,36 +3,35 @@ import {useEffect, useState} from "react";
 import styles from "./Login.module.css"
 import {Alert} from "react-bootstrap";
 import {useNavigate} from "react-router-dom";
+import {useCookies} from "react-cookie";
 
 
 function LogIn() {
     const [no, setNo] = useState("")
     const [password, setPassword] = useState("")
-    const [isShowAlert, setIsShowAlert] = useState(false);
     const [alertMessage, setAlertMessage] = useState('');
+    const [isShowAlert, setIsShowAlert] = useState(false);
+    const [cookies, setCookie, removeCookie] = useCookies(["loginCookie"]);
     const navigate = useNavigate();
 
     //Refresh token: Cookie 저장, Access token: Read-Only cookie 필요시마다 호출해서 사용
 
     const submit = () => {
-        if (no.trim() === '') {
-            setAlertMessage("사번을 입력하세요.");
-            setIsShowAlert(true);
-        } else if (password.trim() === "") {
-            setAlertMessage("비밀번호를 입력하세요.");
+        if (no.trim() === ''|| password.trim() === "") {
+            setAlertMessage("사번 또는 비밀번호를 입력하세요.");
             setIsShowAlert(true);
         } else {
-            axios.post("http://172.20.10.8:9091/auth/login", {
+            axios.post("http://172.20.10.26:9091/auth/login", {
                 "no": no,
                 "password": password
             })
                 .then((res) => {
-                    // accessToken 들어옴 - 쿠키 저장하기
-                    console.log(res.data);
+                    setCookie("loginCookie", res.data.accessToken)
+                    // console.log(res.data);
                     navigate("/main");
                 })
                 .catch((error) =>{
-                    setAlertMessage("사번 또는 비밀번호가 틀렸습니다.");
+                    setAlertMessage("입력하신 값이 올바르지 않습니다.");
                     setIsShowAlert(true);
                     console.log("Error Login:", error);
                 })
@@ -44,7 +43,7 @@ function LogIn() {
         if (isShowAlert) {
             timeout = setTimeout(() => {
                 setIsShowAlert(false);
-            }, 99999);
+            }, 1500);
         }
         return () => clearTimeout(timeout);
     }, [isShowAlert]);

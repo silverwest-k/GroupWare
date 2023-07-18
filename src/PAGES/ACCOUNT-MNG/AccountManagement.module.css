@@ -31,17 +31,10 @@
     justify-content: space-evenly;
 }
 
+/* 프로필사진 영역 */
 .profile {
     display: flex;
     flex-direction: column;
-}
-
-.inputContainer {
-    width: 400px;
-    height: 80%;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-around;
 }
 
 .profileImgLabel {
@@ -62,6 +55,15 @@
     width: 150px;
     height: 200px;
     margin-bottom: 20px;
+}
+
+/* 인풋 영역 */
+.inputContainer {
+    width: 400px;
+    height: 80%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
 }
 
 .inputLine {
