@@ -10,7 +10,7 @@ function AccountRegistration() {
     const imgRef = useRef();
     const [name, setName] = useState("");
     const [password, setPassword] = useState("");
-    const [no, setNo] = useState("");
+    const [memberNo, setMemberNo] = useState("")
     const [position, setPosition] = useState("");
     const [team, setTeam] = useState("");
 
@@ -27,7 +27,7 @@ function AccountRegistration() {
         axios.post("http://172.20.10.8:9091/auth/admin/signup", {
             "name": name,
             "password": password,
-            "no": no,
+            "no": memberNo,
             "position": position,
             "team": team,
         })
@@ -44,7 +44,7 @@ function AccountRegistration() {
     const resetInput = () =>{
         setName("")
         setPassword("")
-        setNo("")
+        setMemberNo("")
         setPosition("")
         setTeam("")
     }
@@ -84,28 +84,28 @@ function AccountRegistration() {
                     </div>
 
                     <div className={styles.inputContainer}>
-                        <div className={styles.line}>
+                        <div className={styles.inputLine}>
                             이　　름
                             <input  value={name}
                                 onChange={(e)=>setName(e.target.value)}
                             />
                         </div>
 
-                        <div className={styles.line}>
+                        <div className={styles.inputLine}>
                             비밀번호
                             <input value={password} type="password"
                                    onChange={(e)=>setPassword(e.target.value)}
                             />
                         </div>
 
-                        <div className={styles.line}>
+                        <div className={styles.inputLine}>
                             사　　번
-                            <input value={no}
-                                onChange={(e)=>setNo(e.target.value)}
+                            <input value={memberNo}
+                                onChange={(e)=>setMemberNo(e.target.value)}
                             />
                         </div>
 
-                        <div className={styles.line}>
+                        <div className={styles.inputLine}>
                             부　　서
                             <input value={team}
                                 onChange={(e)=>setTeam(e.target.value)}
@@ -113,7 +113,7 @@ function AccountRegistration() {
                             <img src={require("../../IMAGES/more.png")} className={styles.icon} />
                         </div>
 
-                        <div className={styles.line}>
+                        <div className={styles.inputLine}>
                             직　　급
                             <input value={position}
                                 onChange={(e)=>setPosition(e.target.value)}

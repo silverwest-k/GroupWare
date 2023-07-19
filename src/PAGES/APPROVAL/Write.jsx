@@ -1,9 +1,34 @@
 import styles from "./Write.module.css"
 import Dropdown from 'react-bootstrap/Dropdown';
 import {Button} from "react-bootstrap";
+import {useState} from "react";
+import axios from "axios";
 
 // 작성하기
 function Write() {
+    const [title, setTitle] = useState("")
+    const [content, setContent] = useState("")
+    const [status, setStatus] = useState("1")
+
+    const resetInput = ()=> {
+        setTitle("")
+        setContent("")
+        setStatus("")
+    }
+    const submit = (status) =>{
+        axios.post("http://172.20.10.26:9091/documents/create", {
+            "title": title,
+            "content": content,
+            "status": status,
+        }) .then(resetInput)
+    }
+
+    const handleTempSave= ()=>{
+        submit(0)
+    }
+    const handleSave= ()=>{
+        submit(1)
+    }
 
     return(
         <div className={styles.wrapper}>
@@ -49,25 +74,30 @@ function Write() {
                             <input/>
                     </div>
 
-                    <diV className={styles.buttonGroup}>
+                    <div className={styles.buttonGroup}>
                         <Button variant="primary" className={styles.button}>작성취소</Button>
-                        <Button variant="primary" className={styles.button}>임시저장</Button>
-                        <Button variant="primary" className={styles.button}>상신하기</Button>
-                    </diV>
+                        <Button variant="primary"
+                                className={styles.button}
+                                onClick={handleTempSave}
+                        >임시저장</Button>
+                        <Button variant="primary"
+                                className={styles.button}
+                                onClick={handleSave}
+                        >상신하기</Button>
+                    </div>
                 </div>
             </div>
 
             <div className={styles.document}>
-                <form action="" method="POST">
-                    <textarea name="text" id="editor"></textarea>
-                    <button type="submit">전송</button>
-                </form>
-                <script src="../../COMPONENT/LAYOUT/ckeditor.js"></script>
-                <script>
-                    ClassicEditor.create( document.querySelector( '#editor' ) );
-                </script>
+                <input placeholder="제목"
+                       value={title}
+                       onChange={(e) =>setTitle(e.target.value)}
+                />
+                <textarea placeholder="본문"
+                          value={content}
+                          onChange={(e)=>setContent(e.target.value)}
+                />
             </div>
-
         </div>
     )
 }

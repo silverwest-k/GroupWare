@@ -16,7 +16,8 @@ function ReportDocument() {
     const pageNum = Math.ceil(total/limit);
 
     useEffect(() => {
-        axios.get("http://localhost:8080/documents")
+        // axios.get("http://localhost:8080/documents")
+        axios.get("http://172.20.10.26:9091/documents/list")
             .then((res) => setData(res.data))
     }, []);
 

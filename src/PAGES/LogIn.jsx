@@ -7,7 +7,7 @@ import {useCookies} from "react-cookie";
 
 
 function LogIn() {
-    const [no, setNo] = useState("")
+    const [memberNo, setMemberNo] = useState("")
     const [password, setPassword] = useState("")
     const [alertMessage, setAlertMessage] = useState('');
     const [isShowAlert, setIsShowAlert] = useState(false);
@@ -15,19 +15,21 @@ function LogIn() {
     const navigate = useNavigate();
 
     //Refresh token: Cookie 저장, Access token: Read-Only cookie 필요시마다 호출해서 사용
-
     const submit = () => {
-        if (no.trim() === ''|| password.trim() === "") {
+        if (!memberNo || !password) {
             setAlertMessage("사번 또는 비밀번호를 입력하세요.");
             setIsShowAlert(true);
         } else {
             axios.post("http://172.20.10.26:9091/auth/login", {
-                "no": no,
+                "no": memberNo,
                 "password": password
             })
                 .then((res) => {
-                    setCookie("loginCookie", res.data.accessToken)
-                    // console.log(res.data);
+                    console.log(res.data);
+                    const accessToken = res.data.accessToken;
+                    setCookie("loginCookie", accessToken);
+                    axios.defaults.headers["Authorization"]=`Bearer ${accessToken}`;
+                    console.log("Authorization Header:", axios.defaults.headers["Authorization"]);
                     navigate("/main");
                 })
                 .catch((error) =>{
@@ -65,8 +67,8 @@ function LogIn() {
                         <div>
                            <input type="text" className="form-control" id="email"
                                   placeholder="사번"
-                                  value={no}
-                                  onChange={(e)=>{setNo(e.currentTarget.value)}}
+                                  value={memberNo}
+                                  onChange={(e)=>{setMemberNo(e.currentTarget.value)}}
                         />
                         </div>
                         <div>

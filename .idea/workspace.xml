@@ -5,20 +5,27 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="671d336a-3897-4ae7-9dd4-06de78af820f" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/COMPONENT/LAYOUT/ckeditor.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/PAGES/ACCOUNT-MNG/AccountManagement.module.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/PAGES/ACCOUNT-MNG/AccountManagement.module.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/COMPONENT/MAIN/Profile.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/COMPONENT/MAIN/Profile.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/PAGES/ACCOUNT-MNG/AccountRegistration.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/PAGES/ACCOUNT-MNG/AccountRegistration.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/PAGES/APPROVAL/Write.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/PAGES/APPROVAL/Write.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/PAGES/APPROVAL/Write.module.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/PAGES/APPROVAL/Write.module.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/PAGES/DOCUMENT/ReportDocument.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/PAGES/DOCUMENT/ReportDocument.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/PAGES/LogIn.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/PAGES/LogIn.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/index.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="JavaScript File" />
+      </list>
+    </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -34,23 +41,23 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/codepc/Desktop/프론트엔드 데모&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;,
-    &quot;ts.external.directory.path&quot;: &quot;C:\\Program Files\\JetBrains\\IntelliJ IDEA 2023.1\\plugins\\javascript-impl\\jsLanguageServicesImpl\\external&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "ASKED_ADD_EXTERNAL_FILES": "true",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "last_opened_file_path": "C:/Users/codepc/Desktop/PROJECT/JUICYFRESH",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "settings.editor.selected.configurable": "preferences.pluginManager",
+    "ts.external.directory.path": "C:\\Program Files\\JetBrains\\IntelliJ IDEA 2023.1\\plugins\\javascript-impl\\jsLanguageServicesImpl\\external",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Users\codepc\Desktop\GroupWare\src\COMPONENT\LAYOUT" />
@@ -85,7 +92,7 @@
       <workItem from="1689309471995" duration="2148000" />
       <workItem from="1689319156089" duration="10814000" />
       <workItem from="1689417716968" duration="5842000" />
-      <workItem from="1689641623885" duration="9157000" />
+      <workItem from="1689641623885" duration="24983000" />
     </task>
     <servers />
   </component>

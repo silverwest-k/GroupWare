@@ -82,8 +82,16 @@ h3 {
 .document {
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
+    justify-content: center;
     width: 40%;
     height: 100%;
     background: darkgray;
+}
+
+
+/* 문서작성 */
+
+.document textarea{
+    height: 50%;
+    margin: 30px 0;
 }
