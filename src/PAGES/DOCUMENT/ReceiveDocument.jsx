@@ -2,7 +2,7 @@ import styles from "./ReceiveDocument.module.css"
 import Pagination from "react-bootstrap/Pagination";
 import {useEffect, useState} from "react";
 import {Button, FormControl, InputGroup} from "react-bootstrap";
-import axios from "axios";
+import {fetcher} from "../../Request";
 
 function ReceiveDocument() {
     const [data, setData] = useState([]);
@@ -14,7 +14,7 @@ function ReceiveDocument() {
     const pageNum = Math.ceil(total / limit);
 
     useEffect(() => {
-        axios.get("http://localhost:8080/receiveDocument")
+        fetcher().get("/receiveDocument")
             .then((res) => setData(res.data))
     },[])
 

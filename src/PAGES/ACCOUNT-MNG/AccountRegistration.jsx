@@ -1,8 +1,8 @@
 import {useRef, useState} from "react";
 import styles from "./AccountManagement.module.css";
 import {Button, Modal} from "react-bootstrap";
-import axios from "axios";
 import RegistrationModal from "./RegistrationModal";
+import {fetcher} from "../../Request";
 
 function AccountRegistration() {
     const [showRegisterModal, setShowRegisterModal] = useState(false);
@@ -13,6 +13,7 @@ function AccountRegistration() {
     const [memberNo, setMemberNo] = useState("")
     const [position, setPosition] = useState("");
     const [team, setTeam] = useState("");
+    const [authority, setAuthority] = useState("ROLE_USER");
 
     const saveImgFile = () =>{
         const file = imgRef.current.files[0];
@@ -24,12 +25,13 @@ function AccountRegistration() {
     }
 
     const Register = ()=>{
-        axios.post("http://172.20.10.8:9091/auth/admin/signup", {
+        fetcher().post("/auth/admin/signup", {
             "name": name,
             "password": password,
             "no": memberNo,
             "position": position,
             "team": team,
+            "authority": authority
         })
           .then(()=> {
               handleRegisterModalClose();

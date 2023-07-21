@@ -2,7 +2,7 @@ import styles from "./Write.module.css"
 import Dropdown from 'react-bootstrap/Dropdown';
 import {Button} from "react-bootstrap";
 import {useState} from "react";
-import axios from "axios";
+import {fetcher} from "../../Request";
 
 // 작성하기
 function Write() {
@@ -16,7 +16,7 @@ function Write() {
         setStatus("")
     }
     const submit = (status) =>{
-        axios.post("http://172.20.10.26:9091/documents/create", {
+        fetcher().post("documents/create", {
             "title": title,
             "content": content,
             "status": status,

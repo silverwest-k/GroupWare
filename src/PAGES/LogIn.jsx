@@ -4,6 +4,7 @@ import styles from "./Login.module.css"
 import {Alert} from "react-bootstrap";
 import {useNavigate} from "react-router-dom";
 import {useCookies} from "react-cookie";
+import {fetcher} from "../Request";
 
 
 function LogIn() {
@@ -20,16 +21,14 @@ function LogIn() {
             setAlertMessage("사번 또는 비밀번호를 입력하세요.");
             setIsShowAlert(true);
         } else {
-            axios.post("http://172.20.10.26:9091/auth/login", {
+            fetcher().post("/auth/login", {
                 "no": memberNo,
                 "password": password
             })
                 .then((res) => {
-                    console.log(res.data);
                     const accessToken = res.data.accessToken;
                     setCookie("loginCookie", accessToken);
                     axios.defaults.headers["Authorization"]=`Bearer ${accessToken}`;
-                    console.log("Authorization Header:", axios.defaults.headers["Authorization"]);
                     navigate("/main");
                 })
                 .catch((error) =>{

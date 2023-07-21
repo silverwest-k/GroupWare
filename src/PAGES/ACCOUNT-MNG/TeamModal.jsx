@@ -1,9 +1,8 @@
 import {Button, Modal} from "react-bootstrap";
 import styles from "./Modal.module.css";
 import {useEffect, useState} from "react";
-import axios from "axios";
-import Accordion from "react-bootstrap/Accordion";
 import useStore from "../../store";
+import {fetcher} from "../../Request";
 
 function TeamModal({showTeamModal, handleTeamModalClose}) {
 
@@ -20,8 +19,7 @@ function TeamModal({showTeamModal, handleTeamModalClose}) {
     }, []);
 
      const fetchTeamData = () => {
-        // axios.get("http://172.20.10.26:9091/team")
-         axios.get("http://localhost:8080/team")
+         fetcher().get("/team")
             .then((res) => setTeam(res.data))
     };
 

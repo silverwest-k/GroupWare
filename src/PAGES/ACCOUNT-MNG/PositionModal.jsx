@@ -1,16 +1,15 @@
-import axios from "axios";
 import {useEffect, useState} from "react";
 import styles from "./Modal.module.css";
 import {Button, Modal} from "react-bootstrap";
 import useStore from "../../store";
+import {fetcher} from "../../Request";
 
 
 function PositionModal({showPositionModal,handlePositionModalClose}) {
     const [position, setPosition] =useState([]);
     const {selectPosition} = useStore(state => state);
     const FetchPositionData= () => {
-        // axios.get("http://172.20.10.26:9091/position")
-        axios.get("http://localhost:8080/position")
+        fetcher().get("/position")
             .then(res=> setPosition(res.data))
     }
 

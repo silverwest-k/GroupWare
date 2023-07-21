@@ -4,7 +4,7 @@ import ToggleButton from 'react-bootstrap/ToggleButton';
 import ToggleButtonGroup from 'react-bootstrap/ToggleButtonGroup';
 import {Button, Form, FormControl, InputGroup, Table} from "react-bootstrap";
 import {useEffect, useState} from "react";
-import axios from "axios";
+import {fetcher} from "../../Request";
 
 function ReportDocument() {
     const [data, setData] = useState([]);
@@ -16,8 +16,7 @@ function ReportDocument() {
     const pageNum = Math.ceil(total/limit);
 
     useEffect(() => {
-        // axios.get("http://localhost:8080/documents")
-        axios.get("http://172.20.10.26:9091/documents/list")
+        fetcher().get("/documents/list")
             .then((res) => setData(res.data))
     }, []);
 

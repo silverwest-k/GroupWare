@@ -3,15 +3,14 @@ import tableStyles from "./AccountModal.module.css";
 import {Button, FormControl, InputGroup, Modal, Table} from "react-bootstrap";
 import useStore from "../../store";
 import {useEffect, useState} from "react";
-import axios from "axios";
+import {fetcher} from "../../Request";
 
 function AccountModal({showAccountModal,handleAccountModalClose}) {
     const {selectAccount} = useStore(state => state)
     const [members, setMembers] = useState([]);
 
     useEffect(()=>{
-        // axios.get("http://172.20.10.8:9091/auth/admin/members")
-        axios.get("http://localhost:8080/members")
+        fetcher().get("/members")
             .then((res) => setMembers(res.data))
     },[])
 

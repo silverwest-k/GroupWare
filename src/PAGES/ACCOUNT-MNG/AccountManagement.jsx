@@ -7,7 +7,7 @@ import TeamModal from "./TeamModal";
 import useStore from "../../store";
 import PositionModal from "./PositionModal";
 import AccountModal from "./AccountModal";
-import axios from "axios";
+import {fetcher} from "../../Request";
 
 function AccountManagement() {
     const [radioValue, setRadioValue] = useState('1');
@@ -24,8 +24,9 @@ function AccountManagement() {
     const [position, setPosition] = useState("");
 
     const radioState = [
-        { name: '사용중', value: '1' },
-        { name: '접속차단', value: '2' }
+        { name: '일반계정', value: '1' },
+        { name: '관리자계정', value: '2' },
+        { name: '접속차단', value: '3' }
     ];
 
     const resetInput = () =>{
@@ -37,12 +38,7 @@ function AccountManagement() {
     }
 
     const deleteAccount = () => {
-        axios.delete(`http://172.20.10.8:9091/admin/members/${no}`, {
-            headers: {
-                'Content-Type': 'application/json',
-                // 'Authorization': `Bearer ${accessToken}`
-            }
-        })
+        fetcher().delete(`/admin/members/${no}`)
             .then(() => {
                 console.log(no);
             })
@@ -74,7 +70,8 @@ function AccountManagement() {
                     </div>
                     <Button variant="primary"
                             className={styles.button}
-                            onClick={handleDeleteModalOpen}
+                            onClick={deleteAccount}
+                            // onClick={handleDeleteModalOpen}
                     >삭제</Button>
                 </div>
 
@@ -131,7 +128,7 @@ function AccountManagement() {
                                         key={idx}
                                         id={`radio-${idx}`}
                                         type="radio"
-                                        variant={idx % 2 ? 'outline-danger' : 'outline-success'}
+                                        const variant = {idx === 0 ? 'outline-primary' : (idx === 1 ? 'outline-warning' : 'outline-danger')}
                                         name="radio"
                                         value={radio.value}
                                         checked={radioValue === radio.value}
@@ -148,8 +145,7 @@ function AccountManagement() {
                     <div className={styles.modify}>
                         <Button variant="primary"
                                 className={styles.button}
-                                onClick={deleteAccount}
-                        >계정삭제</Button>
+                        >수정</Button>
                     </div>
                 </div>
             </div>
