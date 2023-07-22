@@ -5,20 +5,35 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="671d336a-3897-4ae7-9dd4-06de78af820f" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/Request.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/IMAGES/404.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/PAGES/NotFound.jsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/constants/api_constans.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/constants/component_constants.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/constants/constants.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/App.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/COMPONENT/LAYOUT/Header.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/COMPONENT/LAYOUT/Header.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/COMPONENT/LAYOUT/Sidebar.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/COMPONENT/LAYOUT/Sidebar.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/COMPONENT/MAIN/Profile.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/COMPONENT/MAIN/Profile.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/COMPONENT/MAIN/Profile.module.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/COMPONENT/MAIN/Profile.module.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/PAGES/ACCOUNT-MNG/AccountManagement.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/PAGES/ACCOUNT-MNG/AccountManagement.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/PAGES/ACCOUNT-MNG/AccountModal.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/PAGES/ACCOUNT-MNG/AccountModal.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/PAGES/ACCOUNT-MNG/AccountRegistration.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/PAGES/ACCOUNT-MNG/AccountRegistration.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/PAGES/ACCOUNT-MNG/DeleteModal.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/PAGES/ACCOUNT-MNG/DeleteIDModal.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/PAGES/ACCOUNT-MNG/PositionModal.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/PAGES/ACCOUNT-MNG/PositionModal.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/PAGES/ACCOUNT-MNG/RegistrationModal.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/PAGES/ACCOUNT-MNG/CreateIDModal.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/PAGES/ACCOUNT-MNG/TeamModal.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/PAGES/ACCOUNT-MNG/TeamModal.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/PAGES/APPROVAL/Write.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/PAGES/APPROVAL/Write.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/PAGES/APPROVAL/Write.module.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/PAGES/APPROVAL/Write.module.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/PAGES/DOCUMENT/ReceiveDocument.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/PAGES/DOCUMENT/ReceiveDocument.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/PAGES/DOCUMENT/ReceiveDocument.module.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/PAGES/DOCUMENT/ReceiveDocument.module.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/PAGES/DOCUMENT/ReportDocument.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/PAGES/DOCUMENT/ReportDocument.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/PAGES/LogIn.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/PAGES/LogIn.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/PAGES/Page.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/PAGES/Page.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/PAGES/PageContents.jsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Request.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/fetcher.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/store.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/store.jsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -52,6 +67,7 @@
     &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;js.last.introduce.type&quot;: &quot;CONST&quot;,
     &quot;last_opened_file_path&quot;: &quot;C:/Users/codepc/Desktop/PROJECT/JUICYFRESH&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
     &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
@@ -65,11 +81,11 @@
 }</component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/constants" />
       <recent name="C:\Users\codepc\Desktop\GroupWare\src\COMPONENT\LAYOUT" />
       <recent name="C:\Users\codepc\Desktop\GroupWare\src\IMAGES" />
       <recent name="C:\Users\codepc\Desktop\GroupWare\src\PAGES" />
       <recent name="C:\Users\codepc\Desktop\GroupWare\src\PAGES\MYPAGE" />
-      <recent name="C:\Users\codepc\Desktop\GroupWare\src\PAGES\DOCUMENT-MNG" />
     </key>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
@@ -101,6 +117,11 @@
       <workItem from="1689822551502" duration="627000" />
       <workItem from="1689832232000" duration="58000" />
       <workItem from="1689832355092" duration="15317000" />
+      <workItem from="1689997824933" duration="41000" />
+      <workItem from="1689997872020" duration="26158000" />
+      <workItem from="1690033574253" duration="221000" />
+      <workItem from="1690034037696" duration="1876000" />
+      <workItem from="1690036278547" duration="649000" />
     </task>
     <servers />
   </component>

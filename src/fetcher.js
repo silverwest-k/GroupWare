@@ -1,15 +1,16 @@
 import Cookies from "universal-cookie/es6";
 import axios from "axios";
+import {ACCESS_TOKEN_COOKIE} from "./constants/constants";
 
 
 const cookies = new Cookies();
 
-export const fetcher = () => {
+export default () => {
     const defaultAxios = {
         baseURL: "http://localhost:8080",
         timeout: 1500,
     }
-    const accessToken = cookies.get("loginCookie");
+    const accessToken = cookies.get(ACCESS_TOKEN_COOKIE);
 
     if(accessToken) {
         const axiosWithAuthHeader = {...defaultAxios};

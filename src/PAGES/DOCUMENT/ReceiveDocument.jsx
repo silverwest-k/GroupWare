@@ -2,7 +2,7 @@ import styles from "./ReceiveDocument.module.css"
 import Pagination from "react-bootstrap/Pagination";
 import {useEffect, useState} from "react";
 import {Button, FormControl, InputGroup} from "react-bootstrap";
-import {fetcher} from "../../Request";
+import fetcher from "../../fetcher";
 
 function ReceiveDocument() {
     const [data, setData] = useState([]);

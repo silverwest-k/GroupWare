@@ -1,6 +1,7 @@
 import styles from "./Header.module.css"
 import {Link, useParams} from "react-router-dom";
 import useStore from "../../store";
+import {MAIN_COMPONENT} from "../../constants/component_constants";
 
 
 function Header() {
@@ -10,7 +11,7 @@ function Header() {
     return (
         <div className={styles.header}>
             <div className={styles.headerTitle}  onClick={()=>changeTitle("메인")}>
-                <Link to="/main">원 인터내셔널</Link>
+                <Link to={MAIN_COMPONENT}>원 인터내셔널</Link>
             </div>
             <div className={styles.headerLine}>
                 <p>{headerTitle}</p>

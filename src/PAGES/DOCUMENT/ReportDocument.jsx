@@ -4,7 +4,8 @@ import ToggleButton from 'react-bootstrap/ToggleButton';
 import ToggleButtonGroup from 'react-bootstrap/ToggleButtonGroup';
 import {Button, Form, FormControl, InputGroup, Table} from "react-bootstrap";
 import {useEffect, useState} from "react";
-import {fetcher} from "../../Request";
+import fetcher from "../../fetcher";
+import {REPORT_DOCUMENT_LIST_API} from "../../constants/api_constans";
 
 function ReportDocument() {
     const [data, setData] = useState([]);
@@ -16,7 +17,7 @@ function ReportDocument() {
     const pageNum = Math.ceil(total/limit);
 
     useEffect(() => {
-        fetcher().get("/documents/list")
+        fetcher().get(REPORT_DOCUMENT_LIST_API)
             .then((res) => setData(res.data))
     }, []);
 

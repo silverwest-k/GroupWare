@@ -2,37 +2,40 @@ import {useEffect, useState} from "react";
 import styles from "./Modal.module.css";
 import {Button, Modal} from "react-bootstrap";
 import useStore from "../../store";
-import {fetcher} from "../../Request";
+import fetcher from "../../fetcher";
+import {POSITION_INFO_API} from "../../constants/api_constans";
 
 
-function PositionModal({showPositionModal,handlePositionModalClose}) {
-    const [position, setPosition] =useState([]);
+function PositionModal({showPositionModal, handlePositionModalClose}) {
+    const [position, setPosition] = useState([]);
     const {selectPosition} = useStore(state => state);
-    const FetchPositionData= () => {
-        fetcher().get("/position")
-            .then(res=> setPosition(res.data))
+    const FetchPositionData = () => {
+        fetcher().get(POSITION_INFO_API)
+            .then(res => setPosition(res.data))
     }
 
-    useEffect(()=>{
+    useEffect(() => {
         FetchPositionData();
-    },[])
+    }, [])
 
-    const pickPosition =(position)=> {
+    const pickPosition = (position) => {
         selectPosition(position);
         handlePositionModalClose();
     }
 
-    return(
+    return (
         <>
             <Modal show={showPositionModal} onHide={handlePositionModalClose} className={styles.modal} centered>
                 <Modal.Header closeButton className={styles.modalHeader}>
                     <Modal.Title style={{fontWeight: "bold"}}>직급 선택</Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
-                    {position.map((data)=>{
-                        return(
-                            <p className={styles.position} style={{cursor:"pointer"}}
-                               onClick={()=>pickPosition(data.name)}
+                    {position.map((data, idx) => {
+                        return (
+                            <p key={idx}
+                               className={styles.position}
+                               style={{cursor: "pointer"}}
+                               onClick={() => pickPosition(data.name)}
                             >{data.name}</p>
                         )
                     })}

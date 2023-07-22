@@ -18,7 +18,7 @@ function Sidebar() {
     const handleLink = (link) => {
         setActiveLink(link);
     }
-
+    // TODO :: 로그인 후 개인 인사정보를 전역 상태에서 가져오도록..
     return(
         <div className={styles.wrapper}>
             <div className={styles.profileContainer}>
@@ -30,6 +30,7 @@ function Sidebar() {
                 </div>
             </div>
             <div className={styles.menuContainer}>
+                {/* TODO :: 컴포넌트 분리가 너무 안되어있는듯 .. */}
                 <Accordion eventKey="0" flush>
                     <Accordion.Item eventKey="0" className={styles.accordion}>
                         <Accordion.Header className={styles.menu}>

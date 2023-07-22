@@ -2,7 +2,8 @@ import {Button, Modal} from "react-bootstrap";
 import styles from "./Modal.module.css";
 import {useEffect, useState} from "react";
 import useStore from "../../store";
-import {fetcher} from "../../Request";
+import fetcher from "../../fetcher";
+import {TEAM_INFO_API} from "../../constants/api_constans";
 
 function TeamModal({showTeamModal, handleTeamModalClose}) {
 
@@ -19,7 +20,7 @@ function TeamModal({showTeamModal, handleTeamModalClose}) {
     }, []);
 
      const fetchTeamData = () => {
-         fetcher().get("/team")
+         fetcher().get(TEAM_INFO_API)
             .then((res) => setTeam(res.data))
     };
 
@@ -31,9 +32,11 @@ function TeamModal({showTeamModal, handleTeamModalClose}) {
                 </Modal.Header>
 
                 <Modal.Body>
-                    {team.map((data)=>{
+                    {team.map((data, idx)=>{
                         return(
-                            <p className={styles.position} style={{cursor:"pointer"}}
+                            <p  key={idx}
+                                className={styles.position}
+                               style={{cursor:"pointer"}}
                                onClick={()=>pickTeam(data.name)}
                             >{data.name}</p>
                         )

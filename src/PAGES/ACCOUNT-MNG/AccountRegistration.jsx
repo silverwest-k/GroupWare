@@ -1,8 +1,9 @@
 import {useRef, useState} from "react";
 import styles from "./AccountManagement.module.css";
 import {Button, Modal} from "react-bootstrap";
-import RegistrationModal from "./RegistrationModal";
-import {fetcher} from "../../Request";
+import CreateIDModal from "./CreateIDModal";
+import {CREATE_ID_API} from "../../constants/api_constans";
+import fetcher from "../../fetcher";
 
 function AccountRegistration() {
     const [showRegisterModal, setShowRegisterModal] = useState(false);
@@ -20,12 +21,12 @@ function AccountRegistration() {
         const reader = new FileReader();
         reader.readAsDataURL(file);
         reader.onload = ()=>{
-            setImgFile(reader .result);
+            setImgFile(reader.result);
         }
     }
 
-    const Register = ()=>{
-        fetcher().post("/auth/admin/signup", {
+    const createID = ()=>{
+        fetcher().post(CREATE_ID_API, {
             "name": name,
             "password": password,
             "no": memberNo,
@@ -38,7 +39,7 @@ function AccountRegistration() {
               resetInput();
           })
             .catch((error) => {
-                alert("값을 입력하세요");
+                alert("값이 올바르지 않습니다.");
                 console.log(error);
             })
     }
@@ -134,9 +135,9 @@ function AccountRegistration() {
                 </div>
             </div>
 
-            <RegistrationModal
+            <CreateIDModal
                 showRegisterModal={showRegisterModal}
-                Register={Register}
+                createID={createID}
                 handleRegisterModalClose={handleRegisterModalClose}
             />
         </div>

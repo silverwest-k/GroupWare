@@ -3,18 +3,20 @@ import tableStyles from "./AccountModal.module.css";
 import {Button, FormControl, InputGroup, Modal, Table} from "react-bootstrap";
 import useStore from "../../store";
 import {useEffect, useState} from "react";
-import {fetcher} from "../../Request";
+import {MEMBER_LIST_INFO_API} from "../../constants/api_constans";
+import fetcher from "../../fetcher";
 
 function AccountModal({showAccountModal,handleAccountModalClose}) {
     const {selectAccount} = useStore(state => state)
     const [members, setMembers] = useState([]);
 
     useEffect(()=>{
-        fetcher().get("/members")
+        fetcher().get(MEMBER_LIST_INFO_API)
             .then((res) => setMembers(res.data))
     },[])
 
     const pickAccount = (account) => {
+        console.log(account)
         selectAccount(account);
         handleAccountModalClose();
     }
@@ -49,9 +51,9 @@ function AccountModal({showAccountModal,handleAccountModalClose}) {
                                 </thead>
 
                                 <tbody>
-                                {members.map((data)=>{
+                                {members.map((data, idx)=>{
                                     return(
-                                        <tr key={data.no} style={{cursor:"pointer"}}
+                                        <tr key={idx} style={{cursor:"pointer"}}
                                             onClick={()=>pickAccount(data)}
                                         >
                                             <td>{data.no}</td>

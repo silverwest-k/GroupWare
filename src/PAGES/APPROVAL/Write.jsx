@@ -2,7 +2,8 @@ import styles from "./Write.module.css"
 import Dropdown from 'react-bootstrap/Dropdown';
 import {Button} from "react-bootstrap";
 import {useState} from "react";
-import {fetcher} from "../../Request";
+import fetcher from "../../fetcher";
+import {DOCUMENT_WRITE_API} from "../../constants/api_constans";
 
 // 작성하기
 function Write() {
@@ -15,19 +16,20 @@ function Write() {
         setContent("")
         setStatus("")
     }
-    const submit = (status) =>{
-        fetcher().post("documents/create", {
+    const saveBtn = (status) =>{
+        fetcher().post(DOCUMENT_WRITE_API, {
             "title": title,
             "content": content,
             "status": status,
-        }) .then(resetInput)
+        })
+            .then(resetInput)
     }
 
     const handleTempSave= ()=>{
-        submit(0)
+        saveBtn(0)
     }
     const handleSave= ()=>{
-        submit(1)
+        saveBtn(1)
     }
 
     return(

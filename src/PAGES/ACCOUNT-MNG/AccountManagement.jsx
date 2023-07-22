@@ -1,13 +1,14 @@
-import {Button, Modal, ToggleButton} from "react-bootstrap";
+import {Button, ToggleButton} from "react-bootstrap";
 import styles from "./AccountManagement.module.css"
 import {useState} from "react";
 import ButtonGroup from 'react-bootstrap/ButtonGroup';
-import DeleteModal from "./DeleteModal";
+import DeleteIDModal from "./DeleteIDModal";
 import TeamModal from "./TeamModal";
 import useStore from "../../store";
 import PositionModal from "./PositionModal";
 import AccountModal from "./AccountModal";
-import {fetcher} from "../../Request";
+import {DELETE_ID_API} from "../../constants/api_constans";
+import fetcher from "../../fetcher";
 
 function AccountManagement() {
     const [radioValue, setRadioValue] = useState('1');
@@ -19,7 +20,7 @@ function AccountManagement() {
     const {account, teamName, positionName} = useStore(state => state);
     const [name, setName] = useState("");
     const [password, setPassword] = useState("");
-    const [no, setNo] = useState("");
+    const [memberNo, setMemberNo] = useState("");
     const [team, setTeam] = useState("");
     const [position, setPosition] = useState("");
 
@@ -32,30 +33,21 @@ function AccountManagement() {
     const resetInput = () =>{
         setName("")
         setPassword("")
-        setNo("")
+        setMemberNo("")
         setTeam("")
         setPosition("")
     }
 
-    const deleteAccount = () => {
-        fetcher().delete(`/admin/members/${no}`)
+    const deleteID = () => {
+
+        fetcher().delete(`${DELETE_ID_API}/${4}`)
             .then(() => {
-                console.log(no);
+                console.log(memberNo);
             })
             .catch(error => {
                 console.error(error);
             });
     }
-
-    const handleDeleteModalOpen = () => setShowDeleteModal(true);
-    const handleDeleteModalClose = () => setShowDeleteModal(false);
-    const handleTeamModalOpen = () => setShowTeamModal(true);
-    const handleTeamModalClose = () => setShowTeamModal(false);
-    const handlePositionModalOpen = () => setShowPositionModal(true);
-    const handlePositionModalClose = () => setShowPositionModal(false);
-    const handleAccountModalOpen = () => setShowAccountModal(true);
-    const handleAccountModalClose = () => setShowAccountModal(false);
-
 
     return(
         <div className={styles.wrapper}>
@@ -65,13 +57,12 @@ function AccountManagement() {
                         계정관리
                         <Button variant="primary"
                                 className={styles.button} style={{marginLeft:"15px"}}
-                                onClick={handleAccountModalOpen}
+                                onClick={() => setShowAccountModal(true)}
                         >불러오기</Button>
                     </div>
                     <Button variant="primary"
                             className={styles.button}
-                            onClick={deleteAccount}
-                            // onClick={handleDeleteModalOpen}
+                            onClick={() => setShowDeleteModal(true)}
                     >삭제</Button>
                 </div>
 
@@ -96,7 +87,7 @@ function AccountManagement() {
 
                         <div className={styles.inputLine}>
                             사　　번 <input value={account.no}
-                                        onChange={(e)=>setNo(e.target.value)}
+                                        onChange={(e)=>setMemberNo(e.target.value)}
                         />
                         </div>
 
@@ -106,7 +97,7 @@ function AccountManagement() {
                         />
                             <img src={require("../../IMAGES/more.png")}
                                  className={styles.icon}
-                                 onClick={handleTeamModalOpen}
+                                 onClick={() => setShowTeamModal(true)}
                             />
                         </div>
 
@@ -116,7 +107,7 @@ function AccountManagement() {
                         />
                             <img src={require("../../IMAGES/more.png")}
                                  className={styles.icon}
-                                 onClick={handlePositionModalOpen}
+                                 onClick={() => setShowPositionModal(true)}
                             />
                         </div>
 
@@ -150,14 +141,15 @@ function AccountManagement() {
                 </div>
             </div>
 
-            <DeleteModal
+            <DeleteIDModal
                 resetInput={resetInput}
+                deleteID={deleteID}
                 showDeleteModal={showDeleteModal}
-                handleDeleteModalClose={handleDeleteModalClose}
+                handleDeleteModalClose={() => setShowDeleteModal(false)}
             />
-            <AccountModal showAccountModal={showAccountModal} handleAccountModalClose={handleAccountModalClose} />
-            <TeamModal showTeamModal={showTeamModal} handleTeamModalClose={handleTeamModalClose} />
-            <PositionModal showPositionModal={showPositionModal} handlePositionModalClose={handlePositionModalClose} />
+            <AccountModal showAccountModal={showAccountModal} handleAccountModalClose={() => setShowAccountModal(false)} />
+            <TeamModal showTeamModal={showTeamModal} handleTeamModalClose={() => setShowTeamModal(false)} />
+            <PositionModal showPositionModal={showPositionModal} handlePositionModalClose={() => setShowPositionModal(false)} />
         </div>
     )
 }
