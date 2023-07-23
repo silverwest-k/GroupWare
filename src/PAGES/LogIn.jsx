@@ -20,16 +20,12 @@ function LogIn() {
     const navigate = useNavigate();
 
     //Refresh token: Cookie 저장, Access token: Read-Only cookie 필요시마다 호출해서 사용
-
-    // TODO :: 변수명이 좀..
     const loginBtn = () => {
-
         if (!memberNo || !password) {
             setAlertMessage("사번 또는 비밀번호를 입력하세요.");
             setIsShowAlert(true);
             return
         }
-
         // TODO :: URL 경로가 바뀌면?
         fetcher().post(LOGIN_API, {
             "no": memberNo,

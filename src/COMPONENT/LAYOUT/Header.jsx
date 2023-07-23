@@ -10,7 +10,7 @@ function Header() {
 
     return (
         <div className={styles.header}>
-            <div className={styles.headerTitle}  onClick={()=>changeTitle("메인")}>
+            <div className={styles.headerTitle}  onClick={changeTitle("메인")}>
                 <Link to={MAIN_COMPONENT}>원 인터내셔널</Link>
             </div>
             <div className={styles.headerLine}>

@@ -11,24 +11,29 @@ import {DELETE_ID_API} from "../../constants/api_constans";
 import fetcher from "../../fetcher";
 
 function AccountManagement() {
-    const [radioValue, setRadioValue] = useState('1');
     const [showDeleteModal, setShowDeleteModal] = useState(false);
     const [showTeamModal, setShowTeamModal] = useState(false);
     const [showPositionModal, setShowPositionModal] = useState(false);
     const [showAccountModal, setShowAccountModal] = useState(false);
 
-    const {account, teamName, positionName} = useStore(state => state);
+    const [radioValue, setRadioValue] = useState('1');
     const [name, setName] = useState("");
     const [password, setPassword] = useState("");
     const [memberNo, setMemberNo] = useState("");
     const [team, setTeam] = useState("");
     const [position, setPosition] = useState("");
 
+    const {account, teamName, positionName} = useStore(state => state);
+
     const radioState = [
         { name: '일반계정', value: '1' },
         { name: '관리자계정', value: '2' },
         { name: '접속차단', value: '3' }
     ];
+
+    const eValue = (e) => {
+        e.target.value;
+    }
 
     const resetInput = () =>{
         setName("")
@@ -39,14 +44,8 @@ function AccountManagement() {
     }
 
     const deleteID = () => {
-
         fetcher().delete(`${DELETE_ID_API}/${4}`)
-            .then(() => {
-                console.log(memberNo);
-            })
-            .catch(error => {
-                console.error(error);
-            });
+            .then(()=>alert("삭제가 완료되었습니다."))
     }
 
     return(
@@ -75,25 +74,25 @@ function AccountManagement() {
                     <div className={styles.inputContainer}>
                         <div className={styles.inputLine}>
                             이　　름 <input value={account.name}
-                                        onChange={(e)=>setName(e.target.value)}
+                                        onChange={(e)=>setName(eValue)}
                         />
                         </div>
 
                         <div className={styles.inputLine}>
                             비밀번호 <input value={account.password}
-                                        onChange={(e)=>setPassword(e.target.value)}
+                                        onChange={(e)=>setPassword(eValue)}
                         />
                         </div>
 
                         <div className={styles.inputLine}>
                             사　　번 <input value={account.no}
-                                        onChange={(e)=>setMemberNo(e.target.value)}
+                                        onChange={(e)=>setMemberNo(eValue)}
                         />
                         </div>
 
                         <div className={styles.inputLine}>
                             부　　서 <input value={teamName || account.team}
-                                        onChange={(e)=>setTeam(e.target.value)}
+                                        onChange={(e)=>setTeam(eValue)}
                         />
                             <img src={require("../../IMAGES/more.png")}
                                  className={styles.icon}
@@ -103,7 +102,7 @@ function AccountManagement() {
 
                         <div className={styles.inputLine}>
                             직　　급 <input value={positionName || account.position}
-                                        onChange={(e)=>setPosition(e.target.value)}
+                                        onChange={(e)=>setPosition(eValue)}
                         />
                             <img src={require("../../IMAGES/more.png")}
                                  className={styles.icon}

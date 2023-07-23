@@ -1,6 +1,7 @@
 export const MAIN_COMPONENT = "/"
 export const NOT_FOUND_COMPONENT = "*"
 export const LOGIN_COMPONENT = "/login"
+export const PAGE_COMPONENT = "/page/*"
 
 // 전자결재
 export const DOCUMENT_WRITE_COMPONENT = "write"

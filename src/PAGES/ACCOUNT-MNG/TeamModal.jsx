@@ -10,19 +10,16 @@ function TeamModal({showTeamModal, handleTeamModalClose}) {
     const [team, setTeam] = useState([]);
     const {selectTeam} = useStore(state => state);
 
+    useEffect(() => {
+        fetcher().get(TEAM_INFO_API)
+            .then((res) => setTeam(res.data))
+    }, []);
+
     const pickTeam = (team) => {
         selectTeam(team);
         handleTeamModalClose();
     }
 
-    useEffect(() => {
-        fetchTeamData();
-    }, []);
-
-     const fetchTeamData = () => {
-         fetcher().get(TEAM_INFO_API)
-            .then((res) => setTeam(res.data))
-    };
 
     return (
         <>

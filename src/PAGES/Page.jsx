@@ -15,6 +15,7 @@ import {
     APPROVAL_PATH_COMPONENT, DOCUMENT_REGISTRATION_COMPONENT, DOCUMENT_WRITE_COMPONENT, MY_PAGE_COMPONENT,
     RECEIVE_DOCUMENT_COMPONENT, REPORT_DOCUMENT_COMPONENT
 } from "../constants/component_constants";
+
 function Page() {
     return(
         <>

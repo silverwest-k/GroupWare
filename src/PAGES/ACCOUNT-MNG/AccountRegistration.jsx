@@ -6,9 +6,10 @@ import {CREATE_ID_API} from "../../constants/api_constans";
 import fetcher from "../../fetcher";
 
 function AccountRegistration() {
+    const imgRef = useRef();
+
     const [showRegisterModal, setShowRegisterModal] = useState(false);
     const [imgFile, setImgFile] = useState("");
-    const imgRef = useRef();
     const [name, setName] = useState("");
     const [password, setPassword] = useState("");
     const [memberNo, setMemberNo] = useState("")
@@ -35,7 +36,7 @@ function AccountRegistration() {
             "authority": authority
         })
           .then(()=> {
-              handleRegisterModalClose();
+              setShowRegisterModal(false);
               resetInput();
           })
             .catch((error) => {
@@ -51,9 +52,6 @@ function AccountRegistration() {
         setPosition("")
         setTeam("")
     }
-
-    const handleRegisterModalClose = () => setShowRegisterModal(false);
-    const handleRegisterModalShow = () => setShowRegisterModal(true);
 
     return(
         <div className={styles.wrapper}>
@@ -129,7 +127,7 @@ function AccountRegistration() {
                 <div>
                     <div className={styles.modify}>
                         <Button variant="primary" className={styles.button}
-                                onClick={handleRegisterModalShow}
+                                onClick={()=>setShowRegisterModal(true)}
                         >등록</Button>
                     </div>
                 </div>
@@ -138,7 +136,7 @@ function AccountRegistration() {
             <CreateIDModal
                 showRegisterModal={showRegisterModal}
                 createID={createID}
-                handleRegisterModalClose={handleRegisterModalClose}
+                handleRegisterModalClose={()=>setShowRegisterModal(false)}
             />
         </div>
     )

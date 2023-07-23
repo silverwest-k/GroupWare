@@ -15,6 +15,6 @@ export const DOCUMENT_WRITE_API="documents/create"
 export const MY_INFO_API = "/member/me"
 export const TEAM_INFO_API = "/approval/team"
 
-export const TEAM_MEMBER_INFO_API ="/approval/team/"
+export const TEAM_MEMBER_INFO_API ="/approval/team"
 export const POSITION_INFO_API = "/approval/position"
 export const MEMBER_LIST_INFO_API ="/auth/admin/members"

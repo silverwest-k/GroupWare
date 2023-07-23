@@ -9,13 +9,10 @@ import {POSITION_INFO_API} from "../../constants/api_constans";
 function PositionModal({showPositionModal, handlePositionModalClose}) {
     const [position, setPosition] = useState([]);
     const {selectPosition} = useStore(state => state);
-    const FetchPositionData = () => {
-        fetcher().get(POSITION_INFO_API)
-            .then(res => setPosition(res.data))
-    }
 
     useEffect(() => {
-        FetchPositionData();
+        fetcher().get(POSITION_INFO_API)
+            .then(res => setPosition(res.data))
     }, [])
 
     const pickPosition = (position) => {
