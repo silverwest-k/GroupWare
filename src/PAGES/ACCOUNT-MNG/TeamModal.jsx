@@ -34,8 +34,8 @@ function TeamModal({showTeamModal, handleTeamModalClose}) {
                             <p  key={idx}
                                 className={styles.position}
                                style={{cursor:"pointer"}}
-                               onClick={()=>pickTeam(data.name)}
-                            >{data.name}</p>
+                               onClick={()=>pickTeam(data)}
+                            >{data}</p>
                         )
                     })}
 

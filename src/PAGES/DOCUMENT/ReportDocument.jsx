@@ -2,7 +2,7 @@ import styles from "./ReportDocument.module.css"
 import Pagination from 'react-bootstrap/Pagination';
 import ToggleButton from 'react-bootstrap/ToggleButton';
 import ToggleButtonGroup from 'react-bootstrap/ToggleButtonGroup';
-import {Button, Form, FormControl, InputGroup, Table} from "react-bootstrap";
+import {Button, FormControl, InputGroup, Table} from "react-bootstrap";
 import {useEffect, useState} from "react";
 import fetcher from "../../fetcher";
 import {REPORT_DOCUMENT_LIST_API} from "../../constants/api_constans";

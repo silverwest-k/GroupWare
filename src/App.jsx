@@ -15,13 +15,12 @@ function App() {
     const [accessToken, ,] = useCookies([ACCESS_TOKEN_COOKIE]);
     const [refreshToken, ,] = useCookies([REFRESH_TOKEN_COOKIE])
 
-    // useEffect(()=> {
-    //     console.log(accessToken);
-    //     if(accessToken.length === 0 && refreshToken.length === 0) {
-    //         navigate(LOGIN_COMPONENT);
-    //         return;
-    //     }
-    // },[])
+    useEffect(()=> {
+        if(!accessToken[ACCESS_TOKEN_COOKIE] || !refreshToken[REFRESH_TOKEN_COOKIE]) {
+            alert("로그인이 필요합니다.")
+            navigate(LOGIN_COMPONENT);
+        }
+    },[])
 
     return (
         <div className="App">

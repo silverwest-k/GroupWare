@@ -32,8 +32,8 @@ function PositionModal({showPositionModal, handlePositionModalClose}) {
                             <p key={idx}
                                className={styles.position}
                                style={{cursor: "pointer"}}
-                               onClick={() => pickPosition(data.name)}
-                            >{data.name}</p>
+                               onClick={() => pickPosition(data)}
+                            >{data}</p>
                         )
                     })}
 

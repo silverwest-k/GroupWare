@@ -8,11 +8,12 @@ import fetcher from "../../fetcher";
 
 function AccountModal({showAccountModal,handleAccountModalClose}) {
     const {selectAccount} = useStore(state => state)
-    const [members, setMembers] = useState([]);
+    const [member, setMember] = useState([]);
 
     useEffect(()=>{
         fetcher().get(MEMBER_LIST_INFO_API)
-            .then((res) => setMembers(res.data))
+            .then((res) => setMember(res.data))
+            console.log(member);
     },[])
 
     const pickAccount = (account) => {
@@ -51,7 +52,7 @@ function AccountModal({showAccountModal,handleAccountModalClose}) {
                                 </thead>
 
                                 <tbody>
-                                {members.map((data, idx)=>{
+                                {member.map((data, idx)=>{
                                     return(
                                         <tr key={idx} style={{cursor:"pointer"}}
                                             onClick={()=>pickAccount(data)}

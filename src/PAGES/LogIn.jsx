@@ -26,7 +26,6 @@ function LogIn() {
             setIsShowAlert(true);
             return
         }
-        // TODO :: URL 경로가 바뀌면?
         fetcher().post(LOGIN_API, {
             "no": memberNo,
             "password": password
@@ -36,7 +35,7 @@ function LogIn() {
                 setRefreshCookie(REFRESH_TOKEN_COOKIE, res?.data?.refreshToken);
                 navigate(MAIN_COMPONENT);
             })
-            .catch((error) => {
+            .catch(() => {
                 setAlertMessage("입력하신 값이 올바르지 않습니다.");
                 setIsShowAlert(true);
             })
@@ -56,7 +55,6 @@ function LogIn() {
     return (
         <div className={styles.wrapper}>
             <div className={styles.container}>
-
                 {isShowAlert && (
                     <div>
                         <Alert variant="danger" className={styles.alert}>

@@ -59,8 +59,7 @@
 
 .documentInfo {
     height: 100%;
-    padding: 10
-    px;
+    padding: 10px;
     display: flex;
     flex-direction: column;
     justify-content: space-around;

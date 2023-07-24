@@ -8,7 +8,7 @@ export const DELETE_ID_API ="/auth/admin/members"
 
 // 문서관련 API
 export const REPORT_DOCUMENT_LIST_API = "/documents/list"
-export const DOCUMENT_WRITE_API="documents/create"
+export const DOCUMENT_WRITE_API="/documents/create"
 
 
 // 정보조회 API

@@ -32,7 +32,7 @@ function AccountManagement() {
     ];
 
     const eValue = (e) => {
-        e.target.value;
+        return e.target.value;
     }
 
     const resetInput = () =>{
@@ -44,7 +44,7 @@ function AccountManagement() {
     }
 
     const deleteID = () => {
-        fetcher().delete(`${DELETE_ID_API}/${4}`)
+        fetcher().delete(`${DELETE_ID_API}/${memberNo}`)
             .then(()=>alert("삭제가 완료되었습니다."))
     }
 

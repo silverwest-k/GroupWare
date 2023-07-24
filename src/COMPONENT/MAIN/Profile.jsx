@@ -28,7 +28,6 @@ function Profile() {
     useEffect(()=>{
         fetcher().get(MY_INFO_API)
             .then((res)=> setMyInfo(res.data))
-        console.log(myInfo)
     },[])
 
     return (

@@ -1,4 +1,4 @@
-import Sidebar from "../COMPONENT/LAYOUT/Sidebar";
+import Sidebar from "../COMPONENT/LAYOUT/Sidebar/Sidebar";
 import {Route, Routes} from "react-router-dom";
 import Write from "./APPROVAL/Write";
 import ApprovalPath from "./APPROVAL/ApprovalPath";
