@@ -83,17 +83,6 @@
     padding: 4px;
 }
 
-/* 상태버튼 */
-.ongoing{
-    color: orange;
-}
-.completed{
-    color: yellowgreen;
-}
-.return {
-    color:#fb5b68;
-}
-
 /* 페이지네이션 */
 .pagination {
     height: 15%;

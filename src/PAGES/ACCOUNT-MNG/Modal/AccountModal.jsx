@@ -1,10 +1,10 @@
 import styles from "./Modal.module.css";
 import tableStyles from "./AccountModal.module.css";
 import {Button, FormControl, InputGroup, Modal, Table} from "react-bootstrap";
-import useStore from "../../store";
+import useStore from "../../../store";
 import {useEffect, useState} from "react";
-import {MEMBER_LIST_INFO_API} from "../../constants/api_constans";
-import fetcher from "../../fetcher";
+import {MEMBER_LIST_INFO_API} from "../../../constants/api_constans";
+import fetcher from "../../../fetcher";
 
 function AccountModal({showAccountModal,handleAccountModalClose}) {
     const {selectAccount} = useStore(state => state)
@@ -13,7 +13,6 @@ function AccountModal({showAccountModal,handleAccountModalClose}) {
     useEffect(()=>{
         fetcher().get(MEMBER_LIST_INFO_API)
             .then((res) => setMember(res.data))
-            console.log(member);
     },[])
 
     const pickAccount = (account) => {

@@ -95,13 +95,3 @@
     --bs-accordion-btn-padding-y:0.7rem;
     --bs-accordion-body-padding-y:0.5rem;
 }
-
-.accordionBody {
-
-}
-
-.logOut {
-    color: grey;
-    text-decoration: underline;
-    padding: 15px 15px 10px 50px;
-}

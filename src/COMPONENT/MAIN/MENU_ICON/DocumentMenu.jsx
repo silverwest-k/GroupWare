@@ -1,5 +1,10 @@
 import {Link} from "react-router-dom";
 import styles from "./Menu.module.css";
+import {
+    RECEIVE_DOCUMENT_COMPONENT,
+    REPORT_DOCUMENT_COMPONENT,
+    TEMP_DOCUMENT_COMPONENT
+} from "../../../constants/component_constants";
 
 function DocumentMenu({menuName}) {
     return(
@@ -10,9 +15,9 @@ function DocumentMenu({menuName}) {
                 <div className={styles.divisionLine}/>
 
                 <div className={styles.mainLink}>
-                    <Link to="/page/receivedocument" onClick={menuName}>수신문서</Link>
-                    <Link to="/page/reportdocument" onClick={menuName}>상신문서</Link>
-                    <Link to="" onClick={menuName}>임시보관함</Link>
+                    <Link to={RECEIVE_DOCUMENT_COMPONENT} onClick={menuName}>수신문서</Link>
+                    <Link to={REPORT_DOCUMENT_COMPONENT} onClick={menuName}>상신문서</Link>
+                    <Link to={TEMP_DOCUMENT_COMPONENT} onClick={menuName}>임시보관함</Link>
                 </div>
             </div>
         </>

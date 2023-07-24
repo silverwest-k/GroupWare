@@ -1,21 +1,28 @@
-import {useRef, useState} from "react";
+import {useEffect, useRef, useState} from "react";
 import styles from "./AccountManagement.module.css";
 import {Button, Modal} from "react-bootstrap";
-import CreateIDModal from "./CreateIDModal";
+import CreateIDModal from "./Modal/CreateIDModal";
 import {CREATE_ID_API} from "../../constants/api_constans";
 import fetcher from "../../fetcher";
+import TeamModal from "./Modal/TeamModal";
+import PositionModal from "./Modal/PositionModal";
+import useStore from "../../store";
 
 function AccountRegistration() {
     const imgRef = useRef();
 
     const [showRegisterModal, setShowRegisterModal] = useState(false);
+    const [showTeamModal, setShowTeamModal] = useState(false);
+    const [showPositionModal, setShowPositionModal] = useState(false);
     const [imgFile, setImgFile] = useState("");
     const [name, setName] = useState("");
     const [password, setPassword] = useState("");
     const [memberNo, setMemberNo] = useState("")
-    const [position, setPosition] = useState("");
-    const [team, setTeam] = useState("");
+    // const [position, setPosition] = useState("");
+    // const [team, setTeam] = useState("");
     const [authority, setAuthority] = useState("ROLE_USER");
+
+    const { teamName, positionName} = useStore(state => state);
 
     const saveImgFile = () =>{
         const file = imgRef.current.files[0];
@@ -26,13 +33,17 @@ function AccountRegistration() {
         }
     }
 
+    const onChange = (e, setValue) => {
+        setValue(e.target.value);
+    }
+
     const createID = ()=>{
         fetcher().post(CREATE_ID_API, {
             "name": name,
             "password": password,
             "no": memberNo,
-            "position": position,
-            "team": team,
+            "position": positionName,
+            "team": teamName,
             "authority": authority
         })
           .then(()=> {
@@ -49,8 +60,8 @@ function AccountRegistration() {
         setName("")
         setPassword("")
         setMemberNo("")
-        setPosition("")
-        setTeam("")
+        // setTeam("")
+        // setPosition("")
     }
 
     return(
@@ -88,38 +99,40 @@ function AccountRegistration() {
                         <div className={styles.inputLine}>
                             이　　름
                             <input  value={name}
-                                onChange={(e)=>setName(e.target.value)}
+                                onChange={(e)=>onChange(e,setName)}
                             />
                         </div>
 
                         <div className={styles.inputLine}>
                             비밀번호
                             <input value={password} type="password"
-                                   onChange={(e)=>setPassword(e.target.value)}
+                                   onChange={(e)=>onChange(e,setPassword)}
                             />
                         </div>
 
                         <div className={styles.inputLine}>
                             사　　번
                             <input value={memberNo}
-                                onChange={(e)=>setMemberNo(e.target.value)}
+                                onChange={(e)=>onChange(e,setMemberNo)}
                             />
                         </div>
 
                         <div className={styles.inputLine}>
                             부　　서
-                            <input value={team}
-                                onChange={(e)=>setTeam(e.target.value)}
+                            <input value={teamName}/>
+                            <img src={require("../../IMAGES/more.png")}
+                                 className={styles.icon}
+                                 onClick={() => setShowTeamModal(true)}
                             />
-                            <img src={require("../../IMAGES/more.png")} className={styles.icon} />
                         </div>
 
                         <div className={styles.inputLine}>
                             직　　급
-                            <input value={position}
-                                onChange={(e)=>setPosition(e.target.value)}
+                            <input value={positionName}/>
+                            <img src={require("../../IMAGES/more.png")}
+                                 className={styles.icon}
+                                 onClick={() => setShowPositionModal(true)}
                             />
-                            <img src={require("../../IMAGES/more.png")} className={styles.icon} />
                         </div>
                         
                     </div>
@@ -138,6 +151,8 @@ function AccountRegistration() {
                 createID={createID}
                 handleRegisterModalClose={()=>setShowRegisterModal(false)}
             />
+            <TeamModal showTeamModal={showTeamModal} handleTeamModalClose={() => setShowTeamModal(false)} />
+            <PositionModal showPositionModal={showPositionModal} handlePositionModalClose={() => setShowPositionModal(false)} />
         </div>
     )
 }

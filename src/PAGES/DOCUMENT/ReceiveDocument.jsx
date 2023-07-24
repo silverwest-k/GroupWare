@@ -4,6 +4,12 @@ import {useEffect, useState} from "react";
 import {Button, FormControl, InputGroup} from "react-bootstrap";
 import fetcher from "../../fetcher";
 
+export const backgroundColor = {
+    "진행중": "#f6c76a",
+    "완료": "#87ea85",
+    "반려": "#fb6a76"
+}
+
 function ReceiveDocument() {
     const [data, setData] = useState([]);
     const [limit, setLimit] = useState(4);
@@ -19,7 +25,7 @@ function ReceiveDocument() {
     },[])
 
     const getBackgroundColor = (state) => {
-        return state === "진행중" ? "#f6c76a" : state === "완료" ? "#87ea85" : state === "반려" ? "#fb6a76" : "white";
+        return backgroundColor[state] || "#ffffff"
     };
 
     return (
@@ -33,7 +39,7 @@ function ReceiveDocument() {
             <div className={styles.cardContainer}>
                 {data.slice(offset, offset + limit).map((data, index) => {
                     return (
-                        <div className={styles.card}>
+                        <div className={styles.card} key={index}>
                             <div className={styles.contents}>
                                 <div className={styles.upperState}
                                      style={{background: getBackgroundColor(data.state)}}

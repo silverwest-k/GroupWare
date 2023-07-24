@@ -1,27 +1,27 @@
 import {Button, ToggleButton} from "react-bootstrap";
 import styles from "./AccountManagement.module.css"
-import {useState} from "react";
+import {useEffect, useState} from "react";
 import ButtonGroup from 'react-bootstrap/ButtonGroup';
-import DeleteIDModal from "./DeleteIDModal";
-import TeamModal from "./TeamModal";
+import DeleteIDModal from "./Modal/DeleteIDModal";
+import TeamModal from "./Modal/TeamModal";
 import useStore from "../../store";
-import PositionModal from "./PositionModal";
-import AccountModal from "./AccountModal";
+import PositionModal from "./Modal/PositionModal";
+import AccountModal from "./Modal/AccountModal";
 import {DELETE_ID_API} from "../../constants/api_constans";
 import fetcher from "../../fetcher";
 
 function AccountManagement() {
+    const [showAccountModal, setShowAccountModal] = useState(false);
     const [showDeleteModal, setShowDeleteModal] = useState(false);
     const [showTeamModal, setShowTeamModal] = useState(false);
     const [showPositionModal, setShowPositionModal] = useState(false);
-    const [showAccountModal, setShowAccountModal] = useState(false);
 
     const [radioValue, setRadioValue] = useState('1');
     const [name, setName] = useState("");
     const [password, setPassword] = useState("");
     const [memberNo, setMemberNo] = useState("");
-    const [team, setTeam] = useState("");
-    const [position, setPosition] = useState("");
+    // const [team, setTeam] = useState("");
+    // const [position, setPosition] = useState("");
 
     const {account, teamName, positionName} = useStore(state => state);
 
@@ -31,21 +31,24 @@ function AccountManagement() {
         { name: '접속차단', value: '3' }
     ];
 
-    const eValue = (e) => {
-        return e.target.value;
+    const onChange = (e, setValue) => {
+        setValue(e.target.value);
     }
 
     const resetInput = () =>{
         setName("")
         setPassword("")
         setMemberNo("")
-        setTeam("")
-        setPosition("")
+        // setTeam("")
+        // setPosition("")
     }
+
+    useEffect(()=> resetInput, []);
 
     const deleteID = () => {
         fetcher().delete(`${DELETE_ID_API}/${memberNo}`)
             .then(()=>alert("삭제가 완료되었습니다."))
+            .then(resetInput)
     }
 
     return(
@@ -74,26 +77,24 @@ function AccountManagement() {
                     <div className={styles.inputContainer}>
                         <div className={styles.inputLine}>
                             이　　름 <input value={account.name}
-                                        onChange={(e)=>setName(eValue)}
+                                        onChange={(e)=>onChange(e,setName)}
                         />
                         </div>
 
                         <div className={styles.inputLine}>
                             비밀번호 <input value={account.password}
-                                        onChange={(e)=>setPassword(eValue)}
+                                        onChange={(e)=>onChange(e,setPassword)}
                         />
                         </div>
 
                         <div className={styles.inputLine}>
                             사　　번 <input value={account.no}
-                                        onChange={(e)=>setMemberNo(eValue)}
+                                        onChange={(e)=>onChange(e,setMemberNo)}
                         />
                         </div>
 
                         <div className={styles.inputLine}>
-                            부　　서 <input value={teamName || account.team}
-                                        onChange={(e)=>setTeam(eValue)}
-                        />
+                            부　　서 <input value={teamName || account.team}/>
                             <img src={require("../../IMAGES/more.png")}
                                  className={styles.icon}
                                  onClick={() => setShowTeamModal(true)}
@@ -101,9 +102,7 @@ function AccountManagement() {
                         </div>
 
                         <div className={styles.inputLine}>
-                            직　　급 <input value={positionName || account.position}
-                                        onChange={(e)=>setPosition(eValue)}
-                        />
+                            직　　급 <input value={positionName || account.position}/>
                             <img src={require("../../IMAGES/more.png")}
                                  className={styles.icon}
                                  onClick={() => setShowPositionModal(true)}

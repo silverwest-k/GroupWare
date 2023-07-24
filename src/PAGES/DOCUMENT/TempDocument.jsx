@@ -5,10 +5,9 @@ import ToggleButtonGroup from 'react-bootstrap/ToggleButtonGroup';
 import {Button, FormControl, InputGroup, Table} from "react-bootstrap";
 import {useEffect, useState} from "react";
 import fetcher from "../../fetcher";
-import {REPORT_DOCUMENT_LIST_API} from "../../constants/api_constans";
-import backgroundColor from "./ReceiveDocument"
+import {TEMP_DOCUMENT_LIST_API} from "../../constants/api_constans";
 
-function ReportDocument() {
+function TempDocument() {
     const [data, setData] = useState([]);
     const [limit, setLimit] = useState(10);
     const [page, setPage] = useState(1);
@@ -18,13 +17,9 @@ function ReportDocument() {
     const pageNum = Math.ceil(total/limit);
 
     useEffect(() => {
-        fetcher().get(REPORT_DOCUMENT_LIST_API)
+        fetcher().get(TEMP_DOCUMENT_LIST_API)
             .then((res) => setData(res.data))
     }, []);
-
-    const getBackgroundColor = (state) => {
-        return backgroundColor[state] || "#ffffff"
-    };
 
     return(
         <div className={styles.wrapper}>
@@ -69,7 +64,6 @@ function ReportDocument() {
                                 <td>{data.title}</td>
                                 <td style={{display:"flex", justifyContent:"center"}}>
                                     <div className={styles.stateButton}
-                                         style={{background:getBackgroundColor(data.state)}}
                                     >{data.state}</div>
                                 </td>
                             </tr>
@@ -104,4 +98,4 @@ function ReportDocument() {
     )
 }
 
-export default ReportDocument
+export default TempDocument

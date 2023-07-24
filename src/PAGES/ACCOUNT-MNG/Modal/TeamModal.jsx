@@ -1,9 +1,9 @@
 import {Button, Modal} from "react-bootstrap";
 import styles from "./Modal.module.css";
 import {useEffect, useState} from "react";
-import useStore from "../../store";
-import fetcher from "../../fetcher";
-import {TEAM_INFO_API} from "../../constants/api_constans";
+import useStore from "../../../store";
+import fetcher from "../../../fetcher";
+import {TEAM_INFO_API} from "../../../constants/api_constans";
 
 function TeamModal({showTeamModal, handleTeamModalClose}) {
 

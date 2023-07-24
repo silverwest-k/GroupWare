@@ -1,9 +1,9 @@
 import {useEffect, useState} from "react";
 import styles from "./Modal.module.css";
 import {Button, Modal} from "react-bootstrap";
-import useStore from "../../store";
-import fetcher from "../../fetcher";
-import {POSITION_INFO_API} from "../../constants/api_constans";
+import useStore from "../../../store";
+import fetcher from "../../../fetcher";
+import {POSITION_INFO_API} from "../../../constants/api_constans";
 
 
 function PositionModal({showPositionModal, handlePositionModalClose}) {

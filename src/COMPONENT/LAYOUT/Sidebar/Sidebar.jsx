@@ -4,9 +4,7 @@ import {Link} from "react-router-dom";
 import {useState} from "react";
 import useStore from "../../../store";
 import SidebarProfile from "./components/SidebarProfile";
-
-
-
+import {TEMP_DOCUMENT_COMPONENT} from "../../../constants/component_constants";
 
 function Sidebar() {
     const [activeLink, setActiveLink] = useState("");
@@ -65,7 +63,7 @@ function Sidebar() {
                             >상신문서</Link>
                         </Accordion.Body>
                         <Accordion.Body className={styles.accordionBody} onClick={menuName}>
-                            <Link to=""
+                            <Link to={TEMP_DOCUMENT_COMPONENT}
                                   className={`${styles.underline} ${styles.blue}`}
                             >임시보관함</Link>
                         </Accordion.Body>
