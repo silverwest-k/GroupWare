@@ -23,18 +23,6 @@ function TempDocument() {
 
     return(
         <div className={styles.wrapper}>
-            <div className={styles.buttonContainer}>
-            <div className={styles.divisionLine}></div>
-                <div className={styles.buttonGroup}>
-                    <ToggleButtonGroup type="radio" name="options" defaultValue={1}>
-                        <ToggleButton id="tbg-radio-1" value={1} className={styles.button}>전체</ToggleButton>
-                        <ToggleButton id="tbg-radio-2" value={2} className={styles.button}>진행중</ToggleButton>
-                        <ToggleButton id="tbg-radio-3" value={3} className={styles.button}>결재완료</ToggleButton>
-                        <ToggleButton id="tbg-radio-4" value={4} className={styles.button}>반려</ToggleButton>
-                    </ToggleButtonGroup>
-                </div>
-            <div className={styles.divisionLine}></div>
-            </div>
 
             <div className={styles.tableContainer}>
 
@@ -56,10 +44,10 @@ function TempDocument() {
                     </thead>
 
                     <tbody className={styles.tableBody}>
-                    {data.slice(offset, offset + limit).map((data)=>{
+                    {data.slice(offset, offset + limit).map((data, idx)=>{
                         return(
                             <tr key={data.id}>
-                                <td>{data.id}</td>
+                                <td>{idx+1}</td>
                                 <td>{data.date}</td>
                                 <td>{data.title}</td>
                                 <td style={{display:"flex", justifyContent:"center"}}>

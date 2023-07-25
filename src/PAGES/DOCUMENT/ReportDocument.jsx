@@ -20,6 +20,7 @@ function ReportDocument() {
     useEffect(() => {
         fetcher().get(REPORT_DOCUMENT_LIST_API)
             .then((res) => setData(res.data))
+            console.log(data);
     }, []);
 
     const getBackgroundColor = (state) => {
@@ -54,19 +55,19 @@ function ReportDocument() {
                     <thead className={styles.tableHead}>
                         <tr>
                             <th>NO</th>
-                            <th>기안일</th>
                             <th>제목</th>
+                            <th>기안일</th>
                             <th>상태</th>
                         </tr>
                     </thead>
 
                     <tbody className={styles.tableBody}>
-                    {data.slice(offset, offset + limit).map((data)=>{
+                    {data.slice(offset, offset + limit).map((data, idx)=>{
                         return(
                             <tr key={data.id}>
-                                <td>{data.id}</td>
-                                <td>{data.date}</td>
+                                <td>{idx+1}</td>
                                 <td>{data.title}</td>
+                                <td>{data.createDate.split("T",1)}</td>
                                 <td style={{display:"flex", justifyContent:"center"}}>
                                     <div className={styles.stateButton}
                                          style={{background:getBackgroundColor(data.state)}}

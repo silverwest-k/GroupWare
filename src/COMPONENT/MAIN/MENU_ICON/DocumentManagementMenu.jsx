@@ -13,7 +13,7 @@ function DocumentManagementMenu({menuName}) {
                 <div className={styles.divisionLine}/>
 
                 <div className={styles.mainLink}>
-                    <Link to={DOCUMENT_REGISTRATION_COMPONENT}
+                    <Link to={`/page/${DOCUMENT_REGISTRATION_COMPONENT}`}
                           style={{color: "#FA3E0C"}}
                           onClick={menuName}
                     >양식등록</Link>

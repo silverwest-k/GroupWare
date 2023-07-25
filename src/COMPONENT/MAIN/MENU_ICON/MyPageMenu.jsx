@@ -11,7 +11,7 @@ function MyPageMenu({menuName}) {
                 <div className={styles.divisionLine}/>
 
                 <div className={styles.mainLink}>
-                    <Link to={MY_PAGE_COMPONENT} onClick={menuName}>내정보관리</Link>
+                    <Link to={`/page/${MY_PAGE_COMPONENT}`} onClick={menuName}>내정보관리</Link>
                 </div>
             </div>
         </>

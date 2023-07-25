@@ -10,6 +10,7 @@ export const DELETE_ID_API ="/auth/admin/members"
 export const REPORT_DOCUMENT_LIST_API = "/documents/list"
 export const DOCUMENT_WRITE_API="/documents/create"
 export const TEMP_DOCUMENT_LIST_API = "/documents/savelist"
+export const DOCUMENT_READ_API ="/documents/read"
 
 
 // 정보조회 API

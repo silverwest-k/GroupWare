@@ -23,7 +23,7 @@ function ApprovalNotice() {
             <div className={styles.container}>
                 <div className={styles.notice}>
                     <p>수신 문서</p>
-                    <Link to={RECEIVE_DOCUMENT_COMPONENT}
+                    <Link to={`/page/${RECEIVE_DOCUMENT_COMPONENT}`}
                           onClick={()=>menuName("수신문서")}
                     >12</Link>
                 </div>
@@ -31,7 +31,7 @@ function ApprovalNotice() {
 
                 <div className={styles.notice}>
                     <p>상신 문서</p>
-                    <Link to={REPORT_DOCUMENT_COMPONENT}
+                    <Link to={`/page/${REPORT_DOCUMENT_COMPONENT}`}
                           onClick={()=>menuName("상신문서")}
                     >6</Link>
                 </div>
@@ -39,7 +39,7 @@ function ApprovalNotice() {
 
                 <div className={styles.notice}>
                     <p>임시 보관함</p>
-                    <Link to={TEMP_DOCUMENT_COMPONENT}
+                    <Link to={`/page/${TEMP_DOCUMENT_COMPONENT}`}
                           onClick={()=>menuName("임시보관함")}
                     >3</Link>
                 </div>

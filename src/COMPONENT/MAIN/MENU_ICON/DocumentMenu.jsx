@@ -15,9 +15,9 @@ function DocumentMenu({menuName}) {
                 <div className={styles.divisionLine}/>
 
                 <div className={styles.mainLink}>
-                    <Link to={RECEIVE_DOCUMENT_COMPONENT} onClick={menuName}>수신문서</Link>
-                    <Link to={REPORT_DOCUMENT_COMPONENT} onClick={menuName}>상신문서</Link>
-                    <Link to={TEMP_DOCUMENT_COMPONENT} onClick={menuName}>임시보관함</Link>
+                    <Link to={`/page/${RECEIVE_DOCUMENT_COMPONENT}`} onClick={menuName}>수신문서</Link>
+                    <Link to={`/page/${REPORT_DOCUMENT_COMPONENT}`} onClick={menuName}>상신문서</Link>
+                    <Link to={`/page/${TEMP_DOCUMENT_COMPONENT}`} onClick={menuName}>임시보관함</Link>
                 </div>
             </div>
         </>

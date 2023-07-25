@@ -13,11 +13,11 @@ function AccountManagementMenu({menuName}) {
                 <div className={styles.divisionLine}/>
 
                 <div className={styles.mainLink}>
-                    <Link to={ACCOUNT_REGISTRATION_COMPONENT}
+                    <Link to={`/page/${ACCOUNT_REGISTRATION_COMPONENT}`}
                           style={{color: "#FA3E0C"}}
                           onClick={menuName}
                     >계정등록</Link>
-                    <Link to={ACCOUNT_MANAGEMENT_COMPONENT}
+                    <Link to={`/page/${ACCOUNT_MANAGEMENT_COMPONENT}`}
                           style={{color: "#FA3E0C"}}
                           onClick={menuName}
                     >계정관리</Link>

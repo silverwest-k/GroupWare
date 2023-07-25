@@ -37,9 +37,9 @@ function ReceiveDocument() {
                 </InputGroup>
             </div>
             <div className={styles.cardContainer}>
-                {data.slice(offset, offset + limit).map((data, index) => {
+                {data.slice(offset, offset + limit).map((data, idx) => {
                     return (
-                        <div className={styles.card} key={index}>
+                        <div className={styles.card} key={idx}>
                             <div className={styles.contents}>
                                 <div className={styles.upperState}
                                      style={{background: getBackgroundColor(data.state)}}
