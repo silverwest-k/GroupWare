@@ -7,10 +7,11 @@ export const PAGE_COMPONENT = "/page/*"
 export const DOCUMENT_WRITE_COMPONENT = "write"
 export const APPROVAL_PATH_COMPONENT="approvalpath"
 
-// 문서함
+// 문서
 export const RECEIVE_DOCUMENT_COMPONENT="receivedocument"
 export const REPORT_DOCUMENT_COMPONENT ="reportdocument"
 export const TEMP_DOCUMENT_COMPONENT = "tempdocument"
+export const DOCUMENT_DETAIL_COMPONENT="documentdetail"
 
 // 마이페이지
 export const MY_PAGE_COMPONENT = "mypage"

@@ -11,11 +11,19 @@ import DocumentRegistration from "./DOCUMENT-MNG/DocumentRegistration";
 import AccountRegistration from "./ACCOUNT-MNG/AccountRegistration";
 import Header from "../COMPONENT/LAYOUT/Header";
 import {
-    ACCOUNT_MANAGEMENT_COMPONENT, ACCOUNT_REGISTRATION_COMPONENT,
-    APPROVAL_PATH_COMPONENT, DOCUMENT_REGISTRATION_COMPONENT, DOCUMENT_WRITE_COMPONENT, MY_PAGE_COMPONENT,
-    RECEIVE_DOCUMENT_COMPONENT, REPORT_DOCUMENT_COMPONENT, TEMP_DOCUMENT_COMPONENT
+    ACCOUNT_MANAGEMENT_COMPONENT,
+    ACCOUNT_REGISTRATION_COMPONENT,
+    APPROVAL_PATH_COMPONENT,
+    DOCUMENT_DETAIL_COMPONENT,
+    DOCUMENT_REGISTRATION_COMPONENT,
+    DOCUMENT_WRITE_COMPONENT,
+    MY_PAGE_COMPONENT,
+    RECEIVE_DOCUMENT_COMPONENT,
+    REPORT_DOCUMENT_COMPONENT,
+    TEMP_DOCUMENT_COMPONENT
 } from "../constants/component_constants";
 import TempDocument from "./DOCUMENT/TempDocument";
+import DocumentDetail from "./DOCUMENT/DocumentDetail";
 
 function Page() {
     return(
@@ -30,6 +38,7 @@ function Page() {
                             <Route path={RECEIVE_DOCUMENT_COMPONENT} element={<ReceiveDocument/>} />
                             <Route path={REPORT_DOCUMENT_COMPONENT} element={<ReportDocument/>} />
                             <Route path={TEMP_DOCUMENT_COMPONENT} element={<TempDocument/>} />
+                            <Route path={`${DOCUMENT_DETAIL_COMPONENT}/:id`} element={<DocumentDetail/>} />
                             <Route path={MY_PAGE_COMPONENT} element={<MyPage/>} />
                             <Route path={DOCUMENT_REGISTRATION_COMPONENT} element={<DocumentRegistration/>}/>
                             <Route path={ACCOUNT_MANAGEMENT_COMPONENT} element={<AccountManagement/>} />

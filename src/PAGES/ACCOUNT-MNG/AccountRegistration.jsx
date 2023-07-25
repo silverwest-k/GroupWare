@@ -1,11 +1,11 @@
 import {useEffect, useRef, useState} from "react";
 import styles from "./AccountManagement.module.css";
 import {Button, Modal} from "react-bootstrap";
-import CreateIDModal from "./Modal/CreateIDModal";
+import CreateIDModal from "./Modals/CreateIDModal";
 import {CREATE_ID_API} from "../../constants/api_constans";
 import fetcher from "../../fetcher";
-import TeamModal from "./Modal/TeamModal";
-import PositionModal from "./Modal/PositionModal";
+import TeamModal from "./Modals/TeamModal";
+import PositionModal from "./Modals/PositionModal";
 import useStore from "../../store";
 
 function AccountRegistration() {
@@ -31,10 +31,6 @@ function AccountRegistration() {
         reader.onload = ()=>{
             setImgFile(reader.result);
         }
-    }
-
-    const onChange = (e, setValue) => {
-        setValue(e.target.value);
     }
 
     const createID = ()=>{
@@ -99,21 +95,21 @@ function AccountRegistration() {
                         <div className={styles.inputLine}>
                             이　　름
                             <input  value={name}
-                                onChange={(e)=>onChange(e,setName)}
+                                onChange={(e)=>setName(e.target.value)}
                             />
                         </div>
 
                         <div className={styles.inputLine}>
                             비밀번호
                             <input value={password} type="password"
-                                   onChange={(e)=>onChange(e,setPassword)}
+                                   onChange={(e)=>setPassword(e.target.value)}
                             />
                         </div>
 
                         <div className={styles.inputLine}>
                             사　　번
                             <input value={memberNo}
-                                onChange={(e)=>onChange(e,setMemberNo)}
+                                onChange={(e)=>setMemberNo(e.target.value)}
                             />
                         </div>
 

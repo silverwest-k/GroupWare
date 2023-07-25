@@ -3,9 +3,8 @@ import Dropdown from 'react-bootstrap/Dropdown';
 import {Button} from "react-bootstrap";
 import {useState} from "react";
 import fetcher from "../../fetcher";
-import {DOCUMENT_WRITE_API} from "../../constants/api_constans";
+import {DOCUMENT_CREATE_API} from "../../constants/api_constans";
 
-// 작성하기
 function Write() {
     const [title, setTitle] = useState("")
     const [content, setContent] = useState("")
@@ -17,7 +16,7 @@ function Write() {
         setStatus("")
     }
     const saveBtn = (status) =>{
-        fetcher().post(DOCUMENT_WRITE_API, {
+        fetcher().post(DOCUMENT_CREATE_API, {
             "title": title,
             "content": content,
             "status": status,
@@ -41,7 +40,6 @@ function Write() {
                         <Dropdown.Toggle variant="success" id="dropdown-basic" className={styles.dropToggle} >
                             양식을 선택하세요
                         </Dropdown.Toggle>
-
                         <Dropdown.Menu className={styles.dropMenu}>
                             <Dropdown.Item>근태신청서</Dropdown.Item>
                             <Dropdown.Item>지출결의서</Dropdown.Item>

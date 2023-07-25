@@ -8,9 +8,11 @@ export const DELETE_ID_API ="/auth/admin/members"
 
 // 문서관련 API
 export const REPORT_DOCUMENT_LIST_API = "/documents/list"
-export const DOCUMENT_WRITE_API="/documents/create"
 export const TEMP_DOCUMENT_LIST_API = "/documents/savelist"
+export const DOCUMENT_CREATE_API="/documents/create"
 export const DOCUMENT_READ_API ="/documents/read"
+export const DOCUMENT_UPDATE_API ="/documents/update"
+export const DOCUMENT_DELETE_API="/documents/delete"
 
 
 // 정보조회 API

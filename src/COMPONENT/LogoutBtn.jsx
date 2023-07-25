@@ -13,9 +13,7 @@ function LogoutBtn () {
 
     const handleLogout = () => {
         fetcher()
-            .post(LOGOUT_API, {
-                // TODO :: 아이디, 비밀번호 ?
-            })
+            .post(LOGOUT_API)
             .then(() => {
                 removeAccessCookie(ACCESS_TOKEN_COOKIE);
                 removeRefreshCookie(REFRESH_TOKEN_COOKIE);
