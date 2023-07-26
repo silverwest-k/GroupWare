@@ -43,7 +43,7 @@ function AccountModal({showAccountModal,handleAccountModalClose}) {
                                 <thead className={tableStyles.tableHead}>
                                 <tr>
                                     <th>사번</th>
-                                    <th>성명</th>
+                                    <th>이름</th>
                                     <th>직급</th>
                                     <th>부서</th>
                                 </tr>

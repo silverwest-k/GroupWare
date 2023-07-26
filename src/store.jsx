@@ -18,9 +18,15 @@ const useStore = create(set => ({
         "team": "",
         "position": ""
     },
-    selectAccount: (e) => set(sate =>({account:e}))
+    selectAccount: (e) => set(state =>({account:e})),
 
-
+    myAccount: {
+        "name": "",
+        "no": "",
+        "team": "",
+        "position": ""
+    },
+    setMyAccountInfo: (e) => set(state=>({myAccount:e}))
 
 }))
 

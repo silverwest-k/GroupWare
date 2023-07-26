@@ -11,7 +11,7 @@ function TempDocument() {
 
     useEffect(() => {
         fetcher().get(TEMP_DOCUMENT_LIST_API)
-            .then((res) => setListData(res.data))
+            .then((res) => setListData(res.data.content))
     }, []);
 
     return (

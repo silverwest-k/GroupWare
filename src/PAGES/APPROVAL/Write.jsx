@@ -4,11 +4,14 @@ import {Button} from "react-bootstrap";
 import {useState} from "react";
 import fetcher from "../../fetcher";
 import {DOCUMENT_CREATE_API} from "../../constants/api_constans";
+import ApprovalPathModal from "./ApprovalPathModal";
 
 function Write() {
     const [title, setTitle] = useState("")
     const [content, setContent] = useState("")
     const [status, setStatus] = useState("1")
+
+    const [showApprovalPathModal, setShowApprovalPathModal] = useState(false);
 
     const resetInput = ()=> {
         setTitle("")
@@ -49,27 +52,28 @@ function Write() {
                 </div>
 
                 <div className={styles.selectContainer}>
-                    <h3>결재라인</h3>
-                    <div className={styles.select}>
-                        <div className={styles.title}>
-                            <p>결재</p>
+                    <div className={styles.title}>
+                        <h3>결재라인</h3>
+                        <Button className={styles.titleImg} onClick={()=>setShowApprovalPathModal(true)}>
                             <img src={require("../../IMAGES/team.png")}/>
-                        </div>
+                        </Button>
+                    </div>
+                    <div className={styles.select}>
+                            <p className={styles.title}>결재</p>
+                            <input/>
+                    </div>
+
+                    <div className={styles.select}>
+                            <p className={styles.title}>참조</p>
                             <input/>
                     </div>
 
                     <div className={styles.select}>
                         <div className={styles.title}>
-                            <p>참조</p>
-                            <img src={require("../../IMAGES/team.png")}/>
-                        </div>
-                            <input/>
-                    </div>
-
-                    <div className={styles.select}>
-                        <div className={styles.title}>
-                            <p>첨부파일</p>
-                            <img src={require("../../IMAGES/upload.png")}/>
+                            <h3>첨부파일</h3>
+                            <Button className={styles.titleImg}>
+                                <img src={require("../../IMAGES/upload.png")}/>
+                            </Button>
                         </div>
                             <input/>
                     </div>
@@ -98,6 +102,10 @@ function Write() {
                           onChange={(e)=>setContent(e.target.value)}
                 />
             </div>
+
+            <ApprovalPathModal showApprovalPathModal={showApprovalPathModal}
+                               handleApprovalPathModalClose={() => setShowApprovalPathModal(false)}
+            />
         </div>
     )
 }

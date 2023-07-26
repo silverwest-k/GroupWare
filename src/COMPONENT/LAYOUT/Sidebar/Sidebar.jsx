@@ -52,6 +52,7 @@ function Sidebar() {
                             >결재라인관리</Link>
                         </Accordion.Body>
                     </Accordion.Item>
+
                     <Accordion.Item eventKey="1" className={styles.accordion}>
                         <Accordion.Header className={styles.menu}>
                             <img src={require("../../../IMAGES/folder.png")}/>

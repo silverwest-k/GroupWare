@@ -1,0 +1,96 @@
+.wrap {
+    --bs-modal-width: 1000px;
+}
+.modal {
+    --bs-modal-border-color: #4429f2;
+    --bs-modal-header-border-color: #4429f2;
+}
+.modalHeader {
+    color: white;
+    background:#4429f2;
+}
+
+.contents {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 30px;
+}
+
+.smallButton {
+    padding: 6px;
+    background:#4429f2;
+    border: #4429f2;
+}
+.title {
+    font-weight: bold;
+    color: #4429f2;
+    font-size: 20px;
+}
+
+/* 조직도 */
+.leftSide {
+    display: flex;
+    flex-direction: column;
+    width: 30%;
+    height: 100%;
+}
+
+.midSide {
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+    justify-content: center;
+}
+
+/* 결재라인 */
+.rightSide, .leftSide {
+    border: solid 1px #4429f2;
+    border-radius: 15px;
+    padding: 30px;
+}
+
+.bookmark{
+    display: flex;
+    flex-direction: row;
+    background: rgba(125, 121, 242, 0.2);
+    border: solid 1px #4429f2;
+    border-radius: 10px;
+    align-items: center;
+    padding: 10px;
+    justify-content: space-evenly;
+}
+
+
+/* 테이블 */
+.tableContainer {
+    margin: 50px auto;
+    width: 500px;
+}
+
+.tableHead th {
+    color: #4429f2;
+    font-weight: bold;
+    font-size: 18px;
+    background: rgba(125, 121, 242, 0.2);
+}
+
+tr {
+    justify-content: center;
+    margin: auto;
+}
+
+/*.search {*/
+/*    width: 200px;*/
+/*    margin-bottom: 10px;*/
+/*    float: right;*/
+/*}*/
+
+/*.searchButton {*/
+/*    --bs-btn-bg:#4429f2;*/
+/*    --bs-btn-border-color:#4429f2;*/
+/*    --bs-btn-hover-bg: rgba(125, 121, 242, 0.9);*/
+/*    --bs-btn-hover-border-color: none;*/
+/*    --bs-btn-active-bg:#4429f2;*/
+/*    --bs-btn-active-border-color:#4429f2;*/
+/*}*/

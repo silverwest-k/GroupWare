@@ -11,7 +11,7 @@ function ReportDocument() {
 
     useEffect(() => {
         fetcher().get(REPORT_DOCUMENT_LIST_API)
-            .then((res) => setListData(res.data))
+            .then((res) => setListData(res.data.content))
     }, []);
 
     return (

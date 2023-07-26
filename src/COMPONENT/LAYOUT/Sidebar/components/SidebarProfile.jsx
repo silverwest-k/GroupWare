@@ -1,13 +1,15 @@
 import styles from "../Sidebar.module.css"
 import LogoutBtn from "../../../LogoutBtn";
+import useStore from "../../../../store";
 
 function SidebarProfile () {
+    const {myAccount} =useStore(state=>state)
 
     return (<div className={styles.profileContainer}>
         <div className={styles.profile}>
             <img src={require("../../../../IMAGES/profile.jpeg")}/>
-            <p>장그래</p>
-            <p>영업3팀 / 사원</p>
+            <p>{myAccount.name}</p>
+            <p>{myAccount.team} / {myAccount.position}</p>
             <LogoutBtn/>
         </div>
     </div>)

@@ -29,7 +29,7 @@
 
 /* 결재라인 선택영역 */
 .documentSelect, .select {
-    margin-bottom: 20px;
+    margin-bottom: 50px;
 }
 
 .title {
@@ -38,13 +38,19 @@
     color: #4429f2;
     display: flex;
     flex-direction: row;
+    align-items: flex-end;
 }
 
-.title img {
+.titleImg {
+    margin-left: 5px;
+    background:none;
+    border:none;
+    --bs-btn-active-bg:none;
+    --bs-btn-hover-bg:none;
+}
+.titleImg img {
     width: 40px;
     height: 40px;
-    cursor: pointer;
-    margin-left: 15px;
 }
 
 h3 {

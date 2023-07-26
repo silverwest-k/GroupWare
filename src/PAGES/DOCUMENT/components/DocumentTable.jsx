@@ -1,19 +1,17 @@
 import styles from "../ReportDocument.module.css";
-import {Button, FormControl, InputGroup, Table} from "react-bootstrap";
+import {Table} from "react-bootstrap";
 import {useNavigate} from "react-router-dom";
 import {DOCUMENT_DETAIL_COMPONENT} from "../../../constants/component_constants";
 import backgroundColor from "../ReceiveDocument"
 import Pagination from "react-bootstrap/Pagination";
-import {useEffect, useState} from "react";
-import fetcher from "../../../fetcher";
-import {REPORT_DOCUMENT_LIST_API} from "../../../constants/api_constans";
+import {useState} from "react";
 
 function DocumentTable({listData}) {
-    const [page, setPage] = useState(1);
-    const [limit, setLimit] = useState(10);
+    // const [page, setPage] = useState(1);
+    // const [limit, setLimit] = useState(10);
 
-    const offset = (page - 1) * limit;
-    const total = listData.length;
+    // const offset = (page - 1) * limit;
+    // const total = listData.length;
 
     const navigate = useNavigate();
     const routeDetail = (id) => {
@@ -37,7 +35,8 @@ function DocumentTable({listData}) {
                     </thead>
 
                     <tbody className={styles.tableBody}>
-                    {listData.slice(offset, offset + limit).map((data, idx) => {
+                    {/*{listData.slice(offset, offset + limit).map((data, idx) => {*/}
+                    {listData.map((data, idx) => {
                         return (
                             <tr key={data.id} onClick={() => routeDetail(data.id)}>
                                 <td>{idx + 1}</td>
