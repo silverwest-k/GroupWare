@@ -3,17 +3,23 @@
     height: 100%;
     display: flex;
     justify-content: center;
+    align-items: center;
 }
 
 .container {
-    width: 70%;
+    min-width: 700px;
+    width: 35%;
+    height: 90%;
     display: flex;
-    top: 10%;
+    /*top: 10%;*/
     flex-direction: column;
     justify-content: space-around;
     color: #fa3e0c;
     font-weight: bold;
-    background: rgba(250, 62, 12, 0.08);
+    background: rgba(250, 62, 12, 0.05);
+    border: 1px solid rgba(250, 62, 12, 0.4);
+    border-radius: 20px;
+
 }
 
 .upperButton {
@@ -35,6 +41,8 @@
 .profile {
     display: flex;
     flex-direction: column;
+    padding-left: 20px;
+    padding-bottom: 50px;
 }
 
 .profileImgLabel {
@@ -55,26 +63,26 @@
     width: 150px;
     height: 200px;
     margin-bottom: 20px;
+    border: 1px solid rgba(250, 62, 12, 0.4);
+}
+.profile Button {
+    width: 150px;
 }
 
 /* 인풋 영역 */
-.inputContainer {
-    width: 400px;
-    height: 80%;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-around;
+table tr {
+    text-align: left;
 }
 
-.inputLine {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: flex-start;
+table th {
+    width: 150px;
+    height: 50px;
 }
-.inputLine input {
-    margin-left: 15px;
+
+table td {
+    width: 310px;
 }
+
 
 .button {
     color: white;

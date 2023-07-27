@@ -47,7 +47,7 @@ function AccountManagement() {
         }
         fetcher().delete(`${DELETE_ID_API}/${account.no}`)
             .then(() =>
-                alert("삭제가 완료되었습니다."),
+                    alert("삭제가 완료되었습니다."),
                 setShowDeleteModal(false),
                 resetInput
             )
@@ -74,63 +74,75 @@ function AccountManagement() {
                 </div>
 
                 <div className={styles.contents}>
-                    <div className={styles.profile}>
-                        <img src={require("../../IMAGES/profile.jpeg")}/>
-                        <Button variant="primary" className={styles.button}>사진등록</Button>
-                    </div>
-
-                    <div className={styles.inputContainer}>
-                        <div className={styles.inputLine}>
-                            <p>이 름 {account.name}</p>
-                        </div>
-
-                        <div className={styles.inputLine}>
-                            비밀번호 <input value={account.password}
-                                        onChange={(e) => setPassword(e.target.value)}
-                        />
-                        </div>
-
-                        <div className={styles.inputLine}>
-                            <p>사 번 {account.no}</p>
-                        </div>
-
-                        <div className={styles.inputLine}>
-                            부 서 <input value={teamName || account.team}/>
-                            <img src={require("../../IMAGES/more.png")}
-                                 className={styles.icon}
-                                 onClick={() => setShowTeamModal(true)}
-                            />
-                        </div>
-
-                        <div className={styles.inputLine}>
-                            직 급 <input value={positionName || account.position}/>
-                            <img src={require("../../IMAGES/more.png")}
-                                 className={styles.icon}
-                                 onClick={() => setShowPositionModal(true)}
-                            />
-                        </div>
-
-                        <div className={styles.inputLine} style={{alignItems: "baseline"}}>
-                            계정상태
-                            <ButtonGroup style={{marginLeft: "15px"}}>
-                                {radioState.map((radio, idx) => (
-                                    <ToggleButton
-                                        key={idx}
-                                        id={`radio-${idx}`}
-                                        type="radio"
-                                        const
-                                        variant={idx === 0 ? 'outline-primary' : (idx === 1 ? 'outline-warning' : 'outline-danger')}
-                                        name="radio"
-                                        value={radio.value}
-                                        checked={radioValue === radio.value}
-                                        onChange={(e) => setRadioValue(e.currentTarget.value)}
-                                    >
-                                        {radio.name}
-                                    </ToggleButton>
-                                ))}
-                            </ButtonGroup>
-                        </div>
-                    </div>
+                    <table>
+                        <tbody>
+                        <tr>
+                            <th></th>
+                            <td className={styles.profile}>
+                                <img src={require("../../IMAGES/profile.jpeg")}/>
+                                <Button variant="primary" className={styles.button}>사진등록</Button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>이름</th>
+                            <td>{account.name}</td>
+                        </tr>
+                        <tr>
+                            <th>비밀번호</th>
+                            <td>
+                                <input value={account.password}
+                                       onChange={(e) => setPassword(e.target.value)}
+                                />
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>사번</th>
+                            <td>{account.no}</td>
+                        </tr>
+                        <tr>
+                            <th>부서</th>
+                            <td>
+                                <input value={account.team}/>
+                                <img src={require("../../IMAGES/more.png")}
+                                     className={styles.icon}
+                                     onClick={() => setShowTeamModal(true)}
+                                />
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>직급</th>
+                            <td>
+                                <input value={account.position}/>
+                                <img src={require("../../IMAGES/more.png")}
+                                     className={styles.icon}
+                                     onClick={() => setShowPositionModal(true)}
+                                />
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>계정상태</th>
+                            <td>
+                                <ButtonGroup style={{marginLeft: "15px"}}>
+                                    {radioState.map((radio, idx) => (
+                                        <ToggleButton
+                                            key={idx}
+                                            id={`radio-${idx}`}
+                                            type="radio"
+                                            const
+                                            variant={idx === 0 ? 'outline-primary' : (idx === 1 ? 'outline-warning' : 'outline-danger')}
+                                            name="radio"
+                                            value={radio.value}
+                                            checked={radioValue === radio.value}
+                                            onChange={(e) => setRadioValue(e.currentTarget.value)}
+                                        >
+                                            {radio.name}
+                                        </ToggleButton>
+                                    ))}
+                                </ButtonGroup>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
                 </div>
                 <div>
                     <div className={styles.modify}>
@@ -140,7 +152,7 @@ function AccountManagement() {
             </div>
 
             <DeleteIDModal
-                deleteID={()=>deleteID(account)}
+                deleteID={() => deleteID(account)}
                 showDeleteModal={showDeleteModal}
                 handleDeleteModalClose={() => setShowDeleteModal(false)}
             />
