@@ -19,13 +19,22 @@
 
 .smallButton {
     padding: 6px;
-    background:#4429f2;
-    border: #4429f2;
 }
+
+.buttonStyle, .smallButton {
+    --bs-btn-bg: #4429f2;
+    --bs-btn-border-color: #4429f2;
+    --bs-btn-hover-bg: rgba(125, 121, 242, 0.9);
+    --bs-btn-hover-border-color: none;
+    --bs-btn-active-bg: #4429f2;
+    --bs-btn-active-border-color: #4429f2;
+}
+
 .title {
     font-weight: bold;
     color: #4429f2;
     font-size: 20px;
+    margin-bottom: 1rem;
 }
 
 /* 조직도 */
@@ -37,10 +46,26 @@
 }
 
 .midSide {
+    width: 110px;
     display: flex;
     flex-direction: column;
     padding: 20px;
     justify-content: center;
+}
+
+.chartMember:hover {
+    color: #4429f2;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.accordion {
+    --bs-accordion-border-color: #4429f2;
+    --bs-accordion-active-bg: rgba(125, 121, 242, 0.2);
+    --bs-accordion-btn-focus-box-shadow: none;
+    --bs-accordion-body-padding-y:0.65rem;
+    --bs-accordion-btn-icon: none;
+    --bs-accordion-btn-active-icon: none;
 }
 
 /* 결재라인 */
@@ -48,9 +73,10 @@
     border: solid 1px #4429f2;
     border-radius: 15px;
     padding: 30px;
+    height: 715px;
 }
 
-.bookmark{
+.bookmarkLine{
     display: flex;
     flex-direction: row;
     background: rgba(125, 121, 242, 0.2);
@@ -61,6 +87,22 @@
     justify-content: space-evenly;
 }
 
+/* 중앙 버튼 */
+.buttonGroup {
+    padding: 50px 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.arrowButton {
+    border: solid 1px #4429f2;
+    background: none;
+    --bs-btn-hover-bg: rgba(125, 121, 242, 0.2);
+    --bs-btn-active-bg:#4429f2;
+    height: 50px;
+    margin: 5px 0;
+}
 
 /* 테이블 */
 .tableContainer {
@@ -73,11 +115,13 @@
     font-weight: bold;
     font-size: 18px;
     background: rgba(125, 121, 242, 0.2);
+    text-align: center;
 }
 
 tr {
     justify-content: center;
     margin: auto;
+    text-align: center;
 }
 
 /*.search {*/

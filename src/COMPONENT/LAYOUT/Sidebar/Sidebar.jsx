@@ -5,12 +5,9 @@ import {useState} from "react";
 import useStore from "../../../store";
 import SidebarProfile from "./components/SidebarProfile";
 import {
-    ACCOUNT_MANAGEMENT_COMPONENT,
-    ACCOUNT_REGISTRATION_COMPONENT,
-    APPROVAL_PATH_COMPONENT, DOCUMENT_REGISTRATION_COMPONENT, DOCUMENT_WRITE_COMPONENT, MY_PAGE_COMPONENT,
-    RECEIVE_DOCUMENT_COMPONENT,
-    REPORT_DOCUMENT_COMPONENT,
-    TEMP_DOCUMENT_COMPONENT
+    ACCOUNT_MANAGEMENT_COMPONENT, ACCOUNT_REGISTRATION_COMPONENT, DOCUMENT_REGISTRATION_COMPONENT,
+    DOCUMENT_WRITE_COMPONENT, MY_PAGE_COMPONENT,
+    RECEIVE_DOCUMENT_COMPONENT, REPORT_DOCUMENT_COMPONENT, TEMP_DOCUMENT_COMPONENT
 } from "../../../constants/component_constants";
 
 function Sidebar() {
@@ -27,12 +24,10 @@ function Sidebar() {
         setActiveLink(link);
     }
 
-    // TODO :: 로그인 후 개인 인사정보를 전역 상태에서 가져오도록..
     return(
         <div className={styles.wrapper}>
             <SidebarProfile/>
             <div className={styles.menuContainer}>
-                {/* TODO :: 컴포넌트 분리가 너무 안되어있는듯 .. */}
                 <Accordion eventKey="0" flush>
                     <Accordion.Item eventKey="0" className={styles.accordion}>
                         <Accordion.Header className={styles.menu}>
@@ -45,14 +40,7 @@ function Sidebar() {
                                   onClick={() => handleLink("write")}
                             >작성하기</Link>
                         </Accordion.Body>
-                        <Accordion.Body onClick={menuName}>
-                            <Link to={`/page/${APPROVAL_PATH_COMPONENT}`}
-                                  className={`${styles.underline} ${styles.blue} ${activeLink === APPROVAL_PATH_COMPONENT ? styles.active : ""}`}
-                                  onClick={() => handleLink(APPROVAL_PATH_COMPONENT)}
-                            >결재라인관리</Link>
-                        </Accordion.Body>
                     </Accordion.Item>
-
                     <Accordion.Item eventKey="1" className={styles.accordion}>
                         <Accordion.Header className={styles.menu}>
                             <img src={require("../../../IMAGES/folder.png")}/>

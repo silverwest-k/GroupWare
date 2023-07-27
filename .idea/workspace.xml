@@ -5,20 +5,24 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="671d336a-3897-4ae7-9dd4-06de78af820f" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/PAGES/APPROVAL/ApprovalPathModal.jsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/PAGES/APPROVAL/ApprovalPathModal.module.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/IMAGES/left-arrow.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/IMAGES/member.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/IMAGES/members.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/IMAGES/reload.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/IMAGES/right-arrow.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/COMPONENT/LAYOUT/Sidebar/Sidebar.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/COMPONENT/LAYOUT/Sidebar/Sidebar.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/COMPONENT/LAYOUT/Sidebar/Sidebar.module.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/COMPONENT/LAYOUT/Sidebar/Sidebar.module.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/COMPONENT/LAYOUT/Sidebar/components/SidebarProfile.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/COMPONENT/LAYOUT/Sidebar/components/SidebarProfile.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/COMPONENT/MAIN/Profile.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/COMPONENT/MAIN/Profile.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/COMPONENT/MAIN/MENU_ICON/ApprovalMenu.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/COMPONENT/MAIN/MENU_ICON/ApprovalMenu.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/COMPONENT/MAIN/Profile.module.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/COMPONENT/MAIN/Profile.module.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/PAGES/ACCOUNT-MNG/Modals/AccountModal.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/PAGES/ACCOUNT-MNG/Modals/AccountModal.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/PAGES/APPROVAL/ApprovalPathModal.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/PAGES/APPROVAL/ApprovalPathModal.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/PAGES/APPROVAL/ApprovalPathModal.module.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/PAGES/APPROVAL/ApprovalPathModal.module.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/PAGES/APPROVAL/Write.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/PAGES/APPROVAL/Write.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/PAGES/APPROVAL/Write.module.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/PAGES/APPROVAL/Write.module.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/PAGES/DOCUMENT/ReportDocument.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/PAGES/DOCUMENT/ReportDocument.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/PAGES/DOCUMENT/TempDocument.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/PAGES/DOCUMENT/TempDocument.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/PAGES/DOCUMENT/components/DocumentTable.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/PAGES/DOCUMENT/components/DocumentTable.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/PAGES/Page.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/PAGES/Page.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/constants/api_constans.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/constants/api_constans.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/store.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/store.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/constants/component_constants.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/constants/component_constants.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -54,7 +58,7 @@
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "WebServerToolWindowFactoryState": "false",
     "js.last.introduce.type": "CONST",
-    "last_opened_file_path": "C:/Users/codepc/Desktop/groupware-Backend",
+    "last_opened_file_path": "C:/Users/codepc/Desktop/PROJECT/JUICYFRESH",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -65,6 +69,9 @@
     "vue.rearranger.settings.migration": "true"
   },
   "keyToStringList": {
+    "DatabaseDriversLRU": [
+      "mysql"
+    ],
     "com.intellij.ide.scratch.ScratchImplUtil$2/New Scratch File": [
       "JSON"
     ]
@@ -76,11 +83,11 @@
       <recent name="$PROJECT_DIR$/src/PAGES/DOCUMENT" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\codepc\Desktop\GroupWare\src\IMAGES" />
       <recent name="C:\Users\codepc\Desktop\GroupWare\src\PAGES\DOCUMENT\components" />
       <recent name="$PROJECT_DIR$/src/PAGES/ACCOUNT-MNG/Modal" />
       <recent name="$PROJECT_DIR$/src/COMPONENT/LAYOUT/Sidebar" />
       <recent name="$PROJECT_DIR$/src/COMPONENT/LAYOUT/Sidebar/components/accordian" />
-      <recent name="$PROJECT_DIR$/src/COMPONENT/LAYOUT/sidebar" />
     </key>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
@@ -122,7 +129,7 @@
       <workItem from="1690093481338" duration="12932000" />
       <workItem from="1690158470482" duration="25820000" />
       <workItem from="1690283925175" duration="1431000" />
-      <workItem from="1690331390882" duration="17443000" />
+      <workItem from="1690331390882" duration="28243000" />
     </task>
     <servers />
   </component>

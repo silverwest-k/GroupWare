@@ -10,7 +10,7 @@ function ApprovalPathModal({showApprovalPathModal, handleApprovalPathModalClose}
     const {myAccount} = useStore(state => state)
     const [team, setTeam] = useState([]);
     const [selectTeam, setSelectTeam] = useState([]);
-    const [member, setMember] = useState({});
+    const [member, setMember] = useState([]);
     const [approvalMember, setApprovalMember] = ("");
 
     useEffect(() => {
@@ -45,47 +45,70 @@ function ApprovalPathModal({showApprovalPathModal, handleApprovalPathModalClose}
                         {/* 조직도 */}
                         <div className={styles.leftSide}>
                             <div className={styles.title}>조직도</div>
-                            <div className={styles.organizationChart}>
-                                    <Accordion defaultActiveKey="0">
-                                {team.map((teamData, idx) => {
-                                    return(
-                                        <Accordion.Item key={idx} eventKey={idx}>
-                                            <Accordion.Header
-                                                onClick={() => setSelectTeam(teamData)}
-                                            >{teamData}
-                                            </Accordion.Header>
+                                <Accordion defaultActiveKey="0">
+                                    {team.map((teamData, idx) => {
+                                        return (
+                                            <Accordion.Item key={idx} eventKey={idx}  className={styles.accordion}>
+                                                <Accordion.Header onClick={() => setSelectTeam(teamData)}  className={styles.accHead}>
+                                                        <img src={require("../../IMAGES/members.png")} style={{padding:"0 10px"}}/>
+                                                        {teamData}
+                                                </Accordion.Header>
 
-                                            {member.map((memberData, memberIdx) => {
-                                               return(
-                                                   <Accordion.Body key={memberIdx}>
-                                                       {memberData.name} {memberData.position}
-                                                   </Accordion.Body>
-                                               )
-                                            })}
-                                        </Accordion.Item>
-                                    )
-                                })}
-                                    </Accordion>
-                            </div>
+                                                {member.map((memberData, memberIdx) => {
+                                                    return (
+                                                        <Accordion.Body key={memberIdx} className={styles.chartMember}>
+                                                            <img src={require("../../IMAGES/member.png")} style={{padding:"0 12px"}}/>
+                                                            {memberData.name} {memberData.position}
+                                                        </Accordion.Body>
+                                                    )
+                                                })}
+                                            </Accordion.Item>
+                                        )
+                                    })}
+                                </Accordion>
+
+                            {/*<div style={{marginTop:"50px"}}>*/}
+                            {/*    <div className={styles.title}>직원검색</div>*/}
+                            {/*    <InputGroup>*/}
+                            {/*        <FormControl type="text" className="form-control-lg" placeholder="이름"/>*/}
+                            {/*        <Button className={styles.buttonStyle}> 검색 </Button>*/}
+                            {/*    </InputGroup>*/}
+                            {/*</div>*/}
                         </div>
 
                         {/* 버튼 */}
                         <div className={styles.midSide}>
-                            <p>결재자</p>
-                            <Button> > </Button>
-                            <Button> = </Button>
-                            <Button> = </Button>
-                            <p>참조자</p>
-                            <Button> > </Button>
-                            <Button> = </Button>
-                            <Button> = </Button>
+                            <div className={styles.buttonGroup}>
+                                <p className={styles.title}>결재자</p>
+                                <Button className={styles.arrowButton}>
+                                    <img src={require("../../IMAGES/right-arrow.png")}/>
+                                </Button>
+                                <Button className={styles.arrowButton}>
+                                    <img src={require("../../IMAGES/left-arrow.png")}/>
+                                </Button>
+                                <Button className={styles.arrowButton}>
+                                    <img src={require("../../IMAGES/reload.png")}/>
+                                </Button>
+                            </div>
+                            <div className={styles.buttonGroup}>
+                                <p className={styles.title}>참조자</p>
+                                <Button className={styles.arrowButton}>
+                                    <img src={require("../../IMAGES/right-arrow.png")}/>
+                                </Button>
+                                <Button className={styles.arrowButton}>
+                                    <img src={require("../../IMAGES/left-arrow.png")}/>
+                                </Button>
+                                <Button className={styles.arrowButton}>
+                                    <img src={require("../../IMAGES/reload.png")}/>
+                                </Button>
+                            </div>
                         </div>
 
                         {/* 결재라인 */}
                         <div>
                             <div className={styles.rightSide}>
                                 <p className={styles.title}>결재선 정보</p>
-                                <div className={styles.bookmark}>
+                                <div className={styles.bookmarkLine}>
                                     <p style={{marginBottom: "0"}}>사용자 결재라인</p>
                                     <select>
                                         <option value="">휴가신청서</option>
@@ -172,25 +195,20 @@ function ApprovalPathModal({showApprovalPathModal, handleApprovalPathModalClose}
                                 </div>
 
                                 {/* 결재라인 추가 */}
-                                <div className={styles.bookmark}>
+                                <div className={styles.bookmarkLine}>
                                     <p style={{marginBottom: "0"}}>사용자 결재라인 이름</p>
                                     <input/>
                                     <Button className={styles.smallButton}>저장</Button>
                                 </div>
-
-                                {/*<div className={styles.search}>*/}
-                                {/*    <InputGroup className="mb-3">*/}
-                                {/*        <FormControl type="text" className="form-control-lg" placeholder="이름"/>*/}
-                                {/*        <Button className={styles.searchButton}> 검색 </Button>*/}
-                                {/*    </InputGroup>*/}
-                                {/*</div>*/}
                             </div>
 
                             {/* 버튼 */}
-                            <div style={{float: "right"}}>
-                                <Button>적용</Button>
-
-                                <Button variant="secondary" onClick={handleApprovalPathModalClose}>닫기</Button>
+                            <div style={{float: "right", padding: "15px 0"}}>
+                                <Button className={styles.buttonStyle}>적용</Button>
+                                <Button variant="secondary"
+                                        style={{marginLeft: "15px"}}
+                                        onClick={handleApprovalPathModalClose}
+                                >닫기</Button>
                             </div>
                         </div>
                     </div>

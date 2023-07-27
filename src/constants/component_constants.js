@@ -5,7 +5,6 @@ export const PAGE_COMPONENT = "/page/*"
 
 // 전자결재
 export const DOCUMENT_WRITE_COMPONENT = "write"
-export const APPROVAL_PATH_COMPONENT="approvalpath"
 
 // 문서
 export const RECEIVE_DOCUMENT_COMPONENT="receivedocument"

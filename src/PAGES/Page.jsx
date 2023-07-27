@@ -1,7 +1,6 @@
 import Sidebar from "../COMPONENT/LAYOUT/Sidebar/Sidebar";
 import {Route, Routes} from "react-router-dom";
 import Write from "./APPROVAL/Write";
-import ApprovalPath from "./APPROVAL/ApprovalPath";
 import ReceiveDocument from "./DOCUMENT/ReceiveDocument";
 import ReportDocument from "./DOCUMENT/ReportDocument";
 import styles from "./Page.module.css"
@@ -13,7 +12,6 @@ import Header from "../COMPONENT/LAYOUT/Header";
 import {
     ACCOUNT_MANAGEMENT_COMPONENT,
     ACCOUNT_REGISTRATION_COMPONENT,
-    APPROVAL_PATH_COMPONENT,
     DOCUMENT_DETAIL_COMPONENT,
     DOCUMENT_REGISTRATION_COMPONENT,
     DOCUMENT_WRITE_COMPONENT,
@@ -34,7 +32,6 @@ function Page() {
                 <div className={styles.container}>
                     <Routes>
                             <Route path={DOCUMENT_WRITE_COMPONENT} element={<Write />} />
-                            <Route path={APPROVAL_PATH_COMPONENT} element={<ApprovalPath/>} />
                             <Route path={RECEIVE_DOCUMENT_COMPONENT} element={<ReceiveDocument/>} />
                             <Route path={REPORT_DOCUMENT_COMPONENT} element={<ReportDocument/>} />
                             <Route path={TEMP_DOCUMENT_COMPONENT} element={<TempDocument/>} />

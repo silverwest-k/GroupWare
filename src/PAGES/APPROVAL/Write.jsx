@@ -25,6 +25,7 @@ function Write() {
             "status": status,
         })
             .then(resetInput)
+            alert("상신되었습니다.")
     }
 
     const handleTempSave= ()=>{
