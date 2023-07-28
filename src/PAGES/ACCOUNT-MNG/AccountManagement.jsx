@@ -47,7 +47,7 @@ function AccountManagement() {
         }
         fetcher().delete(`${DELETE_ID_API}/${account.no}`)
             .then(() =>
-                    alert("삭제가 완료되었습니다."),
+                alert("삭제가 완료되었습니다."),
                 setShowDeleteModal(false),
                 resetInput
             )

@@ -60,7 +60,8 @@
 }
 
 .accordion {
-    --bs-accordion-border-color: #4429f2;
+    /*--bs-accordion-border-color: #4429f2;*/
+    --bs-accordion-border-color: lightgray;
     --bs-accordion-active-bg: rgba(125, 121, 242, 0.2);
     --bs-accordion-btn-focus-box-shadow: none;
     --bs-accordion-body-padding-y:0.65rem;
@@ -70,7 +71,7 @@
 
 /* 결재라인 */
 .rightSide, .leftSide {
-    border: solid 1px #4429f2;
+    border: solid 1px rgba(68, 41, 242, 0.4);
     border-radius: 15px;
     padding: 30px;
     height: 715px;
@@ -80,7 +81,7 @@
     display: flex;
     flex-direction: row;
     background: rgba(125, 121, 242, 0.2);
-    border: solid 1px #4429f2;
+    border: solid 1px rgba(68, 41, 242, 0.4);
     border-radius: 10px;
     align-items: center;
     padding: 10px;
@@ -96,7 +97,7 @@
     align-items: center;
 }
 .arrowButton {
-    border: solid 1px #4429f2;
+    border: solid 1px rgba(68, 41, 242, 0.4);
     background: none;
     --bs-btn-hover-bg: rgba(125, 121, 242, 0.2);
     --bs-btn-active-bg:#4429f2;
