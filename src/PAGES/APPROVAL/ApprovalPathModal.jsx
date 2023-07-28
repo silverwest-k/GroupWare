@@ -49,7 +49,7 @@ function ApprovalPathModal({showApprovalPathModal, handleApprovalPathModalClose}
                                     {team.map((teamData, idx) => {
                                         return (
                                             <Accordion.Item key={idx} eventKey={idx}  className={styles.accordion}>
-                                                <Accordion.Header onClick={() => setSelectTeam(teamData)}  className={styles.accHead}>
+                                                <Accordion.Header onClick={() => setSelectTeam(teamData)}>
                                                         <img src={require("../../IMAGES/members.png")} style={{padding:"0 10px"}}/>
                                                         {teamData}
                                                 </Accordion.Header>
@@ -115,7 +115,7 @@ function ApprovalPathModal({showApprovalPathModal, handleApprovalPathModalClose}
                                         <option value="">지출결의서</option>
                                         <option value="">지각사유서</option>
                                     </select>
-                                    <Button className={styles.smallButton}>삭제</Button>
+                                    <Button className="button" style={{padding:"6px"}}>삭제</Button>
                                 </div>
 
                                 <div>
@@ -198,13 +198,13 @@ function ApprovalPathModal({showApprovalPathModal, handleApprovalPathModalClose}
                                 <div className={styles.bookmarkLine}>
                                     <p style={{marginBottom: "0"}}>사용자 결재라인 이름</p>
                                     <input/>
-                                    <Button className={styles.smallButton}>저장</Button>
+                                    <Button className="button" style={{padding:"6px"}}>저장</Button>
                                 </div>
                             </div>
 
                             {/* 버튼 */}
                             <div style={{float: "right", padding: "15px 0"}}>
-                                <Button className={styles.buttonStyle}>적용</Button>
+                                <Button className="button">적용</Button>
                                 <Button variant="secondary"
                                         style={{marginLeft: "15px"}}
                                         onClick={handleApprovalPathModalClose}

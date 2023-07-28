@@ -6,22 +6,21 @@ import {useEffect, useState} from "react";
 import {MEMBER_LIST_INFO_API} from "../../../constants/api_constans";
 import fetcher from "../../../fetcher";
 
-function AccountModal({showAccountModal,handleAccountModalClose}) {
+function AccountModal({showAccountModal, handleAccountModalClose}) {
     const {selectAccount} = useStore(state => state)
     const [member, setMember] = useState([]);
 
-    useEffect(()=>{
+    useEffect(() => {
         fetcher().get(MEMBER_LIST_INFO_API)
             .then((res) => setMember(res.data))
-    },[member])
-    console.log(member)
+    }, [])
 
     const pickAccount = (account) => {
         selectAccount(account);
         handleAccountModalClose();
     }
 
-    return(
+    return (
         <div>
             <Modal show={showAccountModal} onHide={handleAccountModalClose}
                    className={`${styles.modal} ${tableStyles.wrap}`} centered
@@ -31,49 +30,50 @@ function AccountModal({showAccountModal,handleAccountModalClose}) {
                 </Modal.Header>
                 <Modal.Body>
                     <div>
-                        <div className={tableStyles.tableContainer}>
-
+                        <div className={tableStyles.container}>
                             <div className={tableStyles.search}>
                                 <InputGroup className="mb-3">
-                                    <FormControl type="text" className="form-control-lg" placeholder="이름" />
-                                    <Button className={tableStyles.searchButton}> 검색 </Button>
+                                    <FormControl type="text" className="form-control-lg" placeholder="이름"/>
+                                    <Button className="buttonAdmin"> 검색 </Button>
                                 </InputGroup>
                             </div>
+                            <div className={tableStyles.tableContainer}>
+                                <Table hover>
+                                    <thead className={tableStyles.tableHead}>
+                                    <tr>
+                                        <th>사번</th>
+                                        <th>이름</th>
+                                        <th>직급</th>
+                                        <th>부서</th>
+                                    </tr>
+                                    </thead>
 
-                            <Table hover>
-                                <thead className={tableStyles.tableHead}>
-                                <tr>
-                                    <th>사번</th>
-                                    <th>이름</th>
-                                    <th>직급</th>
-                                    <th>부서</th>
-                                </tr>
-                                </thead>
-
-                                <tbody>
-                                {member.map((data, idx)=>{
-                                    return(
-                                        <tr key={idx} style={{cursor:"pointer"}}
-                                            onClick={()=>pickAccount(data)}
-                                        >
-                                            <td>{data.no}</td>
-                                            <td>{data.name}</td>
-                                            <td>{data.position}</td>
-                                            <td>{data.team}</td>
-                                        </tr>
-                                    )
-                                })}
-                                </tbody>
-                            </Table>
+                                    <tbody className={tableStyles.tableBody}>
+                                    {member.map((data, idx) => {
+                                        return (
+                                            <tr key={idx} style={{cursor: "pointer"}}
+                                                onClick={() => pickAccount(data)}
+                                            >
+                                                <td>{data.no}</td>
+                                                <td>{data.name}</td>
+                                                <td>{data.position}</td>
+                                                <td>{data.team}</td>
+                                            </tr>
+                                        )
+                                    })}
+                                    </tbody>
+                                </Table>
+                            </div>
+                            <div >
+                                <Button variant="secondary"
+                                        className={styles.button}
+                                        style={{float: "right"}}
+                                        onClick={handleAccountModalClose}
+                                >취소</Button>
+                            </div>
                         </div>
                     </div>
 
-                    <div style={{float: "right"}}>
-                        <Button variant="secondary"
-                                className={styles.button}
-                                onClick={handleAccountModalClose}
-                        >취소</Button>
-                    </div>
                 </Modal.Body>
             </Modal>
         </div>

@@ -13,35 +13,35 @@ function Write() {
 
     const [showApprovalPathModal, setShowApprovalPathModal] = useState(false);
 
-    const resetInput = ()=> {
+    const resetInput = () => {
         setTitle("")
         setContent("")
         setStatus("")
     }
-    const saveBtn = (status) =>{
+    const saveBtn = (status) => {
         fetcher().post(DOCUMENT_CREATE_API, {
             "title": title,
             "content": content,
             "status": status,
         })
             .then(resetInput)
-            alert("상신되었습니다.")
+        alert("상신되었습니다.")
     }
 
-    const handleTempSave= ()=>{
+    const handleTempSave = () => {
         saveBtn(0)
     }
-    const handleSave= ()=>{
+    const handleSave = () => {
         saveBtn(1)
     }
 
-    return(
+    return (
         <div className={styles.wrapper}>
             <div className={styles.formContainer}>
                 <div className={styles.documentSelect}>
                     <h3>양식선택</h3>
                     <Dropdown>
-                        <Dropdown.Toggle variant="success" id="dropdown-basic" className={styles.dropToggle} >
+                        <Dropdown.Toggle variant="success" id="dropdown-basic" className={styles.dropToggle}>
                             양식을 선택하세요
                         </Dropdown.Toggle>
                         <Dropdown.Menu className={styles.dropMenu}>
@@ -55,18 +55,18 @@ function Write() {
                 <div className={styles.selectContainer}>
                     <div className={styles.title}>
                         <h3>결재라인</h3>
-                        <Button className={styles.titleImg} onClick={()=>setShowApprovalPathModal(true)}>
+                        <Button className={styles.titleImg} onClick={() => setShowApprovalPathModal(true)}>
                             <img src={require("../../IMAGES/team.png")}/>
                         </Button>
                     </div>
                     <div className={styles.select}>
-                            <p className={styles.title}>결재</p>
-                            <input/>
+                        <p className={styles.title}>결재</p>
+                        <input/>
                     </div>
 
                     <div className={styles.select}>
-                            <p className={styles.title}>참조</p>
-                            <input/>
+                        <p className={styles.title}>참조</p>
+                        <input/>
                     </div>
 
                     <div className={styles.select}>
@@ -76,17 +76,17 @@ function Write() {
                                 <img src={require("../../IMAGES/upload.png")}/>
                             </Button>
                         </div>
-                            <input/>
+                        <input/>
                     </div>
 
                     <div className={styles.buttonGroup}>
-                        <Button variant="primary" className={styles.button}>작성취소</Button>
+                        <Button variant="primary" className="button">작성취소</Button>
                         <Button variant="primary"
-                                className={styles.button}
+                                className="button"
                                 onClick={handleTempSave}
                         >임시저장</Button>
                         <Button variant="primary"
-                                className={styles.button}
+                                className="button"
                                 onClick={handleSave}
                         >상신하기</Button>
                     </div>
@@ -96,11 +96,11 @@ function Write() {
             <div className={styles.document}>
                 <input placeholder="제목"
                        value={title}
-                       onChange={(e) =>setTitle(e.target.value)}
+                       onChange={(e) => setTitle(e.target.value)}
                 />
                 <textarea placeholder="본문"
                           value={content}
-                          onChange={(e)=>setContent(e.target.value)}
+                          onChange={(e) => setContent(e.target.value)}
                 />
             </div>
 

@@ -6,6 +6,8 @@ export const LOGOUT_API = "/auth/logout" // 로그아웃
 export const CREATE_ID_API = "/auth/admin/signup"   // 계정등록
 export const MEMBER_INFO_API ="/auth/admin/members" //(+id) GET 직원상세정보
 export const DELETE_ID_API ="/auth/admin/members" // (+사번) DELETE 계정삭제
+export const MEMBER_PASSWORD_CHANGE_API = "/auth/admin/members" // 임직원 비밀번호 변경
+export const MY_PASSWORD_CHANGE_API = "/member/password"  // 본인 비밀번호 변경
 
 // 문서관련 API
 export const REPORT_DOCUMENT_LIST_API = "/documents/mylist" // 상신문서함

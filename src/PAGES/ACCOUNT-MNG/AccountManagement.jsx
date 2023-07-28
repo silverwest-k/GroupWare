@@ -1,6 +1,6 @@
 import {Button, ToggleButton} from "react-bootstrap";
 import styles from "./AccountManagement.module.css"
-import {useEffect, useState} from "react";
+import {useEffect, useRef, useState} from "react";
 import ButtonGroup from 'react-bootstrap/ButtonGroup';
 import DeleteIDModal from "./Modals/DeleteIDModal";
 import TeamModal from "./Modals/TeamModal";
@@ -11,25 +11,42 @@ import {DELETE_ID_API} from "../../constants/api_constans";
 import fetcher from "../../fetcher";
 
 function AccountManagement() {
+    const imgRef = useRef();
+
     const [showAccountModal, setShowAccountModal] = useState(false);
     const [showDeleteModal, setShowDeleteModal] = useState(false);
     const [showTeamModal, setShowTeamModal] = useState(false);
     const [showPositionModal, setShowPositionModal] = useState(false);
-
+    const [imgFile, setImgFile] = useState("");
     const [radioValue, setRadioValue] = useState('1');
     const [name, setName] = useState("");
     const [password, setPassword] = useState("");
     const [memberNo, setMemberNo] = useState("");
-    // const [team, setTeam] = useState("");
-    // const [position, setPosition] = useState("");
+    //
+    const [team, setTeam] = useState("");
+    const [position, setPosition] = useState("");
 
-    const {account, teamName, positionName} = useStore(state => state);
+    const {account, teamName, positionName}
+        = useStore(state => state);
 
     const radioState = [
         {name: '일반계정', value: '1'},
         {name: '관리자계정', value: '2'},
         {name: '접속차단', value: '3'}
     ];
+
+    useEffect(() => {
+        resetInput()
+    }, [])
+
+    const saveImgFile = () => {
+        const file = imgRef.current.files[0];
+        const reader = new FileReader();
+        reader.readAsDataURL(file);
+        reader.onload = () => {
+            setImgFile(reader.result);
+        }
+    }
 
     const resetInput = () => {
         setName("")
@@ -39,15 +56,15 @@ function AccountManagement() {
         // setPosition("")
     }
 
-    const deleteID = (account) => {
-        if (!account.no) {
+    const deleteID = (num) => {
+        if (!num) {
             alert("삭제할 계정을 선택하세요.");
             setShowDeleteModal(false);
             return;
         }
-        fetcher().delete(`${DELETE_ID_API}/${account.no}`)
+        fetcher().delete(`${DELETE_ID_API}/${num}`)
             .then(() =>
-                alert("삭제가 완료되었습니다."),
+                    alert("삭제가 완료되었습니다."),
                 setShowDeleteModal(false),
                 resetInput
             )
@@ -59,16 +76,16 @@ function AccountManagement() {
     return (
         <div className={styles.wrapper}>
             <div className={styles.container}>
-                <div className={styles.upperButton}>
+                <div className={styles.upper}>
                     <div>
                         계정관리
                         <Button variant="primary"
-                                className={styles.button} style={{marginLeft: "15px"}}
+                                className="buttonAdmin" style={{marginLeft: "15px"}}
                                 onClick={() => setShowAccountModal(true)}
                         >불러오기</Button>
                     </div>
                     <Button variant="primary"
-                            className={styles.button}
+                            className="buttonAdmin"
                             onClick={() => setShowDeleteModal(true)}
                     >삭제</Button>
                 </div>
@@ -79,8 +96,20 @@ function AccountManagement() {
                         <tr>
                             <th></th>
                             <td className={styles.profile}>
-                                <img src={require("../../IMAGES/profile.jpeg")}/>
-                                <Button variant="primary" className={styles.button}>사진등록</Button>
+                                <img src={imgFile ? imgFile : require("../../IMAGES/profile.jpg")}
+                                     alt="프로필 이미지"
+                                />
+                                <label className={styles.profileImgLabel}
+                                       htmlFor="profileImg"
+                                >이미지 업로드</label>
+                                <input
+                                    style={{display: "none"}}
+                                    type="file"
+                                    accept="image/*"
+                                    id="profileImg"
+                                    onChange={saveImgFile}
+                                    ref={imgRef}
+                                />
                             </td>
                         </tr>
                         <tr>
@@ -91,6 +120,7 @@ function AccountManagement() {
                             <th>비밀번호</th>
                             <td>
                                 <input value={account.password}
+                                       type="password"
                                        onChange={(e) => setPassword(e.target.value)}
                                 />
                             </td>
@@ -102,7 +132,8 @@ function AccountManagement() {
                         <tr>
                             <th>부서</th>
                             <td>
-                                <input value={account.team}/>
+                                <input value={teamName || account.team}
+                                       onChange={(e) => setTeam(e.target.value)}/>
                                 <img src={require("../../IMAGES/more.png")}
                                      className={styles.icon}
                                      onClick={() => setShowTeamModal(true)}
@@ -112,7 +143,9 @@ function AccountManagement() {
                         <tr>
                             <th>직급</th>
                             <td>
-                                <input value={account.position}/>
+                                <input value={positionName || account.position}
+                                       onChange={(e) => setPosition(e.target.value)}
+                                />
                                 <img src={require("../../IMAGES/more.png")}
                                      className={styles.icon}
                                      onClick={() => setShowPositionModal(true)}
@@ -122,7 +155,7 @@ function AccountManagement() {
                         <tr>
                             <th>계정상태</th>
                             <td>
-                                <ButtonGroup style={{marginLeft: "15px"}}>
+                                <ButtonGroup>
                                     {radioState.map((radio, idx) => (
                                         <ToggleButton
                                             key={idx}
@@ -146,13 +179,13 @@ function AccountManagement() {
                 </div>
                 <div>
                     <div className={styles.modify}>
-                        <Button variant="primary" className={styles.button}>수정</Button>
+                        <Button className="buttonAdmin">수정</Button>
                     </div>
                 </div>
             </div>
 
             <DeleteIDModal
-                deleteID={() => deleteID(account)}
+                deleteID={() => deleteID(account.no)}
                 showDeleteModal={showDeleteModal}
                 handleDeleteModalClose={() => setShowDeleteModal(false)}
             />

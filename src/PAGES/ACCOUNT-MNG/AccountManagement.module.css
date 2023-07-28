@@ -11,18 +11,16 @@
     width: 35%;
     height: 90%;
     display: flex;
-    /*top: 10%;*/
     flex-direction: column;
     justify-content: space-around;
-    color: #fa3e0c;
     font-weight: bold;
+    color: #fa3e0c;
     background: rgba(250, 62, 12, 0.05);
     border: 1px solid rgba(250, 62, 12, 0.4);
     border-radius: 20px;
-
 }
 
-.upperButton {
+.upper {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
@@ -37,7 +35,7 @@
     justify-content: space-evenly;
 }
 
-/* 프로필사진 영역 */
+/* 프로필 */
 .profile {
     display: flex;
     flex-direction: column;
@@ -63,7 +61,7 @@
     width: 150px;
     height: 200px;
     margin-bottom: 20px;
-    border: 1px solid rgba(250, 62, 12, 0.4);
+    border: 3px solid rgba(250, 62, 12, 0.4);
 }
 .profile Button {
     width: 150px;
@@ -81,23 +79,16 @@ table th {
 
 table td {
     width: 310px;
-}
-
-
-.button {
-    color: white;
-    background: #fa3e0c;
-    border: 1px solid #fa3e0c;
-    --bs-btn-hover-bg:#c32d04;
-    --bs-btn-hover-border-color:#c32d04;
-    --bs-btn-active-bg:#c32d04;
-    --bs-btn-active-border-color:#c32d04;
+    font-weight: normal;
+    color: #000000;
+    text-align: left;
 }
 
 .icon {
     width: 40px;
     height: 40px;
     cursor: pointer;
+    margin-left: 10px;
 }
 
 .modify {

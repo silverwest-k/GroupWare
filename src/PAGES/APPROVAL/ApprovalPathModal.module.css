@@ -17,22 +17,8 @@
     padding: 30px;
 }
 
-.smallButton {
-    padding: 6px;
-}
-
-.buttonStyle, .smallButton {
-    --bs-btn-bg: #4429f2;
-    --bs-btn-border-color: #4429f2;
-    --bs-btn-hover-bg: rgba(125, 121, 242, 0.9);
-    --bs-btn-hover-border-color: none;
-    --bs-btn-active-bg: #4429f2;
-    --bs-btn-active-border-color: #4429f2;
-}
-
 .title {
     font-weight: bold;
-    color: #4429f2;
     font-size: 20px;
     margin-bottom: 1rem;
 }
@@ -45,12 +31,8 @@
     height: 100%;
 }
 
-.midSide {
-    width: 110px;
-    display: flex;
-    flex-direction: column;
-    padding: 20px;
-    justify-content: center;
+.chartMember {
+    margin-left: 10px;
 }
 
 .chartMember:hover {
@@ -60,7 +42,6 @@
 }
 
 .accordion {
-    /*--bs-accordion-border-color: #4429f2;*/
     --bs-accordion-border-color: lightgray;
     --bs-accordion-active-bg: rgba(125, 121, 242, 0.2);
     --bs-accordion-btn-focus-box-shadow: none;
@@ -89,6 +70,14 @@
 }
 
 /* 중앙 버튼 */
+.midSide {
+    width: 110px;
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+    justify-content: center;
+}
+
 .buttonGroup {
     padding: 50px 0;
     display: flex;
@@ -119,7 +108,7 @@
     text-align: center;
 }
 
-tr {
+td {
     justify-content: center;
     margin: auto;
     text-align: center;
@@ -131,11 +120,3 @@ tr {
 /*    float: right;*/
 /*}*/
 
-/*.searchButton {*/
-/*    --bs-btn-bg:#4429f2;*/
-/*    --bs-btn-border-color:#4429f2;*/
-/*    --bs-btn-hover-bg: rgba(125, 121, 242, 0.9);*/
-/*    --bs-btn-hover-border-color: none;*/
-/*    --bs-btn-active-bg:#4429f2;*/
-/*    --bs-btn-active-border-color:#4429f2;*/
-/*}*/
