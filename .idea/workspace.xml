@@ -7,21 +7,10 @@
     <list default="true" id="671d336a-3897-4ae7-9dd4-06de78af820f" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/App.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/COMPONENT/LAYOUT/Sidebar/Sidebar.module.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/COMPONENT/LAYOUT/Sidebar/Sidebar.module.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/COMPONENT/MAIN/Profile.module.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/COMPONENT/MAIN/Profile.module.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/IMAGES/member.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/IMAGES/member.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/IMAGES/members.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/IMAGES/members.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/IMAGES/upload.png" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/PAGES/ACCOUNT-MNG/AccountManagement.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/PAGES/ACCOUNT-MNG/AccountManagement.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/PAGES/ACCOUNT-MNG/AccountManagement.module.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/PAGES/ACCOUNT-MNG/AccountManagement.module.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/PAGES/ACCOUNT-MNG/AccountRegistration.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/PAGES/ACCOUNT-MNG/AccountRegistration.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/PAGES/ACCOUNT-MNG/Modals/AccountModal.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/PAGES/ACCOUNT-MNG/Modals/AccountModal.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/PAGES/ACCOUNT-MNG/Modals/AccountModal.module.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/PAGES/ACCOUNT-MNG/Modals/AccountModal.module.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/PAGES/APPROVAL/ApprovalPathModal.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/PAGES/APPROVAL/ApprovalPathModal.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/PAGES/APPROVAL/ApprovalPathModal.module.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/PAGES/APPROVAL/ApprovalPathModal.module.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/PAGES/APPROVAL/Write.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/PAGES/APPROVAL/Write.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/PAGES/MYPAGE/MyPage.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/PAGES/MYPAGE/MyPage.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/PAGES/MYPAGE/MyPage.module.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/PAGES/MYPAGE/MyPage.module.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/constants/api_constans.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/constants/api_constans.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/PAGES/APPROVAL/Write.module.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/PAGES/APPROVAL/Write.module.css" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -39,6 +28,11 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
     <option name="RESET_MODE" value="SOFT" />
   </component>
+  <component name="JsbtTreeLayoutManager">
+    <layout place="tools.popupGrunt">
+      <scroll-view-position x="0" y="0" />
+    </layout>
+  </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
   </component>
@@ -50,32 +44,32 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;js.last.introduce.type&quot;: &quot;CONST&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/rnqh9/OneDrive/Desktop/Backend&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.editor&quot;,
-    &quot;ts.external.directory.path&quot;: &quot;/Applications/IntelliJ IDEA.app/Contents/plugins/javascript-impl/jsLanguageServicesImpl/external&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "ASKED_ADD_EXTERNAL_FILES": "true",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "js.last.introduce.type": "CONST",
+    "last_opened_file_path": "/Users/gueunseo/Desktop/GroupWare",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "settings.editor.selected.configurable": "preferences.editor",
+    "ts.external.directory.path": "/Applications/IntelliJ IDEA.app/Contents/plugins/javascript-impl/jsLanguageServicesImpl/external",
+    "vue.rearranger.settings.migration": "true"
   },
-  &quot;keyToStringList&quot;: {
-    &quot;DatabaseDriversLRU&quot;: [
-      &quot;mysql&quot;
+  "keyToStringList": {
+    "DatabaseDriversLRU": [
+      "mysql"
     ],
-    &quot;com.intellij.ide.scratch.ScratchImplUtil$2/New Scratch File&quot;: [
-      &quot;JSON&quot;
+    "com.intellij.ide.scratch.ScratchImplUtil$2/New Scratch File": [
+      "JSON"
     ]
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\codepc\Desktop\GroupWare\src\PAGES\APPROVAL" />
@@ -130,6 +124,8 @@
       <workItem from="1690283925175" duration="1431000" />
       <workItem from="1690331390882" duration="28243000" />
       <workItem from="1690466848892" duration="1727000" />
+      <workItem from="1690602179336" duration="2771000" />
+      <workItem from="1690605581810" duration="10313000" />
     </task>
     <servers />
   </component>

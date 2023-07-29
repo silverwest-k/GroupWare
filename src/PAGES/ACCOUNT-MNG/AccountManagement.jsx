@@ -77,15 +77,13 @@ function AccountManagement() {
         <div className={styles.wrapper}>
             <div className={styles.container}>
                 <div className={styles.upper}>
-                    <div>
-                        계정관리
-                        <Button variant="primary"
-                                className="buttonAdmin" style={{marginLeft: "15px"}}
+                    <div> 계정관리
+                        <Button className="buttonAdmin"
+                                style={{marginLeft: "15px"}}
                                 onClick={() => setShowAccountModal(true)}
                         >불러오기</Button>
                     </div>
-                    <Button variant="primary"
-                            className="buttonAdmin"
+                    <Button className="buttonAdmin"
                             onClick={() => setShowDeleteModal(true)}
                     >삭제</Button>
                 </div>
