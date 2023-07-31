@@ -42,21 +42,22 @@
     padding: 10px;
     border: 3px solid #e3e3e3;
 }
-.formTitle {
+.categoryTitle {
     text-align: center;
     font-size: 20px;
     font-weight: bold;
     padding: 20px;
 }
-.formTitle p {margin: 0;}
+.categoryTitle p {margin: 0;}
 
-/* 결재 */
+/* 기안관련 */
 .signTable {
+    height: 160px;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
+    align-items: center;
 }
-
 .signTableLeft_title {
     border: 1px solid #000000;
     background: #e3e3e3;
@@ -69,27 +70,21 @@
     border: 1px solid #000000;
     width: 150px;
     padding-left: 15px;
+    text-align: left;
 }
-
-.signTableRight_content {
-    border: 1px solid #000000;
-    width: 110px;
-    vertical-align: middle;
-    /*display: table-row-group;*/
-}
-.signTableRight_content tbody {
-
-}
-
+/* 결재라인 */
 .signTableRight_title {
+    width: 30px;
     border: 1px solid #000000;
     background: #e3e3e3;
-    width: 30px;
-    height: 150px;
     text-align: center;
 }
-
+.signTableRight_content {
+    width: 110px;
+    border-collapse: collapse;
+}
 .signTableRight_content td {
+    /*padding: 2px;*/
     text-align: center;
     border: 1px solid #000000;
 }

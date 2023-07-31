@@ -15,7 +15,7 @@ function Sidebar() {
 
     const {changeTitle} = useStore(state => state)
 
-    const menuName = (e) =>{
+    const menuName = (e) => {
         const selectMenu = e.target.textContent;
         changeTitle(selectMenu);
     }
@@ -24,7 +24,7 @@ function Sidebar() {
         setActiveLink(link);
     }
 
-    return(
+    return (
         <div className={styles.wrapper}>
             <SidebarProfile/>
             <div className={styles.menuContainer}>

@@ -7,7 +7,7 @@ import TeamModal from "./Modals/TeamModal";
 import useStore from "../../store";
 import PositionModal from "./Modals/PositionModal";
 import AccountModal from "./Modals/AccountModal";
-import {DELETE_ID_API} from "../../constants/api_constans";
+import {ACCOUNT_INFO_API, DELETE_ID_API, MEMBER_LIST_INFO_API} from "../../constants/api_constans";
 import fetcher from "../../fetcher";
 
 function AccountManagement() {
@@ -22,9 +22,9 @@ function AccountManagement() {
     const [name, setName] = useState("");
     const [password, setPassword] = useState("");
     const [memberNo, setMemberNo] = useState("");
-    //
     const [team, setTeam] = useState("");
     const [position, setPosition] = useState("");
+    const [member, setMember] = useState([]);
 
     const {account, teamName, positionName}
         = useStore(state => state);
@@ -38,6 +38,7 @@ function AccountManagement() {
     useEffect(() => {
         resetInput()
     }, [])
+
 
     const saveImgFile = () => {
         const file = imgRef.current.files[0];
@@ -56,13 +57,13 @@ function AccountManagement() {
         // setPosition("")
     }
 
-    const deleteID = (num) => {
-        if (!num) {
+    const deleteID = (id) => {
+        if (!id) {
             alert("삭제할 계정을 선택하세요.");
             setShowDeleteModal(false);
             return;
         }
-        fetcher().delete(`${DELETE_ID_API}/${num}`)
+        fetcher().delete(`${ACCOUNT_INFO_API}/${id}`)
             .then(() =>
                     alert("삭제가 완료되었습니다."),
                 setShowDeleteModal(false),
@@ -183,7 +184,7 @@ function AccountManagement() {
             </div>
 
             <DeleteIDModal
-                deleteID={() => deleteID(account.no)}
+                deleteID={() => deleteID(account.id)}
                 showDeleteModal={showDeleteModal}
                 handleDeleteModalClose={() => setShowDeleteModal(false)}
             />

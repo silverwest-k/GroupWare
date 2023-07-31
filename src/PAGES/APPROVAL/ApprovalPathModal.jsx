@@ -2,7 +2,7 @@ import styles from "./ApprovalPathModal.module.css";
 import {Button, FormControl, InputGroup, Modal, Table} from "react-bootstrap";
 import {useEffect, useState} from "react";
 import fetcher from "../../fetcher";
-import {MEMBER_LIST_INFO_API, TEAM_INFO_API, TEAM_MEMBER_INFO_API} from "../../constants/api_constans";
+import {TEAM_INFO_API, TEAM_MEMBER_INFO_API} from "../../constants/api_constans";
 import useStore from "../../store";
 import Accordion from "react-bootstrap/Accordion";
 
@@ -11,7 +11,12 @@ function ApprovalPathModal({showApprovalPathModal, handleApprovalPathModalClose}
     const [team, setTeam] = useState([]);
     const [selectTeam, setSelectTeam] = useState([]);
     const [member, setMember] = useState([]);
-    const [approvalMember, setApprovalMember] = ("");
+    const [activeMember, setActiveMember] = useState(null);
+    const [clickedIndex, setClickedIndex] = ("");
+
+    const handleMemberClick = (index) => {
+        setClickedIndex(index === clickedIndex ? null : index);
+    }
 
     useEffect(() => {
         fetcher().get(TEAM_INFO_API)
@@ -27,11 +32,6 @@ function ApprovalPathModal({showApprovalPathModal, handleApprovalPathModalClose}
         }
     }, [selectTeam])
 
-    // const pickAccount = (account) => {
-    //     selectAccount(account);
-    //     handleApprovalPathModalClose();
-    // }
-
     return (
         <div>
             <Modal show={showApprovalPathModal} onHide={handleApprovalPathModalClose}
@@ -42,30 +42,34 @@ function ApprovalPathModal({showApprovalPathModal, handleApprovalPathModalClose}
                 </Modal.Header>
                 <Modal.Body style={{padding: "0"}}>
                     <div className={styles.contents}>
-                        {/* 조직도 */}
                         <div className={styles.leftSide}>
                             <div className={styles.title}>조직도</div>
-                                <Accordion defaultActiveKey="0">
-                                    {team.map((teamData, idx) => {
-                                        return (
-                                            <Accordion.Item key={idx} eventKey={idx}  className={styles.accordion}>
-                                                <Accordion.Header onClick={() => setSelectTeam(teamData)}>
-                                                        <img src={require("../../IMAGES/members.png")} style={{padding:"0 10px"}}/>
-                                                        {teamData}
-                                                </Accordion.Header>
+                            <Accordion defaultActiveKey="0">
+                                {team.map((teamData, idx) => {
+                                    return (
+                                        <Accordion.Item key={idx} eventKey={idx} className={styles.accordion}>
+                                            <Accordion.Header onClick={() => setSelectTeam(teamData)}>
+                                                <img src={require("../../IMAGES/members.png")}
+                                                     style={{padding: "0 10px"}}/>
+                                                {teamData}
+                                            </Accordion.Header>
 
-                                                {member.map((memberData, memberIdx) => {
-                                                    return (
-                                                        <Accordion.Body key={memberIdx} className={styles.chartMember}>
-                                                            <img src={require("../../IMAGES/member.png")} style={{padding:"0 12px"}}/>
-                                                            {memberData.name} {memberData.position}
-                                                        </Accordion.Body>
-                                                    )
-                                                })}
-                                            </Accordion.Item>
-                                        )
-                                    })}
-                                </Accordion>
+                                            {member.map((memberData, memberIdx) => {
+                                                return (
+                                                    <Accordion.Body key={memberIdx}
+                                                                    className={`${styles.chartMember} ${memberIdx === clickedIndex ? styles.boldText : ""}`}
+                                                                    onClick={() => handleMemberClick(memberIdx)}
+                                                    >
+                                                        <img src={require("../../IMAGES/member.png")}
+                                                             style={{padding: "0 12px"}}/>
+                                                        {memberData.name} {memberData.position}
+                                                    </Accordion.Body>
+                                                )
+                                            })}
+                                        </Accordion.Item>
+                                    )
+                                })}
+                            </Accordion>
 
                             {/*<div style={{marginTop:"50px"}}>*/}
                             {/*    <div className={styles.title}>직원검색</div>*/}
@@ -115,7 +119,7 @@ function ApprovalPathModal({showApprovalPathModal, handleApprovalPathModalClose}
                                         <option value="">지출결의서</option>
                                         <option value="">지각사유서</option>
                                     </select>
-                                    <Button className="button" style={{padding:"6px"}}>삭제</Button>
+                                    <Button className="button" style={{padding: "6px"}}>삭제</Button>
                                 </div>
 
                                 <div>
@@ -198,7 +202,7 @@ function ApprovalPathModal({showApprovalPathModal, handleApprovalPathModalClose}
                                 <div className={styles.bookmarkLine}>
                                     <p style={{marginBottom: "0"}}>사용자 결재라인 이름</p>
                                     <input/>
-                                    <Button className="button" style={{padding:"6px"}}>저장</Button>
+                                    <Button className="button" style={{padding: "6px"}}>저장</Button>
                                 </div>
                             </div>
 

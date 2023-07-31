@@ -14,6 +14,7 @@ function AccountModal({showAccountModal, handleAccountModalClose}) {
         fetcher().get(MEMBER_LIST_INFO_API)
             .then((res) => setMember(res.data))
     }, [])
+    console.log(member)
 
     const pickAccount = (account) => {
         selectAccount(account);
