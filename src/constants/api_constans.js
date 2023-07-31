@@ -20,6 +20,7 @@ export const DOCUMENT_UPDATE_API ="/documents/update"   // 문서수정
 export const DOCUMENT_DELETE_API="/documents/delete"    // 문서 삭제
 
 // 문서양식 API
+export const CATEGORY_CREATE_API ="/templates/create" // 문서양식 생성
 export const CATEGORY_LIST_API = "/templates/list"  // 문서양식 리스트 조회
 
 

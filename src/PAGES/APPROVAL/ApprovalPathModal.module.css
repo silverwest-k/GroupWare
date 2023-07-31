@@ -49,7 +49,10 @@
     --bs-accordion-btn-icon: none;
     --bs-accordion-btn-active-icon: none;
 }
-
+.boldText {
+    font-weight: bold;
+    color: #4429f2;
+}
 /* 결재라인 */
 .rightSide, .leftSide {
     border: solid 1px rgba(68, 41, 242, 0.4);

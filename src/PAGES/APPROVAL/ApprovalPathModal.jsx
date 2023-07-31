@@ -11,12 +11,9 @@ function ApprovalPathModal({showApprovalPathModal, handleApprovalPathModalClose}
     const [team, setTeam] = useState([]);
     const [selectTeam, setSelectTeam] = useState([]);
     const [member, setMember] = useState([]);
-    const [activeMember, setActiveMember] = useState(null);
-    const [clickedIndex, setClickedIndex] = ("");
-
-    const handleMemberClick = (index) => {
-        setClickedIndex(index === clickedIndex ? null : index);
-    }
+    const [approvalMembers, setApprovalMembers] = useState([]);
+    const [clickedIndex, setClickedIndex] = useState(null);
+    const [activeMember, setActiveMember] = useState("");
 
     useEffect(() => {
         fetcher().get(TEAM_INFO_API)
@@ -31,6 +28,24 @@ function ApprovalPathModal({showApprovalPathModal, handleApprovalPathModalClose}
             setMember([])
         }
     }, [selectTeam])
+
+    const handleMemberClick = (index) => {
+        setClickedIndex(index);
+        setActiveMember(member[index]);
+    };
+    const addToApprovalTable = () => {
+        if (activeMember) {
+            setApprovalMembers((prevMembers) => [...prevMembers, activeMember]);
+        }
+    }
+    const removeApprovalTable = (index) => {
+        setApprovalMembers((prevMembers) => {
+            const updateMembers = [...prevMembers];
+            updateMembers.splice(index,1);
+            return updateMembers;
+        })
+    }
+
 
     return (
         <div>
@@ -60,8 +75,7 @@ function ApprovalPathModal({showApprovalPathModal, handleApprovalPathModalClose}
                                                                     className={`${styles.chartMember} ${memberIdx === clickedIndex ? styles.boldText : ""}`}
                                                                     onClick={() => handleMemberClick(memberIdx)}
                                                     >
-                                                        <img src={require("../../IMAGES/member.png")}
-                                                             style={{padding: "0 12px"}}/>
+                                                        <img src={require("../../IMAGES/member.png")} style={{padding: "0 12px"}}/>
                                                         {memberData.name} {memberData.position}
                                                     </Accordion.Body>
                                                 )
@@ -80,14 +94,13 @@ function ApprovalPathModal({showApprovalPathModal, handleApprovalPathModalClose}
                             {/*</div>*/}
                         </div>
 
-                        {/* 버튼 */}
                         <div className={styles.midSide}>
                             <div className={styles.buttonGroup}>
                                 <p className={styles.title}>결재자</p>
-                                <Button className={styles.arrowButton}>
+                                <Button className={styles.arrowButton} onClick={addToApprovalTable}>
                                     <img src={require("../../IMAGES/right-arrow.png")}/>
                                 </Button>
-                                <Button className={styles.arrowButton}>
+                                <Button className={styles.arrowButton} onClick={removeApprovalTable}>
                                     <img src={require("../../IMAGES/left-arrow.png")}/>
                                 </Button>
                                 <Button className={styles.arrowButton}>
@@ -141,28 +154,21 @@ function ApprovalPathModal({showApprovalPathModal, handleApprovalPathModalClose}
                                                 <td>{myAccount.team}</td>
                                                 <td>작성</td>
                                             </tr>
-                                            <tr>
-                                                <td>김성철</td>
-                                                <td>대리</td>
-                                                <td>개발팀</td>
-                                                <td>
-                                                    <select>
-                                                        <option value="">검토</option>
-                                                        <option value="">승인</option>
-                                                    </select>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>강동원</td>
-                                                <td>차장</td>
-                                                <td>개발팀</td>
-                                                <td>
-                                                    <select>
-                                                        <option value="">검토</option>
-                                                        <option value="">승인</option>
-                                                    </select>
-                                                </td>
-                                            </tr>
+                                            {approvalMembers.map((memberData, idx)=>{
+                                                return(
+                                                    <tr key={idx} style={{cursor:"pointer"}}>
+                                                        <td>{memberData.name}</td>
+                                                        <td>{memberData.position}</td>
+                                                        <td>{memberData.team}</td>
+                                                        <td>
+                                                            <select>
+                                                                <option value="">검토</option>
+                                                                <option value="">승인</option>
+                                                            </select>
+                                                        </td>
+                                                    </tr>
+                                                )
+                                            })}
                                             </tbody>
                                         </Table>
                                     </div>

@@ -11,8 +11,8 @@ function Write() {
     const [title, setTitle] = useState("")
     const [content, setContent] = useState("")
     const [status, setStatus] = useState("1")
-    const [categoryList, setCategoryList] = useState("양식을 선택하세요")
-    const [categoryTitle, setCategoryTitle] = useState("")
+    const [categoryList, setCategoryList] = useState("문서양식")
+    const [categoryTitle, setCategoryTitle] = useState("양식을 선택하세요")
 
     const [showApprovalPathModal, setShowApprovalPathModal] = useState(false);
     const {myAccount} = useStore(state => state)
@@ -32,11 +32,13 @@ function Write() {
         alert("상신되었습니다.")
     }
 
-    const fetchCategoryList = () =>{
-        fetcher().get(CATEGORY_LIST_API)
-            .then((res) => setCategoryList(res))
-    }
+    // const fetchCategoryList = () =>{
+    //     fetcher().get(CATEGORY_LIST_API)
+    //         .then((res) => setCategoryList(res))
+    // }
+    const categorysList = ["휴가신청서", "지출결의서", "외근신청서"]
 
+    /** 저장, 임시저장 구분*/
     const handleTempSave = () => {
         saveBtn(0)
     }
@@ -64,7 +66,9 @@ function Write() {
         {signTurn: "승인", sign: "", signName: "강동원 차장"}
     ]
 
-    const handleDropdownSelect = (title)=> { setCategoryTitle(title)}
+    const handleDropdownSelect = (title) => {
+        setCategoryTitle(title)
+    }
 
     return (
         <div className={styles.wrapper}>
@@ -72,13 +76,13 @@ function Write() {
                 <div className={styles.select}>
                     <Dropdown>
                         <Dropdown.Toggle className="button"
-                                         onClick={fetchCategoryList}
+                            // onClick={fetchCategoryList}
                         >
                             문서양식
                         </Dropdown.Toggle>
                         <Dropdown.Menu className={styles.dropMenu}>
-                            {categoryList.map((data)=>{
-                                return(
+                            {categorysList.map((data) => {
+                                return (
                                     <Dropdown.Item onClick={() => handleDropdownSelect(data)}>
                                         {data}
                                     </Dropdown.Item>
@@ -94,8 +98,9 @@ function Write() {
                     <Button className="button" onClick={handleTempSave}>임시저장</Button>
                     <Button className="button" onClick={handleSave}>상신하기</Button>
                 </div>
-            </div>
 
+            </div>
+            <div className={styles.divisionLine}></div>
             <div className={styles.lowerContainer}>
                 <div className={styles.categoryTitle}><p>{categoryTitle}</p></div>
                 <div className={styles.signTable}>
@@ -124,10 +129,10 @@ function Write() {
                                             <table>
                                                 <tbody>
                                                 <tr>
-                                                    <td style={{background:"#e3e3e3"}}>{data.signTurn}</td>
+                                                    <td style={{background: "#e3e3e3"}}>{data.signTurn}</td>
                                                 </tr>
                                                 <tr>
-                                                    <td style={{height:"100px"}}>{data.sign}</td>
+                                                    <td style={{height: "100px"}}>{data.sign}</td>
                                                 </tr>
                                                 <tr>
                                                     <td>{data.signName}</td>
@@ -143,8 +148,7 @@ function Write() {
                     </div>
                 </div>
 
-                <div style={{display:"flex", flexDirection:"column"}}>
-
+                <div style={{display: "flex", flexDirection: "column", height: "800px", background: "orange"}}>
                     {/*<input placeholder="제목"*/}
                     {/*       value={title}*/}
                     {/*       onChange={(e) => setTitle(e.target.value)}*/}
@@ -153,6 +157,7 @@ function Write() {
                     {/*          value={content}*/}
                     {/*          onChange={(e) => setContent(e.target.value)}*/}
                     {/*/>*/}
+
                 </div>
             </div>
 
