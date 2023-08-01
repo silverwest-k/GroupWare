@@ -14,7 +14,7 @@ function ApprovalPathModal({showApprovalPathModal, handleApprovalPathModalClose}
     const [approvalMembers, setApprovalMembers] = useState([]);
     const [clickedIndex, setClickedIndex] = useState(null);
     const [activeMember, setActiveMember] = useState("");
-
+    const [referMember, setReferMember] = useState([]);
     useEffect(() => {
         fetcher().get(TEAM_INFO_API)
             .then((res) => setTeam(res.data))
@@ -34,15 +34,24 @@ function ApprovalPathModal({showApprovalPathModal, handleApprovalPathModalClose}
         setActiveMember(member[index]);
     };
     const addToApprovalTable = () => {
-        if (activeMember) {
+        if (activeMember && approvalMembers.length < 2) {
             setApprovalMembers((prevMembers) => [...prevMembers, activeMember]);
-        }
+        } else (alert("결재라인은 최대 3명입니다."))
     }
-    const removeApprovalTable = (index) => {
+    const removeApprovalTable = () => {
         setApprovalMembers((prevMembers) => {
-            const updateMembers = [...prevMembers];
-            updateMembers.splice(index,1);
-            return updateMembers;
+            return prevMembers.slice(0, prevMembers.length - 1);
+        })
+    }
+
+    const addToReferTable = () => {
+        if (activeMember && referMember.length < 1) {
+            setReferMember((prevMembers) => [...prevMembers, activeMember]);
+        } else (alert("참조자는 한명만 가능합니다."))
+    }
+    const removeReferTable = () => {
+        setReferMember((prevMembers) => {
+            return prevMembers.slice(0, prevMembers.length - 1);
         })
     }
 
@@ -75,7 +84,8 @@ function ApprovalPathModal({showApprovalPathModal, handleApprovalPathModalClose}
                                                                     className={`${styles.chartMember} ${memberIdx === clickedIndex ? styles.boldText : ""}`}
                                                                     onClick={() => handleMemberClick(memberIdx)}
                                                     >
-                                                        <img src={require("../../IMAGES/member.png")} style={{padding: "0 12px"}}/>
+                                                        <img src={require("../../IMAGES/member.png")}
+                                                             style={{padding: "0 12px"}}/>
                                                         {memberData.name} {memberData.position}
                                                     </Accordion.Body>
                                                 )
@@ -103,25 +113,18 @@ function ApprovalPathModal({showApprovalPathModal, handleApprovalPathModalClose}
                                 <Button className={styles.arrowButton} onClick={removeApprovalTable}>
                                     <img src={require("../../IMAGES/left-arrow.png")}/>
                                 </Button>
-                                <Button className={styles.arrowButton}>
-                                    <img src={require("../../IMAGES/reload.png")}/>
-                                </Button>
                             </div>
                             <div className={styles.buttonGroup}>
                                 <p className={styles.title}>참조자</p>
-                                <Button className={styles.arrowButton}>
+                                <Button className={styles.arrowButton} onClick={addToReferTable}>
                                     <img src={require("../../IMAGES/right-arrow.png")}/>
                                 </Button>
-                                <Button className={styles.arrowButton}>
+                                <Button className={styles.arrowButton} onClick={removeReferTable}>
                                     <img src={require("../../IMAGES/left-arrow.png")}/>
-                                </Button>
-                                <Button className={styles.arrowButton}>
-                                    <img src={require("../../IMAGES/reload.png")}/>
                                 </Button>
                             </div>
                         </div>
 
-                        {/* 결재라인 */}
                         <div>
                             <div className={styles.rightSide}>
                                 <p className={styles.title}>결재선 정보</p>
@@ -147,16 +150,16 @@ function ApprovalPathModal({showApprovalPathModal, handleApprovalPathModalClose}
                                                 <th>결재선</th>
                                             </tr>
                                             </thead>
-                                            <tbody>
+                                            <tbody className={styles.tableBody}>
                                             <tr>
                                                 <td>{myAccount.name}</td>
                                                 <td>{myAccount.position}</td>
                                                 <td>{myAccount.team}</td>
                                                 <td>작성</td>
                                             </tr>
-                                            {approvalMembers.map((memberData, idx)=>{
-                                                return(
-                                                    <tr key={idx} style={{cursor:"pointer"}}>
+                                            {approvalMembers.map((memberData, idx) => {
+                                                return (
+                                                    <tr key={idx}>
                                                         <td>{memberData.name}</td>
                                                         <td>{memberData.position}</td>
                                                         <td>{memberData.team}</td>
@@ -183,22 +186,19 @@ function ApprovalPathModal({showApprovalPathModal, handleApprovalPathModalClose}
                                                 <th>이름</th>
                                                 <th>직급</th>
                                                 <th>부서</th>
-                                                <th>결재선</th>
                                             </tr>
                                             </thead>
-                                            <tbody>
-                                            <tr>
-                                                <td>이종석</td>
-                                                <td>사원</td>
-                                                <td>개발팀</td>
-                                                <td>참조</td>
-                                            </tr>
-                                            {/*<tr>*/}
-                                            {/*    <td>{data.no}</td>*/}
-                                            {/*    <td>{data.name}</td>*/}
-                                            {/*    <td>{data.position}</td>*/}
-                                            {/*    <td>{data.team}</td>*/}
-                                            {/*</tr>*/}
+                                            <tbody className={styles.tableBody}>
+                                            {referMember.map((memberData, idx) => {
+                                                return (
+                                                    <tr key={idx}>
+                                                        <td>{memberData.name}</td>
+                                                        <td>{memberData.position}</td>
+                                                        <td>{memberData.team}</td>
+                                                    </tr>
+                                                )
+                                            })}
+
                                             </tbody>
                                         </Table>
                                     </div>

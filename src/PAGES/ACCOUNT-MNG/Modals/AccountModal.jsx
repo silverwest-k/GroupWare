@@ -6,11 +6,11 @@ import {useEffect, useState} from "react";
 import {MEMBER_LIST_INFO_API} from "../../../constants/api_constans";
 import fetcher from "../../../fetcher";
 
-function AccountModal({showAccountModal, handleAccountModalClose}) {
+function AccountModal({showAccountModal, handleAccountModalClose, fetchMemberList}) {
     const {selectAccount} = useStore(state => state)
     const [member, setMember] = useState([]);
 
-    useEffect(() => {
+    useEffect(()=>{
         fetcher().get(MEMBER_LIST_INFO_API)
             .then((res) => setMember(res.data))
     }, [])

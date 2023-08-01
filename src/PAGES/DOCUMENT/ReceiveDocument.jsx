@@ -6,7 +6,7 @@ import fetcher from "../../fetcher";
 
 export const backgroundColor = {
     "진행중": "#f6c76a",
-    "완료": "#87ea85",
+    "승인": "#87ea85",
     "반려": "#fb6a76"
 }
 
@@ -22,7 +22,7 @@ function ReceiveDocument() {
     useEffect(() => {
         fetcher().get("/receiveDocument")
             .then((res) => setData(res.data))
-    },[])
+    }, [])
 
     const getBackgroundColor = (state) => {
         return backgroundColor[state] || "#ffffff"
@@ -63,8 +63,8 @@ function ReceiveDocument() {
 
                             <div className={styles.approvalButton}
                                  style={{
-                                     cursor: data.state === "완료" ? "not-allowed" : "pointer",
-                                     color: data.state === "완료" ? "gray" : ""
+                                     cursor: data.state === "승인" ? "not-allowed" : "pointer",
+                                     color: data.state === "승인" ? "gray" : ""
                                  }}
                             >
                                 결재하기

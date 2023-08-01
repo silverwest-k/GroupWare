@@ -35,10 +35,15 @@ function AccountManagement() {
         {name: '접속차단', value: '3'}
     ];
 
+    const fetchMemberList =()=>{
+        fetcher().get(MEMBER_LIST_INFO_API)
+            .then((res) => setMember(res.data))
+    }
+
     useEffect(() => {
         resetInput()
+        fetchMemberList()
     }, [])
-
 
     const saveImgFile = () => {
         const file = imgRef.current.files[0];
@@ -67,7 +72,7 @@ function AccountManagement() {
             .then(() =>
                     alert("삭제가 완료되었습니다."),
                 setShowDeleteModal(false),
-                resetInput
+                resetInput, fetchMemberList
             )
             .catch((error) => {
                 console.error('Error deleting account:', error);
@@ -188,7 +193,7 @@ function AccountManagement() {
                 showDeleteModal={showDeleteModal}
                 handleDeleteModalClose={() => setShowDeleteModal(false)}
             />
-            <AccountModal showAccountModal={showAccountModal}
+            <AccountModal showAccountModal={showAccountModal} fetchMemberList={fetchMemberList}
                           handleAccountModalClose={() => setShowAccountModal(false)}/>
             <TeamModal showTeamModal={showTeamModal} handleTeamModalClose={() => setShowTeamModal(false)}/>
             <PositionModal showPositionModal={showPositionModal}

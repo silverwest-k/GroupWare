@@ -16,7 +16,7 @@ function DocumentManagementMenu({menuName}) {
                     <Link to={`/page/${DOCUMENT_REGISTRATION_COMPONENT}`}
                           style={{color: "#FA3E0C"}}
                           onClick={menuName}
-                    >양식등록</Link>
+                    >양식관리</Link>
                     <Link to=""
                           style={{color: "#FA3E0C"}}
                           onClick={menuName}

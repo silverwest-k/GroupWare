@@ -20,8 +20,11 @@ export const DOCUMENT_UPDATE_API ="/documents/update"   // 문서수정
 export const DOCUMENT_DELETE_API="/documents/delete"    // 문서 삭제
 
 // 문서양식 API
-export const CATEGORY_CREATE_API ="/templates/create" // 문서양식 생성
-export const CATEGORY_LIST_API = "/templates/list"  // 문서양식 리스트 조회
+export const CATEGORY_CREATE_API ="/templates/create" // 양식 생성
+export const CATEGORY_DELETE_API = "/templates/delete"  // (+id) 양식 삭제
+export const CATEGORY_LIST_API = "/templates/list"  // 양식 리스트 조회
+export  const SHOW_CATEGORY_API="/templates/read" // (+id) 양식조회
+export const UPDATE_CATEGORY_API ="/templates/update" // (+id) 양식수정
 
 
 // 정보조회 API

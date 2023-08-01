@@ -111,9 +111,7 @@
     text-align: center;
 }
 
-td {
-    justify-content: center;
-    margin: auto;
+.tableBody td {
     text-align: center;
 }
 

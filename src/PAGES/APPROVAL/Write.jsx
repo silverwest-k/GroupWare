@@ -1,21 +1,33 @@
 import styles from "./Write.module.css"
 import Dropdown from 'react-bootstrap/Dropdown';
 import {Button} from "react-bootstrap";
-import {useState} from "react";
+import {useEffect, useRef, useState} from "react";
 import fetcher from "../../fetcher";
-import {CATEGORY_LIST_API, DOCUMENT_CREATE_API} from "../../constants/api_constans";
+import {CATEGORY_LIST_API, DOCUMENT_CREATE_API, SHOW_CATEGORY_API} from "../../constants/api_constans";
 import ApprovalPathModal from "./ApprovalPathModal";
 import useStore from "../../store";
+/* 문서양식 띄우기 */
+import {Editor, Viewer} from '@toast-ui/react-editor';
+import '@toast-ui/editor/dist/toastui-editor-viewer.css';
+import colorSyntax from "@toast-ui/editor-plugin-color-syntax";
 
 function Write() {
     const [title, setTitle] = useState("")
     const [content, setContent] = useState("")
     const [status, setStatus] = useState("1")
-    const [categoryList, setCategoryList] = useState("문서양식")
-    const [categoryTitle, setCategoryTitle] = useState("양식을 선택하세요")
+    const [category, setCategory] = useState("")
+    const [categoryList, setCategoryList] = useState([])
+    const [htmlData, setHtmlData] = useState("")
 
     const [showApprovalPathModal, setShowApprovalPathModal] = useState(false);
+    const editorRef = useRef();
     const {myAccount} = useStore(state => state)
+
+    const onChange = () => {
+        const data = editorRef.current?.getInstance().getHTML();
+        setContent(data)
+        console.log("content : ", content)
+    };
 
     const resetInput = () => {
         setTitle("")
@@ -32,11 +44,19 @@ function Write() {
         alert("상신되었습니다.")
     }
 
-    // const fetchCategoryList = () =>{
-    //     fetcher().get(CATEGORY_LIST_API)
-    //         .then((res) => setCategoryList(res))
-    // }
-    const categorysList = ["휴가신청서", "지출결의서", "외근신청서"]
+    useEffect(() => {
+        fetcher().get(CATEGORY_LIST_API)
+            .then((res) => setCategoryList(res.data))
+    }, [])
+
+    const selectCategory = (id) => {
+        fetcher().get(`${SHOW_CATEGORY_API}/${id}`)
+            .then((res) => {
+                setCategory(res.data)
+                setHtmlData(res.data.content)
+                editorRef.current?.getInstance().setHTML(htmlData);
+            })
+    }
 
     /** 저장, 임시저장 구분*/
     const handleTempSave = () => {
@@ -57,7 +77,7 @@ function Write() {
         {title: "기안자", content: `${myAccount.name}`},
         {title: "기안부서", content: `${myAccount.team}`},
         {title: "기안일", content: `${toDay.year}-${toDay.month}-${toDay.day}`},
-        {title: "문서번호", content: `문서번호`}
+        {title: "문서번호", content: ""}
     ]
 
     const sign_Table_Right_data = [
@@ -66,25 +86,19 @@ function Write() {
         {signTurn: "승인", sign: "", signName: "강동원 차장"}
     ]
 
-    const handleDropdownSelect = (title) => {
-        setCategoryTitle(title)
-    }
-
     return (
         <div className={styles.wrapper}>
             <div className={styles.upperContainer}>
                 <div className={styles.select}>
                     <Dropdown>
-                        <Dropdown.Toggle className="button"
-                            // onClick={fetchCategoryList}
-                        >
-                            문서양식
+                        <Dropdown.Toggle className="button">
+                            {category ? category.title : "문서양식"}
                         </Dropdown.Toggle>
                         <Dropdown.Menu className={styles.dropMenu}>
-                            {categorysList.map((data) => {
+                            {categoryList.map((data) => {
                                 return (
-                                    <Dropdown.Item onClick={() => handleDropdownSelect(data)}>
-                                        {data}
+                                    <Dropdown.Item key={data.id} onClick={() => selectCategory(data.id)}>
+                                        {data.title}
                                     </Dropdown.Item>
                                 )
                             })}
@@ -102,7 +116,9 @@ function Write() {
             </div>
             <div className={styles.divisionLine}></div>
             <div className={styles.lowerContainer}>
-                <div className={styles.categoryTitle}><p>{categoryTitle}</p></div>
+                <div className={styles.categoryTitle}>
+                    <p>{category ? category.title : "양식을 선택하세요"}</p>
+                </div>
                 <div className={styles.signTable}>
                     <div>
                         <table>
@@ -123,22 +139,12 @@ function Write() {
                             <tbody>
                             <tr>
                                 <th className={styles.signTableRight_title}>결재</th>
-                                {sign_Table_Right_data.map((data) => {
+                                {sign_Table_Right_data.map((data, index) => {
                                     return (
-                                        <td className={styles.signTableRight_content}>
-                                            <table>
-                                                <tbody>
-                                                <tr>
-                                                    <td style={{background: "#e3e3e3"}}>{data.signTurn}</td>
-                                                </tr>
-                                                <tr>
-                                                    <td style={{height: "100px"}}>{data.sign}</td>
-                                                </tr>
-                                                <tr>
-                                                    <td>{data.signName}</td>
-                                                </tr>
-                                                </tbody>
-                                            </table>
+                                        <td key={index} className={styles.signTableRight_content}>
+                                            <div className={styles.signInfo}>{data.signTurn}</div>
+                                            <div className={styles.sign}>{data.sign}</div>
+                                            <div className={styles.signInfo}>{data.signName}</div>
                                         </td>
                                     )
                                 })}
@@ -148,17 +154,29 @@ function Write() {
                     </div>
                 </div>
 
-                <div style={{display: "flex", flexDirection: "column", height: "800px", background: "orange"}}>
-                    {/*<input placeholder="제목"*/}
-                    {/*       value={title}*/}
-                    {/*       onChange={(e) => setTitle(e.target.value)}*/}
-                    {/*/>*/}
-                    {/*<textarea placeholder="본문"*/}
-                    {/*          value={content}*/}
-                    {/*          onChange={(e) => setContent(e.target.value)}*/}
-                    {/*/>*/}
+                <div className={styles.editorContainer}>
+                    <Editor
+                        ref={editorRef}
+                        previewStyle="vertical"
 
+                        height="700px"
+                        initialEditType="wysiwyg"
+                        language="ko-KR"
+                        plugins={[colorSyntax]}
+                        hideModeSwitch={true}
+                        useCommandShortcut={false}
+                        onChange={onChange}
+                        toolbarItems={[
+                            // 툴바 옵션 설정
+                            ['heading', 'bold', 'italic', 'strike'],
+                            ['hr', 'quote'],
+                            ['ul', 'ol', 'task', 'indent', 'outdent'],
+                            ['table', 'image', 'link'],
+                            ['code', 'codeblock']
+                        ]}
+                    ></Editor>
                 </div>
+                {/*<Viewer key={htmlData} initialValue={htmlData || ''} />*/}
             </div>
 
             <ApprovalPathModal showApprovalPathModal={showApprovalPathModal}

@@ -88,7 +88,7 @@ function Sidebar() {
                             <Link to={`/page/${DOCUMENT_REGISTRATION_COMPONENT}`}
                                   className={`${styles.underline} ${styles.orange} ${activeLink === DOCUMENT_REGISTRATION_COMPONENT ? styles.active : ""}`}
                                   onClick={() => handleLink(DOCUMENT_REGISTRATION_COMPONENT)}
-                            >양식등록</Link>
+                            >양식관리</Link>
                         </Accordion.Body>
                         <Accordion.Body onClick={menuName}>
                             <Link to=""
