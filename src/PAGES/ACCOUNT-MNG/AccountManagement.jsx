@@ -160,13 +160,13 @@ function AccountManagement() {
                             <th>계정상태</th>
                             <td>
                                 <ButtonGroup>
-                                    {radioState.map((radio, idx) => (
+                                    {radioState.map((radio, index) => (
                                         <ToggleButton
-                                            key={idx}
-                                            id={`radio-${idx}`}
+                                            key={index}
+                                            id={`radio-${index}`}
                                             type="radio"
                                             const
-                                            variant={idx === 0 ? 'outline-primary' : (idx === 1 ? 'outline-warning' : 'outline-danger')}
+                                            variant={index === 0 ? 'outline-primary' : (index === 1 ? 'outline-warning' : 'outline-danger')}
                                             name="radio"
                                             value={radio.value}
                                             checked={radioValue === radio.value}

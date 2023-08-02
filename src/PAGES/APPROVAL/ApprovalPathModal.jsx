@@ -2,19 +2,29 @@ import styles from "./ApprovalPathModal.module.css";
 import {Button, FormControl, InputGroup, Modal, Table} from "react-bootstrap";
 import {useEffect, useState} from "react";
 import fetcher from "../../fetcher";
-import {TEAM_INFO_API, TEAM_MEMBER_INFO_API} from "../../constants/api_constans";
+import {
+    APPROVAL_BOOKMARK_CREATE_API, APPROVAL_BOOKMARK_DELETE_API, APPROVAL_BOOKMARK_INFO_API,
+    APPROVAL_BOOKMARK_LIST_API, TEAM_INFO_API, TEAM_MEMBER_INFO_API
+} from "../../constants/api_constans";
 import useStore from "../../store";
 import Accordion from "react-bootstrap/Accordion";
 
 function ApprovalPathModal({showApprovalPathModal, handleApprovalPathModalClose}) {
-    const {myAccount} = useStore(state => state)
+    const {myAccount, setSignList} = useStore(state => state)
     const [team, setTeam] = useState([]);
     const [selectTeam, setSelectTeam] = useState([]);
     const [member, setMember] = useState([]);
-    const [approvalMembers, setApprovalMembers] = useState([]);
     const [clickedIndex, setClickedIndex] = useState(null);
-    const [activeMember, setActiveMember] = useState("");
-    const [referMember, setReferMember] = useState([]);
+    const [activeMember, setActiveMember] = useState(null);
+    const [approvalMembers, setApprovalMembers] = useState([]); // 결재자
+    const [approvalLineList, setApprovalLineList] = useState("");   // 결재라인리스트
+    const [referMember, setReferMember] = useState([]);     // 참조자
+    const [bookmarkName, setBookmarkName] = useState("");   // 즐겨찾기 이름
+    const [bookmarkList, setBookmarkList] = useState([]);   // 즐겨찾기리스트
+    const [signTurn1, setSignTurn1] = useState(""); // 검토
+    const [signTurn2, setSignTurn2] = useState(""); // 승인
+    const [signRefer, setSignRefer] = useState(""); // 참조
+
     useEffect(() => {
         fetcher().get(TEAM_INFO_API)
             .then((res) => setTeam(res.data))
@@ -29,6 +39,7 @@ function ApprovalPathModal({showApprovalPathModal, handleApprovalPathModalClose}
         }
     }, [selectTeam])
 
+    // 결재자 테이블 추가삭제
     const handleMemberClick = (index) => {
         setClickedIndex(index);
         setActiveMember(member[index]);
@@ -36,25 +47,64 @@ function ApprovalPathModal({showApprovalPathModal, handleApprovalPathModalClose}
     const addToApprovalTable = () => {
         if (activeMember && approvalMembers.length < 2) {
             setApprovalMembers((prevMembers) => [...prevMembers, activeMember]);
-        } else (alert("결재라인은 최대 3명입니다."))
+        } else {
+            alert("결재라인은 최대 3명입니다.")
+        }
+        setSignTurn1(approvalMembers[0])
+        setSignTurn2(approvalMembers[1])
     }
     const removeApprovalTable = () => {
         setApprovalMembers((prevMembers) => {
             return prevMembers.slice(0, prevMembers.length - 1);
         })
     }
-
+    // 참조자 테이블 추가삭제
     const addToReferTable = () => {
         if (activeMember && referMember.length < 1) {
             setReferMember((prevMembers) => [...prevMembers, activeMember]);
-        } else (alert("참조자는 한명만 가능합니다."))
+        } else {
+            alert("참조자는 한명만 가능합니다.")
+        }
+        setSignRefer(activeMember)
     }
     const removeReferTable = () => {
         setReferMember((prevMembers) => {
             return prevMembers.slice(0, prevMembers.length - 1);
         })
     }
-
+    // 결재라인 즐겨찾기 관련
+    const fetchBookmark = () => {
+       fetcher().get(APPROVAL_BOOKMARK_LIST_API)
+            .then((res) => {
+                const data = Object.values(res.data)
+                setBookmarkList(data.map((array) => array[0]["line name"]))
+            })
+            console.log("결재라인 즐겨찾기 :", bookmarkList)
+    }
+    useEffect(() => {
+        fetchBookmark()
+    }, [])
+    const addBookmark = (lineName, turn1, turn2, refer) => {
+        fetcher().post(APPROVAL_BOOKMARK_CREATE_API, {
+            name: lineName,
+            approvers: [turn1.id, turn2.id, refer?.id || ""]
+        })
+            .then(() => setBookmarkName(""), fetchBookmark)
+    }
+    const removeBookmark = (id) => {
+        fetcher().delete(`${APPROVAL_BOOKMARK_DELETE_API}/${id}`)
+            .then(fetchBookmark)
+    }
+    const bookmarkInfo = (id) => {
+        fetcher().get(`${APPROVAL_BOOKMARK_INFO_API}/${id}`)
+            // .then((res) => setBookmarkName())
+        console.log("북마크 정보: " ,bookmarkName)
+    }
+    // 결재라인 적용
+    const enterSignLine = (data) => {
+        setSignList(data)
+        handleApprovalPathModalClose()
+    }
 
     return (
         <div>
@@ -69,20 +119,20 @@ function ApprovalPathModal({showApprovalPathModal, handleApprovalPathModalClose}
                         <div className={styles.leftSide}>
                             <div className={styles.title}>조직도</div>
                             <Accordion defaultActiveKey="0">
-                                {team.map((teamData, idx) => {
+                                {team.map((teamData, index) => {
                                     return (
-                                        <Accordion.Item key={idx} eventKey={idx} className={styles.accordion}>
+                                        <Accordion.Item key={index} eventKey={index} className={styles.accordion}>
                                             <Accordion.Header onClick={() => setSelectTeam(teamData)}>
                                                 <img src={require("../../IMAGES/members.png")}
                                                      style={{padding: "0 10px"}}/>
                                                 {teamData}
                                             </Accordion.Header>
 
-                                            {member.map((memberData, memberIdx) => {
+                                            {member?.map((memberData, memberIndex) => {
                                                 return (
-                                                    <Accordion.Body key={memberIdx}
-                                                                    className={`${styles.chartMember} ${memberIdx === clickedIndex ? styles.boldText : ""}`}
-                                                                    onClick={() => handleMemberClick(memberIdx)}
+                                                    <Accordion.Body key={memberIndex}
+                                                                    className={`${styles.chartMember} ${memberIndex === clickedIndex ? styles.boldText : ""}`}
+                                                                    onClick={() => handleMemberClick(memberIndex)}
                                                     >
                                                         <img src={require("../../IMAGES/member.png")}
                                                              style={{padding: "0 12px"}}/>
@@ -94,14 +144,6 @@ function ApprovalPathModal({showApprovalPathModal, handleApprovalPathModalClose}
                                     )
                                 })}
                             </Accordion>
-
-                            {/*<div style={{marginTop:"50px"}}>*/}
-                            {/*    <div className={styles.title}>직원검색</div>*/}
-                            {/*    <InputGroup>*/}
-                            {/*        <FormControl type="text" className="form-control-lg" placeholder="이름"/>*/}
-                            {/*        <Button className={styles.buttonStyle}> 검색 </Button>*/}
-                            {/*    </InputGroup>*/}
-                            {/*</div>*/}
                         </div>
 
                         <div className={styles.midSide}>
@@ -131,15 +173,21 @@ function ApprovalPathModal({showApprovalPathModal, handleApprovalPathModalClose}
                                 <div className={styles.bookmarkLine}>
                                     <p style={{marginBottom: "0"}}>사용자 결재라인</p>
                                     <select>
-                                        <option value="">휴가신청서</option>
-                                        <option value="">지출결의서</option>
-                                        <option value="">지각사유서</option>
+                                        {bookmarkList?.map((data, index) => {
+                                            return (
+                                                <option onClick={()=>bookmarkInfo()} key={index}>
+                                                    {data ? data.name : "결재라인"}
+                                                </option>
+                                            )
+                                        })}
                                     </select>
-                                    <Button className="button" style={{padding: "6px"}}>삭제</Button>
+                                    <Button className="button" style={{padding: "6px"}}
+                                            onClick={() => removeBookmark()}
+                                    >삭제</Button>
                                 </div>
 
                                 <div>
-                                    <div className={styles.tableContainer}>
+                                    <div className={styles.tableContainer} style={{height: "220px"}}>
                                         <p className={styles.title}>결재자</p>
                                         <Table>
                                             <thead className={styles.tableHead}>
@@ -157,18 +205,13 @@ function ApprovalPathModal({showApprovalPathModal, handleApprovalPathModalClose}
                                                 <td>{myAccount.team}</td>
                                                 <td>작성</td>
                                             </tr>
-                                            {approvalMembers.map((memberData, idx) => {
+                                            {approvalMembers?.map((memberData, index) => {
                                                 return (
-                                                    <tr key={idx}>
+                                                    <tr key={index}>
                                                         <td>{memberData.name}</td>
                                                         <td>{memberData.position}</td>
                                                         <td>{memberData.team}</td>
-                                                        <td>
-                                                            <select>
-                                                                <option value="">검토</option>
-                                                                <option value="">승인</option>
-                                                            </select>
-                                                        </td>
+                                                        <td>{index === 0 ? "검토" : "승인"}</td>
                                                     </tr>
                                                 )
                                             })}
@@ -178,7 +221,7 @@ function ApprovalPathModal({showApprovalPathModal, handleApprovalPathModalClose}
                                 </div>
 
                                 <div>
-                                    <div className={styles.tableContainer}>
+                                    <div className={styles.tableContainer} style={{height: "140px"}}>
                                         <p className={styles.title}>참조자</p>
                                         <Table>
                                             <thead className={styles.tableHead}>
@@ -189,32 +232,36 @@ function ApprovalPathModal({showApprovalPathModal, handleApprovalPathModalClose}
                                             </tr>
                                             </thead>
                                             <tbody className={styles.tableBody}>
-                                            {referMember.map((memberData, idx) => {
+                                            {referMember?.map((memberData, index) => {
                                                 return (
-                                                    <tr key={idx}>
+                                                    <tr key={index}>
                                                         <td>{memberData.name}</td>
                                                         <td>{memberData.position}</td>
                                                         <td>{memberData.team}</td>
                                                     </tr>
                                                 )
                                             })}
-
                                             </tbody>
                                         </Table>
                                     </div>
                                 </div>
 
-                                {/* 결재라인 추가 */}
                                 <div className={styles.bookmarkLine}>
                                     <p style={{marginBottom: "0"}}>사용자 결재라인 이름</p>
-                                    <input/>
-                                    <Button className="button" style={{padding: "6px"}}>저장</Button>
+                                    <input value={bookmarkName}
+                                           onChange={(e) => setBookmarkName(e.target.value)}
+                                    />
+                                    <Button className="button" style={{padding: "6px"}}
+                                            onClick={() => addBookmark(bookmarkName, signTurn1, signTurn2, signRefer)}
+                                    >저장</Button>
                                 </div>
                             </div>
 
-                            {/* 버튼 */}
                             <div style={{float: "right", padding: "15px 0"}}>
-                                <Button className="button">적용</Button>
+                                <Button className="button"
+                                        onClick={() => enterSignLine(signTurn1, signTurn2, signRefer)}
+                                >적용
+                                </Button>
                                 <Button variant="secondary"
                                         style={{marginLeft: "15px"}}
                                         onClick={handleApprovalPathModalClose}

@@ -4,11 +4,11 @@ export const LOGOUT_API = "/auth/logout" // 로그아웃
 
 // 계정관련 API
 export const CREATE_ID_API = "/auth/admin/signup"   // 계정등록
-export const MY_PASSWORD_CHANGE_API = "/member/password"  // 본인 비밀번호 변경
+export const MY_INFO_CHANGE_API = "/member/profile"  // 본인 비밀번호 + 사진 변경
 export const ACCOUNT_INFO_API ="/auth/admin/members"
-    //(+id) GET : 직원상세정보
-    // (+id) DELETE : 계정삭제
-    // (+id/password) POST {newPassword ""} : 관리자 -> 임직원 비밀번호 변경
+                                                    //(+id) GET : 직원상세정보
+                                                    // (+id) DELETE : 계정삭제
+                                                    // (+id/password) POST {newPassword ""} : 관리자 -> 임직원 비밀번호 변경
 
 // 문서관련 API
 export const REPORT_DOCUMENT_LIST_API = "/documents/mylist" // 상신문서함
@@ -26,6 +26,12 @@ export const CATEGORY_LIST_API = "/templates/list"  // 양식 리스트 조회
 export  const SHOW_CATEGORY_API="/templates/read" // (+id) 양식조회
 export const UPDATE_CATEGORY_API ="/templates/update" // (+id) 양식수정
 
+// 결재관련 API
+export const APPROVAL_SIGN_API ="/approval/approve" // 결재승인, 반려
+export const APPROVAL_BOOKMARK_CREATE_API= "/line/create" // 결재라인 즐겨찾기 추가
+export const APPROVAL_BOOKMARK_DELETE_API="/line/delete" // (+id) 결재라인 즐겨찾기 삭제
+export const APPROVAL_BOOKMARK_LIST_API="/line/list"  // 결재라인 즐겨찾기 리스트
+export const APPROVAL_BOOKMARK_INFO_API="/line" //(+id) 즐겨찾기 결재라인 상세
 
 // 정보조회 API
 export const MY_INFO_API = "/member/me" //내정보

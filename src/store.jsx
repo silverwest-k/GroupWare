@@ -12,21 +12,28 @@ const useStore = create(set => ({
     selectPosition: (e) => set(state => ({positionName:e})),
 
     account: {
-        "name": "",
-        "password": "",
-        "no": "",
-        "team": "",
-        "position": ""
+        name: "",
+        password: "",
+        no: "",
+        team: "",
+        position: ""
     },
     selectAccount: (e) => set(state =>({account:e})),
 
     myAccount: {
-        "name": "",
-        "no": "",
-        "team": "",
-        "position": ""
+        name: "",
+        no: "",
+        team: "",
+        position: ""
     },
-    setMyAccountInfo: (e) => set(state=>({myAccount:e}))
+    setMyAccountInfo: (e) => set(state=>({myAccount:e})),
+
+    signList: {
+        signTurn1: "",
+        signTurn2: "",
+        signRefer: "",
+    },
+    setSignLine: (e)=> set(state=>({signList:e}))
 
 }))
 

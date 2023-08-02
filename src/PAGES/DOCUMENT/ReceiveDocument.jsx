@@ -19,10 +19,10 @@ function ReceiveDocument() {
     const total = data.length;
     const pageNum = Math.ceil(total / limit);
 
-    useEffect(() => {
-        fetcher().get("/receiveDocument")
-            .then((res) => setData(res.data))
-    }, [])
+    // useEffect(() => {
+    //     fetcher().get()
+    //         .then((res) => setData(res.data))
+    // }, [])
 
     const getBackgroundColor = (state) => {
         return backgroundColor[state] || "#ffffff"
@@ -37,9 +37,9 @@ function ReceiveDocument() {
                 </InputGroup>
             </div>
             <div className={styles.cardContainer}>
-                {data.slice(offset, offset + limit).map((data, idx) => {
+                {data.slice(offset, offset + limit).map((data, index) => {
                     return (
-                        <div className={styles.card} key={idx}>
+                        <div className={styles.card} key={index}>
                             <div className={styles.contents}>
                                 <div className={styles.upperState}
                                      style={{background: getBackgroundColor(data.state)}}

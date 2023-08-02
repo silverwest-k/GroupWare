@@ -21,7 +21,7 @@ function Write() {
 
     const [showApprovalPathModal, setShowApprovalPathModal] = useState(false);
     const editorRef = useRef();
-    const {myAccount} = useStore(state => state)
+    const {myAccount, signList} = useStore(state => state)
 
     const onChange = () => {
         const data = editorRef.current?.getInstance().getHTML();
@@ -69,8 +69,8 @@ function Write() {
     const time = new Date();
     const toDay = {
         year: time.getFullYear(),
-        month: time.getMonth() + 1,
-        day: time.getDate()
+        month: (time.getMonth() + 1).toString().padStart(2, "0"),
+        day: time.getDate().toString().padStart(2, "0")
     }
 
     const sign_Table_Left_data = [
@@ -81,9 +81,9 @@ function Write() {
     ]
 
     const sign_Table_Right_data = [
-        {signTurn: "작성", sign: "결재완료", signName: `${myAccount.name}${myAccount.position}`},
-        {signTurn: "검토", sign: "결재중", signName: "김성철 대리"},
-        {signTurn: "승인", sign: "", signName: "강동원 차장"}
+        {signTurn: "작 성", sign: "", signName: `${myAccount.name}${myAccount.position}`},
+        {signTurn: "검 토", sign: "", signName: signList.signTurn1},
+        {signTurn: "승 인", sign: "", signName: signList.signTurn2}
     ]
 
     return (
@@ -151,14 +151,23 @@ function Write() {
                             </tr>
                             </tbody>
                         </table>
+
+                        <div className={styles.referTable}>
+                            <div className={styles.referTitle}>참조</div>
+                            <div className={styles.referContent}></div>
+                        </div>
                     </div>
                 </div>
 
                 <div className={styles.editorContainer}>
+                    <input value={title}
+                           placeholder={"제목을 입력하세요"}
+                           style={{margin: "10px 0"}}
+                           onChange={(e)=> setTitle(e.target.value)}
+                    />
                     <Editor
                         ref={editorRef}
                         previewStyle="vertical"
-
                         height="700px"
                         initialEditType="wysiwyg"
                         language="ko-KR"

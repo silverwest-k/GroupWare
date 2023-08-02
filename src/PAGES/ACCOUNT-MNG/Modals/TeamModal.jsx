@@ -29,9 +29,9 @@ function TeamModal({showTeamModal, handleTeamModalClose}) {
                 </Modal.Header>
 
                 <Modal.Body>
-                    {team.map((data, idx)=>{
+                    {team.map((data, index)=>{
                         return(
-                            <p  key={idx}
+                            <p  key={index}
                                 className={styles.position}
                                style={{cursor:"pointer"}}
                                onClick={()=>pickTeam(data)}

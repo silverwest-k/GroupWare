@@ -4,7 +4,7 @@ import styles from "./MyPage.module.css";
 import commonStyles from "../ACCOUNT-MNG/AccountManagement.module.css";
 import {Button} from "react-bootstrap";
 import fetcher from "../../fetcher";
-import {MY_PASSWORD_CHANGE_API} from "../../constants/api_constans";
+import {MY_INFO_CHANGE_API} from "../../constants/api_constans";
 
 function MyPage() {
     const imgRef = useRef();
@@ -17,7 +17,7 @@ function MyPage() {
     }
 
     const passwordChange = () =>{
-        fetcher().post(MY_PASSWORD_CHANGE_API, {
+        fetcher().post(MY_INFO_CHANGE_API, {
             "newPassword": password})
             .then(resetInput)
             alert("수정 완료되었습니다.")

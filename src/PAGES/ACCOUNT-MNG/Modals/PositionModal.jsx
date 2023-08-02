@@ -27,9 +27,9 @@ function PositionModal({showPositionModal, handlePositionModalClose}) {
                     <Modal.Title style={{fontWeight: "bold"}}>직급 선택</Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
-                    {position.map((data, idx) => {
+                    {position.map((data, index) => {
                         return (
-                            <p key={idx}
+                            <p key={index}
                                className={styles.position}
                                style={{cursor: "pointer"}}
                                onClick={() => pickPosition(data)}

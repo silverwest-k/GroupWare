@@ -49,9 +49,9 @@ function AccountModal({showAccountModal, handleAccountModalClose, fetchMemberLis
                                     </thead>
 
                                     <tbody className={tableStyles.tableBody}>
-                                    {member.map((data, idx) => {
+                                    {member.map((data, index) => {
                                         return (
-                                            <tr key={idx} style={{cursor: "pointer"}}
+                                            <tr key={index} style={{cursor: "pointer"}}
                                                 onClick={() => pickAccount(data)}
                                             >
                                                 <td>{data.no}</td>

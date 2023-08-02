@@ -35,11 +35,11 @@ function DocumentTable({listData}) {
                     </thead>
 
                     <tbody className={styles.tableBody}>
-                    {/*{listData.slice(offset, offset + limit).map((data, idx) => {*/}
-                    {listData.map((data, idx) => {
+                    {/*{listData.slice(offset, offset + limit).map((data, index) => {*/}
+                    {listData.map((data, index) => {
                         return (
                             <tr key={data.id} onClick={() => routeDetail(data.id)}>
-                                <td>{idx + 1}</td>
+                                <td>{index + 1}</td>
                                 <td>{data.title}</td>
                                 <td>{data.createDate.split("T", 1)}</td>
                                 <td style={{display: "flex", justifyContent: "center"}}>
