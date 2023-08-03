@@ -10,25 +10,32 @@ import useStore from "../../store";
 import {Editor, Viewer} from '@toast-ui/react-editor';
 import '@toast-ui/editor/dist/toastui-editor-viewer.css';
 import colorSyntax from "@toast-ui/editor-plugin-color-syntax";
+import {useNavigate} from "react-router-dom";
+import {REPORT_DOCUMENT_COMPONENT, TEMP_DOCUMENT_COMPONENT} from "../../constants/component_constants";
 
 function Write() {
+    const {myAccount, signLine} = useStore(state => state)
+    const editorRef = useRef();
+    const navigate = useNavigate();
+
     const [title, setTitle] = useState("")
     const [content, setContent] = useState("")
     const [status, setStatus] = useState("1")
     const [category, setCategory] = useState("")
     const [categoryList, setCategoryList] = useState([])
     const [htmlData, setHtmlData] = useState("")
-
     const [showApprovalPathModal, setShowApprovalPathModal] = useState(false);
-    const editorRef = useRef();
-    const {myAccount, signList} = useStore(state => state)
+
+    useEffect(() => {
+        fetcher().get(CATEGORY_LIST_API)
+            .then((res) => setCategoryList(res.data))
+    }, [])
 
     const onChange = () => {
         const data = editorRef.current?.getInstance().getHTML();
         setContent(data)
         console.log("content : ", content)
     };
-
     const resetInput = () => {
         setTitle("")
         setContent("")
@@ -41,13 +48,7 @@ function Write() {
             "status": status,
         })
             .then(resetInput)
-        alert("상신되었습니다.")
     }
-
-    useEffect(() => {
-        fetcher().get(CATEGORY_LIST_API)
-            .then((res) => setCategoryList(res.data))
-    }, [])
 
     const selectCategory = (id) => {
         fetcher().get(`${SHOW_CATEGORY_API}/${id}`)
@@ -61,9 +62,13 @@ function Write() {
     /** 저장, 임시저장 구분*/
     const handleTempSave = () => {
         saveBtn(0)
+        alert("저장되었습니다.")
+        navigate(`/page/${TEMP_DOCUMENT_COMPONENT}`)
     }
     const handleSave = () => {
         saveBtn(1)
+        alert("상신되었습니다.")
+        navigate(`/page/${REPORT_DOCUMENT_COMPONENT}`)
     }
 
     const time = new Date();
@@ -72,18 +77,16 @@ function Write() {
         month: (time.getMonth() + 1).toString().padStart(2, "0"),
         day: time.getDate().toString().padStart(2, "0")
     }
-
     const sign_Table_Left_data = [
         {title: "기안자", content: `${myAccount.name}`},
         {title: "기안부서", content: `${myAccount.team}`},
         {title: "기안일", content: `${toDay.year}-${toDay.month}-${toDay.day}`},
         {title: "문서번호", content: ""}
     ]
-
     const sign_Table_Right_data = [
         {signTurn: "작 성", sign: "", signName: `${myAccount.name}${myAccount.position}`},
-        {signTurn: "검 토", sign: "", signName: signList.signTurn1},
-        {signTurn: "승 인", sign: "", signName: signList.signTurn2}
+        {signTurn: "검 토", sign: "", signName: signLine.signTurn1 ? `${signLine.signTurn1.name} ${signLine.signTurn1.position}` : ""},
+        {signTurn: "승 인", sign: "", signName: signLine.signTurn2 ? `${signLine.signTurn2.name} ${signLine.signTurn2.position}` : ""}
     ]
 
     return (
@@ -92,13 +95,13 @@ function Write() {
                 <div className={styles.select}>
                     <Dropdown>
                         <Dropdown.Toggle className="button">
-                            {category ? category.title : "문서양식"}
+                            {category ? category.category : "문서양식"}
                         </Dropdown.Toggle>
                         <Dropdown.Menu className={styles.dropMenu}>
                             {categoryList.map((data) => {
                                 return (
                                     <Dropdown.Item key={data.id} onClick={() => selectCategory(data.id)}>
-                                        {data.title}
+                                        {data.category}
                                     </Dropdown.Item>
                                 )
                             })}
@@ -117,7 +120,7 @@ function Write() {
             <div className={styles.divisionLine}></div>
             <div className={styles.lowerContainer}>
                 <div className={styles.categoryTitle}>
-                    <p>{category ? category.title : "양식을 선택하세요"}</p>
+                    <p>{category ? category.category : "양식을 선택하세요"}</p>
                 </div>
                 <div className={styles.signTable}>
                     <div>
@@ -154,7 +157,7 @@ function Write() {
 
                         <div className={styles.referTable}>
                             <div className={styles.referTitle}>참조</div>
-                            <div className={styles.referContent}></div>
+                            <div className={styles.referContent}>{`${signLine.signRefer.name} ${signLine.signRefer.position}`}</div>
                         </div>
                     </div>
                 </div>

@@ -15,7 +15,7 @@ export const DOCUMENT_DETAIL_COMPONENT="documentdetail"
 // 마이페이지
 export const MY_PAGE_COMPONENT = "mypage"
 
-// 문서관리
+// 양식관리
 export const DOCUMENT_REGISTRATION_COMPONENT="documentregistration"
 
 // 계정관리

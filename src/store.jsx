@@ -28,12 +28,24 @@ const useStore = create(set => ({
     },
     setMyAccountInfo: (e) => set(state=>({myAccount:e})),
 
-    signList: {
-        signTurn1: "",
-        signTurn2: "",
-        signRefer: "",
+    signLine: {
+        signTurn1: {
+            id: "",
+            name: "",
+            position: ""
+        },
+        signTurn2: {
+            id: "",
+            name: "",
+            position: ""
+        },
+        signRefer: {
+            id: "",
+            name: "",
+            position: ""
+        },
     },
-    setSignLine: (e)=> set(state=>({signList:e}))
+    setSignLine: (e)=> set(state=>({signLine:e}))
 
 }))
 

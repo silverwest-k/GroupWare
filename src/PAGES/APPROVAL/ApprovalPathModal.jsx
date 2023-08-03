@@ -1,5 +1,5 @@
 import styles from "./ApprovalPathModal.module.css";
-import {Button, FormControl, InputGroup, Modal, Table} from "react-bootstrap";
+import {Button, Modal, Table} from "react-bootstrap";
 import {useEffect, useState} from "react";
 import fetcher from "../../fetcher";
 import {
@@ -10,16 +10,16 @@ import useStore from "../../store";
 import Accordion from "react-bootstrap/Accordion";
 
 function ApprovalPathModal({showApprovalPathModal, handleApprovalPathModalClose}) {
-    const {myAccount, setSignList} = useStore(state => state)
+    const {myAccount, setSignLine, signLine} = useStore(state => state)
     const [team, setTeam] = useState([]);
     const [selectTeam, setSelectTeam] = useState([]);
     const [member, setMember] = useState([]);
     const [clickedIndex, setClickedIndex] = useState(null);
     const [activeMember, setActiveMember] = useState(null);
     const [approvalMembers, setApprovalMembers] = useState([]); // 결재자
-    const [approvalLineList, setApprovalLineList] = useState("");   // 결재라인리스트
     const [referMember, setReferMember] = useState([]);     // 참조자
     const [bookmarkName, setBookmarkName] = useState("");   // 즐겨찾기 이름
+    const [bookmarkId, setBookmarkId] = useState("");   // 즐겨찾기 ID
     const [bookmarkList, setBookmarkList] = useState([]);   // 즐겨찾기리스트
     const [signTurn1, setSignTurn1] = useState(""); // 검토
     const [signTurn2, setSignTurn2] = useState(""); // 승인
@@ -52,6 +52,7 @@ function ApprovalPathModal({showApprovalPathModal, handleApprovalPathModalClose}
         }
         setSignTurn1(approvalMembers[0])
         setSignTurn2(approvalMembers[1])
+        console.log(approvalMembers);
     }
     const removeApprovalTable = () => {
         setApprovalMembers((prevMembers) => {
@@ -74,37 +75,73 @@ function ApprovalPathModal({showApprovalPathModal, handleApprovalPathModalClose}
     }
     // 결재라인 즐겨찾기 관련
     const fetchBookmark = () => {
-       fetcher().get(APPROVAL_BOOKMARK_LIST_API)
+        fetcher().get(APPROVAL_BOOKMARK_LIST_API)
             .then((res) => {
-                const data = Object.values(res.data)
-                setBookmarkList(data.map((array) => array[0]["line name"]))
+                const fetchData = Object.values(res.data)
+                const bookmarkData = fetchData.flatMap((innerArr) => {
+                    const firstObj = innerArr[0];
+                    return {
+                        id: firstObj.lineId,
+                        name: firstObj.lineName
+                    }
+                })
+                setBookmarkList(bookmarkData);
             })
-            console.log("결재라인 즐겨찾기 :", bookmarkList)
     }
     useEffect(() => {
         fetchBookmark()
     }, [])
-    const addBookmark = (lineName, turn1, turn2, refer) => {
+    const addBookmark = () => {
         fetcher().post(APPROVAL_BOOKMARK_CREATE_API, {
-            name: lineName,
-            approvers: [turn1.id, turn2.id, refer?.id || ""]
+            name: bookmarkName,
+            approvers: [signTurn1.id, signTurn2.id, signRefer?.id || ""]
         })
             .then(() => setBookmarkName(""), fetchBookmark)
     }
     const removeBookmark = (id) => {
         fetcher().delete(`${APPROVAL_BOOKMARK_DELETE_API}/${id}`)
             .then(fetchBookmark)
+        alert("삭제되었습니다.")
     }
     const bookmarkInfo = (id) => {
-        fetcher().get(`${APPROVAL_BOOKMARK_INFO_API}/${id}`)
-            // .then((res) => setBookmarkName())
-        console.log("북마크 정보: " ,bookmarkName)
+        if (id) {
+            fetcher().get(`${APPROVAL_BOOKMARK_INFO_API}/${id}`)
+                .then((res) => {
+                    const fetchData = (res.data)
+                    const key = Object.keys(fetchData)
+                    setSignTurn1(fetchData[1])
+                    setSignTurn2(fetchData[2])
+                    setSignRefer(fetchData[3])
+                    setApprovalMembers([fetchData[key][1], fetchData[key][2]]);
+                    setReferMember([fetchData[key][3]]);
+                })
+        }
     }
     // 결재라인 적용
-    const enterSignLine = (data) => {
-        setSignList(data)
+    const enterSignLine = () => {
+        setSignLine({
+            signTurn1: {
+                id: signTurn1.id,
+                name: signTurn1.name,
+                position: signTurn1.position
+            },
+            signTurn2: {
+                id: signTurn2.id,
+                name: signTurn2.name,
+                position: signTurn2.position
+            },
+            signRefer: {
+                id: signRefer.id,
+                name: signRefer.name,
+                position: signRefer.position
+            },
+        })
         handleApprovalPathModalClose()
     }
+    console.log("signTurn1",signTurn1);
+    console.log("signTurn2",signTurn2);
+    console.log("signRefer",signRefer);
+    console.log("signLine",signLine);
 
     return (
         <div>
@@ -172,17 +209,18 @@ function ApprovalPathModal({showApprovalPathModal, handleApprovalPathModalClose}
                                 <p className={styles.title}>결재선 정보</p>
                                 <div className={styles.bookmarkLine}>
                                     <p style={{marginBottom: "0"}}>사용자 결재라인</p>
-                                    <select>
+                                    <select onChange={(e) => setBookmarkId(e.target.value)}
+                                            onClick={() => bookmarkInfo(bookmarkId)}>
                                         {bookmarkList?.map((data, index) => {
                                             return (
-                                                <option onClick={()=>bookmarkInfo()} key={index}>
-                                                    {data ? data.name : "결재라인"}
+                                                <option key={index} value={data.id}>
+                                                    {data.name}
                                                 </option>
                                             )
                                         })}
                                     </select>
                                     <Button className="button" style={{padding: "6px"}}
-                                            onClick={() => removeBookmark()}
+                                            onClick={() => removeBookmark(bookmarkId)}
                                     >삭제</Button>
                                 </div>
 
@@ -252,14 +290,14 @@ function ApprovalPathModal({showApprovalPathModal, handleApprovalPathModalClose}
                                            onChange={(e) => setBookmarkName(e.target.value)}
                                     />
                                     <Button className="button" style={{padding: "6px"}}
-                                            onClick={() => addBookmark(bookmarkName, signTurn1, signTurn2, signRefer)}
+                                            onClick={addBookmark}
                                     >저장</Button>
                                 </div>
                             </div>
 
                             <div style={{float: "right", padding: "15px 0"}}>
                                 <Button className="button"
-                                        onClick={() => enterSignLine(signTurn1, signTurn2, signRefer)}
+                                        onClick={enterSignLine}
                                 >적용
                                 </Button>
                                 <Button variant="secondary"
