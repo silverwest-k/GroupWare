@@ -131,8 +131,27 @@
 
  /* 에디터 */
 .editorContainer {
+    height: 750px;
     display: flex;
     flex-direction: column;
     margin: 10px 115px;
     justify-content: center;
+}
+.documentTitle {
+    display: flex;
+    flex-direction: row;
+    align-items: baseline
+}
+.documentTitle p {
+    font-size: 18px;
+    font-weight: bold;
+    margin-right: 20px;
+}
+.documentTitle input {
+    width: calc(100% - 70px);
+}
+.documentContent{
+    min-height: 690px;
+    background: orange;
+    overflow: auto;
 }

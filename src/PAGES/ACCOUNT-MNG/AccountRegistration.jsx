@@ -45,6 +45,7 @@ function AccountRegistration() {
             .then(() => {
                 setShowRegisterModal(false);
                 resetInput();
+                alert("계정 등록을 완료하였습니다.")
             })
             .catch((error) => {
                 alert("값이 올바르지 않습니다.");

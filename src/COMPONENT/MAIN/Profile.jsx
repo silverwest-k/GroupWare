@@ -16,7 +16,7 @@ function Profile() {
 
     return (
         <div className={styles.profile}>
-            <h5>안녕하세요, {myAccount.name}님</h5>
+            <p className={styles.hello}>안녕하세요, <div style={{fontWeight:"bold"}}>{myAccount.name}</div>님</p>
             <div className={styles.container}>
                 <div className={styles.profileImg}>
                     <img src={require("../../IMAGES/profile.jpeg")}/>

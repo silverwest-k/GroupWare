@@ -2,13 +2,10 @@ import styles from "./ReceiveDocument.module.css"
 import Pagination from "react-bootstrap/Pagination";
 import {useEffect, useState} from "react";
 import {Button, FormControl, InputGroup} from "react-bootstrap";
+import {backgroundColor} from "./components/DocumentTable";
 import fetcher from "../../fetcher";
 
-export const backgroundColor = {
-    "진행중": "#f6c76a",
-    "승인": "#87ea85",
-    "반려": "#fb6a76"
-}
+
 
 function ReceiveDocument() {
     const [data, setData] = useState([]);
@@ -18,11 +15,6 @@ function ReceiveDocument() {
     const offset = (page - 1) * limit;
     const total = data.length;
     const pageNum = Math.ceil(total / limit);
-
-    // useEffect(() => {
-    //     fetcher().get()
-    //         .then((res) => setData(res.data))
-    // }, [])
 
     const getBackgroundColor = (state) => {
         return backgroundColor[state] || "#ffffff"

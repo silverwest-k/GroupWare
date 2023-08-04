@@ -52,7 +52,6 @@ function ApprovalPathModal({showApprovalPathModal, handleApprovalPathModalClose}
         }
         setSignTurn1(approvalMembers[0])
         setSignTurn2(approvalMembers[1])
-        console.log(approvalMembers);
     }
     const removeApprovalTable = () => {
         setApprovalMembers((prevMembers) => {
@@ -142,6 +141,8 @@ function ApprovalPathModal({showApprovalPathModal, handleApprovalPathModalClose}
     console.log("signTurn2",signTurn2);
     console.log("signRefer",signRefer);
     console.log("signLine",signLine);
+
+
 
     return (
         <div>

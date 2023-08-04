@@ -6,7 +6,7 @@ function AccountManagementMenu({menuName}) {
     return(
         <>
             <div className={styles.mainMenu}
-                 style={{background: "rgba(250, 62, 12, 0.21)"}}
+                 style={{border: "1px solid rgba(250, 62, 12, 0.6)"}}
             >
                 <img className={styles.icon} src={require("../../../IMAGES/management.png")}/>
 
