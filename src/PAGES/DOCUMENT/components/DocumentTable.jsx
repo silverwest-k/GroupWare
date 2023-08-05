@@ -2,10 +2,9 @@ import styles from "./DocumentTable.module.css";
 import {Table} from "react-bootstrap";
 import {useNavigate} from "react-router-dom";
 import {DOCUMENT_DETAIL_COMPONENT} from "../../../constants/component_constants";
-import {useState} from "react";
 
 export const backgroundColor = {
-    "진행중": "#f6c76a",
+    "진행중": "#f8d287",
     "승인": "#87ea85",
     "반려": "#fb6a76"
 }
@@ -15,8 +14,8 @@ function DocumentTable({listData}) {
     const routeDetail = (id) => {
         navigate(`/page/${DOCUMENT_DETAIL_COMPONENT}/${id}`);
     }
-    const getBackgroundColor = (reult) => {
-        return backgroundColor[reult] || "#ffffff"
+    const getBackgroundColor = (result) => {
+        return backgroundColor[result] || "#ffffff"
     };
 
     return (

@@ -20,28 +20,26 @@ function DocumentDetail() {
                 // 문서 정보
                 setDocumentData(res.data.document)
                 // 결재라인
-                const approvalValue = Object.values(res.data.groupedApprovals)
-                setSignLine(approvalValue)
+                setSignLine(Object.values(res.data.groupedApprovals))
             })
     }, [id])
 
-    const deleteBtn = (id) => {
+    const deleteBtn = () => {
         fetcher().delete(`${DOCUMENT_DELETE_API}/${id}`)
             .then(
                 alert("삭제 되었습니다."),
                 navigate(-1)
             )
     }
-    console.log("documentData", documentData)
-    console.log("signLine", signLine)
 
     return (
         <div className={styles.wrapper}>
             <div className={styles.upperContainer}>
                 <div className={styles.buttonGroup}>
                     <Button className="button" onClick={()=>navigate(-1)}>목록으로</Button>
+                    <Button className="button">결재하기</Button>
                     <Button className="button">수정하기</Button>
-                    <Button className="button" onClick={()=>deleteBtn(documentData.id)}>삭제하기 </Button>
+                    <Button className="button" onClick={deleteBtn}>삭제하기 </Button>
                 </div>
             </div>
 

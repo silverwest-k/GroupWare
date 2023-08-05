@@ -3,13 +3,13 @@ import LogoutBtn from "../LogoutBtn";
 import useStore from "../../store";
 
 function Profile() {
-    // const [myInfo, setMyInfo] = useState({})
     const { myAccount} = useStore(state => state)
-
 
     return (
         <div className={styles.profile}>
-            <p className={styles.hello}>안녕하세요, <div style={{fontWeight:"bold"}}>{myAccount.name}</div>님</p>
+            <div className={styles.hello}>
+                <p>안녕하세요,</p> <p style={{fontWeight:"bold"}}>{myAccount.name}</p><p>님</p>
+            </div>
             <div className={styles.container}>
                 <div className={styles.profileImg}>
                     <img src={require("../../IMAGES/profile.jpeg")}/>

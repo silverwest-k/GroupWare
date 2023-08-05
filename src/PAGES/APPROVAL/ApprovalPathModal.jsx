@@ -10,14 +10,14 @@ import useStore from "../../store";
 import Accordion from "react-bootstrap/Accordion";
 
 function ApprovalPathModal({showApprovalPathModal, handleApprovalPathModalClose}) {
-    const {myAccount, setSignLine, signLine} = useStore(state => state)
+    const {myAccount, setSignLine} = useStore(state => state)
     const [team, setTeam] = useState([]);
     const [selectTeam, setSelectTeam] = useState([]);
     const [member, setMember] = useState([]);
     const [clickedIndex, setClickedIndex] = useState(null);
     const [activeMember, setActiveMember] = useState(null);
-    const [approvalMembers, setApprovalMembers] = useState([]); // 결재자
-    const [referMember, setReferMember] = useState([]);     // 참조자
+    const [approvalMembers, setApprovalMembers] = useState([]); // 결재자 테이블
+    const [referMember, setReferMember] = useState([]);     // 참조자 테이블
     const [bookmarkName, setBookmarkName] = useState("");   // 즐겨찾기 이름
     const [bookmarkId, setBookmarkId] = useState("");   // 즐겨찾기 ID
     const [bookmarkList, setBookmarkList] = useState([]);   // 즐겨찾기리스트
@@ -43,28 +43,25 @@ function ApprovalPathModal({showApprovalPathModal, handleApprovalPathModalClose}
     };
     const addToApprovalTable = () => {
         if (activeMember && approvalMembers.length < 2) {
-            setApprovalMembers((prevMembers) => [...prevMembers, activeMember]);
+            setApprovalMembers(approvalMembers.concat(activeMember));
         } else {
             alert("결재라인은 최대 3명입니다.")
         }
     }
     const removeApprovalTable = () => {
-        setApprovalMembers((prevMembers) => {
-            return prevMembers.slice(0, prevMembers.length - 1);
-        })
+        setApprovalMembers((prevMembers) => prevMembers.slice(0, -1));
     }
+
     // 참조자 테이블 추가삭제
     const addToReferTable = () => {
         if (activeMember && referMember.length < 1) {
-            setReferMember((prevMembers) => [...prevMembers, activeMember]);
+            setReferMember(referMember.concat(activeMember));
         } else {
             alert("참조자는 한명만 가능합니다.")
         }
     }
     const removeReferTable = () => {
-        setReferMember((prevMembers) => {
-            return prevMembers.slice(0, prevMembers.length - 1);
-        })
+        setReferMember((prevMembers) => prevMembers.slice(0, -1));
     }
     // 결재라인 즐겨찾기 관련
     const fetchBookmark = () => {
@@ -84,6 +81,7 @@ function ApprovalPathModal({showApprovalPathModal, handleApprovalPathModalClose}
     useEffect(() => {
         fetchBookmark()
     }, [])
+
     const addBookmark = () => {
         fetcher().post(APPROVAL_BOOKMARK_CREATE_API, {
             name: bookmarkName,

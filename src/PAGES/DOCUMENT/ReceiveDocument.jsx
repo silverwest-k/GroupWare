@@ -4,17 +4,21 @@ import {useEffect, useState} from "react";
 import {Button, FormControl, InputGroup} from "react-bootstrap";
 import {backgroundColor} from "./components/DocumentTable";
 import fetcher from "../../fetcher";
-
-
+import {RECEIVE_DOCUMENT_LIST_API} from "../../constants/api_constans";
+import {useNavigate} from "react-router-dom";
+import {DOCUMENT_DETAIL_COMPONENT} from "../../constants/component_constants";
 
 function ReceiveDocument() {
+    const navigate = useNavigate();
     const [data, setData] = useState([]);
-    const [limit, setLimit] = useState(4);
-    const [page, setPage] = useState(1);
 
-    const offset = (page - 1) * limit;
-    const total = data.length;
-    const pageNum = Math.ceil(total / limit);
+    useEffect(()=>{
+        fetcher().get(RECEIVE_DOCUMENT_LIST_API)
+            .then((res)=> setData(res.data))
+    },[])
+    const routeDetail = (id) => {
+        navigate(`/page/${DOCUMENT_DETAIL_COMPONENT}/${id}`);
+    }
 
     const getBackgroundColor = (state) => {
         return backgroundColor[state] || "#ffffff"
@@ -29,14 +33,14 @@ function ReceiveDocument() {
                 </InputGroup>
             </div>
             <div className={styles.cardContainer}>
-                {data.slice(offset, offset + limit).map((data, index) => {
+                {data.map((data, index) => {
                     return (
-                        <div className={styles.card} key={index}>
+                        <div className={styles.card} key={data.id}>
                             <div className={styles.contents}>
                                 <div className={styles.upperState}
-                                     style={{background: getBackgroundColor(data.state)}}
+                                     style={{background: getBackgroundColor(data.result)}}
                                 >
-                                    {data.state}
+                                    {data.result}
                                 </div>
 
                                 <div className={styles.documentInfo}>
@@ -44,9 +48,9 @@ function ReceiveDocument() {
                                         <div className={styles.cardTitle}>{data.title}</div>
                                     </div>
                                     <div className={styles.cardLower}>
-                                        <div>기안자 : {data.name}</div>
-                                        <div>날짜 : {data.date}</div>
-                                        <div>양식 : {data.form}</div>
+                                        <div>기안자 : {data.writer.name}</div>
+                                        <div>날짜 : {data.createDate}</div>
+                                        {/*<div>양식 : {data.form}</div>*/}
                                     </div>
                                 </div>
                             </div>
@@ -55,36 +59,16 @@ function ReceiveDocument() {
 
                             <div className={styles.approvalButton}
                                  style={{
-                                     cursor: data.state === "승인" ? "not-allowed" : "pointer",
-                                     color: data.state === "승인" ? "gray" : ""
+                                     cursor: data.result === "승인" ? "not-allowed" : "pointer",
+                                     color: data.result === "승인" ? "gray" : ""
                                  }}
+                                 onClick={()=>routeDetail(data.id)}
                             >
                                 결재하기
                             </div>
                         </div>
                     )
                 })}
-            </div>
-
-            <div className={styles.pagination}>
-                <Pagination>
-                    <Pagination.First onClick={() => setPage(1)} disabled={page === 1}/>
-                    <Pagination.Prev onClick={() => setPage(page - 1)} disabled={page === 1}/>
-                    {Array(pageNum)
-                        .fill()
-                        .map((_, i) => (
-                            <Pagination.Item
-                                key={i + 1}
-                                onClick={() => setPage(i + 1)}
-                                aria-current={page === i + 1 && "page"}
-                            >
-                                {i + 1}
-                            </Pagination.Item>
-                        ))
-                    }
-                    <Pagination.Next onClick={() => setPage(page + 1)} disabled={page === pageNum}/>
-                    <Pagination.Last onClick={() => setPage(pageNum)} disabled={page === pageNum}/>
-                </Pagination>
             </div>
         </div>
     )

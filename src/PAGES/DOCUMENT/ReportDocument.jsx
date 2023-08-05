@@ -16,14 +16,17 @@ function ReportDocument() {
     const [rejected, setRejected] = useState([]);
 
     useEffect(() => {
+        fetchAllDocument()
+    }, []);
+
+    const fetchAllDocument=()=> {
         fetcher().get(REPORT_DOCUMENT_LIST_API)
             .then((res) => setListData(res.data.content))
-    }, []);
+    }
 
     const filterOngoing =()=>{
         fetcher().get(ONGOING_DOCUMENT_LIST_API)
             .then((res)=> setOngoing(res.data));
-        console.log("ongoing",ongoing)
     }
     const filterApproved =()=>{
         fetcher().get(APPROVED_DOCUMENT_LIST_API)
@@ -38,7 +41,9 @@ function ReportDocument() {
     return (
         <div className={styles.wrapper}>
             <div className={styles.buttonContainer}>
-               <ButtonGroup filterOngoing={filterOngoing} filterApproved={filterApproved} filterRejected={filterRejected}/>
+               <ButtonGroup fetchAllDocument={fetchAllDocument} filterOngoing={filterOngoing}
+                            filterApproved={filterApproved} filterRejected={filterRejected}
+               />
             </div>
 
             <div>

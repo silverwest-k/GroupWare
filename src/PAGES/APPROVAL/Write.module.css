@@ -152,6 +152,5 @@
 }
 .documentContent{
     min-height: 690px;
-    background: orange;
     overflow: auto;
 }

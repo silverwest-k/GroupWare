@@ -11,6 +11,7 @@ export const ACCOUNT_INFO_API ="/auth/admin/members"
                                                     // (+id/password) POST {newPassword ""} : 관리자 -> 임직원 비밀번호 변경
 
 // 문서관련 API
+export const RECEIVE_DOCUMENT_LIST_API="/approval/list"  // 수신문서함(결재라인에 내가 포함되어 있는 문서) (o)
 export const REPORT_DOCUMENT_LIST_API = "/documents/mylist" // 상신문서함 (o)
 export const TEMP_DOCUMENT_LIST_API = "/documents/savelist" // 임시저장함 (o)
 export const ALL_DOCUMENT_LIST_API = "/documents/list"      // 모든문서 - 관리자 only
@@ -18,9 +19,9 @@ export const DOCUMENT_CREATE_API="/documents/create"    // 문서작성 (o)
 export const DOCUMENT_UPDATE_API ="/documents/update"   // (+id) 문서수정
 export const DOCUMENT_READ_API ="/documents"   // (+id) 문서 상세보기 (o)
 export const DOCUMENT_DELETE_API="/documents/delete"    // 문서 삭제 (o)
-export const ONGOING_DOCUMENT_LIST_API ="/documents/mylist/ing" // 상신문서함 - 진행중
-export const APPROVED_DOCUMENT_LIST_API ="/documents/mylist/approved" // 상신문서함 - 결재완료
-export const REJECTED_DOCUMENT_LIST_API="/documents/mylist/rejected" // 상신문서함 - 반려
+export const ONGOING_DOCUMENT_LIST_API ="/documents/mylist/ing" // 상신문서함 - 진행중 (o)
+export const APPROVED_DOCUMENT_LIST_API ="/documents/mylist/approved" // 상신문서함 - 결재완료 (o)
+export const REJECTED_DOCUMENT_LIST_API="/documents/mylist/rejected" // 상신문서함 - 반려 (o)
 
 // 문서양식 API
 export const CATEGORY_CREATE_API ="/templates/create" // 양식 생성 (o)
