@@ -1,37 +1,39 @@
 import {useEffect, useState} from "react";
 import fetcher from "../../fetcher";
-import {DOCUMENT_DELETE_API, DOCUMENT_READ_API, SHOW_CATEGORY_API} from "../../constants/api_constans";
+import {DOCUMENT_DELETE_API, DOCUMENT_READ_API} from "../../constants/api_constans";
 import {useNavigate, useParams} from "react-router-dom";
 import {Button} from "react-bootstrap";
 import styles from "../APPROVAL/Write.module.css"
 import {Viewer} from "@toast-ui/react-editor";
 import '@toast-ui/editor/dist/toastui-editor-viewer.css';
-import SignTable from "../APPROVAL/SignTable";
-
-
+import DocumentSignTable from "./components/DocumentSignTable";
 
 function DocumentDetail() {
     const {id} = useParams();
+    const navigate = useNavigate();
     const [documentData, setDocumentData] = useState({});
     const [signLine, setSignLine] = useState({});
 
-    const navigate = useNavigate();
-
     useEffect(() => {
         fetcher().get(`${DOCUMENT_READ_API}/${id}`)
-            .then((res) => setDocumentData(res.data.document))
-        // .then((res) => setSignLine(res.data?.groupedApprovals))
-    }, [])
+            .then((res) => {
+                // 문서 정보
+                setDocumentData(res.data.document)
+                // 결재라인
+                const approvalValue = Object.values(res.data.groupedApprovals)
+                setSignLine(approvalValue)
+            })
+    }, [id])
 
-    const deleteBtn = () => {
+    const deleteBtn = (id) => {
         fetcher().delete(`${DOCUMENT_DELETE_API}/${id}`)
             .then(
                 alert("삭제 되었습니다."),
                 navigate(-1)
             )
     }
-
-    console.log(documentData)
+    console.log("documentData", documentData)
+    console.log("signLine", signLine)
 
     return (
         <div className={styles.wrapper}>
@@ -39,7 +41,7 @@ function DocumentDetail() {
                 <div className={styles.buttonGroup}>
                     <Button className="button" onClick={()=>navigate(-1)}>목록으로</Button>
                     <Button className="button">수정하기</Button>
-                    <Button className="button" onClick={deleteBtn}>삭제하기 </Button>
+                    <Button className="button" onClick={()=>deleteBtn(documentData.id)}>삭제하기 </Button>
                 </div>
             </div>
 
@@ -49,10 +51,12 @@ function DocumentDetail() {
                     <p>문서양식명</p>
                 </div>
 
-                <SignTable/>
+                <DocumentSignTable documentData={documentData} signLine={signLine}/>
 
                 <div className={styles.editorContainer}>
-                    <div className={styles.documentTitle}> <p>제목 : </p>{documentData.title}</div>
+                    <div className={styles.documentTitle}>
+                        <p>제목 : </p>{documentData.title}
+                    </div>
                     <div className={styles.documentContent}>
                         <Viewer initialValue={documentData?.content || ''}/>
                     </div>

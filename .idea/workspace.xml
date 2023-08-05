@@ -5,16 +5,16 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="671d336a-3897-4ae7-9dd4-06de78af820f" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/src/PAGES/DOCUMENT/components/DocumentSignTable.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/App.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/COMPONENT/MAIN/Profile.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/COMPONENT/MAIN/Profile.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/PAGES/APPROVAL/ApprovalPathModal.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/PAGES/APPROVAL/ApprovalPathModal.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/PAGES/APPROVAL/SignTable.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/PAGES/APPROVAL/WriteSignTable.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/PAGES/APPROVAL/Write.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/PAGES/APPROVAL/Write.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/PAGES/DOCUMENT/DocumentDetail.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/PAGES/DOCUMENT/DocumentDetail.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/PAGES/DOCUMENT/components/DocumentTable.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/PAGES/DOCUMENT/components/DocumentTable.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/constants/api_constans.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/constants/api_constans.js" afterDir="false" />
     </list>
-    <list id="38814490-9a91-426f-895f-992915accef8" name="Changes by minjun" comment="">
-      <change beforePath="$PROJECT_DIR$/src/PAGES/APPROVAL/ApprovalPathModal.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/PAGES/APPROVAL/ApprovalPathModal.jsx" afterDir="false" />
-    </list>
+    <list id="38814490-9a91-426f-895f-992915accef8" name="Changes by minjun" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -36,18 +36,6 @@
       <scroll-view-position x="0" y="0" />
     </layout>
   </component>
-  <component name="LineStatusTrackerManager">
-    <file path="$PROJECT_DIR$/src/PAGES/APPROVAL/ApprovalPathModal.jsx">
-      <ranges>
-        <range start1="26" end1="26" start2="26" end2="27" changelist="671d336a-3897-4ae7-9dd4-06de78af820f" />
-        <range start1="54" end1="55" start2="55" end2="56" changelist="671d336a-3897-4ae7-9dd4-06de78af820f" />
-        <range start1="89" end1="92" start2="90" end2="91" changelist="671d336a-3897-4ae7-9dd4-06de78af820f" />
-        <range start1="97" end1="98" start2="96" end2="100" changelist="38814490-9a91-426f-895f-992915accef8" />
-        <range start1="101" end1="102" start2="103" end2="104" changelist="38814490-9a91-426f-895f-992915accef8" />
-        <range start1="139" end1="145" start2="141" end2="141" changelist="38814490-9a91-426f-895f-992915accef8" />
-      </ranges>
-    </file>
-  </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
   </component>
@@ -68,7 +56,7 @@
     "codeWithMe.voiceChat.enabledByDefault": "false",
     "git-widget-placeholder": "main",
     "js.last.introduce.type": "CONST",
-    "last_opened_file_path": "/Users/gueunseo/Desktop/GroupWare",
+    "last_opened_file_path": "C:/Users/codepc/Desktop/GroupWare/src/PAGES/DOCUMENT/components",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -89,6 +77,7 @@
 }]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\codepc\Desktop\GroupWare\src\PAGES\DOCUMENT\components" />
       <recent name="C:\Users\codepc\Desktop\GroupWare\src\PAGES\APPROVAL" />
       <recent name="$PROJECT_DIR$/src/PAGES/DOCUMENT" />
     </key>
@@ -145,6 +134,7 @@
       <workItem from="1690605581810" duration="10313000" />
       <workItem from="1691022710377" duration="579000" />
       <workItem from="1691154453467" duration="7099000" />
+      <workItem from="1691205646774" duration="14744000" />
     </task>
     <servers />
   </component>

@@ -2,7 +2,7 @@ import styles from "./Write.module.css"
 import useStore from "../../store";
 
 
-function SignTable() {
+function WriteSignTable() {
     const {myAccount, signLine} = useStore(state => state)
 
     const time = new Date();
@@ -68,12 +68,13 @@ function SignTable() {
 
                 <div className={styles.referTable}>
                     <div className={styles.referTitle}>참조</div>
-                    <div
-                        className={styles.referContent}>{`${signLine.signRefer.name} ${signLine.signRefer.position}`}</div>
+                    <div className={styles.referContent}>
+                        {signLine.signRefer ? `${signLine.signRefer.name} ${signLine.signRefer.position}`:null}
+                    </div>
                 </div>
             </div>
         </div>
     )
 }
 
-export default SignTable
+export default WriteSignTable

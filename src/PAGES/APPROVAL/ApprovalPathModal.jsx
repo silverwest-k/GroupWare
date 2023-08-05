@@ -21,10 +21,6 @@ function ApprovalPathModal({showApprovalPathModal, handleApprovalPathModalClose}
     const [bookmarkName, setBookmarkName] = useState("");   // 즐겨찾기 이름
     const [bookmarkId, setBookmarkId] = useState("");   // 즐겨찾기 ID
     const [bookmarkList, setBookmarkList] = useState([]);   // 즐겨찾기리스트
-    const [signTurn1, setSignTurn1] = useState(""); // 검토
-    const [signTurn2, setSignTurn2] = useState(""); // 승인
-    const [signRefer, setSignRefer] = useState(""); // 참조
-    //TODO: useState 다 걷어내고 함수안에서 promise로 한번에 다 설정
 
     useEffect(() => {
         fetcher().get(TEAM_INFO_API)
@@ -51,9 +47,7 @@ function ApprovalPathModal({showApprovalPathModal, handleApprovalPathModalClose}
         } else {
             alert("결재라인은 최대 3명입니다.")
         }
-        setSignTurn1(approvalMembers[0])
-        setSignTurn2(approvalMembers[1])
-    }       //TODO:  보기쉽고 이해하기 쉽게 깔끔하게 정리하기
+    }
     const removeApprovalTable = () => {
         setApprovalMembers((prevMembers) => {
             return prevMembers.slice(0, prevMembers.length - 1);
@@ -66,7 +60,6 @@ function ApprovalPathModal({showApprovalPathModal, handleApprovalPathModalClose}
         } else {
             alert("참조자는 한명만 가능합니다.")
         }
-        setSignRefer(activeMember)
     }
     const removeReferTable = () => {
         setReferMember((prevMembers) => {
@@ -88,11 +81,13 @@ function ApprovalPathModal({showApprovalPathModal, handleApprovalPathModalClose}
                 setBookmarkList(bookmarkData);
             })
     }
-    useEffect(() => {fetchBookmark()}, [])
+    useEffect(() => {
+        fetchBookmark()
+    }, [])
     const addBookmark = () => {
         fetcher().post(APPROVAL_BOOKMARK_CREATE_API, {
             name: bookmarkName,
-            approvers: [signTurn1.id, signTurn2.id, signRefer?.id || ""]
+            approvers: [approvalMembers[0].id, approvalMembers[1].id, referMember[0]?.id || null]
         })
             .then(() => {
                 setBookmarkName("")
@@ -101,7 +96,7 @@ function ApprovalPathModal({showApprovalPathModal, handleApprovalPathModalClose}
     }
     const removeBookmark = (id) => {
         fetcher().delete(`${APPROVAL_BOOKMARK_DELETE_API}/${id}`)
-            .then(()=>fetchBookmark())
+            .then(() => fetchBookmark())
         alert("삭제되었습니다.")
     }
     const bookmarkInfo = (id) => {
@@ -110,32 +105,30 @@ function ApprovalPathModal({showApprovalPathModal, handleApprovalPathModalClose}
                 .then((res) => {
                     const fetchData = (res.data)
                     const key = Object.keys(fetchData)
-                    setSignTurn1(fetchData[1])
-                    setSignTurn2(fetchData[2])
-                    setSignRefer(fetchData[3])
                     setApprovalMembers([fetchData[key][1], fetchData[key][2]]);
                     setReferMember([fetchData[key][3]]);
                 })
         }
     }
+
     // 결재라인 적용
     const enterSignLine = () => {
         setSignLine({
             signTurn1: {
-                id: signTurn1.id,
-                name: signTurn1.name,
-                position: signTurn1.position
+                id: approvalMembers[0].id,
+                name: approvalMembers[0].name,
+                position: approvalMembers[0].position
             },
             signTurn2: {
-                id: signTurn2.id,
-                name: signTurn2.name,
-                position: signTurn2.position
+                id: approvalMembers[1].id,
+                name: approvalMembers[1].name,
+                position: approvalMembers[1].position
             },
-            signRefer: {
-                id: signRefer.id,
-                name: signRefer.name,
-                position: signRefer.position
-            },
+            signRefer: referMember[0] ? {
+                id: referMember[0].id,
+                name: referMember[0].name,
+                position: referMember[0].position
+            } : null,
         })
         handleApprovalPathModalClose()
     }
@@ -165,8 +158,8 @@ function ApprovalPathModal({showApprovalPathModal, handleApprovalPathModalClose}
                                             {member?.map((memberData, memberIndex) => {
                                                 return (
                                                     <Accordion.Body key={memberIndex}
-                                                                    className={`${styles.chartMember} ${memberIndex === clickedIndex ? styles.boldText : ""}`}
                                                                     onClick={() => handleMemberClick(memberIndex)}
+                                                                    className={`${styles.chartMember} ${memberIndex === clickedIndex ? styles.boldText : ""}`}
                                                     >
                                                         <img src={require("../../IMAGES/member.png")}
                                                              style={{padding: "0 12px"}}/>
@@ -190,6 +183,7 @@ function ApprovalPathModal({showApprovalPathModal, handleApprovalPathModalClose}
                                     <img src={require("../../IMAGES/left-arrow.png")}/>
                                 </Button>
                             </div>
+
                             <div className={styles.buttonGroup}>
                                 <p className={styles.title}>참조자</p>
                                 <Button className={styles.arrowButton} onClick={addToReferTable}>
@@ -208,6 +202,7 @@ function ApprovalPathModal({showApprovalPathModal, handleApprovalPathModalClose}
                                     <p style={{marginBottom: "0"}}>사용자 결재라인</p>
                                     <select onChange={(e) => setBookmarkId(e.target.value)}
                                             onClick={() => bookmarkInfo(bookmarkId)}>
+                                        <option selected disabled>결재라인 선택</option>
                                         {bookmarkList?.map((data, index) => {
                                             return (
                                                 <option key={index} value={data.id}>

@@ -19,9 +19,7 @@ function DocumentTable({listData}) {
         return backgroundColor[reult] || "#ffffff"
     };
 
-    console.log(listData[0])
     return (
-
         <div>
             <Table hover className={styles.table}>
                 <thead className={styles.tableHead}>
