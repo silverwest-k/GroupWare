@@ -26,7 +26,7 @@ export const REJECTED_DOCUMENT_LIST_API="/documents/mylist/rejected" // 상신�
 export const CATEGORY_CREATE_API ="/templates/create" // 양식 생성 (o)
 export const CATEGORY_DELETE_API = "/templates/delete"  // (+id) 양식 삭제 (o)
 export const CATEGORY_LIST_API = "/templates/list"  // 양식 리스트 조회 (o)
-export  const SHOW_CATEGORY_API="/templates/read" // (+id) 양식조회 (o)
+export  const SHOW_CATEGORY_API="/templates" // (+id) 양식조회 (o)
 export const UPDATE_CATEGORY_API ="/templates/update" // (+id) 양식수정 (o)
 
 // 결재관련 API

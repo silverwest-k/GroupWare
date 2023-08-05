@@ -24,6 +24,7 @@ function ApprovalPathModal({showApprovalPathModal, handleApprovalPathModalClose}
     const [signTurn1, setSignTurn1] = useState(""); // 검토
     const [signTurn2, setSignTurn2] = useState(""); // 승인
     const [signRefer, setSignRefer] = useState(""); // 참조
+    //TODO: useState 다 걷어내고 함수안에서 promise로 한번에 다 설정
 
     useEffect(() => {
         fetcher().get(TEAM_INFO_API)
@@ -52,7 +53,7 @@ function ApprovalPathModal({showApprovalPathModal, handleApprovalPathModalClose}
         }
         setSignTurn1(approvalMembers[0])
         setSignTurn2(approvalMembers[1])
-    }
+    }       //TODO:  보기쉽고 이해하기 쉽게 깔끔하게 정리하기
     const removeApprovalTable = () => {
         setApprovalMembers((prevMembers) => {
             return prevMembers.slice(0, prevMembers.length - 1);
@@ -87,19 +88,20 @@ function ApprovalPathModal({showApprovalPathModal, handleApprovalPathModalClose}
                 setBookmarkList(bookmarkData);
             })
     }
-    useEffect(() => {
-        fetchBookmark()
-    }, [])
+    useEffect(() => {fetchBookmark()}, [])
     const addBookmark = () => {
         fetcher().post(APPROVAL_BOOKMARK_CREATE_API, {
             name: bookmarkName,
             approvers: [signTurn1.id, signTurn2.id, signRefer?.id || ""]
         })
-            .then(() => setBookmarkName(""), fetchBookmark)
+            .then(() => {
+                setBookmarkName("")
+                fetchBookmark()
+            })
     }
     const removeBookmark = (id) => {
         fetcher().delete(`${APPROVAL_BOOKMARK_DELETE_API}/${id}`)
-            .then(fetchBookmark)
+            .then(()=>fetchBookmark())
         alert("삭제되었습니다.")
     }
     const bookmarkInfo = (id) => {
@@ -137,12 +139,6 @@ function ApprovalPathModal({showApprovalPathModal, handleApprovalPathModalClose}
         })
         handleApprovalPathModalClose()
     }
-    console.log("signTurn1",signTurn1);
-    console.log("signTurn2",signTurn2);
-    console.log("signRefer",signRefer);
-    console.log("signLine",signLine);
-
-
 
     return (
         <div>

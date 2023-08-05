@@ -8,9 +8,13 @@ import {LOGIN_COMPONENT, MAIN_COMPONENT, NOT_FOUND_COMPONENT, PAGE_COMPONENT} fr
 import {useCookies} from "react-cookie";
 import {ACCESS_TOKEN_COOKIE, REFRESH_TOKEN_COOKIE} from "./constants/constants";
 import {useEffect} from "react";
+import fetcher from "./fetcher";
+import {MY_INFO_API} from "./constants/api_constans";
+import useStore from "./store";
 
 
 function App() {
+    const {setMyAccountInfo} = useStore(state => state)
     const navigate = useNavigate();
     const [accessToken, ,] = useCookies([ACCESS_TOKEN_COOKIE]);
     const [refreshToken, ,] = useCookies([REFRESH_TOKEN_COOKIE])
@@ -20,6 +24,11 @@ function App() {
             alert("로그인이 필요합니다.")
             navigate(LOGIN_COMPONENT);
         }
+    },[])
+
+    useEffect(()=>{
+        fetcher().get(MY_INFO_API)
+            .then((res)=> setMyAccountInfo(res.data))
     },[])
 
     return (

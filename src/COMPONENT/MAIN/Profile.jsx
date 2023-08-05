@@ -1,18 +1,11 @@
 import styles from "./Profile.module.css"
-import fetcher from "../../fetcher";
-import {MY_INFO_API} from "../../constants/api_constans";
-import {useEffect, useState} from "react";
 import LogoutBtn from "../LogoutBtn";
 import useStore from "../../store";
 
 function Profile() {
     // const [myInfo, setMyInfo] = useState({})
-    const {setMyAccountInfo, myAccount} = useStore(state => state)
+    const { myAccount} = useStore(state => state)
 
-    useEffect(()=>{
-        fetcher().get(MY_INFO_API)
-            .then((res)=> setMyAccountInfo(res.data))
-    },[])
 
     return (
         <div className={styles.profile}>

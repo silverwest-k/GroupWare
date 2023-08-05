@@ -25,7 +25,6 @@ function Write() {
     const [status, setStatus] = useState("1")
     const [category, setCategory] = useState("")
     const [categoryList, setCategoryList] = useState([])
-    const [htmlData, setHtmlData] = useState("")
     const [showApprovalPathModal, setShowApprovalPathModal] = useState(false);
 
     useEffect(() => {
@@ -55,8 +54,7 @@ function Write() {
         fetcher().get(`${SHOW_CATEGORY_API}/${id}`)
             .then((res) => {
                 setCategory(res.data)
-                setHtmlData(res.data.content)
-                editorRef.current?.getInstance().setHTML(htmlData);
+                editorRef.current?.getInstance().setHTML(res.data.content);
             })
     }
     /** 저장, 임시저장 구분*/
