@@ -1,32 +1,34 @@
 import styles from "../../APPROVAL/Write.module.css"
+import {Suspense} from "react";
 
 function DocumentSignTable({documentData, signLine}) {
     const writer = documentData.writer;
-    const signTurn1 = signLine[0][1];
-    const signTurn2 = signLine[0][2];
-    const signRefer = signLine[0][3];
+    const signTurn1 = signLine[1];
+    const signTurn2 = signLine[2];
+    const signRefer = signLine[3];
 
     const sign_Table_Left_data = [
-        {title: "기안자", content: `${writer?.name}`},
-        {title: "기안부서", content: `${writer?.team}`},
-        {title: "기안일", content: `${documentData.createDate}`},
-        {title: "문서번호", content: `${documentData.dno || documentData.sno}`}
+        {title: "기안자", content: `${writer?.name || ""}`},
+        {title: "기안부서", content: `${writer?.team || ""}`},
+        {title: "기안일", content: `${documentData.createDate || ""}`},
+        {title: "문서번호", content: `${documentData.dno || documentData.sno || ""}`}
     ]
+
     const sign_Table_Right_data = [
         {
             signTurn: "작 성",
             sign: "",
-            signName: `${writer.name}${writer.position}`
+            signName: `${writer?.name || ""}${writer?.position || ""}`
         },
         {
             signTurn: "검 토",
             sign: "",
-            signName: signTurn1 ? `${signTurn1.name} ${signTurn1.position}` : ""
+            signName: signTurn1 ? `${signTurn1?.name} ${signTurn1?.position || ""}` : ""
         },
         {
             signTurn: "승 인",
             sign: "",
-            signName: signTurn2 ? `${signTurn2.name} ${signTurn2.position}` : ""
+            signName: signTurn2 ? `${signTurn2?.name} ${signTurn2?.position || ""}` : ""
         }
     ]
 
@@ -67,7 +69,7 @@ function DocumentSignTable({documentData, signLine}) {
                 <div className={styles.referTable}>
                     <div className={styles.referTitle}>참조</div>
                     <div className={styles.referContent}>
-                        {signRefer ?`${signRefer.name} ${signRefer.position}`: null}
+                        {signRefer ? `${signRefer?.name} ${signRefer?.position}` : null}
                     </div>
                 </div>
             </div>

@@ -6,16 +6,22 @@ import styles from "./MainContents.module.css"
 import Header from "../LAYOUT/Header";
 
 function MainContents() {
-    return(
+    return (
         <div className={styles.wrapper}>
             <Header/>
-            <div className={styles.upperContents}>
-                <Profile/>
-                <ApprovalNotice/>
-                <Notice/>
-            </div>
-            <div className={styles.lowerContents}>
-                <MenuPage/>
+            <div className={styles.contents}>
+                <div>
+                    <div className={styles.upperContents}>
+                        <Profile/>
+                        <ApprovalNotice/>
+                    </div>
+                    <div className={styles.lowerContents}>
+                        <MenuPage/>
+                    </div>
+                </div>
+                <div className={styles.rightContents}>
+                    <Notice/>
+                </div>
             </div>
         </div>
     )

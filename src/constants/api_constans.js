@@ -11,7 +11,8 @@ export const ACCOUNT_INFO_API ="/auth/admin/members"
                                                     // (+id/password) POST {newPassword ""} : 관리자 -> 임직원 비밀번호 변경
 
 // 문서관련 API
-export const RECEIVE_DOCUMENT_LIST_API="/approval/list"  // 수신문서함(결재라인에 내가 포함되어 있는 문서) (o)
+export const RECEIVE_DOCUMENT_LIST_API= "/approval/list"  // 수신문서함(결재라인에 내가 포함되어 있는 문서) (o)
+export const STANDBY_APPROVAL_LIST_API = "/approval/listnow" // 내차례 결재문서 (o)
 export const REPORT_DOCUMENT_LIST_API = "/documents/mylist" // 상신문서함 (o)
 export const TEMP_DOCUMENT_LIST_API = "/documents/savelist" // 임시저장함 (o)
 export const ALL_DOCUMENT_LIST_API = "/documents/list"      // 모든문서 - 관리자 only

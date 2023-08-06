@@ -17,10 +17,16 @@ function MyPage() {
     }
 
     const passwordChange = () =>{
-        fetcher().post(MY_INFO_CHANGE_API, {
-            "newPassword": password})
-            .then(resetInput)
-            alert("수정 완료되었습니다.")
+        const form = new FormData
+        fetcher().postForm(MY_INFO_CHANGE_API, form, {
+            headers: {
+                'Content-Type': 'multipart/form-data'
+            }
+        })
+            .then(() => {
+                resetInput()
+                alert("수정 완료되었습니다.")
+            })
     }
 
     const saveImgFile = () => {

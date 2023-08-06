@@ -1,6 +1,6 @@
 import {useEffect, useState} from "react";
 import fetcher from "../../fetcher";
-import {DOCUMENT_DELETE_API, DOCUMENT_READ_API} from "../../constants/api_constans";
+import {APPROVAL_SIGN_API, DOCUMENT_DELETE_API, DOCUMENT_READ_API} from "../../constants/api_constans";
 import {useNavigate, useParams} from "react-router-dom";
 import {Button} from "react-bootstrap";
 import styles from "../APPROVAL/Write.module.css"
@@ -12,15 +12,20 @@ function DocumentDetail() {
     const {id} = useParams();
     const navigate = useNavigate();
     const [documentData, setDocumentData] = useState({});
-    const [signLine, setSignLine] = useState({});
+    const [signLine, setSignLine] = useState([]);
+    const [isCompleted, setIsCompleted] = useState(false);
+    const [showApprovBtn, setShowApprovBtn] = useState(true)
 
     useEffect(() => {
         fetcher().get(`${DOCUMENT_READ_API}/${id}`)
             .then((res) => {
+                const { document, groupedApprovals } = res.data
                 // 문서 정보
-                setDocumentData(res.data.document)
+                setDocumentData(document)
                 // 결재라인
-                setSignLine(Object.values(res.data.groupedApprovals))
+                setSignLine(groupedApprovals[document.dno || document.sno])
+                // TODO: 저장, 임시저장 따로 구분하기 -> 한번에 이렇게 두개 부르면 안될 것 같음
+                setIsCompleted(true)
             })
     }, [id])
 
@@ -31,15 +36,25 @@ function DocumentDetail() {
                 navigate(-1)
             )
     }
+    // TODO: 삭제는 임시보관함에 있는 문서에서만
+
+    const approvalBtn=(status)=>{
+        fetcher().post(APPROVAL_SIGN_API, {
+            "status": status,
+            "document" : document?.dno || document?.sno
+        })
+            .then(setShowApprovBtn(false))
+    }
 
     return (
         <div className={styles.wrapper}>
             <div className={styles.upperContainer}>
                 <div className={styles.buttonGroup}>
                     <Button className="button" onClick={()=>navigate(-1)}>목록으로</Button>
-                    <Button className="button">결재하기</Button>
-                    <Button className="button">수정하기</Button>
-                    <Button className="button" onClick={deleteBtn}>삭제하기 </Button>
+                    {showApprovBtn && <Button variant="success" onClick={()=>approvalBtn(1)}>결재승인</Button>}
+                    {!showApprovBtn && <Button variant="danger" onClick={()=>approvalBtn(2)}>결재반려</Button>}
+                    <Button className="button">문서수정</Button>
+                    <Button className="button" onClick={deleteBtn}>문서삭제</Button>
                 </div>
             </div>
 
@@ -56,7 +71,7 @@ function DocumentDetail() {
                         <p>제목 : </p>{documentData.title}
                     </div>
                     <div className={styles.documentContent}>
-                        <Viewer initialValue={documentData?.content || ''}/>
+                        {isCompleted && <Viewer initialValue={documentData.content}/>}
                     </div>
                 </div>
             </div>

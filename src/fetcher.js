@@ -8,7 +8,7 @@ const cookies = new Cookies();
 export default () => {
     const defaultAxios = {
         baseURL: "http://localhost:8080",
-        timeout: 1500,
+        timeout: 10000,
     }
     const accessToken = cookies.get(ACCESS_TOKEN_COOKIE);
 
@@ -16,6 +16,7 @@ export default () => {
         const axiosWithAuthHeader = {...defaultAxios};
         axiosWithAuthHeader.headers = {"Authorization" : `Bearer ${accessToken}`}
         return axios.create(axiosWithAuthHeader)
+
     } else {
         return axios.create(defaultAxios);
     }

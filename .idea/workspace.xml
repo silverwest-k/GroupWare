@@ -5,20 +5,22 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="671d336a-3897-4ae7-9dd4-06de78af820f" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/src/upgradeFetcher.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/COMPONENT/MAIN/Profile.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/COMPONENT/MAIN/Profile.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/App.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/COMPONENT/MAIN/ApprovalNotice.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/COMPONENT/MAIN/ApprovalNotice.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/COMPONENT/MAIN/ApprovalNotice.module.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/COMPONENT/MAIN/ApprovalNotice.module.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/COMPONENT/MAIN/MENU_ICON/Menu.module.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/COMPONENT/MAIN/MENU_ICON/Menu.module.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/COMPONENT/MAIN/MainContents.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/COMPONENT/MAIN/MainContents.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/COMPONENT/MAIN/MainContents.module.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/COMPONENT/MAIN/MainContents.module.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/COMPONENT/MAIN/Notice.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/COMPONENT/MAIN/Notice.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/COMPONENT/MAIN/Notice.module.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/COMPONENT/MAIN/Notice.module.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/COMPONENT/MAIN/Profile.module.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/COMPONENT/MAIN/Profile.module.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/PAGES/APPROVAL/ApprovalPathModal.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/PAGES/APPROVAL/ApprovalPathModal.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/PAGES/APPROVAL/Write.module.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/PAGES/APPROVAL/Write.module.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/PAGES/DOCUMENT/DocumentDetail.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/PAGES/DOCUMENT/DocumentDetail.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/PAGES/DOCUMENT/ReceiveDocument.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/PAGES/DOCUMENT/ReceiveDocument.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/PAGES/DOCUMENT/ReceiveDocument.module.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/PAGES/DOCUMENT/ReceiveDocument.module.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/PAGES/DOCUMENT/ReportDocument.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/PAGES/DOCUMENT/ReportDocument.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/PAGES/DOCUMENT/components/ButtonGroup.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/PAGES/DOCUMENT/components/ButtonGroup.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/PAGES/DOCUMENT/components/DocumentSignTable.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/PAGES/DOCUMENT/components/DocumentSignTable.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/PAGES/DOCUMENT/components/DocumentTable.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/PAGES/DOCUMENT/components/DocumentTable.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/PAGES/MYPAGE/MyPage.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/PAGES/MYPAGE/MyPage.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/constants/api_constans.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/constants/api_constans.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/constants/constants.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/constants/constants.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/fetcher.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/fetcher.js" afterDir="false" />
     </list>
     <list id="38814490-9a91-426f-895f-992915accef8" name="Changes by minjun" comment="" />
     <option name="SHOW_DIALOG" value="false" />
@@ -146,6 +148,11 @@
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+    <option name="includedJSSourcePackages">
+      <set>
+        <option value="@toast-ui/editor" />
+      </set>
+    </option>
   </component>
   <component name="Vcs.Log.History.Properties">
     <option name="COLUMN_ID_ORDER">

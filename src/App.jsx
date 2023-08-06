@@ -12,7 +12,6 @@ import fetcher from "./fetcher";
 import {MY_INFO_API} from "./constants/api_constans";
 import useStore from "./store";
 
-
 function App() {
     const {setMyAccountInfo} = useStore(state => state)
     const navigate = useNavigate();
@@ -27,9 +26,12 @@ function App() {
     },[])
 
     useEffect(()=>{
-        fetcher().get(MY_INFO_API)
+        if(accessToken[ACCESS_TOKEN_COOKIE]){
+            fetcher().get(MY_INFO_API)
             .then((res)=> setMyAccountInfo(res.data))
-    },[])
+        }
+
+    },[accessToken])
 
     return (
         <div className="App">
