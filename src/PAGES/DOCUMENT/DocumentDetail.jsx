@@ -1,6 +1,6 @@
 import {useEffect, useState} from "react";
 import fetcher from "../../fetcher";
-import {APPROVAL_SIGN_API, DOCUMENT_READ_API} from "../../constants/api_constans";
+import {APPROVAL_SIGN_API, DOCUMENT_DELETE_API, DOCUMENT_READ_API} from "../../constants/api_constans";
 import {useNavigate, useParams} from "react-router-dom";
 import {Button} from "react-bootstrap";
 import styles from "../APPROVAL/Write.module.css"
@@ -36,6 +36,14 @@ function DocumentDetail() {
             .then(setShowApprovBtn(false))
     }
 
+    const deleteBtn = () => {
+        fetcher().delete(`${DOCUMENT_DELETE_API}/${id}`)
+            .then(
+                alert("삭제 되었습니다."),
+                navigate(-1)
+            )
+    }
+
     return (
         <div className={styles.wrapper}>
             <div className={styles.upperContainer}>
@@ -43,6 +51,7 @@ function DocumentDetail() {
                     <Button className="button" onClick={()=>navigate(-1)}>목록으로</Button>
                     {showApprovBtn && <Button variant="success" onClick={()=>approvalBtn(1)}>결재승인</Button>}
                     {!showApprovBtn && <Button variant="danger" onClick={()=>approvalBtn(2)}>결재반려</Button>}
+                    <Button className="button" onClick={deleteBtn}>문서삭제</Button>
                     <Button className="button">문서수정</Button>
                 </div>
             </div>

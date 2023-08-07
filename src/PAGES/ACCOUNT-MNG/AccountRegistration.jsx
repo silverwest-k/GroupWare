@@ -22,7 +22,7 @@ function AccountRegistration() {
     const [position, setPosition] = useState("");
     const [authority, setAuthority] = useState("ROLE_USER");
 
-    const {teamName, positionName} = useStore(state => state);
+    const {teamName, positionName, selectTeam, selectPosition} = useStore(state => state);
 
     const saveImgFile = () => {
         const file = imgRef.current.files[0];
@@ -57,8 +57,8 @@ function AccountRegistration() {
         setName("")
         setPassword("")
         setMemberNo("")
-        setTeam("")
-        setPosition("")
+        selectTeam("")
+        selectPosition("")
     }
 
     return (
