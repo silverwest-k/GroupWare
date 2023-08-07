@@ -1,12 +1,14 @@
 import {useEffect, useState} from "react";
 import fetcher from "../../fetcher";
-import {APPROVAL_SIGN_API, DOCUMENT_READ_API} from "../../constants/api_constans";
+import {
+    DOCUMENT_DELETE_API, TEMP_DOCUMENT_READ_API
+} from "../../constants/api_constans";
 import {useNavigate, useParams} from "react-router-dom";
 import {Button} from "react-bootstrap";
 import styles from "../APPROVAL/Write.module.css"
 import {Viewer} from "@toast-ui/react-editor";
 import '@toast-ui/editor/dist/toastui-editor-viewer.css';
-import DocumentSignTable from "./components/DocumentSignTable";
+import TempDocumentSignTable from "./components/TempDocumentSignTable";
 
 function DocumentDetail() {
     const {id} = useParams();
@@ -14,26 +16,27 @@ function DocumentDetail() {
     const [documentData, setDocumentData] = useState({});
     const [signLine, setSignLine] = useState([]);
     const [isCompleted, setIsCompleted] = useState(false);
-    const [showApprovBtn, setShowApprovBtn] = useState(true)
+
 
     useEffect(() => {
-        fetcher().get(`${DOCUMENT_READ_API}/${id}`)
+        fetcher().get(`${TEMP_DOCUMENT_READ_API}/${id}`)
             .then((res) => {
                 const { document, groupedApprovals } = res.data
                 // 문서 정보
                 setDocumentData(document)
                 // 결재라인
-                setSignLine(groupedApprovals[document.dno])
+                setSignLine(groupedApprovals[document.sno])
                 setIsCompleted(true)
             })
     }, [id])
+    // TODO: API 오류 수정중
 
-    const approvalBtn=(status)=>{
-        fetcher().post(APPROVAL_SIGN_API, {
-            "status": status,
-            "document" : `${documentData.dno}`
-        })
-            .then(setShowApprovBtn(false))
+    const deleteBtn = () => {
+        fetcher().delete(`${DOCUMENT_DELETE_API}/${id}`)
+            .then(
+                alert("삭제 되었습니다."),
+                navigate(-1)
+            )
     }
 
     return (
@@ -41,9 +44,8 @@ function DocumentDetail() {
             <div className={styles.upperContainer}>
                 <div className={styles.buttonGroup}>
                     <Button className="button" onClick={()=>navigate(-1)}>목록으로</Button>
-                    {showApprovBtn && <Button variant="success" onClick={()=>approvalBtn(1)}>결재승인</Button>}
-                    {!showApprovBtn && <Button variant="danger" onClick={()=>approvalBtn(2)}>결재반려</Button>}
-                    <Button className="button">문서수정</Button>
+                    <Button className="button">상신하기</Button>
+                    <Button className="button" onClick={deleteBtn}>문서삭제</Button>
                 </div>
             </div>
 
@@ -53,7 +55,7 @@ function DocumentDetail() {
                     <p>문서양식명</p>
                 </div>
 
-                <DocumentSignTable documentData={documentData} signLine={signLine}/>
+                <TempDocumentSignTable documentData={documentData} signLine={signLine}/>
 
                 <div className={styles.editorContainer}>
                     <div className={styles.documentTitle}>

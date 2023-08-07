@@ -1,4 +1,5 @@
 import styles from "../../APPROVAL/Write.module.css"
+import {Suspense} from "react";
 
 function DocumentSignTable({documentData, signLine}) {
     const writer = documentData.writer;
@@ -10,7 +11,7 @@ function DocumentSignTable({documentData, signLine}) {
         {title: "기안자", content: `${writer?.name || ""}`},
         {title: "기안부서", content: `${writer?.team || ""}`},
         {title: "기안일", content: `${documentData.createDate || ""}`},
-        {title: "문서번호", content: `${documentData.dno}`}
+        {title: "문서번호", content: `${documentData.sno || ""}`}
     ]
 
     const sign_Table_Right_data = [

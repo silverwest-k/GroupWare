@@ -1,5 +1,8 @@
 .profile {
     margin: 30px 30px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 }
 
 .hello {

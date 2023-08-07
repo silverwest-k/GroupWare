@@ -19,6 +19,7 @@ export const ALL_DOCUMENT_LIST_API = "/documents/list"      // 모든문서 - �
 export const DOCUMENT_CREATE_API="/documents/create"    // 문서작성 (o)
 export const DOCUMENT_UPDATE_API ="/documents/update"   // (+id) 문서수정
 export const DOCUMENT_READ_API ="/documents"   // (+id) 문서 상세보기 (o)
+export const TEMP_DOCUMENT_READ_API ="/documents/save"   // (+id) 임시저장문서 상세보기 (o)
 export const DOCUMENT_DELETE_API="/documents/delete"    // 문서 삭제 (o)
 export const ONGOING_DOCUMENT_LIST_API ="/documents/mylist/ing" // 상신문서함 - 진행중 (o)
 export const APPROVED_DOCUMENT_LIST_API ="/documents/mylist/approved" // 상신문서함 - 결재완료 (o)

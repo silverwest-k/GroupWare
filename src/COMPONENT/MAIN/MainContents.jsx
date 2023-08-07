@@ -10,7 +10,7 @@ function MainContents() {
         <div className={styles.wrapper}>
             <Header/>
             <div className={styles.contents}>
-                <div>
+                <div className={styles.leftContents}>
                     <div className={styles.upperContents}>
                         <Profile/>
                         <ApprovalNotice/>

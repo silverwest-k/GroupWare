@@ -1,5 +1,4 @@
 import styles from "./ReceiveDocument.module.css"
-import Pagination from "react-bootstrap/Pagination";
 import {useEffect, useState} from "react";
 import {Button, FormControl, InputGroup} from "react-bootstrap";
 import {backgroundColor} from "./components/DocumentTable";
@@ -16,6 +15,7 @@ function ReceiveDocument() {
         fetcher().get(RECEIVE_DOCUMENT_LIST_API)
             .then((res)=> setData(res.data))
     },[])
+    // TODO : 결재양식도 내려받아야됨
     const routeDetail = (id) => {
         navigate(`/page/${DOCUMENT_DETAIL_COMPONENT}/${id}`);
     }

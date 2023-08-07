@@ -2,9 +2,11 @@ import styles from "./DocumentTable.module.css";
 import {Table} from "react-bootstrap";
 import {useNavigate} from "react-router-dom";
 import {DOCUMENT_DETAIL_COMPONENT} from "../../../constants/component_constants";
+import {TEMP_DOCUMENT_READ_API} from "../../../constants/api_constans";
 
 export const backgroundColor = {
-    "진행중": "#f8d287",
+    "결재대기": "#f8d287",
+    "진행중": "#a6e0e8",
     "승인": "#87ea85",
     "반려": "#fb6a76"
 }
@@ -14,6 +16,12 @@ function DocumentTable({listData}) {
     const routeDetail = (id) => {
         navigate(`/page/${DOCUMENT_DETAIL_COMPONENT}/${id}`);
     }
+
+    // 임시저장 상세페이지 이동
+    // const routeTempDetail = (id) => {
+    //     navigate(`/page/${DOCUMENT_DETAIL_COMPONENT}/${id}`);
+    // }
+
     const getBackgroundColor = (result) => {
         return backgroundColor[result] || "#ffffff"
     };
