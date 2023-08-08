@@ -36,7 +36,7 @@ function AccountManagement() {
     ];
 
     const fetchMemberList =()=>{
-        fetcher().get(MEMBER_LIST_INFO_API)
+        fetcher.get(MEMBER_LIST_INFO_API)
             .then((res) => setMember(res.data))
     }
 
@@ -68,7 +68,7 @@ function AccountManagement() {
             setShowDeleteModal(false);
             return;
         }
-        fetcher().delete(`${ACCOUNT_INFO_API}/${id}`)
+        fetcher.delete(`${ACCOUNT_INFO_API}/${id}`)
             .then(() =>
                     alert("삭제가 완료되었습니다."),
                 setShowDeleteModal(false),

@@ -28,7 +28,7 @@ function Write() {
     const [showApprovalPathModal, setShowApprovalPathModal] = useState(false);
 
     useEffect(() => {
-        fetcher().get(CATEGORY_LIST_API)
+        fetcher.get(CATEGORY_LIST_API)
             .then((res) => setCategoryList(res.data))
     }, [])
 
@@ -42,7 +42,7 @@ function Write() {
         setStatus("")
     }
     const saveBtn = (status) => {
-        fetcher().post(DOCUMENT_CREATE_API, {
+        fetcher.post(DOCUMENT_CREATE_API, {
             "title": title,
             "content": content,
             "approvers":approvers,
@@ -51,7 +51,7 @@ function Write() {
             .then(resetInput)
     }
     const selectCategory = (id) => {
-        fetcher().get(`${SHOW_CATEGORY_API}/${id}`)
+        fetcher.get(`${SHOW_CATEGORY_API}/${id}`)
             .then((res) => {
                 setCategory(res.data)
                 editorRef.current?.getInstance().setHTML(res.data.content);

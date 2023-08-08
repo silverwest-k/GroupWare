@@ -19,7 +19,7 @@ function DocumentDetail() {
 
 
     useEffect(() => {
-        fetcher().get(`${TEMP_DOCUMENT_READ_API}/${id}`)
+        fetcher.get(`${TEMP_DOCUMENT_READ_API}/${id}`)
             .then((res) => {
                 const { document, groupedApprovals } = res.data
                 // 문서 정보
@@ -32,7 +32,7 @@ function DocumentDetail() {
     // TODO: API 오류 수정중
 
     const deleteBtn = () => {
-        fetcher().delete(`${DOCUMENT_DELETE_API}/${id}`)
+        fetcher.delete(`${DOCUMENT_DELETE_API}/${id}`)
             .then(
                 alert("삭제 되었습니다."),
                 navigate(-1)

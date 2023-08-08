@@ -12,7 +12,7 @@ function ReceiveDocument() {
     const [data, setData] = useState([]);
 
     useEffect(()=>{
-        fetcher().get(RECEIVE_DOCUMENT_LIST_API)
+        fetcher.get(RECEIVE_DOCUMENT_LIST_API)
             .then((res)=> setData(res.data))
     },[])
     // TODO : 결재양식도 내려받아야됨

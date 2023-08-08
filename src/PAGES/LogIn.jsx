@@ -26,7 +26,7 @@ function LogIn() {
             setIsShowAlert(true);
             return
         }
-        fetcher().post(LOGIN_API, {
+        fetcher.post(LOGIN_API, {
             "no": memberNo,
             "password": password
         })

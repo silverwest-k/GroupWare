@@ -18,7 +18,7 @@ function MyPage() {
 
     const passwordChange = () =>{
         const form = new FormData
-        fetcher().postForm(MY_INFO_CHANGE_API, form, {
+        fetcher.postForm(MY_INFO_CHANGE_API, form, {
             headers: {
                 'Content-Type': 'multipart/form-data'
             }

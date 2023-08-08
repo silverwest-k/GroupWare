@@ -28,7 +28,7 @@ function DocumentRegistration() {
     };
 
     const fetchCategoryList = () => {
-        fetcher().get(CATEGORY_LIST_API)
+        fetcher.get(CATEGORY_LIST_API)
             .then((res) => setCategoryList(res.data))
     }
     useEffect(() => {
@@ -37,7 +37,7 @@ function DocumentRegistration() {
 
     const createCategory = () => {
         if (categoryName) {
-            fetcher().post(CATEGORY_CREATE_API, {
+            fetcher.post(CATEGORY_CREATE_API, {
                 category: categoryName,
                 content: content
             })
@@ -49,7 +49,7 @@ function DocumentRegistration() {
         } else (alert("양식명을 입력 하세요"))
     }
     const updateCategory = (id, categoryName) => {
-        fetcher().put(`${UPDATE_CATEGORY_API}/${id}`, {
+        fetcher.put(`${UPDATE_CATEGORY_API}/${id}`, {
             category: categoryName,
             content: content
         })
@@ -60,7 +60,7 @@ function DocumentRegistration() {
             })
     }
     const selectCategory = (id) => {
-        fetcher().get(`${SHOW_CATEGORY_API}/${id}`)
+        fetcher.get(`${SHOW_CATEGORY_API}/${id}`)
             .then((res) => {
                 setCategory(res.data)
                 setHtmlData(res.data.content)
@@ -71,7 +71,7 @@ function DocumentRegistration() {
     }
     const deleteCategory = (id) => {
         if(id) {
-            fetcher().delete(`${CATEGORY_DELETE_API}/${id}`)
+            fetcher.delete(`${CATEGORY_DELETE_API}/${id}`)
                 .then(() => {
                     alert("양식 삭제 완료")
                     fetchCategoryList()

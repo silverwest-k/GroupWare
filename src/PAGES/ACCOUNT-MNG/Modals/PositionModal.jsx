@@ -11,7 +11,7 @@ function PositionModal({showPositionModal, handlePositionModalClose}) {
     const {selectPosition} = useStore(state => state);
 
     useEffect(() => {
-        fetcher().get(POSITION_INFO_API)
+        fetcher.get(POSITION_INFO_API)
             .then(res => setPosition(res.data))
     }, [])
 

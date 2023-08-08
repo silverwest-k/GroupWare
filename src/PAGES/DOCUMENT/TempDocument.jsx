@@ -8,7 +8,7 @@ function TempDocument() {
     const [listData, setListData] = useState([]);
 
     useEffect(() => {
-        fetcher().get(TEMP_DOCUMENT_LIST_API)
+        fetcher.get(TEMP_DOCUMENT_LIST_API)
             .then((res) => setListData(res.data.content))
     }, []);
 

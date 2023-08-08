@@ -23,13 +23,13 @@ function ApprovalPathModal({showApprovalPathModal, handleApprovalPathModalClose}
     const [bookmarkList, setBookmarkList] = useState([]);   // 즐겨찾기리스트
 
     useEffect(() => {
-        fetcher().get(TEAM_INFO_API)
+        fetcher.get(TEAM_INFO_API)
             .then((res) => setTeam(res.data))
     }, [])
 
     useEffect(() => {
         if (selectTeam) {
-            fetcher().get(`${TEAM_MEMBER_INFO_API}/${selectTeam}`)
+            fetcher.get(`${TEAM_MEMBER_INFO_API}/${selectTeam}`)
                 .then((res) => setMember(res.data))
         } else {
             setMember([])
@@ -65,7 +65,7 @@ function ApprovalPathModal({showApprovalPathModal, handleApprovalPathModalClose}
     }
     // 결재라인 즐겨찾기 관련
     const fetchBookmark = () => {
-        fetcher().get(APPROVAL_BOOKMARK_LIST_API)
+        fetcher.get(APPROVAL_BOOKMARK_LIST_API)
             .then((res) => {
                 const fetchData = Object.values(res.data)
                 const bookmarkData = fetchData.flatMap((innerArr) => {
@@ -83,7 +83,7 @@ function ApprovalPathModal({showApprovalPathModal, handleApprovalPathModalClose}
     }, [])
 
     const addBookmark = () => {
-        fetcher().post(APPROVAL_BOOKMARK_CREATE_API, {
+        fetcher.post(APPROVAL_BOOKMARK_CREATE_API, {
             name: bookmarkName,
             approvers: [approvalMembers[0].id, approvalMembers[1].id, referMember[0]?.id || null]
         })
@@ -93,13 +93,13 @@ function ApprovalPathModal({showApprovalPathModal, handleApprovalPathModalClose}
             })
     }
     const removeBookmark = (id) => {
-        fetcher().delete(`${APPROVAL_BOOKMARK_DELETE_API}/${id}`)
+        fetcher.delete(`${APPROVAL_BOOKMARK_DELETE_API}/${id}`)
             .then(() => fetchBookmark())
         alert("삭제되었습니다.")
     }
     const bookmarkInfo = (id) => {
         if (id) {
-            fetcher().get(`${APPROVAL_BOOKMARK_INFO_API}/${id}`)
+            fetcher.get(`${APPROVAL_BOOKMARK_INFO_API}/${id}`)
                 .then((res) => {
                     const fetchData = (res.data)
                     const key = Object.keys(fetchData)

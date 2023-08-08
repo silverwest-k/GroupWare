@@ -27,7 +27,7 @@ function App() {
 
     useEffect(()=>{
         if(accessToken[ACCESS_TOKEN_COOKIE]){
-            fetcher().get(MY_INFO_API)
+            fetcher.get(MY_INFO_API)
             .then((res)=> setMyAccountInfo(res.data))
         }
 

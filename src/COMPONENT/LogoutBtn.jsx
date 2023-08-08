@@ -12,7 +12,7 @@ function LogoutBtn () {
     const [, , removeRefreshCookie] = useCookies([REFRESH_TOKEN_COOKIE]);
 
     const handleLogout = () => {
-        fetcher()
+        fetcher
             .post(LOGOUT_API)
             .then(() => {
                 removeAccessCookie(ACCESS_TOKEN_COOKIE);

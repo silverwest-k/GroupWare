@@ -20,20 +20,20 @@ function ReportDocument() {
     }, []);
 
     const fetchAllDocument=()=> {
-        fetcher().get(REPORT_DOCUMENT_LIST_API)
+        fetcher.get(REPORT_DOCUMENT_LIST_API)
             .then((res) => setListData(res.data.content))
     }
 
     const filterOngoing =()=>{
-        fetcher().get(ONGOING_DOCUMENT_LIST_API)
+        fetcher.get(ONGOING_DOCUMENT_LIST_API)
             .then((res)=> setOngoing(res.data));
     }
     const filterApproved =()=>{
-        fetcher().get(APPROVED_DOCUMENT_LIST_API)
+        fetcher.get(APPROVED_DOCUMENT_LIST_API)
             .then((res)=> setApproved(res.data));
     }
     const filterRejected =()=>{
-        fetcher().get(REJECTED_DOCUMENT_LIST_API)
+        fetcher.get(REJECTED_DOCUMENT_LIST_API)
             .then((res)=> setRejected(res.data));
     }
 

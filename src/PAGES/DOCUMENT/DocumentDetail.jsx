@@ -17,7 +17,7 @@ function DocumentDetail() {
     const [showApprovBtn, setShowApprovBtn] = useState(true)
 
     useEffect(() => {
-        fetcher().get(`${DOCUMENT_READ_API}/${id}`)
+        fetcher.get(`${DOCUMENT_READ_API}/${id}`)
             .then((res) => {
                 const { document, groupedApprovals } = res.data
                 // 문서 정보
@@ -29,7 +29,7 @@ function DocumentDetail() {
     }, [id])
 
     const approvalBtn=(status)=>{
-        fetcher().post(APPROVAL_SIGN_API, {
+        fetcher.post(APPROVAL_SIGN_API, {
             "status": status,
             "document" : `${documentData.dno}`
         })
@@ -37,7 +37,7 @@ function DocumentDetail() {
     }
 
     const deleteBtn = () => {
-        fetcher().delete(`${DOCUMENT_DELETE_API}/${id}`)
+        fetcher.delete(`${DOCUMENT_DELETE_API}/${id}`)
             .then(
                 alert("삭제 되었습니다."),
                 navigate(-1)

@@ -34,7 +34,7 @@ function AccountRegistration() {
     }
 
     const createID = () => {
-        fetcher().post(CREATE_ID_API, {
+        fetcher.post(CREATE_ID_API, {
             "name": name,
             "password": password,
             "no": memberNo,
