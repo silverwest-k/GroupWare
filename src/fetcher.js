@@ -2,14 +2,12 @@ import Cookies from "universal-cookie/es6";
 import axios from "axios";
 import {ACCESS_TOKEN_COOKIE, REFRESH_TOKEN_COOKIE} from "./constants/constants";
 
-
 const cookies = new Cookies();
 
-const INSTANCE = (config) => {
+const INSTANCE = () => {
     const instance = {
         baseURL: "http://localhost:8080",
-        timeout: 1000000,
-        ...config
+        timeout: 100000,
     }
     const accessToken = cookies.get(ACCESS_TOKEN_COOKIE);
 
@@ -26,6 +24,7 @@ function refreshRequest(originalRequest) {
     return originalRequest
         .then((res) => res) // 200
         .catch((err) => { // 401, 500, 기타 등등
+            console.log(err)
             const config = err.config;
             if (err.response.data === "EXPIRED") {
                 return INSTANCE().post("/auth/refresh", {

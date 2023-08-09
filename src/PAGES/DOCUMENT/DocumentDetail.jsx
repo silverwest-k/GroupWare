@@ -4,8 +4,8 @@ import {APPROVAL_SIGN_API, DOCUMENT_DELETE_API, DOCUMENT_READ_API} from "../../c
 import {useNavigate, useParams} from "react-router-dom";
 import {Button} from "react-bootstrap";
 import styles from "../APPROVAL/Write.module.css"
-import {Viewer} from "@toast-ui/react-editor";
-import '@toast-ui/editor/dist/toastui-editor-viewer.css';
+// import {Viewer} from "@toast-ui/react-editor";
+// import '@toast-ui/editor/dist/toastui-editor-viewer.css';
 import DocumentSignTable from "./components/DocumentSignTable";
 
 function DocumentDetail() {
@@ -68,9 +68,9 @@ function DocumentDetail() {
                     <div className={styles.documentTitle}>
                         <p>제목 : </p>{documentData.title}
                     </div>
-                    <div className={styles.documentContent}>
-                        {isCompleted && <Viewer initialValue={documentData.content}/>}
-                    </div>
+                    {/*<div className={styles.documentContent}>*/}
+                    {/*    {isCompleted && <Viewer initialValue={documentData.content}/>}*/}
+                    {/*</div>*/}
                 </div>
             </div>
         </div>

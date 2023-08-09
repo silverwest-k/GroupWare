@@ -7,12 +7,12 @@ import {
 } from "../../constants/api_constans";
 import Dropdown from "react-bootstrap/Dropdown";
 // Toast 에디터
-import {Editor} from "@toast-ui/react-editor";
-import '@toast-ui/editor/dist/i18n/ko-kr';
-import '@toast-ui/editor/dist/toastui-editor.css';
-import colorSyntax from '@toast-ui/editor-plugin-color-syntax';
-import 'tui-color-picker/dist/tui-color-picker.css';
-import '@toast-ui/editor-plugin-color-syntax/dist/toastui-editor-plugin-color-syntax.css';
+// import {Editor} from "@toast-ui/react-editor";
+// import '@toast-ui/editor/dist/i18n/ko-kr';
+// import '@toast-ui/editor/dist/toastui-editor.css';
+// import colorSyntax from '@toast-ui/editor-plugin-color-syntax';
+// import 'tui-color-picker/dist/tui-color-picker.css';
+// import '@toast-ui/editor-plugin-color-syntax/dist/toastui-editor-plugin-color-syntax.css';
 
 function DocumentRegistration() {
     const [categoryName, setCategoryName] = useState("")
@@ -113,25 +113,25 @@ function DocumentRegistration() {
                 <button onClick={() => deleteCategory(category.id)}>양식삭제</button>
             </div>
             <div>
-                <Editor
-                    ref={editorRef}
-                    previewStyle="vertical"
-                    height="700px"
-                    initialEditType="wysiwyg"
-                    language="ko-KR"
-                    plugins={[colorSyntax]}
-                    hideModeSwitch={true}
-                    useCommandShortcut={false}
-                    onChange={onChange}
-                    toolbarItems={[
-                        // 툴바 옵션 설정
-                        ['heading', 'bold', 'italic', 'strike'],
-                        ['hr', 'quote'],
-                        ['ul', 'ol', 'task', 'indent', 'outdent'],
-                        ['table', 'image', 'link'],
-                        ['code', 'codeblock']
-                    ]}
-                ></Editor>
+                {/*<Editor*/}
+                {/*    ref={editorRef}*/}
+                {/*    previewStyle="vertical"*/}
+                {/*    height="700px"*/}
+                {/*    initialEditType="wysiwyg"*/}
+                {/*    language="ko-KR"*/}
+                {/*    plugins={[colorSyntax]}*/}
+                {/*    hideModeSwitch={true}*/}
+                {/*    useCommandShortcut={false}*/}
+                {/*    onChange={onChange}*/}
+                {/*    toolbarItems={[*/}
+                {/*        // 툴바 옵션 설정*/}
+                {/*        ['heading', 'bold', 'italic', 'strike'],*/}
+                {/*        ['hr', 'quote'],*/}
+                {/*        ['ul', 'ol', 'task', 'indent', 'outdent'],*/}
+                {/*        ['table', 'image', 'link'],*/}
+                {/*        ['code', 'codeblock']*/}
+                {/*    ]}*/}
+                {/*></Editor>*/}
             </div>
         </div>
     )

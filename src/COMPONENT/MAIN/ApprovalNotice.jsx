@@ -1,7 +1,7 @@
 import styles from "./ApprovalNotice.module.css"
 import tableStyles from "../../PAGES/DOCUMENT/components/DocumentTable.module.css"
 import fetcher from "../../fetcher";
-import {DOCUMENT_READ_API, STANDBY_APPROVAL_LIST_API} from "../../constants/api_constans";
+import {STANDBY_APPROVAL_LIST_API} from "../../constants/api_constans";
 import {useEffect, useState} from "react";
 import {useNavigate} from "react-router-dom";
 import {backgroundColor} from "../../PAGES/DOCUMENT/components/DocumentTable"

@@ -61,9 +61,9 @@ function DocumentDetail() {
                     <div className={styles.documentTitle}>
                         <p>제목 : </p>{documentData.title}
                     </div>
-                    <div className={styles.documentContent}>
-                        {isCompleted && <Viewer initialValue={documentData.content}/>}
-                    </div>
+                    {/*<div className={styles.documentContent}>*/}
+                    {/*    {isCompleted && <Viewer initialValue={documentData.content}/>}*/}
+                    {/*</div>*/}
                 </div>
             </div>
         </div>

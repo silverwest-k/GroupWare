@@ -2,19 +2,18 @@ import {Button, ToggleButton} from "react-bootstrap";
 import styles from "./AccountManagement.module.css"
 import {useEffect, useRef, useState} from "react";
 import ButtonGroup from 'react-bootstrap/ButtonGroup';
-import DeleteIDModal from "./Modals/DeleteIDModal";
 import TeamModal from "./Modals/TeamModal";
 import useStore from "../../store";
 import PositionModal from "./Modals/PositionModal";
 import AccountModal from "./Modals/AccountModal";
-import {ACCOUNT_INFO_API, DELETE_ID_API, MEMBER_LIST_INFO_API} from "../../constants/api_constans";
+import {ACCOUNT_INFO_API, MEMBER_LIST_INFO_API} from "../../constants/api_constans";
 import fetcher from "../../fetcher";
+import Swal from "sweetalert2";
 
 function AccountManagement() {
     const imgRef = useRef();
 
     const [showAccountModal, setShowAccountModal] = useState(false);
-    const [showDeleteModal, setShowDeleteModal] = useState(false);
     const [showTeamModal, setShowTeamModal] = useState(false);
     const [showPositionModal, setShowPositionModal] = useState(false);
     const [imgFile, setImgFile] = useState("");
@@ -26,7 +25,7 @@ function AccountManagement() {
     const [position, setPosition] = useState("");
     const [member, setMember] = useState([]);
 
-    const {account, teamName, positionName}
+    const {account, teamName, positionName, selectTeam, selectPosition}
         = useStore(state => state);
 
     const radioState = [
@@ -58,25 +57,36 @@ function AccountManagement() {
         setName("")
         setPassword("")
         setMemberNo("")
-        // setTeam("")
-        // setPosition("")
+        selectTeam("")
+        selectPosition("")
     }
 
     const deleteID = (id) => {
         if (!id) {
-            alert("삭제할 계정을 선택하세요.");
-            setShowDeleteModal(false);
+            Swal.fire("삭제 할 계정을 선택하세요")
             return;
         }
-        fetcher.delete(`${ACCOUNT_INFO_API}/${id}`)
-            .then(() =>
-                    alert("삭제가 완료되었습니다."),
-                setShowDeleteModal(false),
-                resetInput, fetchMemberList
-            )
-            .catch((error) => {
-                console.error('Error deleting account:', error);
-            });
+        Swal.fire({
+            title: "계정을 삭제하시겠습니까?",
+            text: "데이터 보존을 위해 접속차단을 추천드립니다.",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: '삭제',
+            cancelButtonText: '취소'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                fetcher.delete(`${ACCOUNT_INFO_API}/${id}`)
+                resetInput()
+                fetchMemberList()
+                Swal.fire(
+                    '삭제 완료',
+                    '해당 계정 정보가 삭제되었습니다.',
+                    'success'
+                )
+            }
+        })
     }
 
     return (
@@ -90,7 +100,7 @@ function AccountManagement() {
                         >불러오기</Button>
                     </div>
                     <Button className="buttonAdmin"
-                            onClick={() => setShowDeleteModal(true)}
+                            onClick={() => deleteID(account.id)}
                     >삭제</Button>
                 </div>
 
@@ -188,11 +198,6 @@ function AccountManagement() {
                 </div>
             </div>
 
-            <DeleteIDModal
-                deleteID={() => deleteID(account.id)}
-                showDeleteModal={showDeleteModal}
-                handleDeleteModalClose={() => setShowDeleteModal(false)}
-            />
             <AccountModal showAccountModal={showAccountModal} fetchMemberList={fetchMemberList}
                           handleAccountModalClose={() => setShowAccountModal(false)}/>
             <TeamModal showTeamModal={showTeamModal} handleTeamModalClose={() => setShowTeamModal(false)}/>

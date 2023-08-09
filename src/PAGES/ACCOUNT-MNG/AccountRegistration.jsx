@@ -1,17 +1,16 @@
 import {useEffect, useRef, useState} from "react";
 import styles from "./AccountManagement.module.css";
 import {Button, Modal} from "react-bootstrap";
-import CreateIDModal from "./Modals/CreateIDModal";
 import {CREATE_ID_API} from "../../constants/api_constans";
 import fetcher from "../../fetcher";
 import TeamModal from "./Modals/TeamModal";
 import PositionModal from "./Modals/PositionModal";
 import useStore from "../../store";
+import Swal from "sweetalert2";
 
 function AccountRegistration() {
     const imgRef = useRef();
 
-    const [showRegisterModal, setShowRegisterModal] = useState(false);
     const [showTeamModal, setShowTeamModal] = useState(false);
     const [showPositionModal, setShowPositionModal] = useState(false);
     const [imgFile, setImgFile] = useState("");
@@ -19,7 +18,6 @@ function AccountRegistration() {
     const [password, setPassword] = useState("");
     const [memberNo, setMemberNo] = useState("")
     const [team, setTeam] = useState("");
-    const [position, setPosition] = useState("");
     const [authority, setAuthority] = useState("ROLE_USER");
 
     const {teamName, positionName, selectTeam, selectPosition} = useStore(state => state);
@@ -34,23 +32,34 @@ function AccountRegistration() {
     }
 
     const createID = () => {
-        fetcher.post(CREATE_ID_API, {
-            "name": name,
-            "password": password,
-            "no": memberNo,
-            "position": positionName,
-            "team": teamName,
-            "authority": authority
+        Swal.fire({
+            title: "계정을 등록 하시겠습니까?",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: '확인',
+            cancelButtonText: '취소'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                fetcher.post(CREATE_ID_API, {
+                    "name": name,
+                    "password": password,
+                    "no": memberNo,
+                    "position": positionName,
+                    "team": teamName,
+                    "authority": authority
+                })
+                    .then(() => {
+                        resetInput();
+                        Swal.fire("계정 등록을 완료하였습니다.")
+                    })
+                    .catch((error) => {
+                        Swal.fire("값이 올바르지 않습니다.")
+                        console.log(error);
+                    })
+            }
         })
-            .then(() => {
-                setShowRegisterModal(false);
-                resetInput();
-                alert("계정 등록을 완료하였습니다.")
-            })
-            .catch((error) => {
-                alert("값이 올바르지 않습니다.");
-                console.log(error);
-            })
     }
 
     const resetInput = () => {
@@ -142,17 +151,10 @@ function AccountRegistration() {
                     </table>
                 </div>
                 <div className={styles.modify}>
-                    <Button className="buttonAdmin"
-                            onClick={() => setShowRegisterModal(true)}
-                    >등록</Button>
+                    <Button className="buttonAdmin" onClick={createID}>등록</Button>
                 </div>
-
             </div>
 
-            <CreateIDModal showRegisterModal={showRegisterModal}
-                           createID={createID}
-                           handleRegisterModalClose={() => setShowRegisterModal(false)}
-            />
             <TeamModal showTeamModal={showTeamModal}
                        handleTeamModalClose={() => setShowTeamModal(false)}
             />

@@ -7,9 +7,9 @@ import {CATEGORY_LIST_API, DOCUMENT_CREATE_API, SHOW_CATEGORY_API} from "../../c
 import ApprovalPathModal from "./ApprovalPathModal";
 import useStore from "../../store";
 /* 문서양식 띄우기 */
-import {Editor} from '@toast-ui/react-editor';
-import '@toast-ui/editor/dist/toastui-editor-viewer.css';
-import colorSyntax from "@toast-ui/editor-plugin-color-syntax";
+// import {Editor} from '@toast-ui/react-editor';
+// import '@toast-ui/editor/dist/toastui-editor-viewer.css';
+// import colorSyntax from "@toast-ui/editor-plugin-color-syntax";
 import {useNavigate} from "react-router-dom";
 import {REPORT_DOCUMENT_COMPONENT, TEMP_DOCUMENT_COMPONENT} from "../../constants/component_constants";
 import WriteSignTable from "./WriteSignTable";
@@ -113,25 +113,25 @@ function Write() {
                            style={{margin: "10px 0"}}
                            onChange={(e)=> setTitle(e.target.value)}/>
                     </div>
-                    <Editor
-                        ref={editorRef}
-                        previewStyle="vertical"
-                        height="700px"
-                        initialEditType="wysiwyg"
-                        language="ko-KR"
-                        plugins={[colorSyntax]}
-                        hideModeSwitch={true}
-                        useCommandShortcut={false}
-                        onChange={onChange}
-                        toolbarItems={[
-                            // 툴바 옵션 설정
-                            ['heading', 'bold', 'italic', 'strike'],
-                            ['hr', 'quote'],
-                            ['ul', 'ol', 'task', 'indent', 'outdent'],
-                            ['table', 'image', 'link'],
-                            ['code', 'codeblock']
-                        ]}
-                    ></Editor>
+                    {/*<Editor*/}
+                    {/*    ref={editorRef}*/}
+                    {/*    previewStyle="vertical"*/}
+                    {/*    height="700px"*/}
+                    {/*    initialEditType="wysiwyg"*/}
+                    {/*    language="ko-KR"*/}
+                    {/*    plugins={[colorSyntax]}*/}
+                    {/*    hideModeSwitch={true}*/}
+                    {/*    useCommandShortcut={false}*/}
+                    {/*    onChange={onChange}*/}
+                    {/*    toolbarItems={[*/}
+                    {/*        // 툴바 옵션 설정*/}
+                    {/*        ['heading', 'bold', 'italic', 'strike'],*/}
+                    {/*        ['hr', 'quote'],*/}
+                    {/*        ['ul', 'ol', 'task', 'indent', 'outdent'],*/}
+                    {/*        ['table', 'image', 'link'],*/}
+                    {/*        ['code', 'codeblock']*/}
+                    {/*    ]}*/}
+                    {/*></Editor>*/}
                 </div>
             </div>
 
