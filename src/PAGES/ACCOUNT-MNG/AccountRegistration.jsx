@@ -52,10 +52,19 @@ function AccountRegistration() {
                 })
                     .then(() => {
                         resetInput();
-                        Swal.fire("계정 등록을 완료하였습니다.")
+                        Swal.fire({
+                            position: 'mid',
+                            icon: 'success',
+                            title: '계정 등록 완료',
+                            showConfirmButton: false,
+                            timer: 1500
+                        })
                     })
                     .catch((error) => {
-                        Swal.fire("값이 올바르지 않습니다.")
+                        Swal.fire({
+                            title: "값이 올바르지 않습니다.",
+                            icon: 'warning',
+                        })
                         console.log(error);
                     })
             }
@@ -155,12 +164,8 @@ function AccountRegistration() {
                 </div>
             </div>
 
-            <TeamModal showTeamModal={showTeamModal}
-                       handleTeamModalClose={() => setShowTeamModal(false)}
-            />
-            <PositionModal showPositionModal={showPositionModal}
-                           handlePositionModalClose={() => setShowPositionModal(false)}
-            />
+            <TeamModal showTeamModal={showTeamModal} handleTeamModalClose={() => setShowTeamModal(false)} />
+            <PositionModal showPositionModal={showPositionModal} handlePositionModalClose={() => setShowPositionModal(false)}/>
         </div>
     )
 }

@@ -34,7 +34,7 @@ function AccountManagement() {
         {name: '접속차단', value: '3'}
     ];
 
-    const fetchMemberList =()=>{
+    const fetchMemberList = () => {
         fetcher.get(MEMBER_LIST_INFO_API)
             .then((res) => setMember(res.data))
     }
@@ -63,12 +63,15 @@ function AccountManagement() {
 
     const deleteID = (id) => {
         if (!id) {
-            Swal.fire("삭제 할 계정을 선택하세요")
+            Swal.fire({
+                title: "삭제 할 계정을 선택하세요",
+                icon: 'warning',
+            })
             return;
         }
         Swal.fire({
             title: "계정을 삭제하시겠습니까?",
-            text: "데이터 보존을 위해 접속차단을 추천드립니다.",
+            text: "접속차단을 추천드립니다.",
             icon: 'warning',
             showCancelButton: true,
             confirmButtonColor: '#3085d6',
@@ -80,11 +83,13 @@ function AccountManagement() {
                 fetcher.delete(`${ACCOUNT_INFO_API}/${id}`)
                 resetInput()
                 fetchMemberList()
-                Swal.fire(
-                    '삭제 완료',
-                    '해당 계정 정보가 삭제되었습니다.',
-                    'success'
-                )
+                Swal.fire({
+                    position: 'mid',
+                    icon: 'success',
+                    title: '계정 삭제 완료',
+                    showConfirmButton: false,
+                    timer: 1500
+                })
             }
         })
     }

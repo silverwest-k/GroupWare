@@ -6,6 +6,7 @@ import {
     SHOW_CATEGORY_API, UPDATE_CATEGORY_API
 } from "../../constants/api_constans";
 import Dropdown from "react-bootstrap/Dropdown";
+import Swal from "sweetalert2";
 // Toast 에디터
 // import {Editor} from "@toast-ui/react-editor";
 // import '@toast-ui/editor/dist/i18n/ko-kr';
@@ -42,11 +43,22 @@ function DocumentRegistration() {
                 content: content
             })
                 .then(() => {
-                    alert("양식 등록 완료.")
+                    Swal.fire({
+                        position: 'mid',
+                        icon: 'success',
+                        title: '양식 등록 완료.',
+                        showConfirmButton: false,
+                        timer: 1500
+                    })
                     resetInput()
                     fetchCategoryList()
                 })
-        } else (alert("양식명을 입력 하세요"))
+        } else (
+            Swal.fire({
+                title: "양식명을 입력 하세요",
+                icon: 'warning',
+            })
+        )
     }
     const updateCategory = (id, categoryName) => {
         fetcher.put(`${UPDATE_CATEGORY_API}/${id}`, {
@@ -54,7 +66,13 @@ function DocumentRegistration() {
             content: content
         })
             .then(() => {
-                alert("양식 수정 완료.")
+                Swal.fire({
+                    position: 'mid',
+                    icon: 'success',
+                    title: '양식 수정 완료.',
+                    showConfirmButton: false,
+                    timer: 1500
+                })
                 resetInput()
                 fetchCategoryList()
             })
@@ -70,13 +88,24 @@ function DocumentRegistration() {
         console.log(htmlData)
     }
     const deleteCategory = (id) => {
-        if(id) {
+        if (id) {
             fetcher.delete(`${CATEGORY_DELETE_API}/${id}`)
                 .then(() => {
-                    alert("양식 삭제 완료")
+                    Swal.fire({
+                        position: 'mid',
+                        icon: 'success',
+                        title: '양식 삭제 완료',
+                        showConfirmButton: false,
+                        timer: 1500
+                    })
                     fetchCategoryList()
                 })
-        } else (alert("양식을 선택하세요"))
+        } else (
+            Swal.fire({
+                title: "양식을 선택하세요.",
+                icon: 'warning',
+            })
+        )
     }
 
     const resetInput = () => {
@@ -101,7 +130,8 @@ function DocumentRegistration() {
                     <Dropdown.Menu>
                         {categoryList.map((data) => {
                             return (
-                                <Dropdown.Item key={data.id} value={data.category} onClick={() => selectCategory(data.id)}>
+                                <Dropdown.Item key={data.id} value={data.category}
+                                               onClick={() => selectCategory(data.id)}>
                                     {data.category}
                                 </Dropdown.Item>
                             )

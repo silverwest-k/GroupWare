@@ -7,6 +7,7 @@ import styles from "../APPROVAL/Write.module.css"
 // import {Viewer} from "@toast-ui/react-editor";
 // import '@toast-ui/editor/dist/toastui-editor-viewer.css';
 import DocumentSignTable from "./components/DocumentSignTable";
+import Swal from "sweetalert2";
 
 function DocumentDetail() {
     const {id} = useParams();
@@ -19,7 +20,7 @@ function DocumentDetail() {
     useEffect(() => {
         fetcher.get(`${DOCUMENT_READ_API}/${id}`)
             .then((res) => {
-                const { document, groupedApprovals } = res.data
+                const {document, groupedApprovals} = res.data
                 // 문서 정보
                 setDocumentData(document)
                 // 결재라인
@@ -28,53 +29,71 @@ function DocumentDetail() {
             })
     }, [id])
 
-    const approvalBtn=(status)=>{
+    const approvalBtn = (status) => {
         fetcher.post(APPROVAL_SIGN_API, {
             "status": status,
-            "document" : `${documentData.dno}`
+            "document": `${documentData.dno}`
         })
             .then(setShowApprovBtn(false))
     }
 
     const deleteBtn = () => {
-        fetcher.delete(`${DOCUMENT_DELETE_API}/${id}`)
-            .then(
-                alert("삭제 되었습니다."),
-                navigate(-1)
-            )
-    }
+        Swal.fire({
+            title: "문서를 삭제 하시겠습니까?",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: '확인',
+            cancelButtonText: '취소'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                fetcher.delete(`${DOCUMENT_DELETE_API}/${id}`)
+                    .then(
+                        Swal.fire({
+                            position: 'mid',
+                            icon: 'success',
+                            title: '삭제 완료',
+                            showConfirmButton: false,
+                            timer: 1500
+                        }),
+                        navigate(-1)
+                    )
+            }
+        })
 
-    return (
-        <div className={styles.wrapper}>
-            <div className={styles.upperContainer}>
-                <div className={styles.buttonGroup}>
-                    <Button className="button" onClick={()=>navigate(-1)}>목록으로</Button>
-                    {showApprovBtn && <Button variant="success" onClick={()=>approvalBtn(1)}>결재승인</Button>}
-                    {!showApprovBtn && <Button variant="danger" onClick={()=>approvalBtn(2)}>결재반려</Button>}
-                    <Button className="button" onClick={deleteBtn}>문서삭제</Button>
-                    <Button className="button">문서수정</Button>
-                </div>
-            </div>
-
-            <div className={styles.divisionLine}></div>
-            <div className={styles.lowerContainer}>
-                <div className={styles.categoryTitle}>
-                    <p>문서양식명</p>
-                </div>
-
-                <DocumentSignTable documentData={documentData} signLine={signLine}/>
-
-                <div className={styles.editorContainer}>
-                    <div className={styles.documentTitle}>
-                        <p>제목 : </p>{documentData.title}
+        return (
+            <div className={styles.wrapper}>
+                <div className={styles.upperContainer}>
+                    <div className={styles.buttonGroup}>
+                        <Button className="button" onClick={() => navigate(-1)}>목록으로</Button>
+                        {showApprovBtn && <Button variant="success" onClick={() => approvalBtn(1)}>결재승인</Button>}
+                        {!showApprovBtn && <Button variant="danger" onClick={() => approvalBtn(2)}>결재반려</Button>}
+                        <Button className="button" onClick={deleteBtn}>문서삭제</Button>
+                        <Button className="button">문서수정</Button>
                     </div>
-                    {/*<div className={styles.documentContent}>*/}
-                    {/*    {isCompleted && <Viewer initialValue={documentData.content}/>}*/}
-                    {/*</div>*/}
+                </div>
+
+                <div className={styles.divisionLine}></div>
+                <div className={styles.lowerContainer}>
+                    <div className={styles.categoryTitle}>
+                        <p>문서양식명</p>
+                    </div>
+
+                    <DocumentSignTable documentData={documentData} signLine={signLine}/>
+
+                    <div className={styles.editorContainer}>
+                        <div className={styles.documentTitle}>
+                            <p>제목 : </p>{documentData.title}
+                        </div>
+                        {/*<div className={styles.documentContent}>*/}
+                        {/*    {isCompleted && <Viewer initialValue={documentData.content}/>}*/}
+                        {/*</div>*/}
+                    </div>
                 </div>
             </div>
-        </div>
-    )
+        )
+    }
 }
 
 export default DocumentDetail

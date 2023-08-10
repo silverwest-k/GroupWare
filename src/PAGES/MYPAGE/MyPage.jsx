@@ -5,6 +5,7 @@ import commonStyles from "../ACCOUNT-MNG/AccountManagement.module.css";
 import {Button} from "react-bootstrap";
 import fetcher from "../../fetcher";
 import {MY_INFO_CHANGE_API} from "../../constants/api_constans";
+import Swal from "sweetalert2";
 
 function MyPage() {
     const imgRef = useRef();
@@ -25,7 +26,13 @@ function MyPage() {
         })
             .then(() => {
                 resetInput()
-                alert("수정 완료되었습니다.")
+                Swal.fire({
+                    position: 'mid',
+                    icon: 'success',
+                    title: '수정 완료',
+                    showConfirmButton: false,
+                    timer: 1500
+                })
             })
     }
 

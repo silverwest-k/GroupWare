@@ -8,6 +8,7 @@ import {
 } from "../../constants/api_constans";
 import useStore from "../../store";
 import Accordion from "react-bootstrap/Accordion";
+import Swal from "sweetalert2";
 
 function ApprovalPathModal({showApprovalPathModal, handleApprovalPathModalClose}) {
     const {myAccount, setSignLine} = useStore(state => state)
@@ -45,7 +46,7 @@ function ApprovalPathModal({showApprovalPathModal, handleApprovalPathModalClose}
         if (activeMember && approvalMembers.length < 2) {
             setApprovalMembers(approvalMembers.concat(activeMember));
         } else {
-            alert("결재라인은 최대 3명입니다.")
+            Swal.fire("결재라인은 최대 3명입니다.")
         }
     }
     const removeApprovalTable = () => {
@@ -57,7 +58,7 @@ function ApprovalPathModal({showApprovalPathModal, handleApprovalPathModalClose}
         if (activeMember && referMember.length < 1) {
             setReferMember(referMember.concat(activeMember));
         } else {
-            alert("참조자는 한명만 가능합니다.")
+            Swal.fire("참조자는 한명만 가능합니다.")
         }
     }
     const removeReferTable = () => {
@@ -88,14 +89,29 @@ function ApprovalPathModal({showApprovalPathModal, handleApprovalPathModalClose}
             approvers: [approvalMembers[0].id, approvalMembers[1].id, referMember[0]?.id || null]
         })
             .then(() => {
+                Swal.fire({
+                    position: 'mid',
+                    icon: 'success',
+                    title: '결재라인 저장 완료',
+                    showConfirmButton: false,
+                    timer: 1500
+                })
                 setBookmarkName("")
                 fetchBookmark()
             })
     }
     const removeBookmark = (id) => {
         fetcher.delete(`${APPROVAL_BOOKMARK_DELETE_API}/${id}`)
-            .then(() => fetchBookmark())
-        alert("삭제되었습니다.")
+            .then(() =>
+                Swal.fire({
+                    position: 'mid',
+                    icon: 'success',
+                    title: '결재라인 삭제 완료',
+                    showConfirmButton: false,
+                    timer: 1500
+                }),
+                fetchBookmark
+            )
     }
     const bookmarkInfo = (id) => {
         if (id) {

@@ -13,6 +13,7 @@ import useStore from "../../store";
 import {useNavigate} from "react-router-dom";
 import {REPORT_DOCUMENT_COMPONENT, TEMP_DOCUMENT_COMPONENT} from "../../constants/component_constants";
 import WriteSignTable from "./WriteSignTable";
+import Swal from "sweetalert2";
 
 function Write() {
     const { signLine} = useStore(state => state)
@@ -60,12 +61,24 @@ function Write() {
     /** 저장, 임시저장 구분*/
     const handleTempSave = () => {
         saveBtn(0)
-        alert("저장되었습니다.")
+        Swal.fire({
+            position: 'mid',
+            icon: 'success',
+            title: '임시저장 완료',
+            showConfirmButton: false,
+            timer: 1500
+        })
         navigate(`/page/${TEMP_DOCUMENT_COMPONENT}`)
     }
     const handleSave = () => {
         saveBtn(1)
-        alert("상신되었습니다.")
+        Swal.fire({
+            position: 'mid',
+            icon: 'success',
+            title: '문서 상신 완료',
+            showConfirmButton: false,
+            timer: 1500
+        })
         navigate(`/page/${REPORT_DOCUMENT_COMPONENT}`)
     }
 

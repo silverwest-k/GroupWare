@@ -1,6 +1,7 @@
 import Cookies from "universal-cookie/es6";
 import axios from "axios";
 import {ACCESS_TOKEN_COOKIE, REFRESH_TOKEN_COOKIE} from "./constants/constants";
+import Swal from "sweetalert2";
 
 const cookies = new Cookies();
 
@@ -40,7 +41,10 @@ function refreshRequest(originalRequest) {
                                 headers: {"Authorization": `Bearer ${cookies.get(ACCESS_TOKEN_COOKIE)}`}
                             }).then((res) => res)
                         } else {
-                            alert("토큰이 만료되었습니다.")
+                            Swal.fire({
+                                title: "토큰이 만료되었습니다.",
+                                icon: 'warning',
+                            })
                             window.location.href = "/login"
                             cookies.remove(ACCESS_TOKEN_COOKIE)
                             cookies.remove(REFRESH_TOKEN_COOKIE)

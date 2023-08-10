@@ -9,6 +9,7 @@ import styles from "../APPROVAL/Write.module.css"
 import {Viewer} from "@toast-ui/react-editor";
 import '@toast-ui/editor/dist/toastui-editor-viewer.css';
 import TempDocumentSignTable from "./components/TempDocumentSignTable";
+import Swal from "sweetalert2";
 
 function DocumentDetail() {
     const {id} = useParams();
@@ -34,7 +35,13 @@ function DocumentDetail() {
     const deleteBtn = () => {
         fetcher.delete(`${DOCUMENT_DELETE_API}/${id}`)
             .then(
-                alert("삭제 되었습니다."),
+                Swal.fire({
+                    position: 'mid',
+                    icon: 'success',
+                    title: '삭제 완료',
+                    showConfirmButton: false,
+                    timer: 1500
+                }),
                 navigate(-1)
             )
     }

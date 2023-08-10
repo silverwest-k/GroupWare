@@ -11,6 +11,7 @@ import {useEffect} from "react";
 import fetcher from "./fetcher";
 import {MY_INFO_API} from "./constants/api_constans";
 import useStore from "./store";
+import Swal from "sweetalert2";
 
 function App() {
     const {setMyAccountInfo} = useStore(state => state)
@@ -20,7 +21,10 @@ function App() {
 
     useEffect(()=> {
         if(!accessToken[ACCESS_TOKEN_COOKIE] || !refreshToken[REFRESH_TOKEN_COOKIE]) {
-            alert("로그인이 필요합니다.")
+            Swal.fire({
+                title: "로그인이 필요합니다.",
+                icon: 'warning',
+            })
             navigate(LOGIN_COMPONENT);
         }
     },[])
