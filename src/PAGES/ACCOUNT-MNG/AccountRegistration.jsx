@@ -34,7 +34,7 @@ function AccountRegistration() {
     const createID = () => {
         Swal.fire({
             title: "계정을 등록 하시겠습니까?",
-            icon: 'warning',
+            icon: 'question',
             showCancelButton: true,
             confirmButtonColor: '#3085d6',
             cancelButtonColor: '#d33',

@@ -37,11 +37,12 @@ function ApprovalPathModal({showApprovalPathModal, handleApprovalPathModalClose}
         }
     }, [selectTeam])
 
-    // 결재자 테이블 추가삭제
     const handleMemberClick = (index) => {
         setClickedIndex(index);
         setActiveMember(member[index]);
     };
+
+    // 결재자 테이블 추가삭제
     const addToApprovalTable = () => {
         if (activeMember && approvalMembers.length < 2) {
             setApprovalMembers(approvalMembers.concat(activeMember));
@@ -73,7 +74,7 @@ function ApprovalPathModal({showApprovalPathModal, handleApprovalPathModalClose}
                     const firstObj = innerArr[0];
                     return {
                         id: firstObj.lineId,
-                        name: firstObj.lineName
+                        name: firstObj.name
                     }
                 })
                 setBookmarkList(bookmarkData);
@@ -118,10 +119,12 @@ function ApprovalPathModal({showApprovalPathModal, handleApprovalPathModalClose}
             fetcher.get(`${APPROVAL_BOOKMARK_INFO_API}/${id}`)
                 .then((res) => {
                     const fetchData = (res.data)
+                    console.log("북마크데이터",fetchData)
                     const key = Object.keys(fetchData)
                     setApprovalMembers([fetchData[key][1], fetchData[key][2]]);
                     setReferMember([fetchData[key][3]]);
                 })
+            console.log("북마크데이터","1",approvalMembers, "2",referMember)
         }
     }
 

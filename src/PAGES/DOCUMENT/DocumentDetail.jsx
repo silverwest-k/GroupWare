@@ -4,9 +4,8 @@ import {APPROVAL_SIGN_API, DOCUMENT_DELETE_API, DOCUMENT_READ_API} from "../../c
 import {useNavigate, useParams} from "react-router-dom";
 import {Button} from "react-bootstrap";
 import styles from "../APPROVAL/Write.module.css"
-// import {Viewer} from "@toast-ui/react-editor";
-// import '@toast-ui/editor/dist/toastui-editor-viewer.css';
 import DocumentSignTable from "./components/DocumentSignTable";
+import parse from 'html-react-parser';
 import Swal from "sweetalert2";
 
 function DocumentDetail() {
@@ -21,6 +20,7 @@ function DocumentDetail() {
         fetcher.get(`${DOCUMENT_READ_API}/${id}`)
             .then((res) => {
                 const {document, groupedApprovals} = res.data
+                console.log(res.data)
                 // 문서 정보
                 setDocumentData(document)
                 // 결재라인
@@ -86,9 +86,9 @@ function DocumentDetail() {
                         <div className={styles.documentTitle}>
                             <p>제목 : </p>{documentData.title}
                         </div>
-                        {/*<div className={styles.documentContent}>*/}
-                        {/*    {isCompleted && <Viewer initialValue={documentData.content}/>}*/}
-                        {/*</div>*/}
+                        <div>
+                            <div>{isCompleted && parse(documentData.content)}</div>
+                        </div>
                     </div>
                 </div>
             </div>

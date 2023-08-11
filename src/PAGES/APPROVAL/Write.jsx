@@ -6,13 +6,11 @@ import fetcher from "../../fetcher";
 import {CATEGORY_LIST_API, DOCUMENT_CREATE_API, SHOW_CATEGORY_API} from "../../constants/api_constans";
 import ApprovalPathModal from "./ApprovalPathModal";
 import useStore from "../../store";
-/* 문서양식 띄우기 */
-// import {Editor} from '@toast-ui/react-editor';
-// import '@toast-ui/editor/dist/toastui-editor-viewer.css';
-// import colorSyntax from "@toast-ui/editor-plugin-color-syntax";
 import {useNavigate} from "react-router-dom";
 import {REPORT_DOCUMENT_COMPONENT, TEMP_DOCUMENT_COMPONENT} from "../../constants/component_constants";
 import WriteSignTable from "./WriteSignTable";
+import { CKEditor } from '@ckeditor/ckeditor5-react';
+import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 import Swal from "sweetalert2";
 
 function Write() {
@@ -33,10 +31,6 @@ function Write() {
             .then((res) => setCategoryList(res.data))
     }, [])
 
-    const onChange = () => {
-        const data = editorRef.current?.getInstance().getHTML();
-        setContent(data)
-    };
     const resetInput = () => {
         setTitle("")
         setContent("")
@@ -126,25 +120,27 @@ function Write() {
                            style={{margin: "10px 0"}}
                            onChange={(e)=> setTitle(e.target.value)}/>
                     </div>
-                    {/*<Editor*/}
-                    {/*    ref={editorRef}*/}
-                    {/*    previewStyle="vertical"*/}
-                    {/*    height="700px"*/}
-                    {/*    initialEditType="wysiwyg"*/}
-                    {/*    language="ko-KR"*/}
-                    {/*    plugins={[colorSyntax]}*/}
-                    {/*    hideModeSwitch={true}*/}
-                    {/*    useCommandShortcut={false}*/}
-                    {/*    onChange={onChange}*/}
-                    {/*    toolbarItems={[*/}
-                    {/*        // 툴바 옵션 설정*/}
-                    {/*        ['heading', 'bold', 'italic', 'strike'],*/}
-                    {/*        ['hr', 'quote'],*/}
-                    {/*        ['ul', 'ol', 'task', 'indent', 'outdent'],*/}
-                    {/*        ['table', 'image', 'link'],*/}
-                    {/*        ['code', 'codeblock']*/}
-                    {/*    ]}*/}
-                    {/*></Editor>*/}
+
+                    <CKEditor
+                        editor={ ClassicEditor }
+                        config={{placeholder: "양식을 작성 하세요."}}
+                        onReady={ editor => {
+                            // You can store the "editor" and use when it is needed.
+                            console.log( 'Editor is ready to use!', editor );
+                        } }
+                        onChange={ ( event, editor ) => {
+                            const data = editor.getData();
+                            setContent(data)
+                            console.log( { event, editor, data } );
+                        } }
+                        onBlur={ ( event, editor ) => {
+                            console.log( 'Blur.', editor );
+                        } }
+                        onFocus={ ( event, editor ) => {
+                            console.log( 'Focus.', editor );
+                        } }
+                    />
+
                 </div>
             </div>
 

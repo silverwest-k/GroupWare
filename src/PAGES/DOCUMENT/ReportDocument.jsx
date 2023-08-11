@@ -37,7 +37,6 @@ function ReportDocument() {
             .then((res)=> setRejected(res.data));
     }
 
-
     return (
         <div className={styles.wrapper}>
             <div className={styles.buttonContainer}>

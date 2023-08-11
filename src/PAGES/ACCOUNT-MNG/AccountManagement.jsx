@@ -25,7 +25,7 @@ function AccountManagement() {
     const [position, setPosition] = useState("");
     const [member, setMember] = useState([]);
 
-    const {account, teamName, positionName, selectTeam, selectPosition}
+    const {account, selectAccount, teamName, positionName, selectTeam, selectPosition}
         = useStore(state => state);
 
     const radioState = [
@@ -54,9 +54,7 @@ function AccountManagement() {
     }
 
     const resetInput = () => {
-        setName("")
-        setPassword("")
-        setMemberNo("")
+        selectAccount("")
         selectTeam("")
         selectPosition("")
     }
@@ -72,7 +70,7 @@ function AccountManagement() {
         Swal.fire({
             title: "계정을 삭제하시겠습니까?",
             text: "접속차단을 추천드립니다.",
-            icon: 'warning',
+            icon: 'question',
             showCancelButton: true,
             confirmButtonColor: '#3085d6',
             cancelButtonColor: '#d33',
