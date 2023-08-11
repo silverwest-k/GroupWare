@@ -1,5 +1,4 @@
 import styles from "../../APPROVAL/Write.module.css"
-import {Suspense} from "react";
 
 function DocumentSignTable({documentData, signLine}) {
     const writer = documentData.writer;

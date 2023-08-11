@@ -74,7 +74,7 @@ function ApprovalPathModal({showApprovalPathModal, handleApprovalPathModalClose}
                     const firstObj = innerArr[0];
                     return {
                         id: firstObj.lineId,
-                        name: firstObj.name
+                        name: firstObj.lineName
                     }
                 })
                 setBookmarkList(bookmarkData);
@@ -119,12 +119,10 @@ function ApprovalPathModal({showApprovalPathModal, handleApprovalPathModalClose}
             fetcher.get(`${APPROVAL_BOOKMARK_INFO_API}/${id}`)
                 .then((res) => {
                     const fetchData = (res.data)
-                    console.log("북마크데이터",fetchData)
                     const key = Object.keys(fetchData)
                     setApprovalMembers([fetchData[key][1], fetchData[key][2]]);
                     setReferMember([fetchData[key][3]]);
                 })
-            console.log("북마크데이터","1",approvalMembers, "2",referMember)
         }
     }
 

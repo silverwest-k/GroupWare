@@ -13,7 +13,6 @@ function ApprovalNotice() {
     useEffect(() => {
         fetcher.get(STANDBY_APPROVAL_LIST_API)
             .then((res) => setData(res.data))
-        console.log(data)
     }, [])
 
     const navigate = useNavigate();
@@ -29,7 +28,8 @@ function ApprovalNotice() {
         <div className={styles.wrapper}>
             <div className={styles.title}>결재 대기 문서</div>
             <div className={styles.container}>
-                <table className={styles.tableBody}>
+                <div className={styles.tableBody}>
+                <table>
                     <tbody>
                     {data?.map((data, index) => {
                         return (
@@ -47,6 +47,7 @@ function ApprovalNotice() {
                     })}
                     </tbody>
                 </table>
+                </div>
             </div>
         </div>
     )

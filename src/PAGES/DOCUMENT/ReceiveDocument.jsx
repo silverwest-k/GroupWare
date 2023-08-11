@@ -50,7 +50,7 @@ function ReceiveDocument() {
                                     <div className={styles.cardLower}>
                                         <div>기안자 : {data.writer.name}</div>
                                         <div>날짜 : {data.createDate}</div>
-                                        {/*<div>양식 : {data.form}</div>*/}
+                                        <div>양식 : {data.template}</div>
                                     </div>
                                 </div>
                             </div>

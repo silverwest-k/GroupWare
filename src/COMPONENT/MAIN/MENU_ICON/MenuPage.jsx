@@ -19,6 +19,7 @@ function MenuPage() {
             <ApprovalMenu menuName={menuName}/>
             <DocumentMenu menuName={menuName}/>
             <MyPageMenu menuName={menuName}/>
+
             <DocumentManagementMenu menuName={menuName}/>
             <AccountManagementMenu menuName={menuName}/>
         </div>

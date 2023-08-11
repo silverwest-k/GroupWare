@@ -21,7 +21,6 @@ function Write() {
 
     const [title, setTitle] = useState("")
     const [content, setContent] = useState("")
-    const [status, setStatus] = useState("1")
     const [category, setCategory] = useState("")
     const [categoryList, setCategoryList] = useState([])
     const [showApprovalPathModal, setShowApprovalPathModal] = useState(false);
@@ -31,11 +30,6 @@ function Write() {
             .then((res) => setCategoryList(res.data))
     }, [])
 
-    const resetInput = () => {
-        setTitle("")
-        setContent("")
-        setStatus("")
-    }
     const saveBtn = (status) => {
         fetcher.post(DOCUMENT_CREATE_API, {
             "title": title,
@@ -43,7 +37,6 @@ function Write() {
             "approvers":approvers,
             "status": status,
         })
-            .then(resetInput)
     }
     const selectCategory = (id) => {
         fetcher.get(`${SHOW_CATEGORY_API}/${id}`)
@@ -123,21 +116,11 @@ function Write() {
 
                     <CKEditor
                         editor={ ClassicEditor }
-                        config={{placeholder: "양식을 작성 하세요."}}
-                        onReady={ editor => {
-                            // You can store the "editor" and use when it is needed.
-                            console.log( 'Editor is ready to use!', editor );
-                        } }
+                        config={{placeholder: "양식을 입력 하세요."}}
                         onChange={ ( event, editor ) => {
                             const data = editor.getData();
                             setContent(data)
                             console.log( { event, editor, data } );
-                        } }
-                        onBlur={ ( event, editor ) => {
-                            console.log( 'Blur.', editor );
-                        } }
-                        onFocus={ ( event, editor ) => {
-                            console.log( 'Focus.', editor );
                         } }
                     />
 

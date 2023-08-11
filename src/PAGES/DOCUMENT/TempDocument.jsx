@@ -2,7 +2,7 @@ import styles from "./ReportDocument.module.css"
 import {useEffect, useState} from "react";
 import fetcher from "../../fetcher";
 import {TEMP_DOCUMENT_LIST_API} from "../../constants/api_constans";
-import DocumentTable from "./components/DocumentTable";
+import TempDocumentTable from "./components/TempDocumentTable";
 
 function TempDocument() {
     const [listData, setListData] = useState([]);
@@ -14,7 +14,7 @@ function TempDocument() {
 
     return (
         <div className={styles.wrapper}>
-                <DocumentTable listData={listData}/>
+            <TempDocumentTable listData={listData}/>
         </div>
     )
 

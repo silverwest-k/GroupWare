@@ -22,6 +22,7 @@ import {
 } from "../constants/component_constants";
 import TempDocument from "./DOCUMENT/TempDocument";
 import DocumentDetail from "./DOCUMENT/DocumentDetail";
+import TempDocumentDetail from "./DOCUMENT/TempDocumentDetail";
 
 function Page() {
     return(
@@ -36,6 +37,7 @@ function Page() {
                             <Route path={REPORT_DOCUMENT_COMPONENT} element={<ReportDocument/>} />
                             <Route path={TEMP_DOCUMENT_COMPONENT} element={<TempDocument/>} />
                             <Route path={`${DOCUMENT_DETAIL_COMPONENT}/:id`} element={<DocumentDetail/>} />
+                            <Route path={`${TEMP_DOCUMENT_COMPONENT}/:id`} element={<TempDocumentDetail/>} />
                             <Route path={MY_PAGE_COMPONENT} element={<MyPage/>} />
                             <Route path={DOCUMENT_REGISTRATION_COMPONENT} element={<DocumentRegistration/>}/>
                             <Route path={ACCOUNT_MANAGEMENT_COMPONENT} element={<AccountManagement/>} />

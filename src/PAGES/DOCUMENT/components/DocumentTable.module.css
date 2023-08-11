@@ -17,8 +17,8 @@
 }
 
 .stateButton {
-    width: 70px;
+    min-width: 70px;
     border-radius: 20px;
     text-align: center;
-    padding: 4px;
+    padding: 4px 8px;
 }

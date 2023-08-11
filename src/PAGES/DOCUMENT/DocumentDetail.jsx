@@ -20,7 +20,6 @@ function DocumentDetail() {
         fetcher.get(`${DOCUMENT_READ_API}/${id}`)
             .then((res) => {
                 const {document, groupedApprovals} = res.data
-                console.log(res.data)
                 // 문서 정보
                 setDocumentData(document)
                 // 결재라인
@@ -61,7 +60,7 @@ function DocumentDetail() {
                     )
             }
         })
-
+    }
         return (
             <div className={styles.wrapper}>
                 <div className={styles.upperContainer}>
@@ -69,8 +68,8 @@ function DocumentDetail() {
                         <Button className="button" onClick={() => navigate(-1)}>목록으로</Button>
                         {showApprovBtn && <Button variant="success" onClick={() => approvalBtn(1)}>결재승인</Button>}
                         {!showApprovBtn && <Button variant="danger" onClick={() => approvalBtn(2)}>결재반려</Button>}
-                        <Button className="button" onClick={deleteBtn}>문서삭제</Button>
                         <Button className="button">문서수정</Button>
+                        <Button className="button" onClick={deleteBtn}>문서삭제</Button>
                     </div>
                 </div>
 
@@ -93,7 +92,7 @@ function DocumentDetail() {
                 </div>
             </div>
         )
-    }
+
 }
 
 export default DocumentDetail

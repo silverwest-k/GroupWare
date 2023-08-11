@@ -7,13 +7,8 @@ import {
 } from "../../constants/api_constans";
 import Dropdown from "react-bootstrap/Dropdown";
 import Swal from "sweetalert2";
-// Toast 에디터
-// import {Editor} from "@toast-ui/react-editor";
-// import '@toast-ui/editor/dist/i18n/ko-kr';
-// import '@toast-ui/editor/dist/toastui-editor.css';
-// import colorSyntax from '@toast-ui/editor-plugin-color-syntax';
-// import 'tui-color-picker/dist/tui-color-picker.css';
-// import '@toast-ui/editor-plugin-color-syntax/dist/toastui-editor-plugin-color-syntax.css';
+import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
+import {CKEditor} from "@ckeditor/ckeditor5-react";
 
 function DocumentRegistration() {
     const [categoryName, setCategoryName] = useState("")
@@ -23,10 +18,6 @@ function DocumentRegistration() {
     const [htmlData, setHtmlData] = useState("")
 
     const editorRef = useRef();
-    const onChange = () => {
-        const data = editorRef.current?.getInstance().getHTML();
-        setContent(data)
-    };
 
     const fetchCategoryList = () => {
         fetcher.get(CATEGORY_LIST_API)
@@ -77,15 +68,15 @@ function DocumentRegistration() {
                 fetchCategoryList()
             })
     }
+    // TODO: 수정 제대로 안됨 수정하기
     const selectCategory = (id) => {
         fetcher.get(`${SHOW_CATEGORY_API}/${id}`)
             .then((res) => {
                 setCategory(res.data)
                 setHtmlData(res.data.content)
-                editorRef.current?.getInstance().setHTML(htmlData);
+                // editorRef.current?.getInstance().setHTML(htmlData);
+                // TODO: ToastUI -> CKEditor 코드 수정하기
             })
-        console.log(category)
-        console.log(htmlData)
     }
     const deleteCategory = (id) => {
         if (id) {
@@ -143,25 +134,15 @@ function DocumentRegistration() {
                 <button onClick={() => deleteCategory(category.id)}>양식삭제</button>
             </div>
             <div>
-                {/*<Editor*/}
-                {/*    ref={editorRef}*/}
-                {/*    previewStyle="vertical"*/}
-                {/*    height="700px"*/}
-                {/*    initialEditType="wysiwyg"*/}
-                {/*    language="ko-KR"*/}
-                {/*    plugins={[colorSyntax]}*/}
-                {/*    hideModeSwitch={true}*/}
-                {/*    useCommandShortcut={false}*/}
-                {/*    onChange={onChange}*/}
-                {/*    toolbarItems={[*/}
-                {/*        // 툴바 옵션 설정*/}
-                {/*        ['heading', 'bold', 'italic', 'strike'],*/}
-                {/*        ['hr', 'quote'],*/}
-                {/*        ['ul', 'ol', 'task', 'indent', 'outdent'],*/}
-                {/*        ['table', 'image', 'link'],*/}
-                {/*        ['code', 'codeblock']*/}
-                {/*    ]}*/}
-                {/*></Editor>*/}
+                <CKEditor
+                    editor={ ClassicEditor }
+                    config={{placeholder: "양식을 작성 하세요."}}
+                    onChange={ ( event, editor ) => {
+                        const data = editor.getData();
+                        setContent(data)
+                        console.log( { event, editor, data } );
+                    } }
+                />
             </div>
         </div>
     )

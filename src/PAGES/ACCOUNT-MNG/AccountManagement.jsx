@@ -6,7 +6,7 @@ import TeamModal from "./Modals/TeamModal";
 import useStore from "../../store";
 import PositionModal from "./Modals/PositionModal";
 import AccountModal from "./Modals/AccountModal";
-import {ACCOUNT_INFO_API, MEMBER_LIST_INFO_API} from "../../constants/api_constans";
+import {ACCOUNT_DELETE_API, MEMBER_LIST_INFO_API} from "../../constants/api_constans";
 import fetcher from "../../fetcher";
 import Swal from "sweetalert2";
 
@@ -78,7 +78,7 @@ function AccountManagement() {
             cancelButtonText: '취소'
         }).then((result) => {
             if (result.isConfirmed) {
-                fetcher.delete(`${ACCOUNT_INFO_API}/${id}`)
+                fetcher.delete(`${ACCOUNT_DELETE_API}/${id}`)
                 resetInput()
                 fetchMemberList()
                 Swal.fire({
