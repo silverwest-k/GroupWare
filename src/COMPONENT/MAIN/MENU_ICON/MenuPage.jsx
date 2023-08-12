@@ -7,8 +7,8 @@ import styles from "./Menu.module.css"
 import useStore from "../../../store";
 function MenuPage() {
 
-    const {changeTitle, myAccountInfo} = useStore(state => state)
-    const isAdmin = myAccountInfo?.authority === "admin";
+    const {changeTitle, myAccount} = useStore(state => state)
+    const isAdmin = myAccount?.authority === "ADMIN";
 
     const menuName = (e) =>{
         const selectMenu = e.target.textContent;

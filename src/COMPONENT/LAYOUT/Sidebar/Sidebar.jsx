@@ -13,9 +13,9 @@ import {
 function Sidebar() {
     const [activeLink, setActiveLink] = useState("");
 
-    const {changeTitle, myAccountInfo} = useStore(state => state)
+    const {changeTitle, myAccount} = useStore(state => state)
 
-    const isAdmin = myAccountInfo?.authority === "admin";
+    const isAdmin = myAccount?.authority === "ADMIN";
 
     const menuName = (e) => {
         const selectMenu = e.target.textContent;

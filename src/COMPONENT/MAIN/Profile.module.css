@@ -16,9 +16,9 @@
     width: 350px;
     height: 230px;
     background: rgba(125, 121, 242, 0.1);
+    border: solid 1px rgba(68, 41, 242, 0.6);
     display: flex;
     flex-direction: row;
-    border: solid 1px rgba(68, 41, 242, 0.6);
     border-radius: 15px;
 }
 
@@ -26,10 +26,19 @@
     width: 120px;
     height: 150px;
     margin: 35px;
-    border: solid 3px rgba(68, 41, 242, 0.4);
+    border: 3px solid rgba(68, 41, 242, 0.4);
 }
 
 .info {
     color: black;
     margin: 50px 10px;
+}
+
+.admin {
+    background: rgba(250, 62, 12, 0.1);
+    border: 1px solid rgba(250, 62, 12, 0.4);
+}
+
+.adminProfileImg  img {
+    border: 3px solid rgba(250, 62, 12, 0.4);
 }

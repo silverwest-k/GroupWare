@@ -5,13 +5,15 @@ import useStore from "../../store";
 function Profile() {
     const { myAccount} = useStore(state => state)
 
+    const isAdmin = myAccount.authority === "ADMIN"
+
     return (
         <div className={styles.profile}>
             <div className={styles.hello}>
                 <p>안녕하세요,</p> <p style={{fontWeight:"bold"}}>{myAccount.name}</p><p>님</p>
             </div>
-            <div className={styles.container}>
-                <div className={styles.profileImg}>
+            <div className={`${styles.container} ${isAdmin ? styles.admin : ""}`}>
+                <div className={`${styles.profileImg} ${isAdmin ? styles.adminProfileImg : ""}`}>
                     <img src={require("../../IMAGES/profile.jpeg")}/>
                 </div>
                 <div className={styles.info}>
