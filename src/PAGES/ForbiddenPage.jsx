@@ -10,10 +10,10 @@ function NotFound() {
             flexDirection:"column",
             alignItems:"center"
         }}>
-            <img src={require("../IMAGES/404.jpg")} style={{width:"500px", marginTop:"50px"}}/>
-            <h3 style={{padding:"30px"}}>잘못된 접근 입니다.</h3>
+            <img src={require("../IMAGES/403.png")} style={{width:"500px", marginTop:"200px"}}/>
+            <h3 style={{padding:"30px"}}>접근이 제한된 페이지입니다.</h3>
             <Link to={MAIN_COMPONENT}>
-                <Button variant="primary">메인으로</Button>
+                <Button variant="warning">메인으로</Button>
             </Link>
         </div>
     )

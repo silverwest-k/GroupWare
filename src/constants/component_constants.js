@@ -2,6 +2,7 @@ export const MAIN_COMPONENT = "/"
 export const NOT_FOUND_COMPONENT = "*"
 export const LOGIN_COMPONENT = "/login"
 export const PAGE_COMPONENT = "/page/*"
+export const FORBIDDEN_COMPONENT = "/forbidden"
 
 // 전자결재
 export const DOCUMENT_WRITE_COMPONENT = "write"
@@ -15,10 +16,10 @@ export const DOCUMENT_DETAIL_COMPONENT="documentdetail"
 // 마이페이지
 export const MY_PAGE_COMPONENT = "mypage"
 
-// 양식관리
+// 양식관리 (admin only)
 export const DOCUMENT_REGISTRATION_COMPONENT="documentregistration"
 
-// 계정관리
+// 계정관리 (admin only)
 export const ACCOUNT_MANAGEMENT_COMPONENT="accountmanagement"
 export const ACCOUNT_REGISTRATION_COMPONENT="accountregistration"
 

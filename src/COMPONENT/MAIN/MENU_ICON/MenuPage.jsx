@@ -7,7 +7,8 @@ import styles from "./Menu.module.css"
 import useStore from "../../../store";
 function MenuPage() {
 
-    const {changeTitle} = useStore(state => state)
+    const {changeTitle, myAccountInfo} = useStore(state => state)
+    const isAdmin = myAccountInfo?.authority === "admin";
 
     const menuName = (e) =>{
         const selectMenu = e.target.textContent;
@@ -20,8 +21,12 @@ function MenuPage() {
             <DocumentMenu menuName={menuName}/>
             <MyPageMenu menuName={menuName}/>
 
-            <DocumentManagementMenu menuName={menuName}/>
-            <AccountManagementMenu menuName={menuName}/>
+            {isAdmin && (
+                <>
+                    <DocumentManagementMenu menuName={menuName} />
+                    <AccountManagementMenu menuName={menuName} />
+                </>
+            )}
         </div>
     )
 }

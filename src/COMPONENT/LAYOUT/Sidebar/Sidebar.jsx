@@ -13,7 +13,9 @@ import {
 function Sidebar() {
     const [activeLink, setActiveLink] = useState("");
 
-    const {changeTitle} = useStore(state => state)
+    const {changeTitle, myAccountInfo} = useStore(state => state)
+
+    const isAdmin = myAccountInfo?.authority === "admin";
 
     const menuName = (e) => {
         const selectMenu = e.target.textContent;
@@ -79,43 +81,47 @@ function Sidebar() {
                         </Accordion.Body>
                     </Accordion.Item>
 
-                    <Accordion.Item eventKey="3" className={styles.accordion}>
-                        <Accordion.Header className={`${styles.menu} ${styles.mng}`}>
-                            <img src={require("../../../IMAGES/process.png")}/>
-                            <p>문서관리</p>
-                        </Accordion.Header>
-                        <Accordion.Body onClick={menuName}>
-                            <Link to={`/page/${DOCUMENT_REGISTRATION_COMPONENT}`}
-                                  className={`${styles.underline} ${styles.orange} ${activeLink === DOCUMENT_REGISTRATION_COMPONENT ? styles.active : ""}`}
-                                  onClick={() => handleLink(DOCUMENT_REGISTRATION_COMPONENT)}
-                            >양식관리</Link>
-                        </Accordion.Body>
-                        <Accordion.Body onClick={menuName}>
-                            <Link to=""
-                                  className={`${styles.underline} ${styles.orange}`}
+                    {isAdmin && (
+                        <>
+                            <Accordion.Item eventKey="3" className={styles.accordion}>
+                                <Accordion.Header className={`${styles.menu} ${styles.mng}`}>
+                                    <img src={require("../../../IMAGES/process.png")}/>
+                                    <p>문서관리</p>
+                                </Accordion.Header>
+                                <Accordion.Body onClick={menuName}>
+                                    <Link to={`/page/${DOCUMENT_REGISTRATION_COMPONENT}`}
+                                          className={`${styles.underline} ${styles.orange} ${activeLink === DOCUMENT_REGISTRATION_COMPONENT ? styles.active : ""}`}
+                                          onClick={() => handleLink(DOCUMENT_REGISTRATION_COMPONENT)}
+                                    >양식관리</Link>
+                                </Accordion.Body>
+                                <Accordion.Body onClick={menuName}>
+                                    <Link to=""
+                                          className={`${styles.underline} ${styles.orange}`}
 
-                            >결재문서</Link>
-                        </Accordion.Body>
-                    </Accordion.Item>
+                                    >결재문서</Link>
+                                </Accordion.Body>
+                            </Accordion.Item>
 
-                    <Accordion.Item eventKey="4" className={`${styles.accordion} ${styles.mng}`}>
-                        <Accordion.Header className={`${styles.menu} ${styles.mng}`}>
-                            <img src={require("../../../IMAGES/management.png")}/>
-                            <p>계정관리</p>
-                        </Accordion.Header>
-                        <Accordion.Body onClick={menuName}>
-                            <Link to={`/page/${ACCOUNT_REGISTRATION_COMPONENT}`}
-                                  className={`${styles.underline} ${styles.orange} ${activeLink === ACCOUNT_REGISTRATION_COMPONENT ? styles.active : ""}`}
-                                  onClick={() => handleLink(ACCOUNT_REGISTRATION_COMPONENT)}
-                            >계정등록</Link>
-                        </Accordion.Body>
-                        <Accordion.Body onClick={menuName}>
-                            <Link to={`/page/${ACCOUNT_MANAGEMENT_COMPONENT}`}
-                                  className={`${styles.underline} ${styles.orange} ${activeLink === ACCOUNT_MANAGEMENT_COMPONENT ? styles.active : ""}`}
-                                  onClick={() => handleLink(ACCOUNT_MANAGEMENT_COMPONENT)}
-                            >계정관리</Link>
-                        </Accordion.Body>
-                    </Accordion.Item>
+                            <Accordion.Item eventKey="4" className={`${styles.accordion} ${styles.mng}`}>
+                                <Accordion.Header className={`${styles.menu} ${styles.mng}`}>
+                                    <img src={require("../../../IMAGES/management.png")}/>
+                                    <p>계정관리</p>
+                                </Accordion.Header>
+                                <Accordion.Body onClick={menuName}>
+                                    <Link to={`/page/${ACCOUNT_REGISTRATION_COMPONENT}`}
+                                          className={`${styles.underline} ${styles.orange} ${activeLink === ACCOUNT_REGISTRATION_COMPONENT ? styles.active : ""}`}
+                                          onClick={() => handleLink(ACCOUNT_REGISTRATION_COMPONENT)}
+                                    >계정등록</Link>
+                                </Accordion.Body>
+                                <Accordion.Body onClick={menuName}>
+                                    <Link to={`/page/${ACCOUNT_MANAGEMENT_COMPONENT}`}
+                                          className={`${styles.underline} ${styles.orange} ${activeLink === ACCOUNT_MANAGEMENT_COMPONENT ? styles.active : ""}`}
+                                          onClick={() => handleLink(ACCOUNT_MANAGEMENT_COMPONENT)}
+                                    >계정관리</Link>
+                                </Accordion.Body>
+                            </Accordion.Item>
+                        </>
+                    )}
                 </Accordion>
             </div>
         </div>
