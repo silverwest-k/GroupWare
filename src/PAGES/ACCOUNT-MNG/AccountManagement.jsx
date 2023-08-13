@@ -6,7 +6,12 @@ import TeamModal from "./Modals/TeamModal";
 import useStore from "../../store";
 import PositionModal from "./Modals/PositionModal";
 import AccountModal from "./Modals/AccountModal";
-import {ACCOUNT_DELETE_API, MEMBER_LIST_INFO_API} from "../../constants/api_constans";
+import {
+    ACCOUNT_BLOCK_API,
+    ACCOUNT_DELETE_API,
+    ACCOUNT_EDIT_API,
+    MEMBER_LIST_INFO_API
+} from "../../constants/api_constans";
 import fetcher from "../../fetcher";
 import Swal from "sweetalert2";
 
@@ -18,9 +23,7 @@ function AccountManagement() {
     const [showPositionModal, setShowPositionModal] = useState(false);
     const [imgFile, setImgFile] = useState("");
     const [radioValue, setRadioValue] = useState('1');
-    const [name, setName] = useState("");
     const [password, setPassword] = useState("");
-    const [memberNo, setMemberNo] = useState("");
     const [team, setTeam] = useState("");
     const [position, setPosition] = useState("");
     const [member, setMember] = useState([]);
@@ -29,19 +32,37 @@ function AccountManagement() {
         = useStore(state => state);
 
     const radioState = [
-        {name: '일반계정', value: '1'},
-        {name: '관리자계정', value: '2'},
-        {name: '접속차단', value: '3'}
+        {name: '일반계정', value: 'USER'},
+        {name: '관리자계정', value: 'ADMIN'},
+        {name: '접속차단', value: 'BLOCK'}
     ];
 
     const fetchMemberList = () => {
-        fetcher.get(MEMBER_LIST_INFO_API)
+        return fetcher.get(MEMBER_LIST_INFO_API)
             .then((res) => setMember(res.data))
+    }
+
+    const resetInput = () => {
+        selectAccount("")
+        selectTeam("")
+        selectPosition("")
+    }
+
+    const handleRadioValue = () => {
+        const userAuthority = account.authority
+        if (userAuthority === "USER") {
+            setRadioValue("USER");
+        } else if (userAuthority === "ADMIN") {
+            setRadioValue("ADMIN");
+        } else if (userAuthority === "BLOCK") {
+            setRadioValue("BLOCK");
+        }
     }
 
     useEffect(() => {
         resetInput()
         fetchMemberList()
+        handleRadioValue()
     }, [])
 
     const saveImgFile = () => {
@@ -53,11 +74,30 @@ function AccountManagement() {
         }
     }
 
-    const resetInput = () => {
-        selectAccount("")
-        selectTeam("")
-        selectPosition("")
+    const editID = (id) => {
+        fetcher.post(`${ACCOUNT_EDIT_API}/${id}/edit`, {
+            newPassword: password ? password : "",
+            team: teamName ? teamName : "",
+            position: positionName ? positionName : ""
+        }).then(() => {
+            Swal.fire({
+                position: 'mid',
+                icon: 'success',
+                title: '계정 삭제 완료',
+                showConfirmButton: false,
+                timer: 1500
+            })
+            resetInput()
+            fetchMemberList()
+        })
     }
+    // TODO : 값은 넘어가는데 반영이 안됨, 이미지 저장방식 확인
+
+    const blockID = (id) => {
+        fetcher.post(`${ACCOUNT_BLOCK_API}/${id}`)
+            .then(setRadioValue("3"))
+    }
+    // TODO : 계정차단 기능 확인
 
     const deleteID = (id) => {
         if (!id) {
@@ -79,15 +119,17 @@ function AccountManagement() {
         }).then((result) => {
             if (result.isConfirmed) {
                 fetcher.delete(`${ACCOUNT_DELETE_API}/${id}`)
-                resetInput()
-                fetchMemberList()
-                Swal.fire({
-                    position: 'mid',
-                    icon: 'success',
-                    title: '계정 삭제 완료',
-                    showConfirmButton: false,
-                    timer: 1500
-                })
+                    .then(() => {
+                        Swal.fire({
+                            position: 'mid',
+                            icon: 'success',
+                            title: '계정 삭제 완료',
+                            showConfirmButton: false,
+                            timer: 1500
+                        })
+                        resetInput()
+                        fetchMemberList()
+                    })
             }
         })
     }
@@ -178,7 +220,6 @@ function AccountManagement() {
                                             key={index}
                                             id={`radio-${index}`}
                                             type="radio"
-                                            const
                                             variant={index === 0 ? 'outline-primary' : (index === 1 ? 'outline-warning' : 'outline-danger')}
                                             name="radio"
                                             value={radio.value}
@@ -196,7 +237,7 @@ function AccountManagement() {
                 </div>
                 <div>
                     <div className={styles.modify}>
-                        <Button className="buttonAdmin">수정</Button>
+                        <Button className="buttonAdmin" onClick={() => editID(account.id)}>수정</Button>
                     </div>
                 </div>
             </div>

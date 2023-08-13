@@ -1,5 +1,6 @@
 import styles from "./Write.module.css"
 import useStore from "../../store";
+import {useEffect} from "react";
 
 
 function WriteSignTable() {
@@ -19,7 +20,11 @@ function WriteSignTable() {
         {title: "문서번호", content: ""}
     ]
     const sign_Table_Right_data = [
-        {signTurn: "작 성", sign: "", signName: `${myAccount.name}${myAccount.position}`},
+        {
+            signTurn: "작 성",
+            sign: "",
+            signName: `${myAccount.name}${myAccount.position}`
+        },
         {
             signTurn: "검 토",
             sign: "",
@@ -69,7 +74,7 @@ function WriteSignTable() {
                 <div className={styles.referTable}>
                     <div className={styles.referTitle}>참조</div>
                     <div className={styles.referContent}>
-                        {signLine.signRefer ? `${signLine.signRefer.name} ${signLine.signRefer.position}`:null}
+                        {signLine.signRefer ? `${signLine.signRefer.name} ${signLine.signRefer.position}` : null}
                     </div>
                 </div>
             </div>

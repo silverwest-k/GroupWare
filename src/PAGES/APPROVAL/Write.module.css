@@ -107,6 +107,10 @@
     border-top: 1px solid #000000;
     border-bottom: 1px solid #000000;
 }
+.sign img {
+    width: 65px;
+}
+
 
 /* 참조 */
 .referTable {

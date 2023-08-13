@@ -9,6 +9,7 @@ import Dropdown from "react-bootstrap/Dropdown";
 import Swal from "sweetalert2";
 import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
 import {CKEditor} from "@ckeditor/ckeditor5-react";
+import {Button} from "react-bootstrap";
 
 function DocumentRegistration() {
     const [categoryName, setCategoryName] = useState("")
@@ -20,12 +21,17 @@ function DocumentRegistration() {
     const editorRef = useRef();
 
     const fetchCategoryList = () => {
-        fetcher.get(CATEGORY_LIST_API)
+        return fetcher.get(CATEGORY_LIST_API)
             .then((res) => setCategoryList(res.data))
     }
     useEffect(() => {
         fetchCategoryList()
     }, [])
+
+    const resetInput = () => {
+        setCategoryName("")
+        setContent("")
+    }
 
     const createCategory = () => {
         if (categoryName) {
@@ -52,30 +58,36 @@ function DocumentRegistration() {
         )
     }
     const updateCategory = (id, categoryName) => {
-        fetcher.put(`${UPDATE_CATEGORY_API}/${id}`, {
-            category: categoryName,
-            content: content
-        })
-            .then(() => {
-                Swal.fire({
-                    position: 'mid',
-                    icon: 'success',
-                    title: '양식 수정 완료.',
-                    showConfirmButton: false,
-                    timer: 1500
-                })
-                resetInput()
-                fetchCategoryList()
+        if (id) {
+            fetcher.put(`${UPDATE_CATEGORY_API}/${id}`, {
+                category: categoryName,
+                content: content
             })
+                .then(() => {
+                    Swal.fire({
+                        position: 'mid',
+                        icon: 'success',
+                        title: '양식 수정 완료.',
+                        showConfirmButton: false,
+                        timer: 1500
+                    })
+                    resetInput()
+                    fetchCategoryList()
+                })
+        } else (
+            Swal.fire({
+                title: "양식을 선택하세요.",
+                icon: 'warning',
+            })
+        )
     }
-    // TODO: 수정 제대로 안됨 수정하기
+
     const selectCategory = (id) => {
         fetcher.get(`${SHOW_CATEGORY_API}/${id}`)
             .then((res) => {
                 setCategory(res.data)
                 setHtmlData(res.data.content)
-                // editorRef.current?.getInstance().setHTML(htmlData);
-                // TODO: ToastUI -> CKEditor 코드 수정하기
+                editorRef.current?.getInstance().setHTML(htmlData);
             })
     }
     const deleteCategory = (id) => {
@@ -90,6 +102,8 @@ function DocumentRegistration() {
                         timer: 1500
                     })
                     fetchCategoryList()
+                    setCategory("")
+                    setContent("")
                 })
         } else (
             Swal.fire({
@@ -99,11 +113,6 @@ function DocumentRegistration() {
         )
     }
 
-    const resetInput = () => {
-        setCategoryName("")
-        setContent("")
-        // 양식명은 비워지는데 내용은 안됨
-    }
 
     return (
         <div style={{display: "flex", flexDirection: "column"}}>
@@ -112,7 +121,6 @@ function DocumentRegistration() {
                        onChange={(e) => setCategoryName(e.target.value)}
                        placeholder="양식명"
                 />
-                <button onClick={createCategory}>등록</button>
 
                 <Dropdown>
                     <Dropdown.Toggle className="button">
@@ -130,18 +138,19 @@ function DocumentRegistration() {
                     </Dropdown.Menu>
                 </Dropdown>
 
-                <button onClick={() => updateCategory(category.id, category.category)}>양식수정</button>
-                <button onClick={() => deleteCategory(category.id)}>양식삭제</button>
+                <Button className="button" onClick={createCategory}>양식 등록</Button>
+                <Button className="button" onClick={() => updateCategory(category.id, category.category)}>양식 수정</Button>
+                <Button className="button" onClick={() => deleteCategory(category.id)}>양식 삭제</Button>
             </div>
             <div>
                 <CKEditor
-                    editor={ ClassicEditor }
+                    editor={ClassicEditor}
                     config={{placeholder: "양식을 작성 하세요."}}
-                    onChange={ ( event, editor ) => {
+                    onChange={(event, editor) => {
                         const data = editor.getData();
                         setContent(data)
-                        console.log( { event, editor, data } );
-                    } }
+                        console.log({event, editor, data});
+                    }}
                 />
             </div>
         </div>

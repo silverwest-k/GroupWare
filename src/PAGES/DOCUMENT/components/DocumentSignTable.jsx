@@ -13,20 +13,25 @@ function DocumentSignTable({documentData, signLine}) {
         {title: "문서번호", content: `${documentData.dno}`}
     ]
 
+    const approvalState = (index) => signLine[index]?.status
+
     const sign_Table_Right_data = [
         {
             signTurn: "작 성",
-            sign: "",
+            sign: approvalState(0) === "승인" ? require("../../../IMAGES/approval.png") :
+                approvalState(0) === "반려" ? require("../../../IMAGES/return.png") : null,
             signName: `${writer?.name || ""}${writer?.position || ""}`
         },
         {
             signTurn: "검 토",
-            sign: "",
+            sign: approvalState(1) === "승인" ? require("../../../IMAGES/approval.png") :
+                approvalState(1) === "반려" ? require("../../../IMAGES/return.png") : null,
             signName: signTurn1 ? `${signTurn1?.name} ${signTurn1?.position || ""}` : ""
         },
         {
             signTurn: "승 인",
-            sign: "",
+            sign: approvalState(2) === "승인" ? require("../../../IMAGES/approval.png") :
+                approvalState(2) === "반려" ? require("../../../IMAGES/return.png") : null,
             signName: signTurn2 ? `${signTurn2?.name} ${signTurn2?.position || ""}` : ""
         }
     ]
@@ -56,7 +61,9 @@ function DocumentSignTable({documentData, signLine}) {
                             return (
                                 <td key={index} className={styles.signTableRight_content}>
                                     <div className={styles.signInfo}> {data.signTurn} </div>
-                                    <div className={styles.sign}> {data.sign} </div>
+                                    {data.sign !== null && (
+                                        <div className={styles.sign}><img src={data.sign} alt="Sign"/></div>)}
+                                    {data.sign === null && (<div className={styles.sign}></div>)}
                                     <div className={styles.signInfo}> {data.signName} </div>
                                 </td>
                             )

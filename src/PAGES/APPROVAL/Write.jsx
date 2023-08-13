@@ -15,7 +15,6 @@ import Swal from "sweetalert2";
 
 function Write() {
     const {signLine} = useStore(state => state)
-    const editorRef = useRef();
     const navigate = useNavigate();
     const approvers = [signLine.signTurn1.id, signLine.signTurn2.id, signLine.signRefer ? signLine.signRefer.id : null];
 
@@ -42,7 +41,6 @@ function Write() {
         fetcher.get(`${SHOW_CATEGORY_API}/${id}`)
             .then((res) => {
                 setCategory(res.data)
-                editorRef.current?.getInstance().setHTML(res.data.content);
             })
     }
     /** 저장, 임시저장 구분*/

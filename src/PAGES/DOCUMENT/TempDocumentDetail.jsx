@@ -43,16 +43,16 @@ function TempDocumentDetail() {
         }).then((result) => {
             if (result.isConfirmed) {
                 fetcher.delete(`${DOCUMENT_DELETE_API}/${id}`)
-                    .then(
-                        Swal.fire({
-                            position: 'mid',
-                            icon: 'success',
-                            title: '삭제 완료',
-                            showConfirmButton: false,
-                            timer: 1500
-                        }),
-                        navigate(-1)
-                    )
+                    .then(()=>{
+                            Swal.fire({
+                                position: 'mid',
+                                icon: 'success',
+                                title: '삭제 완료',
+                                showConfirmButton: false,
+                                timer: 1500
+                            })
+                                navigate(-1)
+                    })
             }
         })
     }

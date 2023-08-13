@@ -1,16 +1,15 @@
-// 로그인관련 API
+// 토큰관련 API
 export const LOGIN_API = "/auth/login"  // 로그인 (o)
 export const LOGOUT_API = "/auth/logout" // 로그아웃 (o)
+export const RENEW_TOKEN_API = "/auth/refresh"  // 토큰갱신 (o)
 
 // 계정관련 API
 export const CREATE_ID_API = "/admin/signup"   // 계정등록 (o)
 export const MY_INFO_CHANGE_API = "/member/profile"  // 본인 비밀번호 + 사진 변경
 export const ACCOUNT_INFO_API ="/admin" //(+id) GET : 직원상세정보
-export const ACCOUNT_EDIT_API ="/admin/edit"  // (+id/password) POST : 관리자 -> 임직원 정보 변경
+export const ACCOUNT_EDIT_API ="/admin/members"  // (+id/password) POST : 관리자 -> 임직원 정보 변경
 export const ACCOUNT_DELETE_API ="/admin/delete" // (+id) DELETE : 계정삭제 (o)
-
-                                                    
-
+export const ACCOUNT_BLOCK_API="/admin/block" // (+id) POST : 계정 접속차단
 
 // 문서관련 API
 export const RECEIVE_DOCUMENT_LIST_API= "/approval/list"  // 수신문서함(결재라인에 내가 포함되어 있는 문서) (o)
@@ -35,11 +34,11 @@ export  const SHOW_CATEGORY_API="/templates" // (+id) 양식 데이터 조회 (o
 export const UPDATE_CATEGORY_API ="/admin/templates/edit" // (+id) 양식수정 (o)
 
 // 결재관련 API
-export const APPROVAL_SIGN_API ="/approval/approve" // 결재승인, 반려
+export const APPROVAL_SIGN_API ="/approval/approve" // 결재 승인 & 반려 (o)
 export const APPROVAL_BOOKMARK_CREATE_API= "/line/create" // 결재라인 즐겨찾기 추가 (o)
 export const APPROVAL_BOOKMARK_DELETE_API="/line/delete" // (+id) 결재라인 즐겨찾기 삭제 (o)
 export const APPROVAL_BOOKMARK_LIST_API="/line/list"  // 결재라인 즐겨찾기 리스트 (o)
-export const APPROVAL_BOOKMARK_INFO_API="/line" //(+id) 즐겨찾기 결재라인 상세
+export const APPROVAL_BOOKMARK_INFO_API="/line" //(+id) 즐겨찾기 결재라인 상세 (o)
 
 // 정보조회 API
 export const MY_INFO_API = "/member/me" //내정보 (o)

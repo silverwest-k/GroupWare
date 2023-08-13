@@ -30,6 +30,8 @@ function ApprovalPathModal({showApprovalPathModal, handleApprovalPathModalClose}
     useEffect(() => {
         fetcher.get(TEAM_INFO_API)
             .then((res) => setTeam(res.data))
+        setApprovalMembers([])
+        setReferMember([])
     }, [])
 
     useEffect(() => {
@@ -71,7 +73,7 @@ function ApprovalPathModal({showApprovalPathModal, handleApprovalPathModalClose}
     }
     // 결재라인 즐겨찾기 관련
     const fetchBookmark = () => {
-        fetcher.get(APPROVAL_BOOKMARK_LIST_API)
+        return fetcher.get(APPROVAL_BOOKMARK_LIST_API)
             .then((res) => {
                 const fetchData = Object.values(res.data)
                 const bookmarkData = fetchData.flatMap((innerArr) => {
@@ -221,7 +223,9 @@ function ApprovalPathModal({showApprovalPathModal, handleApprovalPathModalClose}
                                 <div className={styles.bookmarkLine}>
                                     <p style={{marginBottom: "0"}}>사용자 결재라인</p>
                                     <select onChange={(e) => {
-                                        bookmarkInfo(e.target.value)
+                                        const id = e.target.value;
+                                        bookmarkInfo(id)
+                                        setBookmarkId(id)
                                     }}>
                                         <option selected disabled>결재라인 선택</option>
                                         {bookmarkList?.map((data, index) => {

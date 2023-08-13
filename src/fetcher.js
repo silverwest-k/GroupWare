@@ -2,6 +2,7 @@ import Cookies from "universal-cookie/es6";
 import axios from "axios";
 import {ACCESS_TOKEN_COOKIE, REFRESH_TOKEN_COOKIE} from "./constants/constants";
 import Swal from "sweetalert2";
+import {RENEW_TOKEN_API} from "./constants/api_constans";
 
 const cookies = new Cookies();
 
@@ -28,7 +29,7 @@ function refreshRequest(originalRequest) {
             console.log(err)
             const config = err.config;
             if (err.response.data === "EXPIRED") {
-                return INSTANCE().post("/auth/refresh", {
+                return INSTANCE().post(RENEW_TOKEN_API, {
                     accessToken: cookies.get(ACCESS_TOKEN_COOKIE),
                     refreshToken: cookies.get(REFRESH_TOKEN_COOKIE)
                 })

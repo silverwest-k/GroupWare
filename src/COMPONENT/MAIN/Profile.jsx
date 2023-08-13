@@ -14,7 +14,7 @@ function Profile() {
             </div>
             <div className={`${styles.container} ${isAdmin ? styles.admin : ""}`}>
                 <div className={`${styles.profileImg} ${isAdmin ? styles.adminProfileImg : ""}`}>
-                    <img src={require("../../IMAGES/profile.jpeg")}/>
+                    <img src={require("../../IMAGES/profile.jpg")}/>
                 </div>
                 <div className={styles.info}>
                     <p>{myAccount.name} {myAccount.position}</p>
