@@ -9,15 +9,15 @@ import useStore from "../../store";
 import {useNavigate} from "react-router-dom";
 import {REPORT_DOCUMENT_COMPONENT, TEMP_DOCUMENT_COMPONENT} from "../../constants/component_constants";
 import WriteSignTable from "./WriteSignTable";
-import { CKEditor } from '@ckeditor/ckeditor5-react';
+import {CKEditor} from '@ckeditor/ckeditor5-react';
 import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 import Swal from "sweetalert2";
 
 function Write() {
-    const { signLine} = useStore(state => state)
+    const {signLine} = useStore(state => state)
     const editorRef = useRef();
     const navigate = useNavigate();
-    const approvers = [signLine.signTurn1.id, signLine.signTurn2.id, signLine.signRefer? signLine.signRefer.id: null];
+    const approvers = [signLine.signTurn1.id, signLine.signTurn2.id, signLine.signRefer ? signLine.signRefer.id : null];
 
     const [title, setTitle] = useState("")
     const [content, setContent] = useState("")
@@ -31,10 +31,10 @@ function Write() {
     }, [])
 
     const saveBtn = (status) => {
-        fetcher.post(DOCUMENT_CREATE_API, {
+        return fetcher.post(DOCUMENT_CREATE_API, {
             "title": title,
             "content": content,
-            "approvers":approvers,
+            "approvers": approvers,
             "status": status,
         })
     }
@@ -47,26 +47,28 @@ function Write() {
     }
     /** 저장, 임시저장 구분*/
     const handleTempSave = () => {
-        saveBtn(0)
-        Swal.fire({
-            position: 'mid',
-            icon: 'success',
-            title: '임시저장 완료',
-            showConfirmButton: false,
-            timer: 1500
+        saveBtn(0).then(() => {
+            Swal.fire({
+                position: 'mid',
+                icon: 'success',
+                title: '임시저장 완료',
+                showConfirmButton: false,
+                timer: 1500
+            })
+            navigate(`/page/${TEMP_DOCUMENT_COMPONENT}`)
         })
-        navigate(`/page/${TEMP_DOCUMENT_COMPONENT}`)
     }
     const handleSave = () => {
-        saveBtn(1)
-        Swal.fire({
-            position: 'mid',
-            icon: 'success',
-            title: '문서 상신 완료',
-            showConfirmButton: false,
-            timer: 1500
+        saveBtn(1).then(() => {
+            Swal.fire({
+                position: 'mid',
+                icon: 'success',
+                title: '문서 상신 완료',
+                showConfirmButton: false,
+                timer: 1500
+            })
+            navigate(`/page/${REPORT_DOCUMENT_COMPONENT}`)
         })
-        navigate(`/page/${REPORT_DOCUMENT_COMPONENT}`)
     }
 
     return (
@@ -91,7 +93,7 @@ function Write() {
                 </div>
 
                 <div className={styles.buttonGroup}>
-                    <Button className="button" onClick={()=>navigate(-1)}>작성취소</Button>
+                    <Button className="button" onClick={() => navigate(-1)}>작성취소</Button>
                     <Button className="button" onClick={handleTempSave}>임시저장</Button>
                     <Button className="button" onClick={handleSave}>상신하기</Button>
                 </div>
@@ -109,19 +111,19 @@ function Write() {
                     <div className={styles.documentTitle}>
                         <p>제목 :</p>
                         <input value={title}
-                           placeholder={"제목을 입력하세요"}
-                           style={{margin: "10px 0"}}
-                           onChange={(e)=> setTitle(e.target.value)}/>
+                               placeholder={"제목을 입력하세요"}
+                               style={{margin: "10px 0"}}
+                               onChange={(e) => setTitle(e.target.value)}/>
                     </div>
 
                     <CKEditor
-                        editor={ ClassicEditor }
+                        editor={ClassicEditor}
                         config={{placeholder: "양식을 입력 하세요."}}
-                        onChange={ ( event, editor ) => {
+                        onChange={(event, editor) => {
                             const data = editor.getData();
                             setContent(data)
-                            console.log( { event, editor, data } );
-                        } }
+                            console.log({event, editor, data});
+                        }}
                     />
 
                 </div>

@@ -6,7 +6,6 @@ function SidebarProfile() {
     const {myAccount} = useStore(state => state)
     const isAdmin = myAccount?.authority === "ADMIN";
 
-    console.log(myAccount?.authority)
     return (
         <div className={styles.profileContainer}>
         <div className={`${styles.profile} ${isAdmin ? styles.admin : ""}`}>

@@ -3,8 +3,12 @@ import {Button, Modal, Table} from "react-bootstrap";
 import {useEffect, useState} from "react";
 import fetcher from "../../fetcher";
 import {
-    APPROVAL_BOOKMARK_CREATE_API, APPROVAL_BOOKMARK_DELETE_API, APPROVAL_BOOKMARK_INFO_API,
-    APPROVAL_BOOKMARK_LIST_API, TEAM_INFO_API, TEAM_MEMBER_INFO_API
+    APPROVAL_BOOKMARK_CREATE_API,
+    APPROVAL_BOOKMARK_DELETE_API,
+    APPROVAL_BOOKMARK_INFO_API,
+    APPROVAL_BOOKMARK_LIST_API,
+    TEAM_INFO_API,
+    TEAM_MEMBER_INFO_API
 } from "../../constants/api_constans";
 import useStore from "../../store";
 import Accordion from "react-bootstrap/Accordion";
@@ -103,31 +107,32 @@ function ApprovalPathModal({showApprovalPathModal, handleApprovalPathModalClose}
     }
     const removeBookmark = (id) => {
         fetcher.delete(`${APPROVAL_BOOKMARK_DELETE_API}/${id}`)
-            .then(() =>
-                Swal.fire({
-                    position: 'mid',
-                    icon: 'success',
-                    title: '결재라인 삭제 완료',
-                    showConfirmButton: false,
-                    timer: 1500
-                }),
-                fetchBookmark
+            .then(() => {
+                    Swal.fire({
+                        position: 'mid',
+                        icon: 'success',
+                        title: '결재라인 삭제 완료',
+                        showConfirmButton: false,
+                        timer: 1500
+                    })
+                        fetchBookmark()
+                }
             )
     }
     const bookmarkInfo = (id) => {
-        if (id) {
-            fetcher.get(`${APPROVAL_BOOKMARK_INFO_API}/${id}`)
+        fetcher.get(`${APPROVAL_BOOKMARK_INFO_API}/${id}`)
                 .then((res) => {
                     const fetchData = (res.data)
                     const key = Object.keys(fetchData)
                     setApprovalMembers([fetchData[key][1], fetchData[key][2]]);
                     setReferMember([fetchData[key][3]]);
                 })
-        }
     }
 
     // 결재라인 적용
     const enterSignLine = () => {
+        console.log(approvalMembers)
+        console.log(referMember)
         setSignLine({
             signTurn1: {
                 id: approvalMembers[0].id,
@@ -215,8 +220,9 @@ function ApprovalPathModal({showApprovalPathModal, handleApprovalPathModalClose}
                                 <p className={styles.title}>결재선 정보</p>
                                 <div className={styles.bookmarkLine}>
                                     <p style={{marginBottom: "0"}}>사용자 결재라인</p>
-                                    <select onChange={(e) => setBookmarkId(e.target.value)}
-                                            onClick={() => bookmarkInfo(bookmarkId)}>
+                                    <select onChange={(e) => {
+                                        bookmarkInfo(e.target.value)
+                                    }}>
                                         <option selected disabled>결재라인 선택</option>
                                         {bookmarkList?.map((data, index) => {
                                             return (
