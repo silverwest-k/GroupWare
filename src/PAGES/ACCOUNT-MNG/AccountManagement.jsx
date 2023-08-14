@@ -95,7 +95,7 @@ function AccountManagement() {
 
     const blockID = (id) => {
         fetcher.post(`${ACCOUNT_BLOCK_API}/${id}`)
-            .then(setRadioValue("3"))
+            .then(setRadioValue("BLOCK"))
     }
     // TODO : 계정차단 기능 확인
 
@@ -235,10 +235,8 @@ function AccountManagement() {
                         </tbody>
                     </table>
                 </div>
-                <div>
-                    <div className={styles.modify}>
-                        <Button className="buttonAdmin" onClick={() => editID(account.id)}>수정</Button>
-                    </div>
+                <div className={styles.modify}>
+                    <Button className="buttonAdmin" onClick={() => editID(account.id)}>수정</Button>
                 </div>
             </div>
 

@@ -133,8 +133,6 @@ function ApprovalPathModal({showApprovalPathModal, handleApprovalPathModalClose}
 
     // 결재라인 적용
     const enterSignLine = () => {
-        console.log(approvalMembers)
-        console.log(referMember)
         setSignLine({
             signTurn1: {
                 id: approvalMembers[0].id,
@@ -168,7 +166,7 @@ function ApprovalPathModal({showApprovalPathModal, handleApprovalPathModalClose}
                         <div className={styles.leftSide}>
                             <div className={styles.title}>조직도</div>
                             <Accordion defaultActiveKey="0">
-                                {team.map((teamData, index) => {
+                                {team?.map((teamData, index) => {
                                     return (
                                         <Accordion.Item key={index} eventKey={index} className={styles.accordion}>
                                             <Accordion.Header onClick={() => setSelectTeam(teamData)}>

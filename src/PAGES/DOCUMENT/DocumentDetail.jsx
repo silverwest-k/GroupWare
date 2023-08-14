@@ -28,7 +28,6 @@ function DocumentDetail() {
         return fetcher.get(`${DOCUMENT_READ_API}/${id}`)
             .then((res) => {
                 const {document, groupedApprovals} = res.data
-                console.log(res.data)
                 // 문서 정보
                 setDocumentData(document)
                 // 결재라인

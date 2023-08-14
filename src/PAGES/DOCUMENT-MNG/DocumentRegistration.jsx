@@ -1,4 +1,4 @@
-import styles from "./DocumentRegistration.module.css"
+import styles from "../APPROVAL/Write.module.css"
 import {useEffect, useRef, useState} from "react";
 import fetcher from "../../fetcher";
 import {
@@ -16,9 +16,6 @@ function DocumentRegistration() {
     const [content, setContent] = useState("")
     const [category, setCategory] = useState("")
     const [categoryList, setCategoryList] = useState([])
-    const [htmlData, setHtmlData] = useState("")
-
-    const editorRef = useRef();
 
     const fetchCategoryList = () => {
         return fetcher.get(CATEGORY_LIST_API)
@@ -86,8 +83,7 @@ function DocumentRegistration() {
         fetcher.get(`${SHOW_CATEGORY_API}/${id}`)
             .then((res) => {
                 setCategory(res.data)
-                setHtmlData(res.data.content)
-                editorRef.current?.getInstance().setHTML(htmlData);
+                setContent(res.data.content)
             })
     }
     const deleteCategory = (id) => {
@@ -113,38 +109,42 @@ function DocumentRegistration() {
         )
     }
 
-
     return (
-        <div style={{display: "flex", flexDirection: "column"}}>
-            <div style={{display: "flex", flexDirection: "row", justifyContent: "space-between"}}>
-                <input value={categoryName}
-                       onChange={(e) => setCategoryName(e.target.value)}
-                       placeholder="양식명"
-                />
-
-                <Dropdown>
-                    <Dropdown.Toggle className="button">
-                        {category ? category.category : "문서양식"}
-                    </Dropdown.Toggle>
-                    <Dropdown.Menu>
-                        {categoryList.map((data) => {
-                            return (
-                                <Dropdown.Item key={data.id} value={data.category}
-                                               onClick={() => selectCategory(data.id)}>
-                                    {data.category}
-                                </Dropdown.Item>
-                            )
-                        })}
-                    </Dropdown.Menu>
-                </Dropdown>
-
-                <Button className="button" onClick={createCategory}>양식 등록</Button>
-                <Button className="button" onClick={() => updateCategory(category.id, category.category)}>양식 수정</Button>
-                <Button className="button" onClick={() => deleteCategory(category.id)}>양식 삭제</Button>
+        <div className={styles.wrapper}>
+            <div className={styles.upperContainer}>
+                <div className={styles.select}>
+                    <input value={categoryName}
+                           onChange={(e) => setCategoryName(e.target.value)}
+                           placeholder="양식명"
+                    />
+                    <Button className="button" onClick={createCategory}>양식 등록</Button>
+                </div>
+                <div className={styles.buttonGroup}>
+                    <Dropdown>
+                        <Dropdown.Toggle className="button">
+                            {category ? category.category : "문서양식"}
+                        </Dropdown.Toggle>
+                        <Dropdown.Menu>
+                            {categoryList?.map((data) => {
+                                return (
+                                    <Dropdown.Item key={data.id} value={data.category}
+                                                   onClick={() => selectCategory(data.id)}>
+                                        {data.category}
+                                    </Dropdown.Item>
+                                )
+                            })}
+                        </Dropdown.Menu>
+                    </Dropdown>
+                    <Button className="button" onClick={() => updateCategory(category.id, category.category)}>양식
+                        수정</Button>
+                    <Button className="button" onClick={() => deleteCategory(category.id)}>양식 삭제</Button>
+                </div>
             </div>
-            <div>
+            <div className={styles.divisionLine}></div>
+            <div className={styles.lowerContainer}>
                 <CKEditor
                     editor={ClassicEditor}
+                    data={content}
                     config={{placeholder: "양식을 작성 하세요."}}
                     onChange={(event, editor) => {
                         const data = editor.getData();
@@ -153,6 +153,7 @@ function DocumentRegistration() {
                     }}
                 />
             </div>
+
         </div>
     )
 }

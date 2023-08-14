@@ -15,7 +15,7 @@ function ReceiveDocument() {
         fetcher.get(RECEIVE_DOCUMENT_LIST_API)
             .then((res)=> setData(res.data))
     },[])
-    // TODO : 결재양식도 내려받아야됨
+
     const routeDetail = (id) => {
         navigate(`/page/${DOCUMENT_DETAIL_COMPONENT}/${id}`);
     }
@@ -33,7 +33,7 @@ function ReceiveDocument() {
                 </InputGroup>
             </div>
             <div className={styles.cardContainer}>
-                {data.map((data, index) => {
+                {data?.map((data, index) => {
                     return (
                         <div className={styles.card} key={data.id}>
                             <div className={styles.contents}>

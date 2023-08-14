@@ -154,7 +154,3 @@
 .documentTitle input {
     width: calc(100% - 70px);
 }
-.documentContent{
-    min-height: 690px;
-    overflow: auto;
-}

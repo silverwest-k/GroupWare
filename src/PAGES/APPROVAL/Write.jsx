@@ -40,7 +40,8 @@ function Write() {
     const selectCategory = (id) => {
         fetcher.get(`${SHOW_CATEGORY_API}/${id}`)
             .then((res) => {
-                setCategory(res.data)
+                setCategory(res.data?.category)
+                setContent(res.data?.content)
             })
     }
     /** 저장, 임시저장 구분*/
@@ -75,10 +76,10 @@ function Write() {
                 <div className={styles.select}>
                     <Dropdown>
                         <Dropdown.Toggle className="button">
-                            {category ? category.category : "문서양식"}
+                            {category ? category : "문서양식"}
                         </Dropdown.Toggle>
                         <Dropdown.Menu className={styles.dropMenu}>
-                            {categoryList.map((data) => {
+                            {categoryList?.map((data) => {
                                 return (
                                     <Dropdown.Item key={data.id} onClick={() => selectCategory(data.id)}>
                                         {data.category}
@@ -100,7 +101,7 @@ function Write() {
             <div className={styles.divisionLine}></div>
             <div className={styles.lowerContainer}>
                 <div className={styles.categoryTitle}>
-                    <p>{category ? category.category : "양식을 선택하세요"}</p>
+                    <p>{category ? category : "양식을 선택하세요"}</p>
                 </div>
 
                 <WriteSignTable/>
@@ -116,6 +117,7 @@ function Write() {
 
                     <CKEditor
                         editor={ClassicEditor}
+                        data={content}
                         config={{placeholder: "양식을 입력 하세요."}}
                         onChange={(event, editor) => {
                             const data = editor.getData();

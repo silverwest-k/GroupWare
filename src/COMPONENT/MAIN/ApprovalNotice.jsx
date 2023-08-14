@@ -29,24 +29,24 @@ function ApprovalNotice() {
             <div className={styles.title}>결재 대기 문서</div>
             <div className={styles.container}>
                 <div className={styles.tableBody}>
-                <table>
-                    <tbody>
-                    {data?.map((data, index) => {
-                        return (
-                            <tr key={data.id} onClick={() => routeDetail(data.id)}>
-                                <td>{data.createDate}</td>
-                                {/*<td>문서양식</td>*/}
-                                <td>{data.title}</td>
-                                <td style={{display: "flex", justifyContent: "center"}}>
-                                    <div className={tableStyles.stateButton}
-                                         style={{background: getBackgroundColor(data.result)}}
-                                    >{data.result}</div>
-                                </td>
-                            </tr>
-                        )
-                    })}
-                    </tbody>
-                </table>
+                    <table>
+                        <tbody>
+                        {data?.map((data, index) => {
+                            return (
+                                <tr key={data.id} onClick={() => routeDetail(data.id)}>
+                                    <td>{data.createDate}</td>
+                                    {/*<td>문서양식</td>*/}
+                                    <td>{data.title}</td>
+                                    <td style={{display: "flex", justifyContent: "center"}}>
+                                        <div className={tableStyles.stateButton}
+                                             style={{background: getBackgroundColor(data.result)}}
+                                        >{data.result}</div>
+                                    </td>
+                                </tr>
+                            )
+                        })}
+                        </tbody>
+                    </table>
                 </div>
             </div>
         </div>
