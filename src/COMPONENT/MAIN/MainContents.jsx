@@ -5,8 +5,23 @@ import Notice from "./Notice";
 import styles from "./MainContents.module.css"
 import Header from "../LAYOUT/Header";
 import Calender from "./Calender";
+import {useCookies} from "react-cookie";
+import {ACCESS_TOKEN_COOKIE, REFRESH_TOKEN_COOKIE} from "../../constants/constants";
+import {useEffect} from "react";
+import {useNavigate} from "react-router-dom";
 
 function MainContents() {
+
+    const [accessCookie, , ] = useCookies([ACCESS_TOKEN_COOKIE]);
+    const [refreshCookie, , ] = useCookies([REFRESH_TOKEN_COOKIE]);
+    const navigate = useNavigate();
+
+    useEffect(()=>{
+        if (!(accessCookie && refreshCookie)){
+            navigate("/login")
+        }
+    },[])
+
     return (
         <div className={styles.wrapper}>
             <Header/>

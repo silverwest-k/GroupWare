@@ -145,6 +145,9 @@ function AccountManagement() {
                         >불러오기</Button>
                     </div>
                     <Button className="buttonAdmin"
+                            onClick={()=>blockID(account.id)}
+                    >접속차단</Button>
+                    <Button className="buttonAdmin"
                             onClick={() => deleteID(account.id)}
                     >삭제</Button>
                 </div>
@@ -211,27 +214,27 @@ function AccountManagement() {
                                 />
                             </td>
                         </tr>
-                        <tr>
-                            <th>계정상태</th>
-                            <td>
-                                <ButtonGroup>
-                                    {radioState.map((radio, index) => (
-                                        <ToggleButton
-                                            key={index}
-                                            id={`radio-${index}`}
-                                            type="radio"
-                                            variant={index === 0 ? 'outline-primary' : (index === 1 ? 'outline-warning' : 'outline-danger')}
-                                            name="radio"
-                                            value={radio.value}
-                                            checked={radioValue === radio.value}
-                                            onChange={(e) => setRadioValue(e.currentTarget.value)}
-                                        >
-                                            {radio.name}
-                                        </ToggleButton>
-                                    ))}
-                                </ButtonGroup>
-                            </td>
-                        </tr>
+                        {/*<tr>*/}
+                        {/*    <th>계정상태</th>*/}
+                        {/*    <td>*/}
+                        {/*        <ButtonGroup>*/}
+                        {/*            {radioState.map((radio, index) => (*/}
+                        {/*                <ToggleButton*/}
+                        {/*                    key={index}*/}
+                        {/*                    id={`radio-${index}`}*/}
+                        {/*                    type="radio"*/}
+                        {/*                    variant={index === 0 ? 'outline-primary' : (index === 1 ? 'outline-warning' : 'outline-danger')}*/}
+                        {/*                    name="radio"*/}
+                        {/*                    value={radio.value}*/}
+                        {/*                    checked={radioValue === radio.value}*/}
+                        {/*                    onChange={(e) => setRadioValue(e.currentTarget.value)}*/}
+                        {/*                >*/}
+                        {/*                    {radio.name}*/}
+                        {/*                </ToggleButton>*/}
+                        {/*            ))}*/}
+                        {/*        </ButtonGroup>*/}
+                        {/*    </td>*/}
+                        {/*</tr>*/}
                         </tbody>
                     </table>
                 </div>

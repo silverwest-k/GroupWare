@@ -14,10 +14,16 @@ function LogIn() {
     const [alertMessage, setAlertMessage] = useState("");
     const [isShowAlert, setIsShowAlert] = useState(false);
 
-    const [, setAccessCookie, ] = useCookies([ACCESS_TOKEN_COOKIE]);
-    const [, setRefreshCookie, ] = useCookies([REFRESH_TOKEN_COOKIE]);
+    const [ac, setAccessCookie, removeAccessCookie ] = useCookies([ACCESS_TOKEN_COOKIE]);
+    const [rc, setRefreshCookie, removeRefreshCookie ] = useCookies([REFRESH_TOKEN_COOKIE]);
 
     const navigate = useNavigate();
+
+    useEffect(()=>{
+        if (ac && rc){
+            navigate(MAIN_COMPONENT)
+        }
+    },[])
 
     //Refresh token: Cookie 저장, Access token: Read-Only cookie 필요시마다 호출해서 사용
     const loginBtn = () => {
@@ -35,7 +41,7 @@ function LogIn() {
                 setRefreshCookie(REFRESH_TOKEN_COOKIE, res?.data?.refreshToken);
                 navigate(MAIN_COMPONENT);
             })
-            .catch(() => {
+            .catch((err) => {
                 setAlertMessage("입력하신 값이 올바르지 않습니다.");
                 setIsShowAlert(true);
             })

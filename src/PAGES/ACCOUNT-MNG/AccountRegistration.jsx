@@ -17,7 +17,6 @@ function AccountRegistration() {
     const [name, setName] = useState("");
     const [password, setPassword] = useState("");
     const [memberNo, setMemberNo] = useState("")
-    const [team, setTeam] = useState("");
     const [authority, setAuthority] = useState("ROLE_USER");
 
     const {teamName, positionName, selectTeam, selectPosition} = useStore(state => state);
@@ -142,7 +141,6 @@ function AccountRegistration() {
                                 <img src={require("../../IMAGES/more.png")}
                                      className={styles.icon}
                                      onClick={() => setShowTeamModal(true)}
-                                     onChange={(e)=>setTeam(e.target.value)}
                                 />
                             </td>
                         </tr>
