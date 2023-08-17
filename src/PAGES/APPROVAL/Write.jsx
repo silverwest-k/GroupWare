@@ -48,7 +48,7 @@ function Write() {
     const handleTempSave = () => {
         saveBtn(0).then(() => {
             Swal.fire({
-                position: 'mid',
+                position: 'center',
                 icon: 'success',
                 title: '임시저장 완료',
                 showConfirmButton: false,
@@ -58,9 +58,16 @@ function Write() {
         })
     }
     const handleSave = () => {
+        if (!category) {
+            Swal.fire({
+                title: "문서양식을 선택하세요",
+                icon: 'warning',
+            })
+            return;
+        }
         saveBtn(1).then(() => {
             Swal.fire({
-                position: 'mid',
+                position: 'center',
                 icon: 'success',
                 title: '문서 상신 완료',
                 showConfirmButton: false,

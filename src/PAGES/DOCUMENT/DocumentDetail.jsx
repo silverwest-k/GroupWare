@@ -37,9 +37,9 @@ function DocumentDetail() {
             })
     }
 
-    const approvalBtn = () => {
+    const approvalBtn = (status) => {
         Swal.fire({
-            title: "결재를 승인 하시겠습니까?",
+            title: status === "승인" ? "결재를 승인하시겠습니까?" : "결재를 반려하시겠습니까?",
             icon: 'warning',
             showCancelButton: true,
             confirmButtonColor: '#3085d6',
@@ -50,13 +50,13 @@ function DocumentDetail() {
             if (result.isConfirmed) {
                 fetcher.post(APPROVAL_SIGN_API, {
                     "document": `${documentData.id}`,
-                    "status": "승인"
+                    "status": status
                 })
                     .then(() => {
                         Swal.fire({
                             position: 'mid',
                             icon: 'success',
-                            title: '승인 완료',
+                            title: '완료',
                             showConfirmButton: false,
                             timer: 1500
                         })
@@ -65,34 +65,7 @@ function DocumentDetail() {
             }
         })
     }
-    const returnBtn = () => {
-        Swal.fire({
-            title: "결재를 반려 하시겠습니까?",
-            icon: 'warning',
-            showCancelButton: true,
-            confirmButtonColor: '#3085d6',
-            cancelButtonColor: '#d33',
-            confirmButtonText: '확인',
-            cancelButtonText: '취소'
-        }).then((result) => {
-            if (result.isConfirmed) {
-                fetcher.post(APPROVAL_SIGN_API, {
-                    "document": `${documentData.id}`,
-                    "status": "반려"
-                })
-                    .then(() => {
-                        Swal.fire({
-                            position: 'mid',
-                            icon: 'success',
-                            title: '반려 완료',
-                            showConfirmButton: false,
-                            timer: 1500
-                        })
-                        fetchDocumentInfo()
-                    })
-            }
-        })
-    }
+
     const deleteBtn = () => {
         Swal.fire({
             title: "문서를 삭제 하시겠습니까?",
@@ -123,8 +96,8 @@ function DocumentDetail() {
             <div className={styles.upperContainer}>
                 <div className={styles.buttonGroup}>
                     <Button className="button" onClick={() => navigate(-1)}>목록으로</Button>
-                    {isStandby ? <Button variant="success" onClick={approvalBtn}>결재승인</Button>
-                               : <Button variant="danger" onClick={returnBtn}>결재반려</Button>
+                    {isStandby ? <Button variant="success" onClick={()=>approvalBtn("승인")}>결재승인</Button>
+                               : <Button variant="danger" onClick={()=>approvalBtn("반려")}>결재반려</Button>
                     }
                     {isStandby && isWriter ? <Button className="button">문서수정</Button> :""}
                     {isStandby && isWriter ? <Button className="button" onClick={deleteBtn}>문서삭제</Button> :""}

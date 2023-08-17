@@ -7,16 +7,16 @@ export const RENEW_TOKEN_API = "/auth/refresh"  // 토큰갱신 (o)
 export const CREATE_ID_API = "/admin/signup"   // 계정등록 (o)
 export const MY_INFO_CHANGE_API = "/member/profile"  // 본인 비밀번호 + 사진 변경
 export const ACCOUNT_INFO_API ="/admin" //(+id) GET : 직원상세정보
-export const ACCOUNT_EDIT_API ="/admin/members"  // (+id/password) POST : 관리자 -> 임직원 정보 변경
+export const ACCOUNT_EDIT_API ="/admin/members/edit"  // (+id/password) POST : 관리자 -> 임직원 정보 변경
 export const ACCOUNT_DELETE_API ="/admin/delete" // (+id) DELETE : 계정삭제 (o)
-export const ACCOUNT_BLOCK_API="/admin/block" // (+id) POST : 계정 접속차단
+export const ACCOUNT_BLOCK_API="/admin/members/block" // POST : 계정 접속차단
 
 // 문서관련 API
 export const RECEIVE_DOCUMENT_LIST_API= "/approval/list"  // 수신문서함(결재라인에 내가 포함되어 있는 문서) (o)
 export const STANDBY_APPROVAL_LIST_API = "/approval/listnow" // 내차례 결재문서 (o)
 export const REPORT_DOCUMENT_LIST_API = "/documents/mylist" // 상신문서함 (o)
 export const TEMP_DOCUMENT_LIST_API = "/documents/savelist" // 임시저장함 (o)
-export const ALL_DOCUMENT_LIST_API = "/admin/documents/done" // 모든 결재 완료 문서
+export const ALL_DOCUMENT_LIST_API = "/admin/listdone" // 모든 결재 완료 문서 (o)
 export const DOCUMENT_CREATE_API="/documents/create"    // 문서작성 (o)
 export const DOCUMENT_UPDATE_API ="/documents/update"   // (+id) 문서수정
 export const DOCUMENT_READ_API ="/documents"   // (+id) 문서 상세보기 (o)

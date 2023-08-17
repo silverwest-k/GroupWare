@@ -16,7 +16,8 @@ const useStore = create(set => ({
         password: "",
         no: "",
         team: "",
-        position: ""
+        position: "",
+        authority: ""
     },
     selectAccount: (e) => set(state =>({account:e})),
 

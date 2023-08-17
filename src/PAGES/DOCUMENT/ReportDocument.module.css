@@ -44,12 +44,13 @@
     float: right;
 }
 .searchButton {
-    --bs-btn-bg:#4429f2;
-    --bs-btn-border-color:#4429f2;
-    --bs-btn-hover-bg: rgba(68, 41, 242, 0.7);
-    --bs-btn-hover-border-color: none;
-    --bs-btn-active-bg:#4429f2;
-    --bs-btn-active-border-color:#4429f2;
+    --bs-btn-bg: none;
+    --bs-btn-color:#4429f2;
+    --bs-btn-border-color: #4429f2;
+    --bs-btn-hover-bg: #7d79f2;
+    --bs-btn-hover-border-color: #7d79f2;
+    --bs-btn-active-bg: #4429f2;
+    --bs-btn-active-border-color: #4429f2;
 }
 
 

@@ -3,6 +3,7 @@ import axios from "axios";
 import {ACCESS_TOKEN_COOKIE, REFRESH_TOKEN_COOKIE} from "./constants/constants";
 import Swal from "sweetalert2";
 import {RENEW_TOKEN_API} from "./constants/api_constans";
+import {LOGIN_COMPONENT} from "./constants/component_constants";
 
 const cookies = new Cookies();
 
@@ -45,18 +46,18 @@ function refreshRequest(originalRequest) {
                                 title: "토큰이 만료되었습니다.",
                                 icon: 'warning',
                             })
-                            window.location.href = "/login"
+                            window.location.href = LOGIN_COMPONENT
                             cookies.remove(ACCESS_TOKEN_COOKIE)
                             cookies.remove(REFRESH_TOKEN_COOKIE)
                         }
                     }).catch(() => {
                         alert("몰라용")
-                        window.location.href = "/login"
+                        window.location.href = LOGIN_COMPONENT
                         cookies.remove(ACCESS_TOKEN_COOKIE)
                         cookies.remove(REFRESH_TOKEN_COOKIE)
                     })
             } else {
-                throw new Error(err)
+                throw new err
             }
         })
 }

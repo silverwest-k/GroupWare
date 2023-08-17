@@ -1,7 +1,6 @@
 import {Button, ToggleButton} from "react-bootstrap";
 import styles from "./AccountManagement.module.css"
 import {useEffect, useRef, useState} from "react";
-import ButtonGroup from 'react-bootstrap/ButtonGroup';
 import TeamModal from "./Modals/TeamModal";
 import useStore from "../../store";
 import PositionModal from "./Modals/PositionModal";
@@ -48,21 +47,9 @@ function AccountManagement() {
         selectPosition("")
     }
 
-    const handleRadioValue = () => {
-        const userAuthority = account.authority
-        if (userAuthority === "USER") {
-            setRadioValue("USER");
-        } else if (userAuthority === "ADMIN") {
-            setRadioValue("ADMIN");
-        } else if (userAuthority === "BLOCK") {
-            setRadioValue("BLOCK");
-        }
-    }
-
     useEffect(() => {
         resetInput()
         fetchMemberList()
-        handleRadioValue()
     }, [])
 
     const saveImgFile = () => {
@@ -75,15 +62,15 @@ function AccountManagement() {
     }
 
     const editID = (id) => {
-        fetcher.post(`${ACCOUNT_EDIT_API}/${id}/edit`, {
+        fetcher.post(`${ACCOUNT_EDIT_API}/${id}`, {
             newPassword: password ? password : "",
             team: teamName ? teamName : "",
             position: positionName ? positionName : ""
         }).then(() => {
             Swal.fire({
-                position: 'mid',
+                position: 'center',
                 icon: 'success',
-                title: '계정 삭제 완료',
+                title: '계정정보 수정 완료',
                 showConfirmButton: false,
                 timer: 1500
             })
@@ -91,13 +78,43 @@ function AccountManagement() {
             fetchMemberList()
         })
     }
-    // TODO : 값은 넘어가는데 반영이 안됨, 이미지 저장방식 확인
 
-    const blockID = (id) => {
-        fetcher.post(`${ACCOUNT_BLOCK_API}/${id}`)
-            .then(setRadioValue("BLOCK"))
+    const blockID = (id, authority) => {
+        if (!id) {
+            Swal.fire({
+                title: "계정을 선택하세요",
+                icon: 'warning',
+            })
+            return;
+        }
+        Swal.fire({
+            title: "해당 계정의 권한을 변경하시겠습니까?",
+            icon: 'question',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: '확인',
+            cancelButtonText: '취소'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                fetcher.post(ACCOUNT_BLOCK_API, {
+                    id: id,
+                    authority: authority
+                })
+                    .then(() => {
+                        Swal.fire({
+                            position: 'center',
+                            icon: 'success',
+                            title: '변경 완료',
+                            showConfirmButton: false,
+                            timer: 1500
+                        })
+                        resetInput()
+                        fetchMemberList()
+                    })
+            }
+        })
     }
-    // TODO : 계정차단 기능 확인
 
     const deleteID = (id) => {
         if (!id) {
@@ -121,7 +138,7 @@ function AccountManagement() {
                 fetcher.delete(`${ACCOUNT_DELETE_API}/${id}`)
                     .then(() => {
                         Swal.fire({
-                            position: 'mid',
+                            position: 'center',
                             icon: 'success',
                             title: '계정 삭제 완료',
                             showConfirmButton: false,
@@ -144,12 +161,15 @@ function AccountManagement() {
                                 onClick={() => setShowAccountModal(true)}
                         >불러오기</Button>
                     </div>
-                    <Button className="buttonAdmin"
-                            onClick={()=>blockID(account.id)}
-                    >접속차단</Button>
-                    <Button className="buttonAdmin"
-                            onClick={() => deleteID(account.id)}
-                    >삭제</Button>
+                    <div>
+                        { account && account?.authority !== "USER" ?
+                            <Button className="buttonAdmin" onClick={() => blockID(account.id, "USER")}>차단해지</Button>
+                            : <Button className="buttonAdmin" onClick={() => blockID(account.id, "BLOCK")}>접속차단</Button>
+                        }
+                        <Button className="buttonAdmin" style={{marginLeft: "25px"}}
+                                onClick={() => deleteID(account.id)}
+                        >삭제</Button>
+                    </div>
                 </div>
 
                 <div className={styles.contents}>
@@ -214,27 +234,6 @@ function AccountManagement() {
                                 />
                             </td>
                         </tr>
-                        {/*<tr>*/}
-                        {/*    <th>계정상태</th>*/}
-                        {/*    <td>*/}
-                        {/*        <ButtonGroup>*/}
-                        {/*            {radioState.map((radio, index) => (*/}
-                        {/*                <ToggleButton*/}
-                        {/*                    key={index}*/}
-                        {/*                    id={`radio-${index}`}*/}
-                        {/*                    type="radio"*/}
-                        {/*                    variant={index === 0 ? 'outline-primary' : (index === 1 ? 'outline-warning' : 'outline-danger')}*/}
-                        {/*                    name="radio"*/}
-                        {/*                    value={radio.value}*/}
-                        {/*                    checked={radioValue === radio.value}*/}
-                        {/*                    onChange={(e) => setRadioValue(e.currentTarget.value)}*/}
-                        {/*                >*/}
-                        {/*                    {radio.name}*/}
-                        {/*                </ToggleButton>*/}
-                        {/*            ))}*/}
-                        {/*        </ButtonGroup>*/}
-                        {/*    </td>*/}
-                        {/*</tr>*/}
                         </tbody>
                     </table>
                 </div>

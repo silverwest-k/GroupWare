@@ -18,6 +18,7 @@ export const MY_PAGE_COMPONENT = "mypage"
 
 // 양식관리 (admin only)
 export const DOCUMENT_REGISTRATION_COMPONENT="documentregistration"
+export const ALL_DOCUMENT_LIST_COMPONENT ="alldocument"
 
 // 계정관리 (admin only)
 export const ACCOUNT_MANAGEMENT_COMPONENT="accountmanagement"

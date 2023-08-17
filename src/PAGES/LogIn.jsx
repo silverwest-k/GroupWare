@@ -14,8 +14,8 @@ function LogIn() {
     const [alertMessage, setAlertMessage] = useState("");
     const [isShowAlert, setIsShowAlert] = useState(false);
 
-    const [ac, setAccessCookie, removeAccessCookie ] = useCookies([ACCESS_TOKEN_COOKIE]);
-    const [rc, setRefreshCookie, removeRefreshCookie ] = useCookies([REFRESH_TOKEN_COOKIE]);
+    const [ac, setAccessCookie,  ] = useCookies([ACCESS_TOKEN_COOKIE]);
+    const [rc, setRefreshCookie, ] = useCookies([REFRESH_TOKEN_COOKIE]);
 
     const navigate = useNavigate();
 
@@ -41,7 +41,7 @@ function LogIn() {
                 setRefreshCookie(REFRESH_TOKEN_COOKIE, res?.data?.refreshToken);
                 navigate(MAIN_COMPONENT);
             })
-            .catch((err) => {
+            .catch(() => {
                 setAlertMessage("입력하신 값이 올바르지 않습니다.");
                 setIsShowAlert(true);
             })

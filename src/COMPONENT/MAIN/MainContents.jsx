@@ -9,6 +9,7 @@ import {useCookies} from "react-cookie";
 import {ACCESS_TOKEN_COOKIE, REFRESH_TOKEN_COOKIE} from "../../constants/constants";
 import {useEffect} from "react";
 import {useNavigate} from "react-router-dom";
+import {LOGIN_COMPONENT} from "../../constants/component_constants";
 
 function MainContents() {
 
@@ -18,7 +19,7 @@ function MainContents() {
 
     useEffect(()=>{
         if (!(accessCookie && refreshCookie)){
-            navigate("/login")
+            navigate(LOGIN_COMPONENT)
         }
     },[])
 

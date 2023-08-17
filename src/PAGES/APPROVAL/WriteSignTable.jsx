@@ -1,6 +1,6 @@
 import styles from "./Write.module.css"
 import useStore from "../../store";
-import {useEffect} from "react";
+
 
 
 function WriteSignTable() {

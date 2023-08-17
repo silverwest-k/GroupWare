@@ -21,12 +21,12 @@ function MenuPage() {
             <DocumentMenu menuName={menuName}/>
             <MyPageMenu menuName={menuName}/>
 
-            {isAdmin && (
+            {isAdmin &&
                 <>
                     <DocumentManagementMenu menuName={menuName} />
                     <AccountManagementMenu menuName={menuName} />
                 </>
-            )}
+            }
         </div>
     )
 }

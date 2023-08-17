@@ -10,18 +10,26 @@ import DocumentRegistration from "./DOCUMENT-MNG/DocumentRegistration";
 import AccountRegistration from "./ACCOUNT-MNG/AccountRegistration";
 import Header from "../COMPONENT/LAYOUT/Header";
 import {
-    ACCOUNT_MANAGEMENT_COMPONENT, ACCOUNT_REGISTRATION_COMPONENT, DOCUMENT_DETAIL_COMPONENT,
-    DOCUMENT_REGISTRATION_COMPONENT, DOCUMENT_WRITE_COMPONENT, FORBIDDEN_COMPONENT,
-    MY_PAGE_COMPONENT, RECEIVE_DOCUMENT_COMPONENT, REPORT_DOCUMENT_COMPONENT, TEMP_DOCUMENT_COMPONENT
+    ACCOUNT_MANAGEMENT_COMPONENT,
+    ACCOUNT_REGISTRATION_COMPONENT,
+    ALL_DOCUMENT_LIST_COMPONENT,
+    DOCUMENT_DETAIL_COMPONENT,
+    DOCUMENT_REGISTRATION_COMPONENT,
+    DOCUMENT_WRITE_COMPONENT,
+    FORBIDDEN_COMPONENT,
+    MY_PAGE_COMPONENT,
+    RECEIVE_DOCUMENT_COMPONENT,
+    REPORT_DOCUMENT_COMPONENT,
+    TEMP_DOCUMENT_COMPONENT
 } from "../constants/component_constants";
 import TempDocument from "./DOCUMENT/TempDocument";
 import DocumentDetail from "./DOCUMENT/DocumentDetail";
 import TempDocumentDetail from "./DOCUMENT/TempDocumentDetail";
 import useStore from "../store";
+import AllDocument from "./DOCUMENT-MNG/AllDocument";
 
 function Page() {
     const {myAccount} = useStore(state => state);
-    const navigate = useNavigate();
 
     const isAdmin = myAccount?.authority === "ADMIN";
 
@@ -39,15 +47,15 @@ function Page() {
                         <Route path={`${DOCUMENT_DETAIL_COMPONENT}/:id`} element={<DocumentDetail/>}/>
                         <Route path={`${TEMP_DOCUMENT_COMPONENT}/:id`} element={<TempDocumentDetail/>}/>
                         <Route path={MY_PAGE_COMPONENT} element={<MyPage/>}/>
-                        {/* 관리자만 접근 가능한 라우트 */}
-                        {isAdmin ?
+
+                        {/* //TODO: 관리자 권한이 없는 계정이 관리자페이지 url 접근 -> ForbiddenPage 이동 */}
+                        {isAdmin &&
                             <>
                                 <Route path={DOCUMENT_REGISTRATION_COMPONENT} element={<DocumentRegistration/>}/>
+                                <Route path={ALL_DOCUMENT_LIST_COMPONENT} element={<AllDocument/>}/>
                                 <Route path={ACCOUNT_MANAGEMENT_COMPONENT} element={<AccountManagement/>}/>
                                 <Route path={ACCOUNT_REGISTRATION_COMPONENT} element={<AccountRegistration/>}/>
                             </>
-                            :
-                            navigate(FORBIDDEN_COMPONENT)
                         }
                     </Routes>
                 </div>

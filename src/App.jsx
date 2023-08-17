@@ -40,7 +40,6 @@ function App() {
             fetcher.get(MY_INFO_API)
                 .then((res) => setMyAccountInfo(res.data))
         }
-
     }, [accessToken])
 
     return (

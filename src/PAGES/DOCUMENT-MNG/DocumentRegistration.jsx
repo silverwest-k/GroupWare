@@ -117,11 +117,11 @@ function DocumentRegistration() {
                            onChange={(e) => setCategoryName(e.target.value)}
                            placeholder="양식명"
                     />
-                    <Button className="button" onClick={createCategory}>양식 등록</Button>
+                    <Button className="buttonAdmin" onClick={createCategory}>양식 등록</Button>
                 </div>
                 <div className={styles.buttonGroup}>
                     <Dropdown>
-                        <Dropdown.Toggle className="button">
+                        <Dropdown.Toggle className="buttonAdmin">
                             {category ? category.category : "문서양식"}
                         </Dropdown.Toggle>
                         <Dropdown.Menu>
@@ -135,9 +135,9 @@ function DocumentRegistration() {
                             })}
                         </Dropdown.Menu>
                     </Dropdown>
-                    <Button className="button" onClick={() => updateCategory(category.id, category.category)}>양식
+                    <Button className="buttonAdmin" onClick={() => updateCategory(category.id, category.category)}>양식
                         수정</Button>
-                    <Button className="button" onClick={() => deleteCategory(category.id)}>양식 삭제</Button>
+                    <Button className="buttonAdmin" onClick={() => deleteCategory(category.id)}>양식 삭제</Button>
                 </div>
             </div>
             <div className={styles.divisionLine}></div>

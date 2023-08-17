@@ -17,7 +17,6 @@ function AccountRegistration() {
     const [name, setName] = useState("");
     const [password, setPassword] = useState("");
     const [memberNo, setMemberNo] = useState("")
-    const [authority, setAuthority] = useState("ROLE_USER");
 
     const {teamName, positionName, selectTeam, selectPosition} = useStore(state => state);
 
@@ -46,8 +45,7 @@ function AccountRegistration() {
                     "password": password,
                     "no": memberNo,
                     "position": positionName,
-                    "team": teamName,
-                    "authority": authority
+                    "team": teamName
                 })
                     .then(() => {
                         resetInput();

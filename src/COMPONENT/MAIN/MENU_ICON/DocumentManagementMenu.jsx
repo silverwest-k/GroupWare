@@ -1,6 +1,6 @@
 import {Link} from "react-router-dom";
 import styles from "./Menu.module.css"
-import {DOCUMENT_REGISTRATION_COMPONENT} from "../../../constants/component_constants";
+import {ALL_DOCUMENT_LIST_COMPONENT, DOCUMENT_REGISTRATION_COMPONENT} from "../../../constants/component_constants";
 
 function DocumentManagementMenu({menuName}) {
     return(
@@ -17,7 +17,7 @@ function DocumentManagementMenu({menuName}) {
                           style={{color: "#FA3E0C"}}
                           onClick={menuName}
                     >양식관리</Link>
-                    <Link to=""
+                    <Link to={`/page/${ALL_DOCUMENT_LIST_COMPONENT}`}
                           style={{color: "#FA3E0C"}}
                           onClick={menuName}
                     >결재문서</Link>

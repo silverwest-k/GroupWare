@@ -5,9 +5,15 @@ import {useState} from "react";
 import useStore from "../../../store";
 import SidebarProfile from "./components/SidebarProfile";
 import {
-    ACCOUNT_MANAGEMENT_COMPONENT, ACCOUNT_REGISTRATION_COMPONENT, DOCUMENT_REGISTRATION_COMPONENT,
-    DOCUMENT_WRITE_COMPONENT, MY_PAGE_COMPONENT,
-    RECEIVE_DOCUMENT_COMPONENT, REPORT_DOCUMENT_COMPONENT, TEMP_DOCUMENT_COMPONENT
+    ACCOUNT_MANAGEMENT_COMPONENT,
+    ACCOUNT_REGISTRATION_COMPONENT,
+    ALL_DOCUMENT_LIST_COMPONENT,
+    DOCUMENT_REGISTRATION_COMPONENT,
+    DOCUMENT_WRITE_COMPONENT,
+    MY_PAGE_COMPONENT,
+    RECEIVE_DOCUMENT_COMPONENT,
+    REPORT_DOCUMENT_COMPONENT,
+    TEMP_DOCUMENT_COMPONENT
 } from "../../../constants/component_constants";
 
 function Sidebar() {
@@ -81,7 +87,7 @@ function Sidebar() {
                         </Accordion.Body>
                     </Accordion.Item>
 
-                    {isAdmin && (
+                    {isAdmin &&
                         <>
                             <Accordion.Item eventKey="3" className={styles.accordion}>
                                 <Accordion.Header className={`${styles.menu} ${styles.mng}`}>
@@ -95,9 +101,9 @@ function Sidebar() {
                                     >양식관리</Link>
                                 </Accordion.Body>
                                 <Accordion.Body onClick={menuName}>
-                                    <Link to=""
-                                          className={`${styles.underline} ${styles.orange}`}
-
+                                    <Link to={`/page/${ALL_DOCUMENT_LIST_COMPONENT}`}
+                                          className={`${styles.underline} ${styles.orange} ${activeLink === ALL_DOCUMENT_LIST_COMPONENT ? styles.active : ""}`}
+                                          onClick={()=> handleLink(ALL_DOCUMENT_LIST_COMPONENT)}
                                     >결재문서</Link>
                                 </Accordion.Body>
                             </Accordion.Item>
@@ -121,7 +127,7 @@ function Sidebar() {
                                 </Accordion.Body>
                             </Accordion.Item>
                         </>
-                    )}
+                    }
                 </Accordion>
             </div>
         </div>

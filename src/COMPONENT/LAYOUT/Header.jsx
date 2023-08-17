@@ -1,5 +1,5 @@
 import styles from "./Header.module.css"
-import {Link, useParams} from "react-router-dom";
+import {Link} from "react-router-dom";
 import useStore from "../../store";
 import {MAIN_COMPONENT} from "../../constants/component_constants";
 
