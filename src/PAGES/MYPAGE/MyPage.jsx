@@ -8,21 +8,24 @@ import {MY_INFO_CHANGE_API} from "../../constants/api_constans";
 import Swal from "sweetalert2";
 
 function MyPage() {
-    const imgRef = useRef();
     const [password, setPassword] = useState("");
     const [imgFile, setImgFile] = useState("");
+    const imgRef = useRef();
     const {myAccount} = useStore(state => state);
 
     const resetInput = () => {
         setPassword("")
     }
 
-    const passwordChange = () =>{
+    const editInfo = () =>{
         const form = new FormData
         fetcher.postForm(MY_INFO_CHANGE_API, form, {
             headers: {
                 'Content-Type': 'multipart/form-data'
             }
+        })
+        fetcher.post(MY_INFO_CHANGE_API, {
+            newPassword: password
         })
             .then(() => {
                 resetInput()
@@ -107,7 +110,7 @@ function MyPage() {
                 <div>
                     <div className={commonStyles.modify}>
                         <Button className="button"
-                                onClick={passwordChange}
+                                onClick={editInfo}
                         >수정</Button>
                     </div>
                 </div>

@@ -63,9 +63,9 @@ function AccountManagement() {
 
     const editID = (id) => {
         fetcher.post(`${ACCOUNT_EDIT_API}/${id}`, {
-            newPassword: password ? password : "",
-            team: teamName ? teamName : "",
-            position: positionName ? positionName : ""
+            newPassword: password ? password :null,
+            team: teamName ? teamName :null,
+            position: positionName ? positionName :null
         }).then(() => {
             Swal.fire({
                 position: 'center',
