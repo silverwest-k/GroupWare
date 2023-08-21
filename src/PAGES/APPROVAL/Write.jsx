@@ -13,6 +13,7 @@ import {CKEditor} from '@ckeditor/ckeditor5-react';
 import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 import Swal from "sweetalert2";
 
+
 function Write() {
     const {signLine} = useStore(state => state)
     const navigate = useNavigate();
@@ -21,6 +22,7 @@ function Write() {
     const [title, setTitle] = useState("")
     const [content, setContent] = useState("")
     const [category, setCategory] = useState("")
+    const [categoryId, setCategoryId] = useState("")
     const [categoryList, setCategoryList] = useState([])
     const [showApprovalPathModal, setShowApprovalPathModal] = useState(false);
 
@@ -31,15 +33,17 @@ function Write() {
 
     const saveBtn = (status) => {
         return fetcher.post(DOCUMENT_CREATE_API, {
-            "title": title,
-            "content": content,
-            "approvers": approvers,
-            "status": status,
+            title: title,
+            content: content,
+            approvers: approvers,
+            template: categoryId,
+            status: status,
         })
     }
     const selectCategory = (id) => {
         fetcher.get(`${SHOW_CATEGORY_API}/${id}`)
             .then((res) => {
+                setCategoryId(res.data?.id)
                 setCategory(res.data?.category)
                 setContent(res.data?.content)
             })
@@ -129,10 +133,8 @@ function Write() {
                         onChange={(event, editor) => {
                             const data = editor.getData();
                             setContent(data)
-                            console.log({event, editor, data});
                         }}
                     />
-
                 </div>
             </div>
 

@@ -33,7 +33,7 @@ function DocumentTable({listData}) {
                 </thead>
 
                 <tbody className={styles.tableBody}>
-                {listData.map((data, index) => {
+                {listData?.map((data, index) => {
                     return (
                         <tr key={data.id} onClick={() => routeDetail(data.id)}>
                             <td>{index + 1}</td>

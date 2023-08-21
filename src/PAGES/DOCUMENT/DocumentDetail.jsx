@@ -49,8 +49,8 @@ function DocumentDetail() {
         }).then((result) => {
             if (result.isConfirmed) {
                 fetcher.post(APPROVAL_SIGN_API, {
-                    "document": `${documentData.id}`,
-                    "status": status
+                    document: `${documentData.id}`,
+                    status: status
                 })
                     .then(() => {
                         Swal.fire({

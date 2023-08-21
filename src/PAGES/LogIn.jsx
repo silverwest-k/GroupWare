@@ -33,19 +33,25 @@ function LogIn() {
             return
         }
         fetcher.post(LOGIN_API, {
-            "no": memberNo,
-            "password": password
+            no: memberNo,
+            password: password
         })
             .then((res) => {
                 setAccessCookie(ACCESS_TOKEN_COOKIE, res?.data?.accessToken);
                 setRefreshCookie(REFRESH_TOKEN_COOKIE, res?.data?.refreshToken);
                 navigate(MAIN_COMPONENT);
             })
-            .catch(() => {
-                setAlertMessage("입력하신 값이 올바르지 않습니다.");
+            .catch((err) => {
+                const status = err?.response?.status;
+                switch (status) {
+                    case 401 : setAlertMessage("입력하신 값이 올바르지 않습니다.");
+                        break;
+                    case 403 : setAlertMessage("접속이 차단된 계정입니다.");
+                        break;
+                    default : setAlertMessage("오류가 발생했습니다.");
+                }
                 setIsShowAlert(true);
             })
-
     }
 
     useEffect(() => {

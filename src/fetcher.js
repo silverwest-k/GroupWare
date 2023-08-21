@@ -57,7 +57,7 @@ function refreshRequest(originalRequest) {
                         cookies.remove(REFRESH_TOKEN_COOKIE)
                     })
             } else {
-                throw new err
+                throw err
             }
         })
 }

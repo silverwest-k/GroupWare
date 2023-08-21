@@ -68,17 +68,17 @@
 }
 
 /* 인풋 영역 */
-table tr {
+.table tr {
     text-align: left;
 }
 
-table th {
-    width: 150px;
+.table th {
+    width: 100px;
     height: 50px;
 }
 
-table td {
-    width: 310px;
+.table td {
+    width: 250px;
     font-weight: normal;
     color: #000000;
     text-align: left;

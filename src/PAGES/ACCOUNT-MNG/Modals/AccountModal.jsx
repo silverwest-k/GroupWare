@@ -31,12 +31,6 @@ function AccountModal({showAccountModal, handleAccountModalClose, fetchMemberLis
                 <Modal.Body>
                     <div>
                         <div className={tableStyles.container}>
-                            <div className={tableStyles.search}>
-                                <InputGroup className="mb-3">
-                                    <FormControl type="text" className="form-control-lg" placeholder="이름"/>
-                                    <Button className="buttonAdmin"> 검색 </Button>
-                                </InputGroup>
-                            </div>
                             <div className={tableStyles.tableContainer}>
                                 <Table hover>
                                     <thead className={tableStyles.tableHead}>
@@ -64,10 +58,16 @@ function AccountModal({showAccountModal, handleAccountModalClose, fetchMemberLis
                                     </tbody>
                                 </Table>
                             </div>
-                            <div >
+                            <div className={tableStyles.lowerContainer}>
+                                <div className={tableStyles.search}>
+                                    <InputGroup className="mb-3">
+                                        <FormControl type="text" className="form-control-lg" placeholder="이름"/>
+                                        <Button className="buttonAdmin"> 검색 </Button>
+                                    </InputGroup>
+                                </div>
+
                                 <Button variant="secondary"
                                         className={styles.button}
-                                        style={{float: "right"}}
                                         onClick={handleAccountModalClose}
                                 >취소</Button>
                             </div>

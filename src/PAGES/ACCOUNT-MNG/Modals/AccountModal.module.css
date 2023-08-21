@@ -2,13 +2,6 @@
     --bs-modal-width: 600px;
 }
 
-.search {
-    width: 200px;
-    margin-bottom: 10px;
-    float: right;
-    clear:both;
-}
-
 .container {
     display: flex;
     flex-direction: column;
@@ -31,5 +24,16 @@
 
 .tableBody td {
     text-align: center;
+}
+
+.lowerContainer {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline
+}
+
+.search {
+    margin: 0;
+    width: 220px;
 }
 

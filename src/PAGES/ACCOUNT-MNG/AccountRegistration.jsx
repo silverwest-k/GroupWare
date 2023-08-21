@@ -41,11 +41,11 @@ function AccountRegistration() {
         }).then((result) => {
             if (result.isConfirmed) {
                 fetcher.post(CREATE_ID_API, {
-                    "name": name,
-                    "password": password,
-                    "no": memberNo,
-                    "position": positionName,
-                    "team": teamName
+                    name: name,
+                    password: password,
+                    no: memberNo,
+                    position: positionName,
+                    team: teamName
                 })
                     .then(() => {
                         resetInput();
@@ -57,12 +57,11 @@ function AccountRegistration() {
                             timer: 1500
                         })
                     })
-                    .catch((error) => {
+                    .catch(() => {
                         Swal.fire({
                             title: "값이 올바르지 않습니다.",
                             icon: 'warning',
                         })
-                        console.log(error);
                     })
             }
         })
@@ -86,7 +85,7 @@ function AccountRegistration() {
                 </div>
 
                 <div className={styles.contents}>
-                    <table>
+                    <table className={styles.table}>
                         <tbody>
                         <tr>
                             <th></th>

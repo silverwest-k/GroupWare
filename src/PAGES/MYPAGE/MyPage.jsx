@@ -24,6 +24,12 @@ function MyPage() {
                 'Content-Type': 'multipart/form-data'
             }
         })
+        // fetcher.postForm(MY_INFO_CHANGE_API, form, {
+        //     headers: {
+        //         'Content-Type': 'multipart/form-data'
+        //     }
+        // })
+        // TODO: 이미지 수정 기능 구현
         fetcher.post(MY_INFO_CHANGE_API, {
             newPassword: password
         })
@@ -56,7 +62,7 @@ function MyPage() {
                 </div>
 
                 <div className={styles.contents}>
-                    <table>
+                    <table className={commonStyles.table}>
                         <tbody>
                         <tr>
                             <th></th>

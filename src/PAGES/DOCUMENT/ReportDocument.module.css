@@ -40,9 +40,12 @@
 
 /* 검색창 */
 .search {
-    width: 25%;
+    width: 300px;
+    margin-top: 30px;
+    margin-bottom: 15px;
     float: right;
 }
+
 .searchButton {
     --bs-btn-bg: none;
     --bs-btn-color:#4429f2;
@@ -51,6 +54,19 @@
     --bs-btn-hover-border-color: #7d79f2;
     --bs-btn-active-bg: #4429f2;
     --bs-btn-active-border-color: #4429f2;
+}
+
+/* 테이블 영역 */
+.tableContainer {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.table {
+    width: 65%;
+    min-width: 800px;
 }
 
 

@@ -88,7 +88,7 @@ function AccountManagement() {
             return;
         }
         Swal.fire({
-            title: "해당 계정의 권한을 변경하시겠습니까?",
+            title: "권한을 변경하시겠습니까?",
             icon: 'question',
             showCancelButton: true,
             confirmButtonColor: '#3085d6',
@@ -162,7 +162,7 @@ function AccountManagement() {
                         >불러오기</Button>
                     </div>
                     <div>
-                        { account && account?.authority !== "USER" ?
+                        { account && account?.authority === "BLOCK" ?
                             <Button className="buttonAdmin" onClick={() => blockID(account.id, "USER")}>차단해지</Button>
                             : <Button className="buttonAdmin" onClick={() => blockID(account.id, "BLOCK")}>접속차단</Button>
                         }
@@ -173,7 +173,7 @@ function AccountManagement() {
                 </div>
 
                 <div className={styles.contents}>
-                    <table>
+                    <table className={styles.table}>
                         <tbody>
                         <tr>
                             <th></th>

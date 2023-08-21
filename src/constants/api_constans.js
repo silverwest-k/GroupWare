@@ -14,7 +14,6 @@ export const ACCOUNT_BLOCK_API="/admin/members/block" // POST : 계정 접속차
 // 문서관련 API
 export const RECEIVE_DOCUMENT_LIST_API= "/approval/list"  // 수신문서함(결재라인에 내가 포함되어 있는 문서) (o)
 export const STANDBY_APPROVAL_LIST_API = "/approval/listnow" // 내차례 결재문서 (o)
-export const REPORT_DOCUMENT_LIST_API = "/documents/mylist" // 상신문서함 (o)
 export const TEMP_DOCUMENT_LIST_API = "/documents/savelist" // 임시저장함 (o)
 export const ALL_DOCUMENT_LIST_API = "/admin/listdone" // 모든 결재 완료 문서 (o)
 export const DOCUMENT_CREATE_API="/documents/create"    // 문서작성 (o)
@@ -22,6 +21,7 @@ export const DOCUMENT_UPDATE_API ="/documents/update"   // (+id) 문서수정
 export const DOCUMENT_READ_API ="/documents"   // (+id) 문서 상세보기 (o)
 export const TEMP_DOCUMENT_READ_API ="/documents/save"   // (+id) 임시저장문서 상세보기 (o)
 export const DOCUMENT_DELETE_API="/documents/delete"    // 문서 삭제 (o)
+export const REPORT_DOCUMENT_LIST_API = "/documents/mylist" // 상신문서함 (o)
 export const ONGOING_DOCUMENT_LIST_API ="/documents/mylist/ing" // 상신문서함 - 진행중 (o)
 export const APPROVED_DOCUMENT_LIST_API ="/documents/mylist/approved" // 상신문서함 - 결재완료 (o)
 export const REJECTED_DOCUMENT_LIST_API="/documents/mylist/rejected" // 상신문서함 - 반려 (o)
@@ -39,6 +39,8 @@ export const APPROVAL_BOOKMARK_CREATE_API= "/line/create" // 결재라인 즐겨
 export const APPROVAL_BOOKMARK_DELETE_API="/line/delete" // (+id) 결재라인 즐겨찾기 삭제 (o)
 export const APPROVAL_BOOKMARK_LIST_API="/line/list"  // 결재라인 즐겨찾기 리스트 (o)
 export const APPROVAL_BOOKMARK_INFO_API="/line" //(+id) 즐겨찾기 결재라인 상세 (o)
+export const APPROVAL_CANCEL_API="/approval/cancel" // 결재 취소
+export const APPROVAL_RETURN_API="/approval/back"   // 결재 회수 (작성자 ONLY)
 
 // 정보조회 API
 export const MY_INFO_API = "/member/me" //내정보 (o)

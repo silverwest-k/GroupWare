@@ -10,10 +10,10 @@ import {DOCUMENT_DETAIL_COMPONENT} from "../../constants/component_constants";
 function ApprovalNotice() {
     const [data, setData] = useState([]);
 
-    // useEffect(() => {
-    //     fetcher.get(STANDBY_APPROVAL_LIST_API)
-    //         .then((res) => setData(res.data))
-    // }, [])
+    useEffect(() => {
+        fetcher.get(STANDBY_APPROVAL_LIST_API)
+            .then((res) => setData(res.data))
+    }, [])
 
     const navigate = useNavigate();
     const routeDetail = (id) => {
@@ -31,7 +31,7 @@ function ApprovalNotice() {
                 <div className={styles.tableBody}>
                     <table>
                         <tbody>
-                        {data?.map((data, index) => {
+                        {data?.map((data) => {
                             return (
                                 <tr key={data.id} onClick={() => routeDetail(data.id)}>
                                     <td>{data.createDate}</td>

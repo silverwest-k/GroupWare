@@ -13,7 +13,6 @@ function AllDocument() {
     useEffect(()=>{
         fetcher.get(ALL_DOCUMENT_LIST_API)
             .then((res)=> setListData(res.data))
-        console.log(listData)
     },[])
 
     const navigate = useNavigate();
@@ -34,14 +33,14 @@ function AllDocument() {
                     </InputGroup>
                 </div>
 
-                <div>
-                    <Table hover className={styles.table}>
+                <div className={styles.table}>
+                    <Table hover>
                         <colgroup>
                             <col style={{width:"10%"}} />
                             <col style={{width:"25%"}} />
                             <col style={{width:"45%"}} />
                             <col style={{width:"10%"}} />
-                            <col style={{width:"5%"}} />
+                            <col style={{maxWidth:"100px"}} />
                         </colgroup>
                         <thead className={styles.tableHead}>
                         <tr>

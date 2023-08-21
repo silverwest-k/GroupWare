@@ -9,12 +9,16 @@ function TempDocument() {
 
     useEffect(() => {
         fetcher.get(TEMP_DOCUMENT_LIST_API)
-            .then((res) => setListData(res.data.content))
+            .then((res) => setListData(res.data))
     }, []);
 
     return (
         <div className={styles.wrapper}>
-            <TempDocumentTable listData={listData}/>
+            <div className={styles.tableContainer} style={{marginTop:"200px"}}>
+                <div className={styles.table}>
+                    <TempDocumentTable listData={listData}/>
+                </div>
+            </div>
         </div>
     )
 

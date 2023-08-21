@@ -154,3 +154,7 @@
 .documentTitle input {
     width: calc(100% - 70px);
 }
+
+.ck-editor__editable {
+    height: 500px;
+}

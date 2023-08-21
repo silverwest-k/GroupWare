@@ -19,41 +19,42 @@ function ReportDocument() {
         fetchAllDocument()
     }, []);
 
-    const fetchAllDocument=()=> {
+    const fetchAllDocument = () => {
         fetcher.get(REPORT_DOCUMENT_LIST_API)
-            .then((res) => setListData(res.data.content))
+            .then((res) => setListData(res.data))
     }
 
-    const filterOngoing =()=>{
+    const filterOngoing = () => {
         fetcher.get(ONGOING_DOCUMENT_LIST_API)
-            .then((res)=> setOngoing(res.data));
+            .then((res) => setOngoing(res.data));
     }
-    const filterApproved =()=>{
+    const filterApproved = () => {
         fetcher.get(APPROVED_DOCUMENT_LIST_API)
-            .then((res)=> setApproved(res.data));
+            .then((res) => setApproved(res.data));
     }
-    const filterRejected =()=>{
+    const filterRejected = () => {
         fetcher.get(REJECTED_DOCUMENT_LIST_API)
-            .then((res)=> setRejected(res.data));
+            .then((res) => setRejected(res.data));
     }
 
     return (
         <div className={styles.wrapper}>
             <div className={styles.buttonContainer}>
-               <ButtonGroup fetchAllDocument={fetchAllDocument} filterOngoing={filterOngoing}
-                            filterApproved={filterApproved} filterRejected={filterRejected}
-               />
+                <ButtonGroup fetchAllDocument={fetchAllDocument} filterOngoing={filterOngoing}
+                             filterApproved={filterApproved} filterRejected={filterRejected}
+                />
             </div>
 
-            <div>
-                <div className={styles.search}>
-                    <InputGroup className="mb-3">
-                        <FormControl type="text" className="form-control-lg" placeholder="제목"/>
-                        <Button className={styles.searchButton}> 검색 </Button>
-                    </InputGroup>
+            <div className={styles.search}>
+                <InputGroup className="mb-3">
+                    <FormControl type="text" className="form-control-lg" placeholder="제목"/>
+                    <Button className={styles.searchButton}> 검색 </Button>
+                </InputGroup>
+            </div>
+            <div className={styles.tableContainer}>
+                <div className={styles.table}>
+                    <DocumentTable listData={listData} ongoing={ongoing} approved={approved} rejected={rejected}/>
                 </div>
-
-                <DocumentTable listData={listData} ongoing={ongoing} approved={approved} rejected={rejected}/>
             </div>
         </div>
     )
