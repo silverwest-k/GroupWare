@@ -13,7 +13,7 @@ function ReceiveDocument() {
 
     useEffect(()=>{
         fetcher.get(RECEIVE_DOCUMENT_LIST_API)
-            .then((res)=> setData(res.data))
+            .then((res)=> console.log(res.data))
     },[])
 
     const routeDetail = (id) => {
@@ -33,7 +33,7 @@ function ReceiveDocument() {
                 </InputGroup>
             </div>
             <div className={styles.cardContainer}>
-                {data?.map((data, index) => {
+                {data?.map((data) => {
                     return (
                         <div className={styles.card} key={data.id}>
                             <div className={styles.contents}>

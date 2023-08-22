@@ -149,7 +149,6 @@ function DocumentRegistration() {
                     onChange={(event, editor) => {
                         const data = editor.getData();
                         setContent(data)
-                        console.log({event, editor, data});
                     }}
                 />
             </div>

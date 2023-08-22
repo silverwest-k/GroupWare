@@ -40,7 +40,7 @@ export const APPROVAL_BOOKMARK_DELETE_API="/line/delete" // (+id) 결재라인 �
 export const APPROVAL_BOOKMARK_LIST_API="/line/list"  // 결재라인 즐겨찾기 리스트 (o)
 export const APPROVAL_BOOKMARK_INFO_API="/line" //(+id) 즐겨찾기 결재라인 상세 (o)
 export const APPROVAL_CANCEL_API="/approval/cancel" // 결재 취소
-export const APPROVAL_RETURN_API="/approval/back"   // 결재 회수 (작성자 ONLY)
+export const APPROVAL_RECALL_API="/approval/back"   // 문서 회수 (작성자 ONLY)
 
 // 정보조회 API
 export const MY_INFO_API = "/member/me" //내정보 (o)

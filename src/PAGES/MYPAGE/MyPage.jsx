@@ -19,10 +19,9 @@ function MyPage() {
 
     const editInfo = () =>{
         const form = new FormData
-        fetcher.postForm(MY_INFO_CHANGE_API, form, {
-            headers: {
-                'Content-Type': 'multipart/form-data'
-            }
+        fetcher.post(MY_INFO_CHANGE_API, {
+            // team: imgFile ? imgFile :null,
+            newPassword: password ? password :null,
         })
         // fetcher.postForm(MY_INFO_CHANGE_API, form, {
         //     headers: {
@@ -49,9 +48,7 @@ function MyPage() {
         const file = imgRef.current.files[0];
         const reader = new FileReader();
         reader.readAsDataURL(file);
-        reader.onload = () => {
-            setImgFile(reader.result);
-        }
+        reader.onload = () => {setImgFile(reader.result);}
     }
 
     return (

@@ -69,6 +69,14 @@ function Write() {
             })
             return;
         }
+        const isEmpty = approvers.every(item => item === '');
+        if (isEmpty) {
+            Swal.fire({
+                title: "결재라인을 입력하세요",
+                icon: 'warning',
+            })
+            return;
+        }
         saveBtn(1).then(() => {
             Swal.fire({
                 position: 'center',

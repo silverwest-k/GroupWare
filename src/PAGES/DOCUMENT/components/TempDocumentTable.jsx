@@ -11,10 +11,6 @@ function TempDocumentTable({listData}) {
         navigate(`/page/${TEMP_DOCUMENT_COMPONENT}/${id}`);
     }
 
-    const getBackgroundColor = (result) => {
-        return backgroundColor[result] || "#ffffff"
-    };
-
     return (
         <div>
             <Table hover className={styles.table}>
@@ -22,8 +18,7 @@ function TempDocumentTable({listData}) {
                 <tr>
                     <th>NO</th>
                     <th>제목</th>
-                    <th>기안일</th>
-                    <th>상태</th>
+                    <th>작성일</th>
                 </tr>
                 </thead>
 
@@ -34,11 +29,6 @@ function TempDocumentTable({listData}) {
                             <td>{index + 1}</td>
                             <td>{data.title}</td>
                             <td>{data.createDate}</td>
-                            <td style={{display: "flex", justifyContent: "center"}}>
-                                <div className={styles.stateButton}
-                                     style={{background: getBackgroundColor(data.result)}}
-                                >{data.result}</div>
-                            </td>
                         </tr>
                     )
                 })}

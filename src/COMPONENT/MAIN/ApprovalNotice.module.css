@@ -8,13 +8,26 @@
 }
 
 .title {
-    font-size: 24px;
-    font-weight: 600;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
     border-bottom: solid 1px rgba(68, 41, 242, 0.6);
     background: rgba(125, 121, 242, 0.2);
     border-top-left-radius: 15px;
     border-top-right-radius: 15px;
     padding: 5px 20px;
+}
+.titleText {
+    font-size: 24px;
+    font-weight: 600;
+    margin: 0;
+}
+.boardLink{
+    font-weight: bold;
+    color: #4429f2;
+    margin: 0;
+    text-decoration: none;
 }
 
 .container {
@@ -22,6 +35,7 @@
     flex-direction: row;
     justify-content: center;
     margin: 20px;
+    overflow: auto;
 }
 
 .divisionLine {
@@ -31,9 +45,10 @@
 }
 
 .tableBody {
+    width: 100%;
     cursor: pointer;
 }
 
-.tableBody tr {
-    width: 100%;
+.tableBody td {
+    margin-bottom: 10px;
 }

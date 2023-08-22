@@ -40,12 +40,28 @@ function AccountRegistration() {
             cancelButtonText: '취소'
         }).then((result) => {
             if (result.isConfirmed) {
-                fetcher.post(CREATE_ID_API, {
+                // fetcher.post(CREATE_ID_API, {
+                //     image:imgFile,
+                //     name: name,
+                //     password: password,
+                //     no: memberNo,
+                //     position: positionName,
+                //     team: teamName
+                // })
+                const formData = new FormData();
+                formData.append('post', JSON.stringify({
                     name: name,
                     password: password,
                     no: memberNo,
                     position: positionName,
                     team: teamName
+                }));
+                formData.append('image', imgFile);
+
+                fetcher.post(CREATE_ID_API, formData, {
+                    headers: {
+                        'Content-Type': 'multipart/form-data'
+                    }
                 })
                     .then(() => {
                         resetInput();
@@ -159,8 +175,9 @@ function AccountRegistration() {
                 </div>
             </div>
 
-            <TeamModal showTeamModal={showTeamModal} handleTeamModalClose={() => setShowTeamModal(false)} />
-            <PositionModal showPositionModal={showPositionModal} handlePositionModalClose={() => setShowPositionModal(false)}/>
+            <TeamModal showTeamModal={showTeamModal} handleTeamModalClose={() => setShowTeamModal(false)}/>
+            <PositionModal showPositionModal={showPositionModal}
+                           handlePositionModalClose={() => setShowPositionModal(false)}/>
         </div>
     )
 }
