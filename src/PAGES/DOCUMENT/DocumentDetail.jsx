@@ -32,6 +32,7 @@ function DocumentDetail() {
     const isStandby = documentData?.result === "결재대기"
     const isWriter = documentData?.writer?.no === myAccount.no
     const myTurn = approvalStatus?.myCurrent === "Y"
+    const nextTurnNotSign = approvalStatus?.nextStauts === null
 
     const fetchDocumentInfo = () => {
         return fetcher.get(`${DOCUMENT_READ_API}/${id}`)
@@ -104,11 +105,11 @@ function DocumentDetail() {
         })
     }
 
-    const recallBtn=() => {
-        fetcher.post(APPROVAL_RECALL_API,{
+    const recallBtn = () => {
+        fetcher.post(APPROVAL_RECALL_API, {
             document: documentData.id
         })
-            .then(()=>{
+            .then(() => {
                 Swal.fire({
                     position: 'mid',
                     icon: 'success',
@@ -121,6 +122,13 @@ function DocumentDetail() {
     }
 
     const deleteBtn = () => {
+        if (!(isStandby)) {
+            Swal.fire({
+                title: "결재가 진행중인 문서입니다.",
+                icon: 'warning',
+            })
+            return;
+        }
         Swal.fire({
             title: "문서를 삭제 하시겠습니까?",
             icon: 'warning',
@@ -145,18 +153,25 @@ function DocumentDetail() {
             }
         })
     }
+
     return (
         <div className={styles.wrapper}>
             <div className={styles.upperContainer}>
+                <div className={styles.select}>
+                    {isStandby && isWriter ? <Button className="button">문서수정</Button> : ""}
+                    {isStandby && isWriter ? <Button className="button" onClick={deleteBtn}>문서삭제</Button> : ""}
+                    {isStandby && isWriter ? <Button className="button" onClick={recallBtn}>문서회수</Button> : ""}
+                </div>
                 <div className={styles.buttonGroup}>
+                    {myTurn && nextTurnNotSign && (
+                        <Button variant="success" onClick={() => approvalBtn("승인")}>결재승인</Button>
+                    )}
+                    {!myTurn && nextTurnNotSign && (
+                        <Button variant="warning" onClick={cancelBtn}>결재취소</Button>
+                    )}
+                    {!isWriter && myTurn ?
+                        <Button variant="danger" onClick={() => approvalBtn("반려")}>결재반려</Button> : ""}
                     <Button className="button" onClick={() => navigate(-1)}>목록으로</Button>
-                    {isStandby ? <Button variant="success" onClick={()=>approvalBtn("승인")}>결재승인</Button>
-                               : <Button variant="warning" onClick={cancelBtn}>결재취소</Button>
-                    }
-                    {!isWriter ? <Button variant="danger" onClick={()=>approvalBtn("반려")}>결재반려</Button> : ""}
-                    {isStandby && isWriter ? <Button className="button">문서수정</Button> :""}
-                    {isStandby && isWriter ? <Button className="button" onClick={deleteBtn}>문서삭제</Button> :""}
-                    {isStandby && isWriter ? <Button className="button" onClick={recallBtn}>문서회수</Button>: ""}
                 </div>
             </div>
 

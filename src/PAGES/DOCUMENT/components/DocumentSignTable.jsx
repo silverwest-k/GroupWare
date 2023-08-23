@@ -38,7 +38,7 @@ function DocumentSignTable({documentData, signLine}) {
 
     return (
         <div className={styles.signTable}>
-            <div>
+            <div style={{marginRight:"30px"}}>
                 <table>
                     <tbody>
                     {sign_Table_Left_data.map((data, index) => {

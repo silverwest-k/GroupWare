@@ -43,7 +43,6 @@ function MyPage() {
                 })
             })
     }
-
     const saveImgFile = () => {
         const file = imgRef.current.files[0];
         const reader = new FileReader();

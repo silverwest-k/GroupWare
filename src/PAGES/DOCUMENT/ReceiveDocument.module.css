@@ -30,7 +30,8 @@
 }
 
 .card {
-    width: 1000px;
+    min-width: 800px;
+    width: 45%;
     height: 130px;
     border: 1px solid #afb0b1;
     border-radius: 15px;

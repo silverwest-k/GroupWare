@@ -60,7 +60,7 @@
 /* 기안관련 */
 .signTable {
     display: flex;
-    margin: 0 160px;
+    margin: 0 140px;
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
@@ -79,6 +79,7 @@
     padding-left: 15px;
     text-align: left;
 }
+
 /* 결재라인 */
 .signTableRight_title {
     width: 30px;
@@ -110,7 +111,6 @@
 .sign img {
     width: 65px;
 }
-
 
 /* 참조 */
 .referTable {

@@ -14,16 +14,17 @@ function ReportDocument() {
     const [ongoing, setOngoing] = useState([]);
     const [approved, setApproved] = useState([]);
     const [rejected, setRejected] = useState([]);
+    const [activeBtn, setActiveBtn] = useState("all");
 
     useEffect(() => {
         fetchAllDocument()
     }, []);
 
+    // 버튼에 따라 데이터 필터링
     const fetchAllDocument = () => {
         fetcher.get(REPORT_DOCUMENT_LIST_API)
             .then((res) => setListData(res.data))
     }
-
     const filterOngoing = () => {
         fetcher.get(ONGOING_DOCUMENT_LIST_API)
             .then((res) => setOngoing(res.data));
@@ -37,12 +38,25 @@ function ReportDocument() {
             .then((res) => setRejected(res.data));
     }
 
+    useEffect(() => {
+        switch (activeBtn) {
+            case "all":fetchAllDocument()
+                break;
+            case "ongoing":filterOngoing()
+                break;
+            case "approved":filterApproved()
+                break;
+            case "rejected":filterRejected()
+                break;
+            default:fetchAllDocument()
+                break;
+        }
+    }, [activeBtn])
+
     return (
         <div className={styles.wrapper}>
             <div className={styles.buttonContainer}>
-                <ButtonGroup fetchAllDocument={fetchAllDocument} filterOngoing={filterOngoing}
-                             filterApproved={filterApproved} filterRejected={filterRejected}
-                />
+                <ButtonGroup setActiveBtn={setActiveBtn} />
             </div>
 
             <div className={styles.search}>
@@ -53,7 +67,9 @@ function ReportDocument() {
             </div>
             <div className={styles.tableContainer}>
                 <div className={styles.table}>
-                    <DocumentTable listData={listData} ongoing={ongoing} approved={approved} rejected={rejected}/>
+                    <DocumentTable listData={activeBtn==="all"?listData : activeBtn==="ongoing"?ongoing
+                        : activeBtn==="approved"?approved : activeBtn==="rejected"?rejected : listData}
+                    />
                 </div>
             </div>
         </div>

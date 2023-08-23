@@ -13,7 +13,7 @@ function ReceiveDocument() {
 
     useEffect(()=>{
         fetcher.get(RECEIVE_DOCUMENT_LIST_API)
-            .then((res)=> console.log(res.data))
+            .then((res)=> setData(res.data))
     },[])
 
     const routeDetail = (id) => {
@@ -48,9 +48,9 @@ function ReceiveDocument() {
                                         <div className={styles.cardTitle}>{data.title}</div>
                                     </div>
                                     <div className={styles.cardLower}>
-                                        <div>기안자 : {data.writer.name}</div>
+                                        <div>기안자 : {data.writer.name} {data.writer.position}</div>
                                         <div>날짜 : {data.createDate}</div>
-                                        <div>양식 : {data.template}</div>
+                                        <div>양식 : {data.template.category}</div>
                                     </div>
                                 </div>
                             </div>
