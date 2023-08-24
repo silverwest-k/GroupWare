@@ -2,7 +2,6 @@ import styles from "./DocumentTable.module.css";
 import {Table} from "react-bootstrap";
 import {useNavigate} from "react-router-dom";
 import {TEMP_DOCUMENT_COMPONENT} from "../../../constants/component_constants";
-import {backgroundColor} from "./DocumentTable";
 
 function TempDocumentTable({listData}) {
     const navigate = useNavigate();
@@ -23,7 +22,7 @@ function TempDocumentTable({listData}) {
                 </thead>
 
                 <tbody className={styles.tableBody}>
-                {listData.map((data, index) => {
+                {listData?.reverse().map((data, index) => {
                     return (
                         <tr key={data.id} onClick={() => routeTempDetail(data.id)}>
                             <td>{index + 1}</td>

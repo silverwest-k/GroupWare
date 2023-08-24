@@ -60,10 +60,12 @@ function TempDocumentDetail() {
     return (
         <div className={styles.wrapper}>
             <div className={styles.upperContainer}>
-                <div className={styles.buttonGroup}>
-                    <Button className="button" onClick={()=>navigate(-1)}>목록으로</Button>
+                <div className={styles.select}>
                     <Button className="button">문서수정</Button>
                     <Button className="button" onClick={deleteBtn}>문서삭제</Button>
+                </div>
+                <div className={styles.buttonGroup}>
+                    <Button className="button" onClick={()=>navigate(-1)}>목록으로</Button>
                 </div>
             </div>
 

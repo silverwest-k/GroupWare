@@ -28,10 +28,8 @@ function ApprovalNotice() {
         <div className={styles.wrapper}>
             <div className={styles.title}>
                 <p className={styles.titleText}>결재 대기 문서</p>
-                <Link to={`/page/${RECEIVE_DOCUMENT_COMPONENT}`}>
-                    <p className={styles.boardLink}>+더보기</p>
-                </Link>
             </div>
+
             <div className={styles.container}>
                 <div className={styles.tableBody}>
                     <table>

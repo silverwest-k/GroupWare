@@ -30,9 +30,10 @@ function DocumentDetail() {
     }, [id])
 
     const isStandby = documentData?.result === "결재대기"
+    const isDone = documentData?.result === "승인" || documentData?.result === "반려"
     const isWriter = documentData?.writer?.no === myAccount.no
-    const myTurn = approvalStatus?.myCurrent === "Y"
-    const nextTurnNotSign = approvalStatus?.nextStauts === null
+    const isMyTurn = approvalStatus?.myCurrent === "Y"
+    const nextTurnNotSign = approvalStatus?.nextStauts !== "승인" && approvalStatus?.nextStauts !== "반려"
 
     const fetchDocumentInfo = () => {
         return fetcher.get(`${DOCUMENT_READ_API}/${id}`)
@@ -163,14 +164,15 @@ function DocumentDetail() {
                     {isStandby && isWriter ? <Button className="button" onClick={recallBtn}>문서회수</Button> : ""}
                 </div>
                 <div className={styles.buttonGroup}>
-                    {myTurn && nextTurnNotSign && (
+                    {isMyTurn && nextTurnNotSign && (
                         <Button variant="success" onClick={() => approvalBtn("승인")}>결재승인</Button>
                     )}
-                    {!myTurn && nextTurnNotSign && (
+                    {!isMyTurn && nextTurnNotSign && !isDone && (
                         <Button variant="warning" onClick={cancelBtn}>결재취소</Button>
                     )}
-                    {!isWriter && myTurn ?
-                        <Button variant="danger" onClick={() => approvalBtn("반려")}>결재반려</Button> : ""}
+                    {isMyTurn && !isWriter && nextTurnNotSign ?
+                        <Button variant="danger" onClick={() => approvalBtn("반려")}>결재반려</Button> : ""
+                    }
                     <Button className="button" onClick={() => navigate(-1)}>목록으로</Button>
                 </div>
             </div>
@@ -185,10 +187,10 @@ function DocumentDetail() {
 
                 <div className={styles.editorContainer}>
                     <div className={styles.documentTitle}>
-                        <p>제목 : </p>{documentData.title}
+                        <p>제목 : </p>{documentData?.title}
                     </div>
                     <div>
-                        <div>{isCompleted && parse(documentData.content)}</div>
+                        <div>{isCompleted && parse(documentData?.content)}</div>
                     </div>
                 </div>
             </div>

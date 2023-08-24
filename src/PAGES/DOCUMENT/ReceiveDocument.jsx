@@ -33,7 +33,7 @@ function ReceiveDocument() {
                 </InputGroup>
             </div>
             <div className={styles.cardContainer}>
-                {data?.map((data) => {
+                {data?.reverse().map((data) => {
                     return (
                         <div className={styles.card} key={data.id}>
                             <div className={styles.contents}>
@@ -59,12 +59,12 @@ function ReceiveDocument() {
 
                             <div className={styles.approvalButton}
                                  style={{
-                                     cursor: data.result === "승인" ? "not-allowed" : "pointer",
-                                     color: data.result === "승인" ? "gray" : ""
+                                     cursor: "pointer",
+                                     color: data.result === "승인" || data.result === "반려" ? "gray" : ""
                                  }}
                                  onClick={()=>routeDetail(data.id)}
                             >
-                                결재하기
+                                {data.result === "승인" || data.result === "반려" ? "상세보기" : "결재하기"}
                             </div>
                         </div>
                     )

@@ -40,20 +40,28 @@ function AccountRegistration() {
             cancelButtonText: '취소'
         }).then((result) => {
             if (result.isConfirmed) {
-                const formData = new FormData();
-                formData.append('post', JSON.stringify({
+                // const formData = new FormData();
+                // formData.append('post', JSON.stringify({
+                //     name: name,
+                //     password: password,
+                //     no: memberNo,
+                //     position: positionName,
+                //     team: teamName
+                // }));
+                // formData.append('image', imgFile);
+                //
+                // fetcher.post(CREATE_ID_API, formData, {
+                //     headers: {
+                //         'Content-Type': 'multipart/form-data'
+                //     }
+                // })
+                fetcher.post(CREATE_ID_API, {
+                    image:imgFile,
                     name: name,
                     password: password,
                     no: memberNo,
                     position: positionName,
                     team: teamName
-                }));
-                formData.append('image', imgFile);
-
-                fetcher.post(CREATE_ID_API, formData, {
-                    headers: {
-                        'Content-Type': 'multipart/form-data'
-                    }
                 })
                     .then(() => {
                         resetInput();

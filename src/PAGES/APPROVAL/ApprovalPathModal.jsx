@@ -117,18 +117,18 @@ function ApprovalPathModal({showApprovalPathModal, handleApprovalPathModalClose}
                         showConfirmButton: false,
                         timer: 1500
                     })
-                        fetchBookmark()
+                    fetchBookmark()
                 }
             )
     }
     const bookmarkInfo = (id) => {
         fetcher.get(`${APPROVAL_BOOKMARK_INFO_API}/${id}`)
-                .then((res) => {
-                    const fetchData = (res.data)
-                    const key = Object.keys(fetchData)
-                    setApprovalMembers([fetchData[key][1], fetchData[key][2]]);
-                    setReferMember([fetchData[key][3]]);
-                })
+            .then((res) => {
+                const fetchData = (res.data)
+                const key = Object.keys(fetchData)
+                setApprovalMembers([fetchData[key][1], fetchData[key][2]]);
+                setReferMember([fetchData[key][3]]);
+            })
     }
 
     // 결재라인 적용
@@ -273,31 +273,30 @@ function ApprovalPathModal({showApprovalPathModal, handleApprovalPathModalClose}
                                     </div>
                                 </div>
 
-                                <div>
-                                    <div className={styles.tableContainer} style={{height: "140px"}}>
-                                        <p className={styles.title}>참조자</p>
-                                        <Table>
-                                            <thead className={styles.tableHead}>
-                                            <tr>
-                                                <th>이름</th>
-                                                <th>직급</th>
-                                                <th>부서</th>
-                                            </tr>
-                                            </thead>
-                                            <tbody className={styles.tableBody}>
-                                            {referMember?.map((memberData, index) => {
-                                                return (
-                                                    <tr key={index}>
-                                                        <td>{memberData.name}</td>
-                                                        <td>{memberData.position}</td>
-                                                        <td>{memberData.team}</td>
-                                                    </tr>
-                                                )
-                                            })}
-                                            </tbody>
-                                        </Table>
-                                    </div>
+                                <div className={styles.tableContainer} style={{height: "140px"}}>
+                                    <p className={styles.title}>참조자</p>
+                                    <Table>
+                                        <thead className={styles.tableHead}>
+                                        <tr>
+                                            <th>이름</th>
+                                            <th>직급</th>
+                                            <th>부서</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody className={styles.tableBody}>
+                                        {referMember?.map((memberData, index) => {
+                                            return (
+                                                <tr key={index}>
+                                                    <td>{memberData?.name}</td>
+                                                    <td>{memberData?.position}</td>
+                                                    <td>{memberData?.team}</td>
+                                                </tr>
+                                            )
+                                        })}
+                                        </tbody>
+                                    </Table>
                                 </div>
+
 
                                 <div className={styles.bookmarkLine}>
                                     <p style={{marginBottom: "0"}}>사용자 결재라인 이름</p>
