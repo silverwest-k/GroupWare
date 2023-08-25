@@ -155,13 +155,13 @@ function AccountManagement() {
         <div className={styles.wrapper}>
             <div className={styles.container}>
                 <div className={styles.upper}>
-                    <div> 계정관리
+                        <p>계정관리</p>
+                    <div className={styles.upperButton}>
                         <Button className="buttonAdmin"
                                 style={{marginLeft: "15px"}}
                                 onClick={() => setShowAccountModal(true)}
                         >불러오기</Button>
-                    </div>
-                    <div>
+                        <div>
                         { account && account?.authority === "BLOCK" ?
                             <Button className="buttonAdmin" onClick={() => blockID(account.id, "USER")}>차단해지</Button>
                             : <Button className="buttonAdmin" onClick={() => blockID(account.id, "BLOCK")}>접속차단</Button>
@@ -169,6 +169,7 @@ function AccountManagement() {
                         <Button className="buttonAdmin" style={{marginLeft: "25px"}}
                                 onClick={() => deleteID(account.id)}
                         >삭제</Button>
+                        </div>
                     </div>
                 </div>
 

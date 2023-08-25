@@ -2,6 +2,8 @@ import styles from "./DocumentTable.module.css";
 import {Table} from "react-bootstrap";
 import {useNavigate} from "react-router-dom";
 import {DOCUMENT_DETAIL_COMPONENT} from "../../../constants/component_constants";
+import Pagination from "./Pagination";
+import {useState} from "react";
 
 export const backgroundColor = {
     "결재대기": "#f8d287",
@@ -10,8 +12,9 @@ export const backgroundColor = {
     "반려": "#fb6a76"
 }
 
-function DocumentTable({listData}) {
+function DocumentTable({listData, offset, limit}) {
     const navigate = useNavigate();
+
     const routeDetail = (id) => {
         navigate(`/page/${DOCUMENT_DETAIL_COMPONENT}/${id}`);
     }
@@ -33,7 +36,7 @@ function DocumentTable({listData}) {
                 </thead>
 
                 <tbody className={styles.tableBody}>
-                {listData?.reverse().map((data, index) => {
+                {listData?.reverse().slice(offset, offset + limit).map((data, index) => {
                     return (
                         <tr key={data.id} onClick={() => routeDetail(data.id)}>
                             <td>{index + 1}</td>

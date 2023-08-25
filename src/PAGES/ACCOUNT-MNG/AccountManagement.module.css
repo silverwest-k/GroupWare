@@ -21,12 +21,16 @@
 }
 
 .upper {
+    padding: 0 50px;
+    margin: 0;
+    font-size: 24px;
+}
+
+.upperButton{
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    padding: 0 40px;
 }
-
 .contents {
     height: 60%;
     display: flex;

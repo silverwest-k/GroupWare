@@ -1,32 +1,23 @@
-import Pagination from 'react-bootstrap/Pagination';
-import styles from "../ReportDocument.module.css";
+import styles from "./Pagination.module.css";
+import {Button} from "react-bootstrap";
 
 function Pagination({total, page, setPage, limit}) {
 
+    const numPages = Math.ceil(total / limit);
 
-    const pageNum = Math.ceil(total / limit);
-
-    return(
+    return (
         <div className={styles.pagination}>
-            <Pagination>
-                <Pagination.First onClick={() => setPage(1)} disabled={page === 1}/>
-                <Pagination.Prev onClick={() => setPage(page - 1)} disabled={page === 1}/>
-                {Array(pageNum)
-                    .fill()
-                    .map((_, i) => (
-                        <Pagination.Item
-                            key={i + 1}
-                            onClick={() => setPage(i + 1)}
-                            aria-current={page === i + 1 && "page"}
-                        >
-                            {i + 1}
-                        </Pagination.Item>
-                    ))
-                }
-                <Pagination.Next onClick={() => setPage(page + 1)} disabled={page === pageNum}/>
-                <Pagination.Last onClick={() => setPage(pageNum)} disabled={page === pageNum}/>
-            </Pagination>
-            {/*<Pagination.Ellipsis />*/}
+            <Button className={styles.button} onClick={() => setPage(page - 1)} disabled={page === 1}>&lt;</Button>
+            {Array(numPages).fill().map((_, i) => (
+                <Button className={`${styles.button} ${page === i + 1 ? styles.active : ''}`}
+                        key={i + 1}
+                        onClick={() => setPage(i + 1)}
+                        aria-current={page === i + 1 ? "page" : undefined}
+                >
+                    {i + 1}
+                </Button>
+            ))}
+            <Button className={styles.button} onClick={(()=> setPage(page+1))} disabled={page=== numPages}>&gt;</Button>
         </div>
     )
 }

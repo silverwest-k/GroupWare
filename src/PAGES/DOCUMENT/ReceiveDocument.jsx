@@ -6,10 +6,16 @@ import fetcher from "../../fetcher";
 import {RECEIVE_DOCUMENT_LIST_API} from "../../constants/api_constans";
 import {useNavigate} from "react-router-dom";
 import {DOCUMENT_DETAIL_COMPONENT} from "../../constants/component_constants";
+import Pagination from "./components/Pagination";
 
 function ReceiveDocument() {
     const navigate = useNavigate();
     const [data, setData] = useState([]);
+
+    // 페이지네이션
+    const [limit, setLimit] = useState(5);
+    const [page, setPage] = useState(1);
+    const offset = (page - 1) * limit;
 
     useEffect(()=>{
         fetcher.get(RECEIVE_DOCUMENT_LIST_API)
@@ -33,7 +39,7 @@ function ReceiveDocument() {
                 </InputGroup>
             </div>
             <div className={styles.cardContainer}>
-                {data?.reverse().map((data) => {
+                {data?.reverse().slice(offset, offset + limit).map((data) => {
                     return (
                         <div className={styles.card} key={data.id}>
                             <div className={styles.contents}>
@@ -70,6 +76,8 @@ function ReceiveDocument() {
                     )
                 })}
             </div>
+
+                <Pagination total={data.length} limit={limit} page={page} setPage={setPage}/>
         </div>
     )
 }

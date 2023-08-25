@@ -34,6 +34,7 @@
 /* 테이블 영역 */
 
 .table {
+    height: 600px;
     width: 65%;
     min-width: 800px;
     margin: 0;

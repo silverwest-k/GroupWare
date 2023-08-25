@@ -95,9 +95,7 @@ function AccountRegistration() {
         <div className={styles.wrapper}>
             <div className={styles.container}>
                 <div className={styles.upper}>
-                    <div>
-                        계정등록
-                    </div>
+                        <p>계정등록</p>
                 </div>
 
                 <div className={styles.contents}>

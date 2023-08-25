@@ -65,8 +65,7 @@
 }
 
 .table {
+    height: 600px;
     width: 65%;
     min-width: 800px;
 }
-
-

@@ -57,7 +57,7 @@ function Sidebar() {
                         <Accordion.Body onClick={menuName}>
                             <Link to={`/page/${RECEIVE_DOCUMENT_COMPONENT}`}
                                   className={`${styles.underline} ${styles.blue} ${activeLink === RECEIVE_DOCUMENT_COMPONENT ? styles.active : ""}`}
-                                  onClick={() => handleLink(REPORT_DOCUMENT_COMPONENT)}
+                                  onClick={() => handleLink(RECEIVE_DOCUMENT_COMPONENT)}
                             >수신문서</Link>
                         </Accordion.Body>
                         <Accordion.Body onClick={menuName}>

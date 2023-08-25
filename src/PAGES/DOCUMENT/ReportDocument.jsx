@@ -8,6 +8,7 @@ import {
 import DocumentTable from "./components/DocumentTable";
 import {Button, FormControl, InputGroup} from "react-bootstrap";
 import ButtonGroup from "./components/ButtonGroup";
+import Pagination from "./components/Pagination";
 
 function ReportDocument() {
     const [listData, setListData] = useState([]);
@@ -15,6 +16,10 @@ function ReportDocument() {
     const [approved, setApproved] = useState([]);
     const [rejected, setRejected] = useState([]);
     const [activeBtn, setActiveBtn] = useState("all");
+    // 페이지네이션
+    const [limit, setLimit] = useState(10);
+    const [page, setPage] = useState(1);
+    const offset = (page - 1) * limit;
 
     useEffect(() => {
         fetchAllDocument()
@@ -40,15 +45,20 @@ function ReportDocument() {
 
     useEffect(() => {
         switch (activeBtn) {
-            case "all":fetchAllDocument()
+            case "all":
+                fetchAllDocument()
                 break;
-            case "ongoing":filterOngoing()
+            case "ongoing":
+                filterOngoing()
                 break;
-            case "approved":filterApproved()
+            case "approved":
+                filterApproved()
                 break;
-            case "rejected":filterRejected()
+            case "rejected":
+                filterRejected()
                 break;
-            default:fetchAllDocument()
+            default:
+                fetchAllDocument()
                 break;
         }
     }, [activeBtn])
@@ -56,7 +66,7 @@ function ReportDocument() {
     return (
         <div className={styles.wrapper}>
             <div className={styles.buttonContainer}>
-                <ButtonGroup setActiveBtn={setActiveBtn} />
+                <ButtonGroup setActiveBtn={setActiveBtn}/>
             </div>
 
             <div className={styles.search}>
@@ -67,10 +77,15 @@ function ReportDocument() {
             </div>
             <div className={styles.tableContainer}>
                 <div className={styles.table}>
-                    <DocumentTable listData={activeBtn==="all"?listData : activeBtn==="ongoing"?ongoing
-                        : activeBtn==="approved"?approved : activeBtn==="rejected"?rejected : listData}
+                    <DocumentTable
+                        listData={
+                            activeBtn === "all" ? listData : activeBtn === "ongoing" ? ongoing
+                                : activeBtn === "approved" ? approved : activeBtn === "rejected" ? rejected : listData
+                        }
+                        limit={limit} offset={offset}
                     />
                 </div>
+                <Pagination total={listData.length} limit={limit} page={page} setPage={setPage}/>
             </div>
         </div>
     )

@@ -6,9 +6,14 @@ import {ALL_DOCUMENT_LIST_API} from "../../constants/api_constans";
 import fetcher from "../../fetcher";
 import {useNavigate} from "react-router-dom";
 import {DOCUMENT_DETAIL_COMPONENT} from "../../constants/component_constants";
+import Pagination from "../DOCUMENT/components/Pagination";
 
 function AllDocument() {
     const [listData, setListData] =useState([]);
+    // 페이지네이션
+    const [limit, setLimit] = useState(10);
+    const [page, setPage] = useState(1);
+    const offset = (page - 1) * limit;
 
     useEffect(()=>{
         fetcher.get(ALL_DOCUMENT_LIST_API)
@@ -53,7 +58,7 @@ function AllDocument() {
                         </thead>
 
                         <tbody className={styles.tableBody}>
-                        {listData?.reverse().map((data, index) => {
+                        {listData?.reverse().slice(offset, offset + limit).map((data, index) => {
                             return (
                                 <tr key={data.id} onClick={() => routeDetail(data.id)}>
                                     <td>{index + 1}</td>
@@ -71,6 +76,7 @@ function AllDocument() {
                         </tbody>
                     </Table>
                 </div>
+                <Pagination total={listData.length} limit={limit} page={page} setPage={setPage}/>
             </div>
         </div>
     )
