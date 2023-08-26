@@ -32,6 +32,7 @@ function Page() {
     const {myAccount} = useStore(state => state);
 
     const isAdmin = myAccount?.authority === "ADMIN";
+    const navigate = useNavigate();
 
     return (
         <>
@@ -48,14 +49,14 @@ function Page() {
                         <Route path={`${TEMP_DOCUMENT_COMPONENT}/:id`} element={<TempDocumentDetail/>}/>
                         <Route path={MY_PAGE_COMPONENT} element={<MyPage/>}/>
 
-                        {/* //TODO: 관리자 권한이 없는 계정이 관리자페이지 url 접근 -> ForbiddenPage 이동 */}
-                        {isAdmin &&
+                        {isAdmin ?
                             <>
                                 <Route path={DOCUMENT_REGISTRATION_COMPONENT} element={<DocumentRegistration/>}/>
                                 <Route path={ALL_DOCUMENT_LIST_COMPONENT} element={<AllDocument/>}/>
                                 <Route path={ACCOUNT_MANAGEMENT_COMPONENT} element={<AccountManagement/>}/>
                                 <Route path={ACCOUNT_REGISTRATION_COMPONENT} element={<AccountRegistration/>}/>
                             </>
+                         : navigate(FORBIDDEN_COMPONENT)
                         }
                     </Routes>
                 </div>

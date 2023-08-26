@@ -10,10 +10,11 @@ function AccountModal({showAccountModal, handleAccountModalClose, fetchMemberLis
     const {selectAccount} = useStore(state => state)
     const [member, setMember] = useState([]);
 
-    useEffect(()=>{
-        fetcher.get(MEMBER_LIST_INFO_API)
+
+    useEffect(() => {
+        showAccountModal && fetcher.get(MEMBER_LIST_INFO_API)
             .then((res) => setMember(res.data))
-    }, [])
+    }, [showAccountModal])
 
     const pickAccount = (account) => {
         selectAccount(account);
@@ -31,16 +32,18 @@ function AccountModal({showAccountModal, handleAccountModalClose, fetchMemberLis
                 <Modal.Body>
                     <div>
                         <div className={tableStyles.container}>
+                            <Table>
+                                <thead className={tableStyles.tableHead}>
+                                <tr>
+                                    <th>사번</th>
+                                    <th>이름</th>
+                                    <th>직급</th>
+                                    <th>부서</th>
+                                </tr>
+                                </thead>
+                            </Table>
                             <div className={tableStyles.tableContainer}>
                                 <Table hover>
-                                    <thead className={tableStyles.tableHead}>
-                                    <tr>
-                                        <th>사번</th>
-                                        <th>이름</th>
-                                        <th>직급</th>
-                                        <th>부서</th>
-                                    </tr>
-                                    </thead>
 
                                     <tbody className={tableStyles.tableBody}>
                                     {member.map((data, index) => {

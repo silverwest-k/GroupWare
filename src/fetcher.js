@@ -28,7 +28,7 @@ function refreshRequest(originalRequest) {
         .then((res) => res) // 200
         .catch((err) => { // 401, 500, 기타 등등
             const config = err.config;
-            if (err?.response?.data === "EXPIRED") {
+            if (err?.response?.data?.statusCode === "EXPIRED") {
                 return INSTANCE().post(RENEW_TOKEN_API, {
                     accessToken: cookies.get(ACCESS_TOKEN_COOKIE),
                     refreshToken: cookies.get(REFRESH_TOKEN_COOKIE)
@@ -51,7 +51,6 @@ function refreshRequest(originalRequest) {
                             cookies.remove(REFRESH_TOKEN_COOKIE)
                         }
                     }).catch(() => {
-                        alert("몰라용")
                         window.location.href = LOGIN_COMPONENT
                         cookies.remove(ACCESS_TOKEN_COOKIE)
                         cookies.remove(REFRESH_TOKEN_COOKIE)

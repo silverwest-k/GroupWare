@@ -1,6 +1,6 @@
-import {useEffect, useRef, useState} from "react";
+import {useRef, useState} from "react";
 import styles from "./AccountManagement.module.css";
-import {Button, Modal} from "react-bootstrap";
+import {Button} from "react-bootstrap";
 import {CREATE_ID_API} from "../../constants/api_constans";
 import fetcher from "../../fetcher";
 import TeamModal from "./Modals/TeamModal";
