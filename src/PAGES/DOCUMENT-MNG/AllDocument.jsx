@@ -1,34 +1,31 @@
-import styles from  "./AllDocument.module.css"
+import styles from "./AllDocument.module.css"
 import {Button, FormControl, InputGroup, Table} from "react-bootstrap";
-import {backgroundColor} from "../DOCUMENT/components/DocumentTable";
 import {useEffect, useState} from "react";
 import {ALL_DOCUMENT_LIST_API} from "../../constants/api_constans";
 import fetcher from "../../fetcher";
 import {useNavigate} from "react-router-dom";
 import {DOCUMENT_DETAIL_COMPONENT} from "../../constants/component_constants";
 import Pagination from "../DOCUMENT/components/Pagination";
+import StateButton from "../../COMPONENT/StateButton";
 
 function AllDocument() {
-    const [listData, setListData] =useState([]);
+    const [listData, setListData] = useState([]);
     // 페이지네이션
     const [limit, setLimit] = useState(10);
     const [page, setPage] = useState(1);
     const offset = (page - 1) * limit;
 
-    useEffect(()=>{
+    useEffect(() => {
         fetcher.get(ALL_DOCUMENT_LIST_API)
-            .then((res)=> setListData(res.data))
-    },[])
+            .then((res) => setListData(res.data))
+    }, [])
 
     const navigate = useNavigate();
     const routeDetail = (id) => {
         navigate(`/page/${DOCUMENT_DETAIL_COMPONENT}/${id}`);
     }
-    const getBackgroundColor = (result) => {
-        return backgroundColor[result] || "#ffffff"
-    };
 
-    return(
+    return (
         <div className={styles.wrapper}>
             <div className={styles.container}>
                 <div className={styles.search}>
@@ -41,11 +38,11 @@ function AllDocument() {
                 <div className={styles.table}>
                     <Table hover>
                         <colgroup>
-                            <col style={{width:"10%"}} />
-                            <col style={{width:"25%"}} />
-                            <col style={{width:"45%"}} />
-                            <col style={{width:"10%"}} />
-                            <col style={{maxWidth:"100px"}} />
+                            <col style={{width: "10%"}}/>
+                            <col style={{width: "25%"}}/>
+                            <col style={{width: "45%"}}/>
+                            <col style={{width: "10%"}}/>
+                            <col style={{maxWidth: "100px"}}/>
                         </colgroup>
                         <thead className={styles.tableHead}>
                         <tr>
@@ -65,11 +62,7 @@ function AllDocument() {
                                     <td>{data.writer.name} {data.writer.position}</td>
                                     <td>{data.title}</td>
                                     <td>{data.createDate}</td>
-                                    <td style={{display: "flex", justifyContent: "center"}}>
-                                        <div className={styles.stateButton}
-                                             style={{background: getBackgroundColor(data.result)}}
-                                        >{data.result}</div>
-                                    </td>
+                                    <StateButton state={data.result}/>
                                 </tr>
                             )
                         })}

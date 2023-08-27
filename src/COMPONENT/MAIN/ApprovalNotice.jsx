@@ -1,11 +1,10 @@
-import styles from "./ApprovalNotice.module.css"
-import tableStyles from "../../PAGES/DOCUMENT/components/DocumentTable.module.css"
 import fetcher from "../../fetcher";
 import {STANDBY_APPROVAL_LIST_API} from "../../constants/api_constans";
 import {useEffect, useState} from "react";
-import {Link, useNavigate} from "react-router-dom";
-import {backgroundColor} from "../../PAGES/DOCUMENT/components/DocumentTable"
-import {DOCUMENT_DETAIL_COMPONENT, RECEIVE_DOCUMENT_COMPONENT} from "../../constants/component_constants";
+import {useNavigate} from "react-router-dom";
+import {DOCUMENT_DETAIL_COMPONENT} from "../../constants/component_constants";
+import styled from "styled-components";
+import StateButton from "../StateButton";
 
 function ApprovalNotice() {
     const [data, setData] = useState([]);
@@ -20,18 +19,14 @@ function ApprovalNotice() {
         navigate(`/page/${DOCUMENT_DETAIL_COMPONENT}/${id}`);
     }
 
-    const getBackgroundColor = (result) => {
-        return backgroundColor[result] || "#ffffff"
-    };
-
     return (
-        <div className={styles.wrapper}>
-            <div className={styles.title}>
-                <p className={styles.titleText}>결재 대기 문서</p>
-            </div>
+        <Wrapper>
+            <Title>
+                <p>결재 대기 문서</p>
+            </Title>
 
-            <div className={styles.container}>
-                <div className={styles.tableBody}>
+            <Contents>
+                <TableBody>
                     <table>
                         <colgroup>
                             <col style={{width: "18%"}}/>
@@ -46,20 +41,50 @@ function ApprovalNotice() {
                                     <td>{data.createDate}</td>
                                     <td>[{data.template.category}]</td>
                                     <td>{data.title}</td>
-                                    <td style={{display: "flex", justifyContent: "center"}}>
-                                        <div className={tableStyles.stateButton}
-                                             style={{background: getBackgroundColor(data.result)}}
-                                        >{data.result}</div>
-                                    </td>
+                                    <StateButton state={data.result}/>
                                 </tr>
                             )
                         })}
                         </tbody>
                     </table>
-                </div>
-            </div>
-        </div>
+                </TableBody>
+            </Contents>
+        </Wrapper>
     )
 }
 
 export default ApprovalNotice
+
+const Wrapper = styled.div`
+  border: solid 1px rgba(68, 41, 242, 0.6);
+  border-radius: 15px;
+  width: 25%;
+  min-width: 600px;
+  height: 350px;
+  margin: 30px;
+`
+const Title = styled.div`
+  justify-content: space-between;
+  border-bottom: solid 1px rgba(68, 41, 242, 0.6);
+  background: rgba(125, 121, 242, 0.2);
+  border-top-left-radius: 15px;
+  border-top-right-radius: 15px;
+  padding: 5px 20px;
+  font-size: 24px;
+  font-weight: 600;
+`
+const Contents = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  margin: 20px;
+  overflow: auto;
+`
+const TableBody = styled.div`
+  width: 100%;
+  cursor: pointer;
+
+  td {
+    margin-bottom: 10px;
+  }
+`

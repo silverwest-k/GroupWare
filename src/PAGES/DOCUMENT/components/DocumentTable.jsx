@@ -1,16 +1,8 @@
-import styles from "./DocumentTable.module.css";
 import {Table} from "react-bootstrap";
 import {useNavigate} from "react-router-dom";
 import {DOCUMENT_DETAIL_COMPONENT} from "../../../constants/component_constants";
-import Pagination from "./Pagination";
-import {useState} from "react";
-
-export const backgroundColor = {
-    "결재대기": "#f8d287",
-    "진행중": "#a6e0e8",
-    "승인": "#87ea85",
-    "반려": "#fb6a76"
-}
+import StateButton from "../../../COMPONENT/StateButton";
+import styled from "styled-components";
 
 function DocumentTable({listData, offset, limit}) {
     const navigate = useNavigate();
@@ -19,42 +11,46 @@ function DocumentTable({listData, offset, limit}) {
         navigate(`/page/${DOCUMENT_DETAIL_COMPONENT}/${id}`);
     }
 
-    const getBackgroundColor = (result) => {
-        return backgroundColor[result] || "#ffffff"
-    };
-
     return (
         <div>
-            <Table hover className={styles.table}>
-                <thead className={styles.tableHead}>
+            <Table hover>
+                <TableHead>
                 <tr>
                     <th>NO</th>
                     <th>제목</th>
                     <th>기안일</th>
                     <th>상태</th>
                 </tr>
-                </thead>
+                </TableHead>
 
-                <tbody className={styles.tableBody}>
+                <TableBody>
                 {listData?.reverse().slice(offset, offset + limit).map((data, index) => {
                     return (
                         <tr key={data.id} onClick={() => routeDetail(data.id)}>
                             <td>{index + 1}</td>
                             <td>{data.title}</td>
                             <td>{data.createDate}</td>
-                            <td style={{display: "flex", justifyContent: "center"}}>
-                                <div className={styles.stateButton}
-                                     style={{background: getBackgroundColor(data.result)}}
-                                >{data.result}</div>
-                            </td>
+                            <StateButton state={data.result}/>
                         </tr>
                     )
                 })}
-                </tbody>
+                </TableBody>
             </Table>
         </div>
-
     )
 }
-
 export default DocumentTable
+
+export const TableHead = styled.thead`
+th{
+  color: #4429f2;
+  font-weight: bold;
+  font-size: 23px;
+  background: rgba(68, 41, 242, 0.11);
+  text-align: center;
+}
+`
+export const TableBody = styled.tbody`
+  cursor: pointer;
+  text-align: center;
+`

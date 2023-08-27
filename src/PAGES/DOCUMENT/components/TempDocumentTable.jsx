@@ -1,7 +1,7 @@
-import styles from "./DocumentTable.module.css";
 import {Table} from "react-bootstrap";
 import {useNavigate} from "react-router-dom";
 import {TEMP_DOCUMENT_COMPONENT} from "../../../constants/component_constants";
+import {TableBody, TableHead} from "./DocumentTable";
 
 function TempDocumentTable({listData}) {
     const navigate = useNavigate();
@@ -12,16 +12,16 @@ function TempDocumentTable({listData}) {
 
     return (
         <div>
-            <Table hover className={styles.table}>
-                <thead className={styles.tableHead}>
+            <Table hover>
+                <TableHead>
                 <tr>
                     <th>NO</th>
                     <th>제목</th>
                     <th>작성일</th>
                 </tr>
-                </thead>
+                </TableHead>
 
-                <tbody className={styles.tableBody}>
+                <TableBody>
                 {listData?.reverse().map((data, index) => {
                     return (
                         <tr key={data.id} onClick={() => routeTempDetail(data.id)}>
@@ -31,7 +31,7 @@ function TempDocumentTable({listData}) {
                         </tr>
                     )
                 })}
-                </tbody>
+                </TableBody>
             </Table>
         </div>
 

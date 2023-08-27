@@ -5,6 +5,7 @@ import fetcher from "../fetcher";
 import { LOGIN_COMPONENT } from "../constants/component_constants";
 import { Button } from "react-bootstrap";
 import {LOGOUT_API} from "../constants/api_constans";
+import styled from "styled-components";
 
 function LogoutBtn () {
     const navigate = useNavigate();
@@ -23,16 +24,15 @@ function LogoutBtn () {
 
     return (
         <>
-            <Button onClick={handleLogout}
-                style={{
-                    border:"none",
-                    background:"none",
-                    color:"gray",
-                    textDecoration:"underline"
-                }}
-            >로그아웃</Button>
+            <Btn onClick={handleLogout}>로그아웃</Btn>
         </>
     );
-};
-
+}
 export default LogoutBtn;
+
+const Btn = styled.button`
+  border:none;
+  background:none;
+  color:gray;
+  text-decoration:underline;
+`

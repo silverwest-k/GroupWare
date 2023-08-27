@@ -15,6 +15,8 @@ import {
     REPORT_DOCUMENT_COMPONENT,
     TEMP_DOCUMENT_COMPONENT
 } from "../../../constants/component_constants";
+import styled from "styled-components";
+import {styleConstants} from "../../../STYLES/styleConstants";
 
 function Sidebar() {
     const [activeLink, setActiveLink] = useState("");
@@ -33,14 +35,14 @@ function Sidebar() {
     }
 
     return (
-        <div className={styles.wrapper}>
+        <Wrapper>
             <SidebarProfile/>
-            <div className={styles.menuContainer}>
+            <MenuContainer>
                 <Accordion eventKey="0" flush>
-                    <Accordion.Item eventKey="0" className={styles.accordion}>
-                        <Accordion.Header className={styles.menu}>
-                            <img src={require("../../../IMAGES/checklist.png")}/>
-                            <p>전자결재</p>
+                    <AccordionItem eventKey="0">
+                        <Accordion.Header>
+                            <MenuImg src={require("../../../IMAGES/checklist.png")}/>
+                            <MenuTitle>전자결재</MenuTitle>
                         </Accordion.Header>
                         <Accordion.Body onClick={menuName}>
                             <Link to={`/page/${DOCUMENT_WRITE_COMPONENT}`}
@@ -48,11 +50,11 @@ function Sidebar() {
                                   onClick={() => handleLink("write")}
                             >작성하기</Link>
                         </Accordion.Body>
-                    </Accordion.Item>
-                    <Accordion.Item eventKey="1" className={styles.accordion}>
-                        <Accordion.Header className={styles.menu}>
-                            <img src={require("../../../IMAGES/folder.png")}/>
-                            <p>문서함</p>
+                    </AccordionItem>
+                    <AccordionItem eventKey="1">
+                        <Accordion.Header>
+                            <MenuImg src={require("../../../IMAGES/folder.png")}/>
+                            <MenuTitle>문서함</MenuTitle>
                         </Accordion.Header>
                         <Accordion.Body onClick={menuName}>
                             <Link to={`/page/${RECEIVE_DOCUMENT_COMPONENT}`}
@@ -72,12 +74,12 @@ function Sidebar() {
                                   onClick={() => handleLink(TEMP_DOCUMENT_COMPONENT)}
                             >임시보관함</Link>
                         </Accordion.Body>
-                    </Accordion.Item>
+                    </AccordionItem>
 
-                    <Accordion.Item eventKey="2" className={styles.accordion}>
-                        <Accordion.Header className={styles.menu}>
-                            <img src={require("../../../IMAGES/profile.png")}/>
-                            <p>마이페이지</p>
+                    <AccordionItem eventKey="2">
+                        <Accordion.Header>
+                            <MenuImg src={require("../../../IMAGES/profile.png")}/>
+                            <MenuTitle>마이페이지</MenuTitle>
                         </Accordion.Header>
                         <Accordion.Body onClick={menuName}>
                             <Link to={`/page/${MY_PAGE_COMPONENT}`}
@@ -85,14 +87,14 @@ function Sidebar() {
                                   onClick={() => handleLink(MY_PAGE_COMPONENT)}
                             >내정보관리</Link>
                         </Accordion.Body>
-                    </Accordion.Item>
+                    </AccordionItem>
 
                     {isAdmin &&
                         <>
-                            <Accordion.Item eventKey="3" className={styles.accordion}>
-                                <Accordion.Header className={`${styles.menu} ${styles.mng}`}>
-                                    <img src={require("../../../IMAGES/process.png")}/>
-                                    <p>문서관리</p>
+                            <AccordionItem eventKey="3" className={"mng"}>
+                                <Accordion.Header>
+                                    <MenuImg src={require("../../../IMAGES/process.png")}/>
+                                    <MenuTitle>문서관리</MenuTitle>
                                 </Accordion.Header>
                                 <Accordion.Body onClick={menuName}>
                                     <Link to={`/page/${DOCUMENT_REGISTRATION_COMPONENT}`}
@@ -103,15 +105,15 @@ function Sidebar() {
                                 <Accordion.Body onClick={menuName}>
                                     <Link to={`/page/${ALL_DOCUMENT_LIST_COMPONENT}`}
                                           className={`${styles.underline} ${styles.orange} ${activeLink === ALL_DOCUMENT_LIST_COMPONENT ? styles.active : ""}`}
-                                          onClick={()=> handleLink(ALL_DOCUMENT_LIST_COMPONENT)}
+                                          onClick={() => handleLink(ALL_DOCUMENT_LIST_COMPONENT)}
                                     >결재문서</Link>
                                 </Accordion.Body>
-                            </Accordion.Item>
+                            </AccordionItem>
 
-                            <Accordion.Item eventKey="4" className={`${styles.accordion} ${styles.mng}`}>
-                                <Accordion.Header className={`${styles.menu} ${styles.mng}`}>
-                                    <img src={require("../../../IMAGES/management.png")}/>
-                                    <p>계정관리</p>
+                            <AccordionItem eventKey="4" className="mng">
+                                <Accordion.Header>
+                                    <MenuImg src={require("../../../IMAGES/management.png")}/>
+                                    <MenuTitle>계정관리</MenuTitle>
                                 </Accordion.Header>
                                 <Accordion.Body onClick={menuName}>
                                     <Link to={`/page/${ACCOUNT_REGISTRATION_COMPONENT}`}
@@ -125,14 +127,50 @@ function Sidebar() {
                                           onClick={() => handleLink(ACCOUNT_MANAGEMENT_COMPONENT)}
                                     >계정관리</Link>
                                 </Accordion.Body>
-                            </Accordion.Item>
+                            </AccordionItem>
                         </>
                     }
                 </Accordion>
-            </div>
-        </div>
+            </MenuContainer>
+        </Wrapper>
     )
 }
-
 export default Sidebar
 
+const Wrapper = styled.div`
+  width: ${styleConstants.layout.sidebar.width};
+  height: 100%;
+  border-right: 1px solid #afb0b1;
+`
+const MenuContainer = styled.div`
+  height: 60%;
+  display: flex;
+  flex-direction: column;
+`
+const MenuImg = styled.img`
+  width: 40px;
+  height: 40px;
+`
+const MenuTitle = styled.p`
+  font-weight: bold;
+  color: #4429f2;
+  margin-block-start: 0;
+  margin-block-end: 0;
+  padding-left: 20px;
+`
+const AccordionItem = styled(Accordion.Item)`
+  --bs-accordion-border-color: none;
+  --bs-accordion-btn-bg: none;
+  --bs-accordion-btn-focus-box-shadow: none;
+  --bs-accordion-active-bg: rgba(125, 121, 242, 0.37);
+  --bs-accordion-btn-padding-x: 4rem;
+  --bs-accordion-body-padding-x: 4rem;
+  --bs-accordion-btn-padding-y: 0.7rem;
+  --bs-accordion-body-padding-y: 0.5rem;
+
+  &.mng {
+    --bs-accordion-active-bg: rgba(250, 62, 12, 0.21);
+    color: #fa3e0c;
+    // TODO: 배경색은 바뀌는데 글씨색은 안바뀜
+  }
+`
