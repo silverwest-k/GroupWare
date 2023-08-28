@@ -1,11 +1,20 @@
 import {useRef, useState} from "react";
 import useStore from "../../store";
-import styles from "./MyPage.module.css";
-import commonStyles from "../ACCOUNT-MNG/AccountManagement.module.css";
 import {Button} from "react-bootstrap";
 import fetcher from "../../fetcher";
 import {MY_INFO_CHANGE_API} from "../../constants/api_constans";
 import Swal from "sweetalert2";
+import styled from "styled-components";
+import {
+    Container,
+    Contents,
+    ProfileImg,
+    ProfileImgLabel,
+    SubmitButton,
+    Table,
+    Upper,
+    Wrapper
+} from "../ACCOUNT-MNG/AccountManagement";
 
 function MyPage() {
     const [password, setPassword] = useState("");
@@ -17,11 +26,11 @@ function MyPage() {
         setPassword("")
     }
 
-    const editInfo = () =>{
+    const editInfo = () => {
         const form = new FormData
         fetcher.post(MY_INFO_CHANGE_API, {
             // team: imgFile ? imgFile :null,
-            newPassword: password ? password :null,
+            newPassword: password ? password : null,
         })
         // fetcher.postForm(MY_INFO_CHANGE_API, form, {
         //     headers: {
@@ -47,30 +56,28 @@ function MyPage() {
         const file = imgRef.current.files[0];
         const reader = new FileReader();
         reader.readAsDataURL(file);
-        reader.onload = () => {setImgFile(reader.result);}
+        reader.onload = () => {
+            setImgFile(reader.result);
+        }
     }
 
     return (
-        <div className={commonStyles.wrapper}>
-            <div className={styles.container}>
-                <div className={commonStyles.upper}>
-                    마이페이지
-                </div>
+        <Wrapper>
+            <UserContainer>
+                <Upper>
+                    <p>마이페이지</p>
+                </Upper>
 
-                <div className={styles.contents}>
-                    <table className={commonStyles.table}>
+                <Contents>
+                    <UserTable>
                         <tbody>
                         <tr>
                             <th></th>
-                            <td className={commonStyles.profile}>
+                            <UserProfileImg>
                                 <img src={imgFile ? imgFile : require("../../IMAGES/profile.jpg")}
-                                     style={{border: "solid 3px rgba(68, 41, 242, 0.4)"}}
-                                     alt="프로필 이미지"
+                                            alt="프로필 이미지"
                                 />
-                                <label className={commonStyles.profileImgLabel}
-                                       style={{background: "#4429f2"}}
-                                       htmlFor="profileImg"
-                                >이미지 업로드</label>
+                                <UserProfileImgLabel htmlFor="profileImg">이미지 업로드</UserProfileImgLabel>
                                 <input
                                     style={{display: "none"}}
                                     type="file"
@@ -79,7 +86,7 @@ function MyPage() {
                                     onChange={saveImgFile}
                                     ref={imgRef}
                                 />
-                            </td>
+                            </UserProfileImg>
                         </tr>
                         <tr>
                             <th>이름</th>
@@ -107,18 +114,32 @@ function MyPage() {
                             <td>{myAccount.position}</td>
                         </tr>
                         </tbody>
-                    </table>
-                </div>
-                <div>
-                    <div className={commonStyles.modify}>
-                        <Button className="button"
-                                onClick={editInfo}
-                        >수정</Button>
-                    </div>
-                </div>
-            </div>
-        </div>
+                    </UserTable>
+                </Contents>
+                <SubmitButton>
+                    <Button className="button"
+                            onClick={editInfo}
+                    >수정</Button>
+                </SubmitButton>
+            </UserContainer>
+        </Wrapper>
     )
 }
-
 export default MyPage
+
+const UserContainer = styled(Container)`
+  color: #4429f2;
+  background: rgba(125, 121, 242, 0.05);
+  border: solid 1px rgba(68, 41, 242, 0.4);
+`
+const UserProfileImg = styled(ProfileImg)`
+  img {
+    border:solid 3px rgba(68, 41, 242, 0.4);
+  }
+`
+const UserProfileImgLabel = styled(ProfileImgLabel)`
+  background: #4429f2;
+`
+const UserTable = styled(Table)`
+  th {color: #4429f2;}
+`

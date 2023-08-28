@@ -1,4 +1,3 @@
-import styles from "./ApprovalPathModal.module.css";
 import {Button, Modal, Table} from "react-bootstrap";
 import {useEffect, useState} from "react";
 import fetcher from "../../fetcher";
@@ -13,6 +12,7 @@ import {
 import useStore from "../../store";
 import Accordion from "react-bootstrap/Accordion";
 import Swal from "sweetalert2";
+import styled from "styled-components";
 
 function ApprovalPathModal({showApprovalPathModal, handleApprovalPathModalClose}) {
     const {myAccount, setSignLine} = useStore(state => state)
@@ -154,104 +154,99 @@ function ApprovalPathModal({showApprovalPathModal, handleApprovalPathModalClose}
     }
 
     return (
-        <div>
-            <Modal show={showApprovalPathModal} onHide={handleApprovalPathModalClose}
-                   className={`${styles.modal} ${styles.wrap}`} centered
-            >
-                <Modal.Header closeButton className={styles.modalHeader}>
-                    <Modal.Title style={{fontWeight: "bold"}}>결재선 지정</Modal.Title>
-                </Modal.Header>
-                <Modal.Body style={{padding: "0"}}>
-                    <div className={styles.contents}>
-                        <div className={styles.leftSide}>
-                            <div className={styles.title}>조직도</div>
-                            <Accordion defaultActiveKey="0">
-                                {team?.map((teamData, index) => {
-                                    return (
-                                        <Accordion.Item key={index} eventKey={index} className={styles.accordion}>
-                                            <Accordion.Header onClick={() => setSelectTeam(teamData)}>
-                                                <img src={require("../../IMAGES/members.png")}
-                                                     style={{padding: "0 10px"}}/>
-                                                {teamData}
-                                            </Accordion.Header>
+        <ModalWrapper show={showApprovalPathModal} onHide={handleApprovalPathModalClose} centered>
+            <ModalHeader closeButton>
+                <Modal.Title style={{fontWeight: "bold"}}>결재선 지정</Modal.Title>
+            </ModalHeader>
+            <Modal.Body>
+                <Contents>
+                    <LeftSide>
+                        <Title>조직도</Title>
+                        <Accordion defaultActiveKey="0">
+                            {team?.map((teamData, index) => {
+                                return (
+                                    <AccordionItem key={index} eventKey={index}>
+                                        <Accordion.Header onClick={() => setSelectTeam(teamData)}>
+                                            <img src={require("../../IMAGES/members.png")} style={{padding: "0 10px"}}/>
+                                            {teamData}
+                                        </Accordion.Header>
 
-                                            {member?.map((memberData, memberIndex) => {
-                                                return (
-                                                    <Accordion.Body key={memberIndex}
-                                                                    onClick={() => handleMemberClick(memberIndex)}
-                                                                    className={`${styles.chartMember} ${memberIndex === clickedIndex ? styles.boldText : ""}`}
-                                                    >
-                                                        <img src={require("../../IMAGES/member.png")}
-                                                             style={{padding: "0 12px"}}/>
-                                                        {memberData.name} {memberData.position}
-                                                    </Accordion.Body>
-                                                )
-                                            })}
-                                        </Accordion.Item>
-                                    )
-                                })}
-                            </Accordion>
-                        </div>
-
-                        <div className={styles.midSide}>
-                            <div className={styles.buttonGroup}>
-                                <p className={styles.title}>결재자</p>
-                                <Button className={styles.arrowButton} onClick={addToApprovalTable}>
-                                    <img src={require("../../IMAGES/right-arrow.png")}/>
-                                </Button>
-                                <Button className={styles.arrowButton} onClick={removeApprovalTable}>
-                                    <img src={require("../../IMAGES/left-arrow.png")}/>
-                                </Button>
-                            </div>
-
-                            <div className={styles.buttonGroup}>
-                                <p className={styles.title}>참조자</p>
-                                <Button className={styles.arrowButton} onClick={addToReferTable}>
-                                    <img src={require("../../IMAGES/right-arrow.png")}/>
-                                </Button>
-                                <Button className={styles.arrowButton} onClick={removeReferTable}>
-                                    <img src={require("../../IMAGES/left-arrow.png")}/>
-                                </Button>
-                            </div>
-                        </div>
-
-                        <div>
-                            <div className={styles.rightSide}>
-                                <p className={styles.title}>결재선 정보</p>
-                                <div className={styles.bookmarkLine}>
-                                    <p style={{marginBottom: "0"}}>사용자 결재라인</p>
-                                    <select onChange={(e) => {
-                                        const id = e.target.value;
-                                        bookmarkInfo(id)
-                                        setBookmarkId(id)
-                                    }}>
-                                        <option selected disabled>결재라인 선택</option>
-                                        {bookmarkList?.map((data, index) => {
+                                        {member?.map((memberData, memberIndex) => {
                                             return (
-                                                <option key={index} value={data.id}>
-                                                    {data.name}
-                                                </option>
+                                                <AccordionBody key={memberIndex}
+                                                               onClick={() => handleMemberClick(memberIndex)}
+                                                               className={memberIndex === clickedIndex ? "boldText" : ""}
+                                                >
+                                                    <img src={require("../../IMAGES/member.png")} style={{padding: "0 12px"}}/>
+                                                    {memberData.name} {memberData.position}
+                                                </AccordionBody>
                                             )
                                         })}
-                                    </select>
-                                    <Button className="button" style={{padding: "6px"}}
-                                            onClick={() => removeBookmark(bookmarkId)}
-                                    >삭제</Button>
-                                </div>
+                                    </AccordionItem>
+                                )
+                            })}
+                        </Accordion>
+                    </LeftSide>
 
-                                <div>
-                                    <div className={styles.tableContainer} style={{height: "220px"}}>
-                                        <p className={styles.title}>결재자</p>
-                                        <Table>
-                                            <thead className={styles.tableHead}>
+                    <MidSide>
+                        <ButtonGroup>
+                            <Title>결재자</Title>
+                            <ArrowButton onClick={addToApprovalTable}>
+                                <img src={require("../../IMAGES/right-arrow.png")}/>
+                            </ArrowButton>
+                            <ArrowButton onClick={removeApprovalTable}>
+                                <img src={require("../../IMAGES/left-arrow.png")}/>
+                            </ArrowButton>
+                        </ButtonGroup>
+
+                        <ButtonGroup>
+                            <Title>참조자</Title>
+                            <ArrowButton onClick={addToReferTable}>
+                                <img src={require("../../IMAGES/right-arrow.png")}/>
+                            </ArrowButton>
+                            <ArrowButton onClick={removeReferTable}>
+                                <img src={require("../../IMAGES/left-arrow.png")}/>
+                            </ArrowButton>
+                        </ButtonGroup>
+                    </MidSide>
+
+                    <div>
+                        <RightSide>
+                            <Title>결재선 정보</Title>
+                            <BookmarkLine>
+                                <p style={{marginBottom: "0"}}>사용자 결재라인</p>
+                                <select onChange={(e) => {
+                                    const id = e.target.value;
+                                    bookmarkInfo(id)
+                                    setBookmarkId(id)
+                                }}>
+                                    <option selected disabled>결재라인 선택</option>
+                                    {bookmarkList?.map((data, index) => {
+                                        return (
+                                            <option key={index} value={data.id}>
+                                                {data.name}
+                                            </option>
+                                        )
+                                    })}
+                                </select>
+                                <Button className="button" style={{padding: "6px"}}
+                                        onClick={() => removeBookmark(bookmarkId)}
+                                >삭제</Button>
+                            </BookmarkLine>
+
+                            <div>
+                                <FirstContainer>
+                                    <Title>결재자</Title>
+                                    <Table>
+                                        <TableHead>
                                             <tr>
                                                 <th>이름</th>
                                                 <th>직급</th>
                                                 <th>부서</th>
                                                 <th>결재선</th>
                                             </tr>
-                                            </thead>
-                                            <tbody className={styles.tableBody}>
+                                        </TableHead>
+                                        <TableBody>
                                             <tr>
                                                 <td>{myAccount.name}</td>
                                                 <td>{myAccount.position}</td>
@@ -268,22 +263,22 @@ function ApprovalPathModal({showApprovalPathModal, handleApprovalPathModalClose}
                                                     </tr>
                                                 )
                                             })}
-                                            </tbody>
-                                        </Table>
-                                    </div>
-                                </div>
+                                        </TableBody>
+                                    </Table>
+                                </FirstContainer>
+                            </div>
 
-                                <div className={styles.tableContainer} style={{height: "140px"}}>
-                                    <p className={styles.title}>참조자</p>
-                                    <Table>
-                                        <thead className={styles.tableHead}>
+                            <SecondContainer>
+                                <Title>참조자</Title>
+                                <Table>
+                                    <TableHead>
                                         <tr>
                                             <th>이름</th>
                                             <th>직급</th>
                                             <th>부서</th>
                                         </tr>
-                                        </thead>
-                                        <tbody className={styles.tableBody}>
+                                    </TableHead>
+                                    <TableBody>
                                         {referMember?.map((memberData, index) => {
                                             return (
                                                 <tr key={index}>
@@ -293,38 +288,144 @@ function ApprovalPathModal({showApprovalPathModal, handleApprovalPathModalClose}
                                                 </tr>
                                             )
                                         })}
-                                        </tbody>
-                                    </Table>
-                                </div>
+                                    </TableBody>
+                                </Table>
+                            </SecondContainer>
 
+                            <BookmarkLine>
+                                <p style={{marginBottom: "0"}}>사용자 결재라인 이름</p>
+                                <input value={bookmarkName}
+                                       onChange={(e) => setBookmarkName(e.target.value)}
+                                />
+                                <Button className="button" style={{padding: "6px"}}
+                                        onClick={addBookmark}
+                                >저장</Button>
+                            </BookmarkLine>
+                        </RightSide>
 
-                                <div className={styles.bookmarkLine}>
-                                    <p style={{marginBottom: "0"}}>사용자 결재라인 이름</p>
-                                    <input value={bookmarkName}
-                                           onChange={(e) => setBookmarkName(e.target.value)}
-                                    />
-                                    <Button className="button" style={{padding: "6px"}}
-                                            onClick={addBookmark}
-                                    >저장</Button>
-                                </div>
-                            </div>
-
-                            <div style={{float: "right", padding: "15px 0"}}>
-                                <Button className="button"
-                                        onClick={enterSignLine}
-                                >적용
-                                </Button>
-                                <Button variant="secondary"
-                                        style={{marginLeft: "15px"}}
-                                        onClick={handleApprovalPathModalClose}
-                                >닫기</Button>
-                            </div>
+                        <div style={{float: "right", padding: "15px 0"}}>
+                            <Button className="button"
+                                    onClick={enterSignLine}
+                            >적용
+                            </Button>
+                            <Button variant="secondary"
+                                    style={{marginLeft: "15px"}}
+                                    onClick={handleApprovalPathModalClose}
+                            >닫기</Button>
                         </div>
                     </div>
-                </Modal.Body>
-            </Modal>
-        </div>
+                </Contents>
+            </Modal.Body>
+        </ModalWrapper>
     )
 }
 
 export default ApprovalPathModal
+
+const ModalWrapper = styled(Modal)`
+  --bs-modal-width: 1000px;
+  --bs-modal-border-color: #4429f2;
+  --bs-modal-header-border-color: #4429f2;
+`
+const ModalHeader = styled(Modal.Header)`
+  color: white;
+  background: #4429f2;
+`
+const Contents = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  padding: 30px;
+`
+const Title = styled.p`
+  font-weight: bold;
+  font-size: 20px;
+  margin-bottom: 1rem;
+`
+const RightSide = styled.div`
+  border: solid 1px rgba(68, 41, 242, 0.4);
+  border-radius: 15px;
+  padding: 30px;
+  height: 715px;
+`
+const LeftSide = styled(RightSide)`
+  display: flex;
+  flex-direction: column;
+  width: 30%;
+`
+const MidSide = styled.div`
+  width: 110px;
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+  justify-content: center;
+`
+const AccordionItem = styled(Accordion.Item)`
+  --bs-accordion-border-color: lightgray;
+  --bs-accordion-active-bg: rgba(125, 121, 242, 0.2);
+  --bs-accordion-btn-focus-box-shadow: none;
+  --bs-accordion-body-padding-y: 0.65rem;
+  --bs-accordion-btn-icon: none;
+  --bs-accordion-btn-active-icon: none;
+`
+const AccordionBody = styled(Accordion.Body)`
+  margin-left: 10px;
+  &:hover {
+    color: #4429f2;
+    font-weight: bold;
+    cursor: pointer;
+  }
+  &.boldText {
+    font-weight: bold;
+    color: #4429f2;
+  }
+`
+const ButtonGroup = styled.div`
+  padding: 50px 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+`
+const ArrowButton = styled(Button)`
+  border: solid 1px rgba(68, 41, 242, 0.4);
+  background: none;
+  --bs-btn-hover-bg: rgba(125, 121, 242, 0.2);
+  --bs-btn-active-bg: #4429f2;
+  height: 50px;
+  margin: 5px 0;
+`
+const BookmarkLine = styled.div`
+  display: flex;
+  flex-direction: row;
+  background: rgba(125, 121, 242, 0.2);
+  border: solid 1px rgba(68, 41, 242, 0.4);
+  border-radius: 10px;
+  align-items: center;
+  padding: 10px;
+  justify-content: space-evenly;
+`
+const TableContainer = styled.div`
+  margin: 50px auto;
+  width: 500px;
+`
+const FirstContainer = styled(TableContainer)`
+  height: 200px;
+`
+const SecondContainer = styled(TableContainer)`
+  height: 150px;
+`
+const TableHead = styled.thead`
+  th {
+    color: #4429f2;
+    font-weight: bold;
+    font-size: 18px;
+    background: rgba(125, 121, 242, 0.2);
+    text-align: center;
+  }
+`
+const TableBody = styled.tbody`
+  td {
+    text-align: center;
+  }
+`

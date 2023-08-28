@@ -1,4 +1,3 @@
-import styles from "./ReportDocument.module.css"
 import {useEffect, useState} from "react";
 import fetcher from "../../fetcher";
 import {
@@ -9,6 +8,7 @@ import DocumentTable from "./components/DocumentTable";
 import {Button, FormControl, InputGroup} from "react-bootstrap";
 import ButtonGroup from "./components/ButtonGroup";
 import Pagination from "./components/Pagination";
+import styled from "styled-components";
 
 function ReportDocument() {
     const [listData, setListData] = useState([]);
@@ -64,19 +64,13 @@ function ReportDocument() {
     }, [activeBtn])
 
     return (
-        <div className={styles.wrapper}>
-            <div className={styles.buttonContainer}>
+        <Wrapper>
+            <ButtonContainer>
                 <ButtonGroup setActiveBtn={setActiveBtn}/>
-            </div>
+            </ButtonContainer>
 
-            <div className={styles.search}>
-                <InputGroup className="mb-3">
-                    <FormControl type="text" className="form-control-lg" placeholder="제목"/>
-                    <Button className={styles.searchButton}> 검색 </Button>
-                </InputGroup>
-            </div>
-            <div className={styles.tableContainer}>
-                <div className={styles.table}>
+            <TableContainer>
+                <Table>
                     <DocumentTable
                         listData={
                             activeBtn === "all" ? listData : activeBtn === "ongoing" ? ongoing
@@ -84,11 +78,36 @@ function ReportDocument() {
                         }
                         limit={limit} offset={offset}
                     />
-                </div>
+                </Table>
                 <Pagination total={listData.length} limit={limit} page={page} setPage={setPage}/>
-            </div>
-        </div>
+            </TableContainer>
+        </Wrapper>
     )
 }
-
 export default ReportDocument
+
+const Wrapper = styled.div`
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+`
+const ButtonContainer = styled.div`
+  height: 15%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+`
+const TableContainer = styled.div`
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+`
+const Table = styled.div`
+  height: 500px;
+  width: 65%;
+  min-width: 800px;
+`

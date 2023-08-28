@@ -15,7 +15,7 @@ import {
     REPORT_DOCUMENT_COMPONENT,
     TEMP_DOCUMENT_COMPONENT
 } from "../../../constants/component_constants";
-import styled from "styled-components";
+import styled, {css} from "styled-components";
 import {styleConstants} from "../../../STYLES/styleConstants";
 
 function Sidebar() {
@@ -91,7 +91,7 @@ function Sidebar() {
 
                     {isAdmin &&
                         <>
-                            <AccordionItem eventKey="3" className={"mng"}>
+                            <AccordionItem eventKey="3" isAdmin={isAdmin}>
                                 <Accordion.Header>
                                     <MenuImg src={require("../../../IMAGES/process.png")}/>
                                     <MenuTitle>문서관리</MenuTitle>
@@ -110,7 +110,7 @@ function Sidebar() {
                                 </Accordion.Body>
                             </AccordionItem>
 
-                            <AccordionItem eventKey="4" className="mng">
+                            <AccordionItem eventKey="4" isAdmin={isAdmin}>
                                 <Accordion.Header>
                                     <MenuImg src={require("../../../IMAGES/management.png")}/>
                                     <MenuTitle>계정관리</MenuTitle>
@@ -168,9 +168,9 @@ const AccordionItem = styled(Accordion.Item)`
   --bs-accordion-btn-padding-y: 0.7rem;
   --bs-accordion-body-padding-y: 0.5rem;
 
-  &.mng {
+  ${props => props.isAdmin && css`
     --bs-accordion-active-bg: rgba(250, 62, 12, 0.21);
     color: #fa3e0c;
     // TODO: 배경색은 바뀌는데 글씨색은 안바뀜
-  }
+  `}
 `

@@ -1,6 +1,4 @@
-import styles from "./ReceiveDocument.module.css"
 import {useEffect, useState} from "react";
-import {Button, FormControl, InputGroup} from "react-bootstrap";
 import fetcher from "../../fetcher";
 import {RECEIVE_DOCUMENT_LIST_API} from "../../constants/api_constans";
 import {useNavigate} from "react-router-dom";
@@ -33,39 +31,30 @@ function ReceiveDocument() {
 
     return (
         <Wrapper>
-            <div className={styles.search}>
-                <InputGroup>
-                    <FormControl type="text" className="form-control-lg" placeholder="제목"/>
-                    <Button className={styles.searchButton}> 검색 </Button>
-                </InputGroup>
-            </div>
-
             <CardContainer>
                 {data?.reverse().slice(offset, offset + limit).map((data) => {
                     return (
                         <Card key={data.id}>
                             <Contents>
-                                <div className={styles.upperState}
-                                     style={{background: getBackgroundColor(data.result)}}
-                                >
+                                <UpperState style={{background: getBackgroundColor(data.result)}}>
                                     {data.result}
-                                </div>
+                                </UpperState>
 
-                                <div className={styles.documentInfo}>
-                                    <div className={styles.cardUpper}>
-                                        <div className={styles.cardTitle}>{data.title}</div>
-                                    </div>
-                                    <div className={styles.cardLower}>
+                                <DocumentInfo>
+                                    <CardUpper>
+                                        <CardTitle>{data.title}</CardTitle>
+                                    </CardUpper>
+                                    <CardLower>
                                         <div>기안자 : {data.writer.name} {data.writer.position}</div>
                                         <div>날짜 : {data.createDate}</div>
                                         <div>양식 : {data.template.category}</div>
-                                    </div>
-                                </div>
+                                    </CardLower>
+                                </DocumentInfo>
                             </Contents>
 
-                            <div className={styles.divisionLine}/>
+                            <DivisionLine/>
 
-                            <div className={styles.approvalButton}
+                            <ApprovalButton
                                  style={{
                                      cursor: "pointer",
                                      color: data.result === "승인" || data.result === "반려" ? "gray" : ""
@@ -73,7 +62,7 @@ function ReceiveDocument() {
                                  onClick={() => routeDetail(data.id)}
                             >
                                 {data.result === "승인" || data.result === "반려" ? "상세보기" : "결재하기"}
-                            </div>
+                            </ApprovalButton>
                         </Card>
                     )
                 })}
@@ -92,6 +81,7 @@ const Wrapper = styled.div`
   flex-direction: column;
 `
 const CardContainer = styled.div`
+  padding-top: 100px;
   height: 800px;
   display: flex;
   flex-direction: column;
@@ -112,4 +102,40 @@ const Contents = styled.div`
   display: flex;
   flex-direction: column;
   width: 85%;
+`
+const UpperState = styled.div`
+  font-size: 15px;
+  font-weight: bold;
+  border-top-left-radius: 15px;
+  padding: 3px 20px;
+`
+const DocumentInfo = styled.div`
+  height: 100%;
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+`
+const CardUpper = styled.div`
+  display: flex;
+  flex-direction: column;
+`
+const CardTitle = styled.div`
+  font-size: 22px;
+  font-weight: 600;
+`
+const CardLower = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  color: grey;
+`
+const DivisionLine = styled.div`
+  border-right: 1px solid #afb0b1;
+  height: 129px;
+`
+const ApprovalButton = styled.div`
+  width: 15%;
+  margin: auto;
+  text-align: center;
 `

@@ -1,4 +1,13 @@
-import styles from "../../APPROVAL/Write.module.css"
+import {
+    ReferContent,
+    ReferTable, ReferTitle,
+    Sign,
+    SignInfo,
+    SignLineContent,
+    SignLineTitle,
+    SignTableWrapper,
+    WriterTitle
+} from "../../APPROVAL/WriteSignTable";
 
 function DocumentSignTable({documentData, signLine}) {
     const writer = documentData.writer;
@@ -37,15 +46,15 @@ function DocumentSignTable({documentData, signLine}) {
     ]
 
     return (
-        <div className={styles.signTable}>
+        <SignTableWrapper>
             <div style={{marginRight:"30px"}}>
                 <table>
                     <tbody>
                     {sign_Table_Left_data.map((data, index) => {
                         return (
                             <tr key={index}>
-                                <td className={styles.signTableLeft_title}>{data.title}</td>
-                                <td className={styles.signTableLeft_content}>{data.content}</td>
+                                <WriterTitle>{data.title}</WriterTitle>
+                                <WriterTitle>{data.content}</WriterTitle>
                             </tr>
                         )
                     })}
@@ -56,31 +65,29 @@ function DocumentSignTable({documentData, signLine}) {
                 <table>
                     <tbody>
                     <tr>
-                        <th className={styles.signTableRight_title}>결재</th>
+                        <SignLineTitle>결재</SignLineTitle>
                         {sign_Table_Right_data.map((data, index) => {
                             return (
-                                <td key={index} className={styles.signTableRight_content}>
-                                    <div className={styles.signInfo}> {data.signTurn} </div>
-                                    {data.sign !== null && (
-                                        <div className={styles.sign}><img src={data.sign} alt="Sign"/></div>)}
-                                    {data.sign === null && (<div className={styles.sign}></div>)}
-                                    <div className={styles.signInfo}> {data.signName} </div>
-                                </td>
+                                <SignLineContent key={index}>
+                                    <SignInfo> {data.signTurn} </SignInfo>
+                                    {data.sign !== null && (<Sign><img src={data.sign} alt="Sign"/></Sign>)}
+                                    {data.sign === null && (<Sign></Sign>)}
+                                    <SignInfo> {data.signName} </SignInfo>
+                                </SignLineContent>
                             )
                         })}
                     </tr>
                     </tbody>
                 </table>
 
-                <div className={styles.referTable}>
-                    <div className={styles.referTitle}>참조</div>
-                    <div className={styles.referContent}>
+                <ReferTable>
+                    <ReferTitle>참조</ReferTitle>
+                    <ReferContent>
                         {signRefer ? `${signRefer?.name} ${signRefer?.position}` : null}
-                    </div>
-                </div>
+                    </ReferContent>
+                </ReferTable>
             </div>
-        </div>
+        </SignTableWrapper>
     )
 }
-
 export default DocumentSignTable

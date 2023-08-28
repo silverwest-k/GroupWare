@@ -1,5 +1,4 @@
-import styles from "../APPROVAL/Write.module.css"
-import {useEffect, useRef, useState} from "react";
+import {useEffect, useState} from "react";
 import fetcher from "../../fetcher";
 import {
     CATEGORY_CREATE_API, CATEGORY_DELETE_API, CATEGORY_LIST_API,
@@ -10,6 +9,7 @@ import Swal from "sweetalert2";
 import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
 import {CKEditor} from "@ckeditor/ckeditor5-react";
 import {Button} from "react-bootstrap";
+import {ButtonGroup, CategorySelect, DivisionLine, LowerContainer, UpperContainer, Wrapper} from "../APPROVAL/Write";
 
 function DocumentRegistration() {
     const [categoryName, setCategoryName] = useState("")
@@ -110,16 +110,16 @@ function DocumentRegistration() {
     }
 
     return (
-        <div className={styles.wrapper}>
-            <div className={styles.upperContainer}>
-                <div className={styles.select}>
+        <Wrapper>
+            <UpperContainer>
+                <CategorySelect>
                     <input value={categoryName}
                            onChange={(e) => setCategoryName(e.target.value)}
                            placeholder="양식명"
                     />
                     <Button className="buttonAdmin" onClick={createCategory}>양식 등록</Button>
-                </div>
-                <div className={styles.buttonGroup}>
+                </CategorySelect>
+                <ButtonGroup>
                     <Dropdown>
                         <Dropdown.Toggle className="buttonAdmin">
                             {category ? category.category : "문서양식"}
@@ -135,13 +135,15 @@ function DocumentRegistration() {
                             })}
                         </Dropdown.Menu>
                     </Dropdown>
-                    <Button className="buttonAdmin" onClick={() => updateCategory(category.id, category.category)}>양식
-                        수정</Button>
+                    <Button className="buttonAdmin" onClick={() => updateCategory(category.id, category.category)}
+                    >양식 수정</Button>
                     <Button className="buttonAdmin" onClick={() => deleteCategory(category.id)}>양식 삭제</Button>
-                </div>
-            </div>
-            <div className={styles.divisionLine}></div>
-            <div className={styles.lowerContainer}>
+                </ButtonGroup>
+            </UpperContainer>
+
+            <DivisionLine/>
+
+            <LowerContainer>
                 <CKEditor
                     editor={ClassicEditor}
                     data={content}
@@ -151,9 +153,9 @@ function DocumentRegistration() {
                         setContent(data)
                     }}
                 />
-            </div>
+            </LowerContainer>
 
-        </div>
+        </Wrapper>
     )
 }
 

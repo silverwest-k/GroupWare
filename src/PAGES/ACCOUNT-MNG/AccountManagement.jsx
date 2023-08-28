@@ -1,5 +1,4 @@
 import {Button} from "react-bootstrap";
-import styles from "./AccountManagement.module.css"
 import {useEffect, useRef, useState} from "react";
 import TeamModal from "./Modals/TeamModal";
 import useStore from "../../store";
@@ -13,6 +12,7 @@ import {
 } from "../../constants/api_constans";
 import fetcher from "../../fetcher";
 import Swal from "sweetalert2";
+import styled from "styled-components";
 
 function AccountManagement() {
     const imgRef = useRef();
@@ -63,9 +63,9 @@ function AccountManagement() {
 
     const editID = (id) => {
         fetcher.post(`${ACCOUNT_EDIT_API}/${id}`, {
-            newPassword: password ? password :null,
-            team: teamName ? teamName :null,
-            position: positionName ? positionName :null
+            newPassword: password ? password : null,
+            team: teamName ? teamName : null,
+            position: positionName ? positionName : null
         }).then(() => {
             Swal.fire({
                 position: 'center',
@@ -151,39 +151,39 @@ function AccountManagement() {
     }
 
     return (
-        <div className={styles.wrapper}>
-            <div className={styles.container}>
-                <div className={styles.upper}>
-                        <p>계정관리</p>
-                    <div className={styles.upperButton}>
+        <Wrapper>
+            <Container>
+                <Upper>
+                    <p>계정관리</p>
+                    <UpperButton>
                         <Button className="buttonAdmin"
                                 style={{marginLeft: "15px"}}
                                 onClick={() => setShowAccountModal(true)}
                         >불러오기</Button>
                         <div>
-                        { account && account?.authority === "BLOCK" ?
-                            <Button className="buttonAdmin" onClick={() => blockID(account.id, "USER")}>차단해지</Button>
-                            : <Button className="buttonAdmin" onClick={() => blockID(account.id, "BLOCK")}>접속차단</Button>
-                        }
-                        <Button className="buttonAdmin" style={{marginLeft: "25px"}}
-                                onClick={() => deleteID(account.id)}
-                        >삭제</Button>
+                            {account && account?.authority === "BLOCK" ?
+                                <Button className="buttonAdmin"
+                                        onClick={() => blockID(account.id, "USER")}>차단해지</Button>
+                                : <Button className="buttonAdmin"
+                                          onClick={() => blockID(account.id, "BLOCK")}>접속차단</Button>
+                            }
+                            <Button className="buttonAdmin" style={{marginLeft: "25px"}}
+                                    onClick={() => deleteID(account.id)}
+                            >삭제</Button>
                         </div>
-                    </div>
-                </div>
+                    </UpperButton>
+                </Upper>
 
-                <div className={styles.contents}>
-                    <table className={styles.table}>
+                <Contents>
+                    <Table>
                         <tbody>
                         <tr>
                             <th></th>
-                            <td className={styles.profile}>
+                            <ProfileImg>
                                 <img src={imgFile ? imgFile : require("../../IMAGES/profile.jpg")}
                                      alt="프로필 이미지"
                                 />
-                                <label className={styles.profileImgLabel}
-                                       htmlFor="profileImg"
-                                >이미지 업로드</label>
+                                <ProfileImgLabel htmlFor="profileImg">이미지 업로드</ProfileImgLabel>
                                 <input
                                     style={{display: "none"}}
                                     type="file"
@@ -192,7 +192,7 @@ function AccountManagement() {
                                     onChange={saveImgFile}
                                     ref={imgRef}
                                 />
-                            </td>
+                            </ProfileImg>
                         </tr>
                         <tr>
                             <th>이름</th>
@@ -216,9 +216,8 @@ function AccountManagement() {
                             <td>
                                 <input value={teamName || account.team}
                                        onChange={(e) => setTeam(e.target.value)}/>
-                                <img src={require("../../IMAGES/more.png")}
-                                     className={styles.icon}
-                                     onClick={() => setShowTeamModal(true)}
+                                <IconImg src={require("../../IMAGES/more.png")}
+                                         onClick={() => setShowTeamModal(true)}
                                 />
                             </td>
                         </tr>
@@ -228,27 +227,116 @@ function AccountManagement() {
                                 <input value={positionName || account.position}
                                        onChange={(e) => setPosition(e.target.value)}
                                 />
-                                <img src={require("../../IMAGES/more.png")}
-                                     className={styles.icon}
-                                     onClick={() => setShowPositionModal(true)}
+                                <IconImg src={require("../../IMAGES/more.png")}
+                                         onClick={() => setShowPositionModal(true)}
                                 />
                             </td>
                         </tr>
                         </tbody>
-                    </table>
-                </div>
-                <div className={styles.modify}>
+                    </Table>
+                </Contents>
+                <SubmitButton>
                     <Button className="buttonAdmin" onClick={() => editID(account.id)}>수정</Button>
-                </div>
-            </div>
+                </SubmitButton>
+            </Container>
 
             <AccountModal showAccountModal={showAccountModal} fetchMemberList={fetchMemberList}
                           handleAccountModalClose={() => setShowAccountModal(false)}/>
             <TeamModal showTeamModal={showTeamModal} handleTeamModalClose={() => setShowTeamModal(false)}/>
             <PositionModal showPositionModal={showPositionModal}
                            handlePositionModalClose={() => setShowPositionModal(false)}/>
-        </div>
+        </Wrapper>
     )
 }
 
 export default AccountManagement
+
+export const Wrapper = styled.div`
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`
+export const Container = styled.div`
+  min-width: 700px;
+  width: 35%;
+  height: 1000px;
+  min-height: 800px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  font-weight: bold;
+  color: #fa3e0c;
+  background: rgba(250, 62, 12, 0.05);
+  border: 1px solid rgba(250, 62, 12, 0.4);
+  border-radius: 20px;
+`
+export const Upper = styled.div`
+  padding: 0 50px;
+  font-size: 24px;
+`
+export const UpperButton = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+`
+export const Contents = styled.div`
+  height: 60%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-evenly;
+`
+export const Table = styled.table`
+  tr {
+    text-align: left;
+  }
+
+  th {
+    width: 100px;
+    height: 50px;
+    color: #fa3e0c;
+    font-weight: bold;
+  }
+
+  td {
+    width: 250px;
+    font-weight: normal;
+    color: #000000;
+    text-align: left;
+    
+  }
+`
+export const ProfileImg = styled.td`
+  padding-bottom: 30px;
+  img {
+    width: 150px;
+    height: 190px;
+    margin-bottom: 20px;
+    border: 3px solid rgba(250, 62, 12, 0.4);
+  }
+`
+export const ProfileImgLabel = styled.label`
+  width: 150px;
+  height: 37px;
+  font-weight: normal;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  background: #fa3e0c;
+  border-radius: 7px;
+  cursor: pointer;
+`
+export const IconImg = styled.img`
+  width: 40px;
+  height: 40px;
+  cursor: pointer;
+  margin-left: 10px;
+`
+export const SubmitButton = styled.div`
+  display: flex;
+  justify-content: center;
+`

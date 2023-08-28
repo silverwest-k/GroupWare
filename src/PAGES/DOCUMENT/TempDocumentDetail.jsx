@@ -5,10 +5,18 @@ import {
 } from "../../constants/api_constans";
 import {useNavigate, useParams} from "react-router-dom";
 import {Button} from "react-bootstrap";
-import styles from "../APPROVAL/Write.module.css"
 import TempDocumentSignTable from "./components/TempDocumentSignTable";
 import Swal from "sweetalert2";
 import parse from "html-react-parser";
+import {
+    ButtonGroup,
+    CategorySelect,
+    CategoryTitle,
+    DivisionLine, DocumentTitle, EditorContainer,
+    LowerContainer,
+    UpperContainer,
+    Wrapper
+} from "../APPROVAL/Write";
 
 function TempDocumentDetail() {
     const {id} = useParams();
@@ -58,35 +66,36 @@ function TempDocumentDetail() {
     }
 
     return (
-        <div className={styles.wrapper}>
-            <div className={styles.upperContainer}>
-                <div className={styles.select}>
+        <Wrapper>
+            <UpperContainer>
+                <CategorySelect>
                     <Button className="button">문서수정</Button>
                     <Button className="button" onClick={deleteBtn}>문서삭제</Button>
-                </div>
-                <div className={styles.buttonGroup}>
+                </CategorySelect>
+                <ButtonGroup>
                     <Button className="button" onClick={()=>navigate(-1)}>목록으로</Button>
-                </div>
-            </div>
+                </ButtonGroup>
+            </UpperContainer>
 
-            <div className={styles.divisionLine}></div>
-            <div className={styles.lowerContainer}>
-                <div className={styles.categoryTitle}>
+            <DivisionLine/>
+
+            <LowerContainer>
+                <CategoryTitle>
                     <p>문서양식명</p>
-                </div>
+                </CategoryTitle>
 
                 <TempDocumentSignTable documentData={documentData} signLine={signLine}/>
 
-                <div className={styles.editorContainer}>
-                    <div className={styles.documentTitle}>
+                <EditorContainer>
+                    <DocumentTitle>
                         <p>제목 : </p>{documentData.title}
-                    </div>
+                    </DocumentTitle>
                     <div>
                         <div>{isCompleted && parse(documentData.content)}</div>
                     </div>
-                </div>
-            </div>
-        </div>
+                </EditorContainer>
+            </LowerContainer>
+        </Wrapper>
     )
 }
 

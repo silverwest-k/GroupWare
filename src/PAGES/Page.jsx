@@ -3,7 +3,6 @@ import {Route, Routes, useNavigate} from "react-router-dom";
 import Write from "./APPROVAL/Write";
 import ReceiveDocument from "./DOCUMENT/ReceiveDocument";
 import ReportDocument from "./DOCUMENT/ReportDocument";
-import styles from "./Page.module.css"
 import MyPage from "./MYPAGE/MyPage";
 import AccountManagement from "./ACCOUNT-MNG/AccountManagement";
 import DocumentRegistration from "./DOCUMENT-MNG/DocumentRegistration";
@@ -27,6 +26,7 @@ import DocumentDetail from "./DOCUMENT/DocumentDetail";
 import TempDocumentDetail from "./DOCUMENT/TempDocumentDetail";
 import useStore from "../store";
 import AllDocument from "./DOCUMENT-MNG/AllDocument";
+import styled from "styled-components";
 
 function Page() {
     const {myAccount} = useStore(state => state);
@@ -37,9 +37,9 @@ function Page() {
     return (
         <>
             <Header/>
-            <div className={styles.wrapper}>
+            <Wrapper>
                 <Sidebar/>
-                <div className={styles.container}>
+                <Container>
                     <Routes>
                         <Route path={DOCUMENT_WRITE_COMPONENT} element={<Write/>}/>
                         <Route path={RECEIVE_DOCUMENT_COMPONENT} element={<ReceiveDocument/>}/>
@@ -48,7 +48,6 @@ function Page() {
                         <Route path={`${DOCUMENT_DETAIL_COMPONENT}/:id`} element={<DocumentDetail/>}/>
                         <Route path={`${TEMP_DOCUMENT_COMPONENT}/:id`} element={<TempDocumentDetail/>}/>
                         <Route path={MY_PAGE_COMPONENT} element={<MyPage/>}/>
-
                         {isAdmin ?
                             <>
                                 <Route path={DOCUMENT_REGISTRATION_COMPONENT} element={<DocumentRegistration/>}/>
@@ -56,13 +55,25 @@ function Page() {
                                 <Route path={ACCOUNT_MANAGEMENT_COMPONENT} element={<AccountManagement/>}/>
                                 <Route path={ACCOUNT_REGISTRATION_COMPONENT} element={<AccountRegistration/>}/>
                             </>
-                         : navigate(FORBIDDEN_COMPONENT)
+                            : navigate(FORBIDDEN_COMPONENT)
                         }
                     </Routes>
-                </div>
-            </div>
+                </Container>
+            </Wrapper>
         </>
     )
 }
-
 export default Page
+
+const Wrapper = styled.div`
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  height: calc(100% - 95px);
+`
+const Container = styled.div`
+  display: flex;
+  flex-direction: row;
+  width: calc(100% - 300px);
+  height: 100%;
+`

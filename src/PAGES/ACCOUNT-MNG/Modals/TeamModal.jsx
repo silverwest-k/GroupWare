@@ -1,9 +1,10 @@
-import {Button, Modal} from "react-bootstrap";
-import styles from "./Modal.module.css";
+import {Modal} from "react-bootstrap";
 import {useEffect, useState} from "react";
 import useStore from "../../../store";
 import fetcher from "../../../fetcher";
 import {TEAM_INFO_API} from "../../../constants/api_constans";
+import {ModalHeader, ModalButton} from "./AccountModal";
+import {ListButton, StyledModal} from "./PositionModal";
 
 function TeamModal({showTeamModal, handleTeamModalClose}) {
 
@@ -20,34 +21,24 @@ function TeamModal({showTeamModal, handleTeamModalClose}) {
         handleTeamModalClose();
     }
 
-
     return (
-        <>
-            <Modal show={showTeamModal} onHide={handleTeamModalClose} className={styles.modal} centered>
-                <Modal.Header closeButton className={styles.modalHeader}>
-                    <Modal.Title style={{fontWeight: "bold"}}>부서 선택</Modal.Title>
-                </Modal.Header>
+        <StyledModal show={showTeamModal} onHide={handleTeamModalClose} centered>
+            <ModalHeader>
+                <Modal.Title><p>부서 선택</p></Modal.Title>
+            </ModalHeader>
 
-                <Modal.Body>
-                    {team.map((data, index)=>{
-                        return(
-                            <p  key={index}
-                                className={styles.position}
-                               style={{cursor:"pointer"}}
-                               onClick={()=>pickTeam(data)}
-                            >{data}</p>
-                        )
-                    })}
+            <Modal.Body>
+                {team.map((data, index) => {
+                    return (
+                        <ListButton key={index} onClick={() => pickTeam(data)}>{data}</ListButton>
+                    )
+                })}
 
-                    <div style={{float: "right"}}>
-                        <Button variant="secondary"
-                                className={styles.button}
-                                onClick={handleTeamModalClose}
-                        >취소</Button>
-                    </div>
-                </Modal.Body>
-            </Modal>
-        </>
+                <div style={{float: "right"}}>
+                    <ModalButton variant="secondary" onClick={handleTeamModalClose}>취소</ModalButton>
+                </div>
+            </Modal.Body>
+        </StyledModal>
     )
 }
 

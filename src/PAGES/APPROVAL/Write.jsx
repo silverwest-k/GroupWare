@@ -1,4 +1,3 @@
-import styles from "./Write.module.css"
 import Dropdown from 'react-bootstrap/Dropdown';
 import {Button} from "react-bootstrap";
 import {useEffect, useRef, useState} from "react";
@@ -12,7 +11,7 @@ import WriteSignTable from "./WriteSignTable";
 import {CKEditor} from '@ckeditor/ckeditor5-react';
 import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 import Swal from "sweetalert2";
-
+import styled from "styled-components";
 
 function Write() {
     const {signLine} = useStore(state => state)
@@ -90,14 +89,14 @@ function Write() {
     }
 
     return (
-        <div className={styles.wrapper}>
-            <div className={styles.upperContainer}>
-                <div className={styles.select}>
+        <Wrapper>
+            <UpperContainer>
+                <CategorySelect>
                     <Dropdown>
                         <Dropdown.Toggle className="button">
                             {category ? category : "문서양식"}
                         </Dropdown.Toggle>
-                        <Dropdown.Menu className={styles.dropMenu}>
+                        <DropMenu>
                             {categoryList?.map((data) => {
                                 return (
                                     <Dropdown.Item key={data.id} onClick={() => selectCategory(data.id)}>
@@ -105,34 +104,35 @@ function Write() {
                                     </Dropdown.Item>
                                 )
                             })}
-                        </Dropdown.Menu>
+                        </DropMenu>
                     </Dropdown>
                     <Button className="button" onClick={() => setShowApprovalPathModal(true)}>결재라인</Button>
-                </div>
+                </CategorySelect>
 
-                <div className={styles.buttonGroup}>
+                <ButtonGroup>
                     <Button className="button" onClick={() => navigate(-1)}>작성취소</Button>
                     <Button className="button" onClick={handleTempSave}>임시저장</Button>
                     <Button className="button" onClick={handleSave}>상신하기</Button>
-                </div>
-            </div>
+                </ButtonGroup>
+            </UpperContainer>
 
-            <div className={styles.divisionLine}></div>
-            <div className={styles.lowerContainer}>
-                <div className={styles.categoryTitle}>
+            <DivisionLine/>
+
+            <LowerContainer>
+                <CategoryTitle>
                     <p>{category ? category : "양식을 선택하세요"}</p>
-                </div>
+                </CategoryTitle>
 
                 <WriteSignTable/>
 
-                <div className={styles.editorContainer}>
-                    <div className={styles.documentTitle}>
+                <EditorContainer>
+                    <DocumentTitle>
                         <p>제목 :</p>
                         <input value={title}
                                placeholder={"제목을 입력하세요"}
                                style={{margin: "10px 0"}}
                                onChange={(e) => setTitle(e.target.value)}/>
-                    </div>
+                    </DocumentTitle>
 
                     <CKEditor
                         editor={ClassicEditor}
@@ -143,14 +143,84 @@ function Write() {
                             setContent(data)
                         }}
                     />
-                </div>
-            </div>
+                </EditorContainer>
+            </LowerContainer>
 
             <ApprovalPathModal showApprovalPathModal={showApprovalPathModal}
                                handleApprovalPathModalClose={() => setShowApprovalPathModal(false)}
             />
-        </div>
+        </Wrapper>
     )
 }
-
 export default Write
+
+export const Wrapper = styled.div`
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+`
+export const UpperContainer = styled.div`
+  width: 1200px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  padding: 20px;
+  Button {margin: 0 10px}
+`
+export const CategorySelect = styled.div`
+  display: flex;
+  flex-direction: row;
+`
+const DropMenu = styled(Dropdown.Menu)`
+  --bs-dropdown-link-active-bg: rgba(125, 121, 242, 0.9);
+`
+export const ButtonGroup = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+`
+export const DivisionLine =styled.div`
+  border-bottom: 1px solid lightgray;
+  width: 100%;
+`
+export const LowerContainer = styled.div`
+  max-width: 1200px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: calc(100% - 30px);
+  height: 100%;
+  margin: 10px;
+  padding: 10px;
+  border: 3px solid #e3e3e3;
+`
+export const CategoryTitle = styled.div`
+  height: 70px;
+  text-align: center;
+  font-size: 22px;
+  font-weight: bold;
+  padding: 20px;
+`
+export const EditorContainer = styled.div`
+  height: 750px;
+  display: flex;
+  flex-direction: column;
+  margin: 10px 115px;
+  justify-content: center;
+`
+export const DocumentTitle = styled.div`
+  display: flex;
+  flex-direction: row;
+  align-items: baseline;
+  p {
+    font-size: 18px;
+    font-weight: bold;
+    margin-right: 20px;
+  }
+  input {
+    width: calc(100% - 70px);
+  }
+`

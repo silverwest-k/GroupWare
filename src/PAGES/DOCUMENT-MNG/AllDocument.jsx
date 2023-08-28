@@ -1,5 +1,4 @@
-import styles from "./AllDocument.module.css"
-import {Button, FormControl, InputGroup, Table} from "react-bootstrap";
+import {Table} from "react-bootstrap";
 import {useEffect, useState} from "react";
 import {ALL_DOCUMENT_LIST_API} from "../../constants/api_constans";
 import fetcher from "../../fetcher";
@@ -7,6 +6,8 @@ import {useNavigate} from "react-router-dom";
 import {DOCUMENT_DETAIL_COMPONENT} from "../../constants/component_constants";
 import Pagination from "../DOCUMENT/components/Pagination";
 import StateButton from "../../COMPONENT/StateButton";
+import styled from "styled-components";
+import SearchBar from "../../COMPONENT/SearchBar";
 
 function AllDocument() {
     const [listData, setListData] = useState([]);
@@ -26,53 +27,83 @@ function AllDocument() {
     }
 
     return (
-        <div className={styles.wrapper}>
-            <div className={styles.container}>
-                <div className={styles.search}>
-                    <InputGroup className="mb-3">
-                        <FormControl type="text" className="form-control-lg" placeholder="제목"/>
-                        <Button className={styles.searchButton}> 검색 </Button>
-                    </InputGroup>
-                </div>
-
-                <div className={styles.table}>
+        <Wrapper>
+            <Container>
+                <SearchBar/>
+                <TableContainer>
                     <Table hover>
                         <colgroup>
                             <col style={{width: "10%"}}/>
-                            <col style={{width: "25%"}}/>
-                            <col style={{width: "45%"}}/>
-                            <col style={{width: "10%"}}/>
-                            <col style={{maxWidth: "100px"}}/>
+                            <col style={{width: "20%"}}/>
+                            <col style={{width: "40%"}}/>
+                            <col style={{width: "15%"}}/>
+                            <col style={{width: "15%"}}/>
                         </colgroup>
-                        <thead className={styles.tableHead}>
-                        <tr>
-                            <th>NO</th>
-                            <th>기안자</th>
-                            <th>제목</th>
-                            <th>기안일</th>
-                            <th>상태</th>
-                        </tr>
-                        </thead>
+                        <TableHead>
+                            <tr>
+                                <th>NO</th>
+                                <th>기안자</th>
+                                <th>제목</th>
+                                <th>기안일</th>
+                                <th>상태</th>
+                            </tr>
+                        </TableHead>
 
-                        <tbody className={styles.tableBody}>
-                        {listData?.reverse().slice(offset, offset + limit).map((data, index) => {
-                            return (
-                                <tr key={data.id} onClick={() => routeDetail(data.id)}>
-                                    <td>{index + 1}</td>
-                                    <td>{data.writer.name} {data.writer.position}</td>
-                                    <td>{data.title}</td>
-                                    <td>{data.createDate}</td>
-                                    <StateButton state={data.result}/>
-                                </tr>
-                            )
-                        })}
-                        </tbody>
+                        <TableBody>
+                            {listData?.reverse().slice(offset, offset + limit).map((data, index) => {
+                                return (
+                                    <tr key={data.id} onClick={() => routeDetail(data.id)}>
+                                        <td>{index + 1}</td>
+                                        <td>{data.writer.name} {data.writer.position}</td>
+                                        <td>{data.title}</td>
+                                        <td>{data.createDate}</td>
+                                        <StateButton state={data.result}/>
+                                    </tr>
+                                )
+                            })}
+                        </TableBody>
                     </Table>
-                </div>
+                </TableContainer>
                 <Pagination total={listData.length} limit={limit} page={page} setPage={setPage}/>
-            </div>
-        </div>
+            </Container>
+        </Wrapper>
     )
 }
-
 export default AllDocument
+
+const Wrapper = styled.div`
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+`
+const Container = styled.div`
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 100px;
+`
+const TableContainer = styled.div`
+  height: 600px;
+  width: 65%;
+  min-width: 800px;
+  margin: 0;
+`
+const TableHead = styled.thead`
+  th {
+    color: #fb5a2d;
+    font-weight: bold;
+    font-size: 23px;
+    background: rgba(250, 62, 12, 0.15);
+    text-align: center;
+  }
+`
+const TableBody = styled.tbody`
+  td {
+    cursor: pointer;
+    text-align: center;
+  }
+`

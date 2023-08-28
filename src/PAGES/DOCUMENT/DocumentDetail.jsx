@@ -9,12 +9,20 @@ import {
 } from "../../constants/api_constans";
 import {useNavigate, useParams} from "react-router-dom";
 import {Button} from "react-bootstrap";
-import styles from "../APPROVAL/Write.module.css"
 import DocumentSignTable from "./components/DocumentSignTable";
 import parse from 'html-react-parser';
 import Swal from "sweetalert2";
 import useStore from "../../store";
 import {TEMP_DOCUMENT_COMPONENT} from "../../constants/component_constants";
+import {
+    ButtonGroup,
+    CategorySelect,
+    CategoryTitle,
+    DivisionLine, DocumentTitle, EditorContainer,
+    LowerContainer,
+    UpperContainer,
+    Wrapper
+} from "../APPROVAL/Write";
 
 function DocumentDetail() {
     const {id} = useParams();
@@ -156,14 +164,14 @@ function DocumentDetail() {
     }
 
     return (
-        <div className={styles.wrapper}>
-            <div className={styles.upperContainer}>
-                <div className={styles.select}>
+        <Wrapper>
+            <UpperContainer>
+                <CategorySelect>
                     {isStandby && isWriter ? <Button className="button">문서수정</Button> : ""}
                     {isStandby && isWriter ? <Button className="button" onClick={deleteBtn}>문서삭제</Button> : ""}
                     {isStandby && isWriter ? <Button className="button" onClick={recallBtn}>문서회수</Button> : ""}
-                </div>
-                <div className={styles.buttonGroup}>
+                </CategorySelect>
+                <ButtonGroup>
                     {isMyTurn && nextTurnNotSign && (
                         <Button variant="success" onClick={() => approvalBtn("승인")}>결재승인</Button>
                     )}
@@ -174,27 +182,28 @@ function DocumentDetail() {
                         <Button variant="danger" onClick={() => approvalBtn("반려")}>결재반려</Button> : ""
                     }
                     <Button className="button" onClick={() => navigate(-1)}>목록으로</Button>
-                </div>
-            </div>
+                </ButtonGroup>
+            </UpperContainer>
 
-            <div className={styles.divisionLine}></div>
-            <div className={styles.lowerContainer}>
-                <div className={styles.categoryTitle}>
+            <DivisionLine/>
+
+            <LowerContainer>
+                <CategoryTitle>
                     <p>{documentData?.template?.category}</p>
-                </div>
+                </CategoryTitle>
 
                 <DocumentSignTable documentData={documentData} signLine={signLine}/>
 
-                <div className={styles.editorContainer}>
-                    <div className={styles.documentTitle}>
+                <EditorContainer>
+                    <DocumentTitle>
                         <p>제목 : </p>{documentData?.title}
-                    </div>
+                    </DocumentTitle>
                     <div>
                         <div>{isCompleted && parse(documentData?.content)}</div>
                     </div>
-                </div>
-            </div>
-        </div>
+                </EditorContainer>
+            </LowerContainer>
+        </Wrapper>
     )
 }
 

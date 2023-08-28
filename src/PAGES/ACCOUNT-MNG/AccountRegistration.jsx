@@ -1,5 +1,4 @@
-import {useRef, useState} from "react";
-import styles from "./AccountManagement.module.css";
+import React, {useRef, useState} from "react";
 import {Button} from "react-bootstrap";
 import {CREATE_ID_API} from "../../constants/api_constans";
 import fetcher from "../../fetcher";
@@ -7,6 +6,16 @@ import TeamModal from "./Modals/TeamModal";
 import PositionModal from "./Modals/PositionModal";
 import useStore from "../../store";
 import Swal from "sweetalert2";
+import {
+    Container,
+    Contents,
+    IconImg,
+    ProfileImg,
+    ProfileImgLabel,
+    SubmitButton,
+    Table, Upper,
+    Wrapper
+} from "./AccountManagement";
 
 function AccountRegistration() {
     const imgRef = useRef();
@@ -56,7 +65,7 @@ function AccountRegistration() {
                 //     }
                 // })
                 fetcher.post(CREATE_ID_API, {
-                    image:imgFile,
+                    image: imgFile,
                     name: name,
                     password: password,
                     no: memberNo,
@@ -92,24 +101,22 @@ function AccountRegistration() {
     }
 
     return (
-        <div className={styles.wrapper}>
-            <div className={styles.container}>
-                <div className={styles.upper}>
-                        <p>계정등록</p>
-                </div>
+        <Wrapper>
+            <Container>
+                <Upper>
+                    <p>계정등록</p>
+                </Upper>
 
-                <div className={styles.contents}>
-                    <table className={styles.table}>
+                <Contents>
+                    <Table>
                         <tbody>
                         <tr>
                             <th></th>
-                            <td className={styles.profile}>
+                            <ProfileImg>
                                 <img src={imgFile ? imgFile : require("../../IMAGES/profile.jpg")}
                                      alt="프로필 이미지"
                                 />
-                                <label className={styles.profileImgLabel}
-                                       htmlFor="profileImg"
-                                >이미지 업로드</label>
+                                <ProfileImgLabel htmlFor="profileImg">이미지 업로드</ProfileImgLabel>
                                 <input
                                     style={{display: "none"}}
                                     type="file"
@@ -118,7 +125,7 @@ function AccountRegistration() {
                                     onChange={saveImgFile}
                                     ref={imgRef}
                                 />
-                            </td>
+                            </ProfileImg>
                         </tr>
                         <tr>
                             <th>이름</th>
@@ -149,8 +156,7 @@ function AccountRegistration() {
                             <th>부서</th>
                             <td>
                                 <input value={teamName}/>
-                                <img src={require("../../IMAGES/more.png")}
-                                     className={styles.icon}
+                                <IconImg src={require("../../IMAGES/more.png")}
                                      onClick={() => setShowTeamModal(true)}
                                 />
                             </td>
@@ -159,24 +165,23 @@ function AccountRegistration() {
                             <th>직급</th>
                             <td>
                                 <input value={positionName}/>
-                                <img src={require("../../IMAGES/more.png")}
-                                     className={styles.icon}
-                                     onClick={() => setShowPositionModal(true)}
+                                <IconImg src={require("../../IMAGES/more.png")}
+                                         onClick={() => setShowPositionModal(true)}
                                 />
                             </td>
                         </tr>
                         </tbody>
-                    </table>
-                </div>
-                <div className={styles.modify}>
+                    </Table>
+                </Contents>
+                <SubmitButton>
                     <Button className="buttonAdmin" onClick={createID}>등록</Button>
-                </div>
-            </div>
+                </SubmitButton>
+            </Container>
 
             <TeamModal showTeamModal={showTeamModal} handleTeamModalClose={() => setShowTeamModal(false)}/>
             <PositionModal showPositionModal={showPositionModal}
                            handlePositionModalClose={() => setShowPositionModal(false)}/>
-        </div>
+        </Wrapper>
     )
 }
 
