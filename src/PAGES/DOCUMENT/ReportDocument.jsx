@@ -86,7 +86,7 @@ function ReportDocument() {
 }
 export default ReportDocument
 
-const Wrapper = styled.div`
+export const Wrapper = styled.div`
   height: 100%;
   width: 100%;
   display: flex;
@@ -100,13 +100,13 @@ const ButtonContainer = styled.div`
   flex-direction: column;
   justify-content: space-evenly;
 `
-const TableContainer = styled.div`
+export const TableContainer = styled.div`
   width: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
 `
-const Table = styled.div`
+export const Table = styled.div`
   height: 500px;
   width: 65%;
   min-width: 800px;

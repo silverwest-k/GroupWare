@@ -1,9 +1,9 @@
-import styles from "./ReportDocument.module.css"
 import {useEffect, useState} from "react";
 import fetcher from "../../fetcher";
 import {TEMP_DOCUMENT_LIST_API} from "../../constants/api_constans";
 import TempDocumentTable from "./components/TempDocumentTable";
 import Pagination from "./components/Pagination";
+import {Table, TableContainer, Wrapper} from "./ReportDocument";
 
 function TempDocument() {
     const [listData, setListData] = useState([]);
@@ -18,16 +18,15 @@ function TempDocument() {
     }, []);
 
     return (
-        <div className={styles.wrapper}>
-            <div className={styles.tableContainer} style={{marginTop:"200px"}}>
-                <div className={styles.table}>
+        <Wrapper>
+            <TableContainer style={{marginTop:"200px"}}>
+                <Table>
                     <TempDocumentTable listData={listData} limit={limit} offset={offset}/>
-                </div>
+                </Table>
                 <Pagination total={listData.length} limit={limit} page={page} setPage={setPage}/>
-            </div>
-        </div>
+            </TableContainer>
+        </Wrapper>
     )
-
 }
 
 export default TempDocument
