@@ -19,7 +19,7 @@ import {
     CategorySelect,
     CategoryTitle,
     DivisionLine, DocumentTitle, EditorContainer,
-    LowerContainer,
+    LowerContainer, TitleDivisionLine,
     UpperContainer,
     Wrapper
 } from "../APPROVAL/Write";
@@ -47,7 +47,6 @@ function DocumentDetail() {
         return fetcher.get(`${DOCUMENT_READ_API}/${id}`)
             .then((res) => {
                 const {document, groupedApprovals, appInfoForCancel} = res.data
-                console.log(res.data)
                 // 문서 정보
                 setDocumentData(document)
                 // 결재라인
@@ -195,12 +194,14 @@ function DocumentDetail() {
                 <DocumentSignTable documentData={documentData} signLine={signLine}/>
 
                 <EditorContainer>
+                    <TitleDivisionLine/>
                     <DocumentTitle>
                         <p>제목 : </p>{documentData?.title}
                     </DocumentTitle>
-                    <div>
-                        <div>{isCompleted && parse(documentData?.content)}</div>
-                    </div>
+                    <TitleDivisionLine/>
+
+                    <div>{isCompleted && parse(documentData?.content)}</div>
+
                 </EditorContainer>
             </LowerContainer>
         </Wrapper>

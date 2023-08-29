@@ -152,6 +152,7 @@ function Write() {
         </Wrapper>
     )
 }
+
 export default Write
 
 export const Wrapper = styled.div`
@@ -168,7 +169,10 @@ export const UpperContainer = styled.div`
   flex-direction: row;
   justify-content: space-around;
   padding: 20px;
-  Button {margin: 0 10px}
+
+  Button {
+    margin: 0 10px
+  }
 `
 export const CategorySelect = styled.div`
   display: flex;
@@ -182,9 +186,12 @@ export const ButtonGroup = styled.div`
   flex-direction: row;
   justify-content: space-between;
 `
-export const DivisionLine =styled.div`
+export const DivisionLine = styled.div`
   border-bottom: 1px solid lightgray;
   width: 100%;
+`
+export const TitleDivisionLine = styled(DivisionLine)`
+  margin-bottom: 10px;
 `
 export const LowerContainer = styled.div`
   max-width: 1200px;
@@ -209,17 +216,20 @@ export const EditorContainer = styled.div`
   display: flex;
   flex-direction: column;
   margin: 10px 115px;
-  justify-content: center;
+  justify-content: flex-start;
 `
 export const DocumentTitle = styled.div`
   display: flex;
   flex-direction: row;
   align-items: baseline;
+  margin: 0 0 10px;
+
   p {
     font-size: 18px;
     font-weight: bold;
     margin-right: 20px;
   }
+
   input {
     width: calc(100% - 70px);
   }

@@ -10,6 +10,7 @@ import {useEffect} from "react";
 import {useNavigate} from "react-router-dom";
 import {LOGIN_COMPONENT} from "../../constants/component_constants";
 import styled from "styled-components";
+import {styleConstants} from "../../STYLES/styleConstants";
 
 function MainContents() {
 
@@ -48,7 +49,7 @@ const Wrapper = styled.div`
   width: 100%;
 `
 const Contents = styled.div`
-  height: calc(100% - 95px);
+  height: calc(100% - ${styleConstants.layout.sidebar.width});
   width: 100%;
   display: flex;
   flex-direction: column;

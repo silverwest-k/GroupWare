@@ -2,7 +2,7 @@
 export const styleConstants = {
     layout: {
         header: {
-            height: "100px"
+            height: "95px"
         },
         sidebar:{
             width: "300px"

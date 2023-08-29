@@ -3,8 +3,8 @@ import DocumentMenu from "./DocumentMenu";
 import MyPageMenu from "./MyPageMenu";
 import DocumentManagementMenu from "./DocumentManagementMenu";
 import AccountManagementMenu from "./AccountManagementMenu";
-import styles from "./Menu.module.css"
 import useStore from "../../../store";
+import styled from "styled-components";
 function MenuPage() {
 
     const {changeTitle, myAccount} = useStore(state => state)
@@ -16,19 +16,24 @@ function MenuPage() {
     }
 
     return(
-        <div className={styles.container}>
+        <Container>
             <ApprovalMenu menuName={menuName}/>
             <DocumentMenu menuName={menuName}/>
             <MyPageMenu menuName={menuName}/>
 
             {isAdmin &&
                 <>
-                    <DocumentManagementMenu menuName={menuName} />
-                    <AccountManagementMenu menuName={menuName} />
+                    <DocumentManagementMenu menuName={menuName} isAdmin={isAdmin}/>
+                    <AccountManagementMenu menuName={menuName} isAdmin={isAdmin}/>
                 </>
             }
-        </div>
+        </Container>
     )
 }
 
 export default MenuPage
+
+const Container = styled.div`
+  display: flex;
+  flex-direction: row;
+`

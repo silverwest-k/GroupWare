@@ -177,7 +177,8 @@ function ApprovalPathModal({showApprovalPathModal, handleApprovalPathModalClose}
                                                                onClick={() => handleMemberClick(memberIndex)}
                                                                className={memberIndex === clickedIndex ? "boldText" : ""}
                                                 >
-                                                    <img src={require("../../IMAGES/member.png")} style={{padding: "0 12px"}}/>
+                                                    <img src={require("../../IMAGES/member.png")}
+                                                         style={{padding: "0 12px"}}/>
                                                     {memberData.name} {memberData.position}
                                                 </AccordionBody>
                                             )
@@ -214,7 +215,7 @@ function ApprovalPathModal({showApprovalPathModal, handleApprovalPathModalClose}
                         <RightSide>
                             <Title>결재선 정보</Title>
                             <BookmarkLine>
-                                <p style={{marginBottom: "0"}}>사용자 결재라인</p>
+                                <p>사용자 결재라인</p>
                                 <select onChange={(e) => {
                                     const id = e.target.value;
                                     bookmarkInfo(id)
@@ -229,9 +230,7 @@ function ApprovalPathModal({showApprovalPathModal, handleApprovalPathModalClose}
                                         )
                                     })}
                                 </select>
-                                <Button className="button" style={{padding: "6px"}}
-                                        onClick={() => removeBookmark(bookmarkId)}
-                                >삭제</Button>
+                                <SmallButton className="button" onClick={() => removeBookmark(bookmarkId)}>삭제</SmallButton>
                             </BookmarkLine>
 
                             <div>
@@ -293,26 +292,19 @@ function ApprovalPathModal({showApprovalPathModal, handleApprovalPathModalClose}
                             </SecondContainer>
 
                             <BookmarkLine>
-                                <p style={{marginBottom: "0"}}>사용자 결재라인 이름</p>
+                                <p>사용자 결재라인 이름</p>
                                 <input value={bookmarkName}
                                        onChange={(e) => setBookmarkName(e.target.value)}
                                 />
-                                <Button className="button" style={{padding: "6px"}}
-                                        onClick={addBookmark}
-                                >저장</Button>
+                                <SmallButton className="button" onClick={addBookmark}>저장</SmallButton>
                             </BookmarkLine>
                         </RightSide>
 
-                        <div style={{float: "right", padding: "15px 0"}}>
-                            <Button className="button"
-                                    onClick={enterSignLine}
-                            >적용
-                            </Button>
-                            <Button variant="secondary"
-                                    style={{marginLeft: "15px"}}
-                                    onClick={handleApprovalPathModalClose}
-                            >닫기</Button>
-                        </div>
+                        <LowerButton>
+                            <Button className="button" onClick={enterSignLine}>적용</Button>
+                            <Button variant="secondary" style={{marginLeft: "15px"}}
+                                    onClick={handleApprovalPathModalClose}>닫기</Button>
+                        </LowerButton>
                     </div>
                 </Contents>
             </Modal.Body>
@@ -370,11 +362,13 @@ const AccordionItem = styled(Accordion.Item)`
 `
 const AccordionBody = styled(Accordion.Body)`
   margin-left: 10px;
+
   &:hover {
     color: #4429f2;
     font-weight: bold;
     cursor: pointer;
   }
+
   &.boldText {
     font-weight: bold;
     color: #4429f2;
@@ -428,4 +422,11 @@ const TableBody = styled.tbody`
   td {
     text-align: center;
   }
+`
+const SmallButton = styled(Button)`
+  padding: 6px;
+`
+const LowerButton = styled.div`
+  float: right;
+  padding: 15px 0;
 `

@@ -27,6 +27,7 @@ import TempDocumentDetail from "./DOCUMENT/TempDocumentDetail";
 import useStore from "../store";
 import AllDocument from "./DOCUMENT-MNG/AllDocument";
 import styled from "styled-components";
+import {styleConstants} from "../STYLES/styleConstants";
 
 function Page() {
     const {myAccount} = useStore(state => state);
@@ -63,17 +64,18 @@ function Page() {
         </>
     )
 }
+
 export default Page
 
 const Wrapper = styled.div`
   display: flex;
   flex-direction: row;
   width: 100%;
-  height: calc(100% - 95px);
+  height: calc(100% - ${styleConstants.layout.header.height});
 `
 const Container = styled.div`
   display: flex;
   flex-direction: row;
-  width: calc(100% - 300px);
+  width: calc(100% - ${styleConstants.layout.sidebar.width});
   height: 100%;
 `

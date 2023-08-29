@@ -134,7 +134,7 @@ function AccountManagement() {
             cancelButtonText: '취소'
         }).then((result) => {
             if (result.isConfirmed) {
-                fetcher.delete(`${ACCOUNT_DELETE_API}/${id}`)
+                fetcher.post(`${ACCOUNT_DELETE_API}/${id}`)
                     .then(() => {
                         Swal.fire({
                             position: 'center',

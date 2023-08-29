@@ -38,6 +38,5 @@ const HeaderLine = styled.div`
   background-color: #4429f2;
   color: white;
   font-weight: bold;
-  height: 40px;
   padding: 8px 40px;
 `

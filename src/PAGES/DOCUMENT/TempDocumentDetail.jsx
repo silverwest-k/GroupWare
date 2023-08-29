@@ -13,7 +13,7 @@ import {
     CategorySelect,
     CategoryTitle,
     DivisionLine, DocumentTitle, EditorContainer,
-    LowerContainer,
+    LowerContainer, TitleDivisionLine,
     UpperContainer,
     Wrapper
 } from "../APPROVAL/Write";
@@ -35,7 +35,7 @@ function TempDocumentDetail() {
                 // setSignLine(groupedApprovals[document.sno])
                 setIsCompleted(true)
             })
-            .catch((err)=>console.log(err))
+            .catch((err) => console.log(err))
     }, [id])
 
 
@@ -51,15 +51,15 @@ function TempDocumentDetail() {
         }).then((result) => {
             if (result.isConfirmed) {
                 fetcher.delete(`${DOCUMENT_DELETE_API}/${id}`)
-                    .then(()=>{
-                            Swal.fire({
-                                position: 'mid',
-                                icon: 'success',
-                                title: '삭제 완료',
-                                showConfirmButton: false,
-                                timer: 1500
-                            })
-                                navigate(-1)
+                    .then(() => {
+                        Swal.fire({
+                            position: 'mid',
+                            icon: 'success',
+                            title: '삭제 완료',
+                            showConfirmButton: false,
+                            timer: 1500
+                        })
+                        navigate(-1)
                     })
             }
         })
@@ -73,7 +73,7 @@ function TempDocumentDetail() {
                     <Button className="button" onClick={deleteBtn}>문서삭제</Button>
                 </CategorySelect>
                 <ButtonGroup>
-                    <Button className="button" onClick={()=>navigate(-1)}>목록으로</Button>
+                    <Button className="button" onClick={() => navigate(-1)}>목록으로</Button>
                 </ButtonGroup>
             </UpperContainer>
 
@@ -87,12 +87,14 @@ function TempDocumentDetail() {
                 <TempDocumentSignTable documentData={documentData} signLine={signLine}/>
 
                 <EditorContainer>
+                    <TitleDivisionLine/>
                     <DocumentTitle>
                         <p>제목 : </p>{documentData.title}
                     </DocumentTitle>
-                    <div>
-                        <div>{isCompleted && parse(documentData.content)}</div>
-                    </div>
+                    <TitleDivisionLine/>
+
+                    <div>{isCompleted && parse(documentData.content)}</div>
+
                 </EditorContainer>
             </LowerContainer>
         </Wrapper>
