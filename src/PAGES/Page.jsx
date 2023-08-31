@@ -14,7 +14,7 @@ import {
     ALL_DOCUMENT_LIST_COMPONENT,
     DOCUMENT_DETAIL_COMPONENT,
     DOCUMENT_REGISTRATION_COMPONENT,
-    DOCUMENT_WRITE_COMPONENT,
+    DOCUMENT_WRITE_COMPONENT, EDIT_PAGE_COMPONENT,
     FORBIDDEN_COMPONENT,
     MY_PAGE_COMPONENT,
     RECEIVE_DOCUMENT_COMPONENT,
@@ -28,6 +28,7 @@ import useStore from "../store";
 import AllDocument from "./DOCUMENT-MNG/AllDocument";
 import styled from "styled-components";
 import {styleConstants} from "../STYLES/styleConstants";
+import EditPage from "./DOCUMENT/components/EditPage";
 
 function Page() {
     const {myAccount} = useStore(state => state);
@@ -45,10 +46,11 @@ function Page() {
                         <Route path={DOCUMENT_WRITE_COMPONENT} element={<Write/>}/>
                         <Route path={RECEIVE_DOCUMENT_COMPONENT} element={<ReceiveDocument/>}/>
                         <Route path={REPORT_DOCUMENT_COMPONENT} element={<ReportDocument/>}/>
+                        <Route path={MY_PAGE_COMPONENT} element={<MyPage/>}/>
                         <Route path={TEMP_DOCUMENT_COMPONENT} element={<TempDocument/>}/>
                         <Route path={`${DOCUMENT_DETAIL_COMPONENT}/:id`} element={<DocumentDetail/>}/>
                         <Route path={`${TEMP_DOCUMENT_COMPONENT}/:id`} element={<TempDocumentDetail/>}/>
-                        <Route path={MY_PAGE_COMPONENT} element={<MyPage/>}/>
+                        <Route path={`${EDIT_PAGE_COMPONENT}/:id`} element={<EditPage/>}/>
                         {isAdmin ?
                             <>
                                 <Route path={DOCUMENT_REGISTRATION_COMPONENT} element={<DocumentRegistration/>}/>

@@ -12,6 +12,7 @@ export const RECEIVE_DOCUMENT_COMPONENT="receivedocument"
 export const REPORT_DOCUMENT_COMPONENT ="reportdocument"
 export const TEMP_DOCUMENT_COMPONENT = "tempdocument"
 export const DOCUMENT_DETAIL_COMPONENT="documentdetail"
+export const EDIT_PAGE_COMPONENT ="editpage"
 
 // 마이페이지
 export const MY_PAGE_COMPONENT = "mypage"

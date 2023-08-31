@@ -7,7 +7,6 @@ import {DOCUMENT_DETAIL_COMPONENT} from "../../constants/component_constants";
 import Pagination from "../DOCUMENT/components/Pagination";
 import StateButton from "../../COMPONENT/StateButton";
 import styled from "styled-components";
-import SearchBar from "../../COMPONENT/SearchBar";
 
 function AllDocument() {
     const [listData, setListData] = useState([]);
@@ -29,7 +28,6 @@ function AllDocument() {
     return (
         <Wrapper>
             <Container>
-                <SearchBar/>
                 <TableContainer>
                     <Table hover>
                         <colgroup>

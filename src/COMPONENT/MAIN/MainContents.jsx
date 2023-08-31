@@ -31,7 +31,7 @@ function MainContents() {
                 <ContentsLine>
                     <Profile/>
                     <ApprovalNotice/>
-                    <Notice/>
+                    {/*<Notice/>*/}
                 </ContentsLine>
                 <ContentsLine>
                     <MenuPage/>

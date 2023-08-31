@@ -1,7 +1,7 @@
 import './App.css';
 import MainContents from "./COMPONENT/MAIN/MainContents";
 import Page from "./PAGES/Page";
-import {Route, Routes, useLocation, useNavigate} from "react-router-dom";
+import {Route, Routes, useNavigate} from "react-router-dom";
 import LogIn from "./PAGES/LogIn";
 import NotFoundPage from "./PAGES/NotFoundPage";
 import {

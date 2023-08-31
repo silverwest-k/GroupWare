@@ -37,20 +37,18 @@ function WriteSignTable() {
 
     return (
         <SignTableWrapper>
-            <div>
-                <table>
-                    <tbody>
-                    {sign_Table_Left_data.map((data) => {
-                        return (
-                            <tr>
-                                <WriterTitle>{data.title}</WriterTitle>
-                                <WriterContents>{data.content}</WriterContents>
-                            </tr>
-                        )
-                    })}
-                    </tbody>
-                </table>
-            </div>
+            <table>
+                <tbody>
+                {sign_Table_Left_data.map((data) => {
+                    return (
+                        <tr>
+                            <WriterTitle>{data.title}</WriterTitle>
+                            <WriterContents>{data.content}</WriterContents>
+                        </tr>
+                    )
+                })}
+                </tbody>
+            </table>
             <div>
                 <table>
                     <tbody>
@@ -79,6 +77,7 @@ function WriteSignTable() {
         </SignTableWrapper>
     )
 }
+
 export default WriteSignTable
 
 export const SignTableWrapper = styled.div`
@@ -128,6 +127,7 @@ export const Sign = styled.div`
   align-items: center;
   border-top: 1px solid #000000;
   border-bottom: 1px solid #000000;
+
   img {
     width: 65px;
   }

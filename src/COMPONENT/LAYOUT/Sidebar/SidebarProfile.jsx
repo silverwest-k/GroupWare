@@ -1,5 +1,5 @@
-import LogoutBtn from "../../../LogoutBtn";
-import useStore from "../../../../store";
+import LogoutBtn from "../../LogoutBtn";
+import useStore from "../../../store";
 import styled from "styled-components";
 
 function SidebarProfile() {
@@ -9,7 +9,7 @@ function SidebarProfile() {
     return (
         <ProfileWrapper>
             <Profile isAdmin={isAdmin}>
-                <ProfileImg  isAdmin={isAdmin} src={require("../../../../IMAGES/profile.jpg")}/>
+                <ProfileImg  isAdmin={isAdmin} src={require("../../../IMAGES/profile.jpg")}/>
                 <p style={{marginTop: "20px"}}>{myAccount.name}</p>
                 <p>{myAccount.team} / {myAccount.position}</p>
                 <LogoutBtn/>

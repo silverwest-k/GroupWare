@@ -2,7 +2,7 @@ import Accordion from 'react-bootstrap/Accordion';
 import {Link} from "react-router-dom";
 import {useState} from "react";
 import useStore from "../../../store";
-import SidebarProfile from "./components/SidebarProfile";
+import SidebarProfile from "./SidebarProfile";
 import {
     ACCOUNT_MANAGEMENT_COMPONENT,
     ACCOUNT_REGISTRATION_COMPONENT,

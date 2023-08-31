@@ -47,20 +47,19 @@ function DocumentSignTable({documentData, signLine}) {
 
     return (
         <SignTableWrapper>
-            <div style={{marginRight:"30px"}}>
-                <table>
-                    <tbody>
-                    {sign_Table_Left_data.map((data, index) => {
-                        return (
-                            <tr key={index}>
-                                <WriterTitle>{data.title}</WriterTitle>
-                                <WriterTitle>{data.content}</WriterTitle>
-                            </tr>
-                        )
-                    })}
-                    </tbody>
-                </table>
-            </div>
+            <table>
+                <tbody>
+                {sign_Table_Left_data.map((data, index) => {
+                    return (
+                        <tr key={index}>
+                            <WriterTitle>{data.title}</WriterTitle>
+                            <WriterTitle>{data.content}</WriterTitle>
+                        </tr>
+                    )
+                })}
+                </tbody>
+            </table>
+
             <div>
                 <table>
                     <tbody>
@@ -90,4 +89,5 @@ function DocumentSignTable({documentData, signLine}) {
         </SignTableWrapper>
     )
 }
+
 export default DocumentSignTable

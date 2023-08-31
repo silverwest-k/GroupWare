@@ -17,6 +17,7 @@ import {
     UpperContainer,
     Wrapper
 } from "../APPROVAL/Write";
+import {EDIT_PAGE_COMPONENT} from "../../constants/component_constants";
 
 function TempDocumentDetail() {
     const {id} = useParams();
@@ -28,16 +29,18 @@ function TempDocumentDetail() {
     useEffect(() => {
         fetcher.get(`${TEMP_DOCUMENT_READ_API}/${id}`)
             .then((res) => {
-                // const { document, groupedApprovals } = res.data
                 // 문서 정보
                 setDocumentData(res.data)
-                // 결재라인 - 임시저장에서 결재라인 아직 구현안됨
+                // TODO : 결재라인
                 // setSignLine(groupedApprovals[document.sno])
                 setIsCompleted(true)
             })
             .catch((err) => console.log(err))
     }, [id])
 
+    const routeEditPage = (id) => {
+        navigate(`/page/${EDIT_PAGE_COMPONENT}/${id}`);
+    }
 
     const deleteBtn = () => {
         Swal.fire({
@@ -69,7 +72,7 @@ function TempDocumentDetail() {
         <Wrapper>
             <UpperContainer>
                 <CategorySelect>
-                    <Button className="button">문서수정</Button>
+                    <Button className="button" onClick={()=>routeEditPage(id)}>문서수정</Button>
                     <Button className="button" onClick={deleteBtn}>문서삭제</Button>
                 </CategorySelect>
                 <ButtonGroup>
@@ -81,7 +84,7 @@ function TempDocumentDetail() {
 
             <LowerContainer>
                 <CategoryTitle>
-                    <p>문서양식명</p>
+                    <p>{documentData?.template?.category}</p>
                 </CategoryTitle>
 
                 <TempDocumentSignTable documentData={documentData} signLine={signLine}/>
