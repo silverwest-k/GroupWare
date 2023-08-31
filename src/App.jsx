@@ -29,8 +29,9 @@ function App() {
                 Swal.fire({
                     title: "로그인이 필요합니다.",
                     icon: 'warning',
+                }).then(() => {
+                    navigate(LOGIN_COMPONENT);
                 })
-                navigate(LOGIN_COMPONENT);
             }
         }
     }, [accessToken, refreshToken])

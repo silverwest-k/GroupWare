@@ -149,7 +149,7 @@ function AccountManagement() {
             }
         })
     }
-
+console.log(account)
     return (
         <Wrapper>
             <Container>

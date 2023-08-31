@@ -29,22 +29,21 @@ const Wrapper = styled.div`
   align-items: center;
   gap: 6px;
   margin: 20px;
-  padding-top: 50px;
+  padding-top: 30px;
 `
 const PageButton = styled(Button)`
   --bs-btn-bg: none;
   --bs-btn-color: #757575;
   --bs-btn-border-color: #757575;
 
-  --bs-btn-hover-bg: #f3f34f;
+  --bs-btn-hover-bg: #e1e1e1;
   --bs-btn-hover-border-color: #757575;
   --bs-btn-hover-color: #757575;
-  --bs-btn-active-bg: #757575;
+  
+  --bs-btn-active-bg: #f3f34f;
+  --bs-btn-active-color: #757575;
   --bs-btn-active-border-color: #757575;
 
   --bs-btn-disabled-bg: #757575;
   --bs-btn-disabled-border-color: #757575;
-  &.active {
-    --bs-btn-bg: #f3f34f;
-  }
 `

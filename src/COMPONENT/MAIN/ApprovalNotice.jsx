@@ -5,6 +5,7 @@ import {useNavigate} from "react-router-dom";
 import {DOCUMENT_DETAIL_COMPONENT, LOGIN_COMPONENT} from "../../constants/component_constants";
 import styled from "styled-components";
 import StateButton from "../StateButton";
+import Swal from "sweetalert2";
 
 function ApprovalNotice() {
     const [data, setData] = useState([]);
@@ -12,8 +13,15 @@ function ApprovalNotice() {
     useEffect(() => {
         fetcher.get(STANDBY_APPROVAL_LIST_API)
             .then((res) => setData(res.data))
-            .catch((err)=>{
-                if(err.response && err.response.status === 401) {console.log("에러")}
+            .catch((err) => {
+                if (err.response && err.response.status === 401) {
+                    Swal.fire({
+                        title: "로그인이 필요합니다.",
+                        icon: 'warning',
+                    }).then(() => {
+                        navigate(LOGIN_COMPONENT);
+                    })
+                }
             })
     }, [])
 

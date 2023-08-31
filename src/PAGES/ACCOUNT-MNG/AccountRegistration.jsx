@@ -23,6 +23,7 @@ function AccountRegistration() {
     const [showTeamModal, setShowTeamModal] = useState(false);
     const [showPositionModal, setShowPositionModal] = useState(false);
     const [imgFile, setImgFile] = useState("");
+    const [preview, setPreview] = useState("");
     const [name, setName] = useState("");
     const [password, setPassword] = useState("");
     const [memberNo, setMemberNo] = useState("")
@@ -34,7 +35,8 @@ function AccountRegistration() {
         const reader = new FileReader();
         reader.readAsDataURL(file);
         reader.onload = () => {
-            setImgFile(reader.result);
+            setImgFile(file);
+            setPreview(reader.result);
         }
     }
 
@@ -49,28 +51,19 @@ function AccountRegistration() {
             cancelButtonText: '취소'
         }).then((result) => {
             if (result.isConfirmed) {
-                // const formData = new FormData();
-                // formData.append('post', JSON.stringify({
-                //     name: name,
-                //     password: password,
-                //     no: memberNo,
-                //     position: positionName,
-                //     team: teamName
-                // }));
-                // formData.append('image', imgFile);
-                //
-                // fetcher.post(CREATE_ID_API, formData, {
-                //     headers: {
-                //         'Content-Type': 'multipart/form-data'
-                //     }
-                // })
-                fetcher.post(CREATE_ID_API, {
-                    image: imgFile,
+                const formData = new FormData();
+                formData.append('post', JSON.stringify({
                     name: name,
                     password: password,
                     no: memberNo,
                     position: positionName,
                     team: teamName
+                }));
+                formData.append('image', imgFile);
+                fetcher.post(CREATE_ID_API, formData, {
+                    headers: {
+                        'Content-Type': 'multipart/form-data'
+                    }
                 })
                     .then(() => {
                         resetInput();
@@ -113,7 +106,7 @@ function AccountRegistration() {
                         <tr>
                             <th></th>
                             <ProfileImg>
-                                <img src={imgFile ? imgFile : require("../../IMAGES/profile.jpg")}
+                                <img src={preview ? preview : require("../../IMAGES/profile.jpg")}
                                      alt="프로필 이미지"
                                 />
                                 <ProfileImgLabel htmlFor="profileImg">이미지 업로드</ProfileImgLabel>
@@ -157,7 +150,7 @@ function AccountRegistration() {
                             <td>
                                 <input value={teamName}/>
                                 <IconImg src={require("../../IMAGES/more.png")}
-                                     onClick={() => setShowTeamModal(true)}
+                                         onClick={() => setShowTeamModal(true)}
                                 />
                             </td>
                         </tr>

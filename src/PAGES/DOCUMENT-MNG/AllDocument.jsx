@@ -4,7 +4,7 @@ import {ALL_DOCUMENT_LIST_API} from "../../constants/api_constans";
 import fetcher from "../../fetcher";
 import {useNavigate} from "react-router-dom";
 import {DOCUMENT_DETAIL_COMPONENT} from "../../constants/component_constants";
-import Pagination from "../DOCUMENT/components/Pagination";
+import Pagination from "../../COMPONENT/Pagination";
 import StateButton from "../../COMPONENT/StateButton";
 import styled from "styled-components";
 

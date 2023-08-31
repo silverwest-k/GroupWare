@@ -5,6 +5,7 @@ import styled, {css} from "styled-components";
 function Profile() {
     const {myAccount} = useStore(state => state)
 
+    console.log(myAccount)
     const isAdmin = myAccount.authority === "ADMIN"
 
     return (

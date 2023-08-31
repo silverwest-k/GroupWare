@@ -3,8 +3,8 @@ import fetcher from "../../fetcher";
 import {RECEIVE_DOCUMENT_LIST_API} from "../../constants/api_constans";
 import {useNavigate} from "react-router-dom";
 import {DOCUMENT_DETAIL_COMPONENT} from "../../constants/component_constants";
-import Pagination from "./components/Pagination";
-import {backgroundColor} from "../../COMPONENT/StateButton";
+import Pagination from "../../COMPONENT/Pagination";
+import StateButton, {backgroundColor} from "../../COMPONENT/StateButton";
 import styled from "styled-components";
 
 function ReceiveDocument() {
@@ -15,6 +15,13 @@ function ReceiveDocument() {
     const [limit, setLimit] = useState(5);
     const [page, setPage] = useState(1);
     const offset = (page - 1) * limit;
+
+    const cardColor = {
+        "결재대기": "#fdfaf1",
+        "진행중": "#f2fdff",
+        "승인": "#f0fff0",
+        "반려": "#fff1f3"
+    }
 
     useEffect(() => {
         fetcher.get(RECEIVE_DOCUMENT_LIST_API)
@@ -34,32 +41,27 @@ function ReceiveDocument() {
             <CardContainer>
                 {data?.reverse().slice(offset, offset + limit).map((data) => {
                     return (
-                        <Card key={data.id}>
-                            <Contents>
-                                <UpperState style={{background: getBackgroundColor(data.result)}}>
-                                    {data.result}
-                                </UpperState>
-
-                                <DocumentInfo>
-                                    <CardUpper>
-                                        <CardTitle>{data.title}</CardTitle>
-                                    </CardUpper>
-                                    <CardLower>
-                                        <div>기안자 : {data.writer.name} {data.writer.position}</div>
-                                        <div>날짜 : {data.createDate}</div>
-                                        <div>양식 : {data.template.category}</div>
-                                    </CardLower>
-                                </DocumentInfo>
-                            </Contents>
+                        <Card key={data.id} background={cardColor[data.result]}>
+                            <DocumentInfo>
+                                <CardUpper>
+                                    <CardTitle>{data.title}</CardTitle>
+                                    <StateButton state={data.result}/>
+                                </CardUpper>
+                                <CardLower>
+                                    <div>기안자 : {data.writer.name} {data.writer.position}</div>
+                                    <div>날짜 : {data.createDate}</div>
+                                    <div>양식 : {data.template.category}</div>
+                                </CardLower>
+                            </DocumentInfo>
 
                             <DivisionLine/>
 
                             <ApprovalButton
-                                 style={{
-                                     cursor: "pointer",
-                                     color: data.result === "승인" || data.result === "반려" ? "gray" : ""
-                                 }}
-                                 onClick={() => routeDetail(data.id)}
+                                style={{
+                                    cursor: "pointer",
+                                    color: data.result === "승인" || data.result === "반려" ? "gray" : ""
+                                }}
+                                onClick={() => routeDetail(data.id)}
                             >
                                 {data.result === "승인" || data.result === "반려" ? "상세보기" : "결재하기"}
                             </ApprovalButton>
@@ -72,6 +74,7 @@ function ReceiveDocument() {
         </Wrapper>
     )
 }
+
 export default ReceiveDocument
 
 const Wrapper = styled.div`
@@ -81,8 +84,8 @@ const Wrapper = styled.div`
   flex-direction: column;
 `
 const CardContainer = styled.div`
-  padding-top: 100px;
-  height: 800px;
+  padding-top: 80px;
+  height: 930px;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -91,23 +94,13 @@ const CardContainer = styled.div`
 const Card = styled.div`
   min-width: 800px;
   width: 45%;
-  height: 130px;
+  height: 140px;
   border: 1px solid #afb0b1;
   border-radius: 15px;
   display: flex;
   flex-direction: row;
   margin-bottom: 25px;
-`
-const Contents = styled.div`
-  display: flex;
-  flex-direction: column;
-  width: 85%;
-`
-const UpperState = styled.div`
-  font-size: 15px;
-  font-weight: bold;
-  border-top-left-radius: 15px;
-  padding: 3px 20px;
+  background: ${props => props.background};
 `
 const DocumentInfo = styled.div`
   height: 100%;
@@ -115,24 +108,28 @@ const DocumentInfo = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: space-around;
+  width: 85%;
 `
 const CardUpper = styled.div`
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
 `
 const CardTitle = styled.div`
   font-size: 22px;
   font-weight: 600;
+  margin: 0 20px;
 `
 const CardLower = styled.div`
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   color: grey;
+  padding: 0 20px;
 `
 const DivisionLine = styled.div`
   border-right: 1px solid #afb0b1;
-  height: 129px;
+  height: 110px;
+  margin-top: 15px;
 `
 const ApprovalButton = styled.div`
   width: 15%;

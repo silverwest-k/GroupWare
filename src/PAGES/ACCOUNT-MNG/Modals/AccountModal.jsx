@@ -10,7 +10,6 @@ function AccountModal({showAccountModal, handleAccountModalClose, fetchMemberLis
     const {selectAccount} = useStore(state => state)
     const [member, setMember] = useState([]);
 
-
     useEffect(() => {
         showAccountModal && fetcher.get(MEMBER_LIST_INFO_API)
             .then((res) => setMember(res.data))

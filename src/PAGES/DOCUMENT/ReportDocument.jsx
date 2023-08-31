@@ -7,7 +7,7 @@ import {
 import DocumentTable from "./components/DocumentTable";
 import {Button, FormControl, InputGroup} from "react-bootstrap";
 import ButtonGroup from "./components/ButtonGroup";
-import Pagination from "./components/Pagination";
+import Pagination from "../../COMPONENT/Pagination";
 import styled from "styled-components";
 
 function ReportDocument() {

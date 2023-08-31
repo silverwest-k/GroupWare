@@ -19,11 +19,11 @@ function LogIn() {
 
     const navigate = useNavigate();
 
-    useEffect(() => {
-        if ((ac !== {} || rc !== {})) {
-            navigate(MAIN_COMPONENT)
-        }
-    }, [])
+    // useEffect(() => {
+    //     if ((ac !== {} || rc !== {})) {
+    //         navigate(MAIN_COMPONENT)
+    //     }
+    // }, [])
 
     //Refresh token: Cookie 저장, Access token: Read-Only cookie 필요시마다 호출해서 사용
     const loginBtn = () => {

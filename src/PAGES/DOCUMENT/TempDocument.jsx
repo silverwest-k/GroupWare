@@ -2,7 +2,7 @@ import {useEffect, useState} from "react";
 import fetcher from "../../fetcher";
 import {TEMP_DOCUMENT_LIST_API} from "../../constants/api_constans";
 import TempDocumentTable from "./components/TempDocumentTable";
-import Pagination from "./components/Pagination";
+import Pagination from "../../COMPONENT/Pagination";
 import {Table, TableContainer, Wrapper} from "./ReportDocument";
 
 function TempDocument() {
