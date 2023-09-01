@@ -5,6 +5,7 @@ import fetcher from "../../fetcher";
 import TeamModal from "./Modals/TeamModal";
 import PositionModal from "./Modals/PositionModal";
 import useStore from "../../store";
+import defaultProfileImage from "../../IMAGES/profile.jpg";
 import Swal from "sweetalert2";
 import {
     Container,
@@ -91,6 +92,7 @@ function AccountRegistration() {
         setMemberNo("")
         selectTeam("")
         selectPosition("")
+        setPreview(null)
     }
 
     return (
@@ -106,9 +108,7 @@ function AccountRegistration() {
                         <tr>
                             <th></th>
                             <ProfileImg>
-                                <img src={preview ? preview : require("../../IMAGES/profile.jpg")}
-                                     alt="프로필 이미지"
-                                />
+                                <img src={preview ? preview : defaultProfileImage} alt="프로필 이미지"/>
                                 <ProfileImgLabel htmlFor="profileImg">이미지 업로드</ProfileImgLabel>
                                 <input
                                     style={{display: "none"}}

@@ -1,6 +1,7 @@
 import LogoutBtn from "../../LogoutBtn";
 import useStore from "../../../store";
 import styled from "styled-components";
+import defaultProfileImage from "../../../IMAGES/profile.jpg";
 
 function SidebarProfile() {
     const {myAccount} = useStore(state => state)
@@ -9,9 +10,9 @@ function SidebarProfile() {
     return (
         <ProfileWrapper>
             <Profile isAdmin={isAdmin}>
-                <ProfileImg  isAdmin={isAdmin} src={require("../../../IMAGES/profile.jpg")}/>
+                <ProfileImg isAdmin={isAdmin} src={myAccount.image ? "http://localhost:8080/member/image?imageName=" + myAccount.image : defaultProfileImage } />
                 <p style={{marginTop: "20px"}}>{myAccount.name}</p>
-                <p>{myAccount.team} / {myAccount.position}</p>
+                <p style={{margin: "5px 0"}}>{myAccount.team} / {myAccount.position}</p>
                 <LogoutBtn/>
             </Profile>
         </ProfileWrapper>

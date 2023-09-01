@@ -1,23 +1,24 @@
-import LogoutBtn from "../LogoutBtn";
-import useStore from "../../store";
+import LogoutBtn from "../../LogoutBtn";
+import useStore from "../../../store";
 import styled, {css} from "styled-components";
+import defaultProfileImage from "../../../IMAGES/profile.jpg";
 
 function Profile() {
     const {myAccount} = useStore(state => state)
+    const isAdmin = myAccount.authority === "ADMIN";
 
-    console.log(myAccount)
-    const isAdmin = myAccount.authority === "ADMIN"
+    const profileImg = "http://localhost:8080/member/image?imageName=" + myAccount.image;
 
     return (
         <Wrapper>
             <UpperText>
-                <p>안녕하세요,</p> <p style={{fontWeight: "bold"}}>{myAccount.name}</p><p>님</p>
+                <p>안녕하세요,&nbsp;</p> <p style={{fontWeight: "bold"}}>{myAccount.name}</p><p>님!</p>
             </UpperText>
             <ProfileCard isAdmin={isAdmin}>
-                <ProfileImg isAdmin={isAdmin} src={require("../../IMAGES/profile.jpg")}/>
+                <ProfileImg isAdmin={isAdmin} src={myAccount.image ? profileImg : defaultProfileImage } />
                 <Info>
                     <p>{myAccount.name} {myAccount.position}</p>
-                    <p>부서 : {myAccount.team}</p>
+                    <p style={{margin:"10px 0"}}>부서 : {myAccount.team}</p>
                     <p>사번 : {myAccount.no}</p>
                     <LogoutBtn/>
                 </Info>

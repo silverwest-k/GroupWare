@@ -2,7 +2,8 @@ import {useRef, useState} from "react";
 import useStore from "../../store";
 import {Button} from "react-bootstrap";
 import fetcher from "../../fetcher";
-import {MY_INFO_CHANGE_API} from "../../constants/api_constans";
+import defaultProfileImage from "../../IMAGES/profile.png";
+import {MY_INFO_API, MY_INFO_CHANGE_API} from "../../constants/api_constans";
 import Swal from "sweetalert2";
 import styled from "styled-components";
 import {
@@ -19,29 +20,40 @@ import {
 function MyPage() {
     const [password, setPassword] = useState("");
     const [imgFile, setImgFile] = useState("");
+    const [preview, setPreview] = useState("");
     const imgRef = useRef();
-    const {myAccount} = useStore(state => state);
+    const {myAccount, setMyAccountInfo} = useStore(state => state);
+
+    const profileImg = "http://localhost:8080/member/image?imageName=" + myAccount.image;
 
     const resetInput = () => {
         setPassword("")
     }
 
+    const saveImgFile = () => {
+        const file = imgRef.current.files[0];
+        const reader = new FileReader();
+        reader.readAsDataURL(file);
+        reader.onload = () => {
+            setImgFile(file);
+            setPreview(reader.result);
+        }
+    }
+
     const editInfo = () => {
-        const form = new FormData
-        fetcher.post(MY_INFO_CHANGE_API, {
-            // team: imgFile ? imgFile :null,
+        const formData = new FormData
+        formData.append('post', JSON.stringify({
             newPassword: password ? password : null,
-        })
-        // fetcher.postForm(MY_INFO_CHANGE_API, form, {
-        //     headers: {
-        //         'Content-Type': 'multipart/form-data'
-        //     }
-        // })
-        // TODO: 이미지 수정 기능 구현
-        fetcher.post(MY_INFO_CHANGE_API, {
-            newPassword: password
+        }));
+        formData.append('image', imgFile);
+        fetcher.post(MY_INFO_CHANGE_API, formData, {
+            headers: {
+                'Content-Type': 'multipart/form-data'
+            }
         })
             .then(() => {
+                fetcher.get(MY_INFO_API)
+                    .then((res) => setMyAccountInfo(res.data))
                 resetInput()
                 Swal.fire({
                     position: 'mid',
@@ -51,14 +63,6 @@ function MyPage() {
                     timer: 1500
                 })
             })
-    }
-    const saveImgFile = () => {
-        const file = imgRef.current.files[0];
-        const reader = new FileReader();
-        reader.readAsDataURL(file);
-        reader.onload = () => {
-            setImgFile(reader.result);
-        }
     }
 
     return (
@@ -74,8 +78,8 @@ function MyPage() {
                         <tr>
                             <th></th>
                             <UserProfileImg>
-                                <img src={imgFile ? imgFile : require("../../IMAGES/profile.jpg")}
-                                            alt="프로필 이미지"
+                                <img src={myAccount.image ? (preview || profileImg) : defaultProfileImage }
+                                     alt="프로필 이미지"
                                 />
                                 <UserProfileImgLabel htmlFor="profileImg">이미지 업로드</UserProfileImgLabel>
                                 <input
@@ -125,6 +129,7 @@ function MyPage() {
         </Wrapper>
     )
 }
+
 export default MyPage
 
 const UserContainer = styled(Container)`
@@ -134,12 +139,14 @@ const UserContainer = styled(Container)`
 `
 const UserProfileImg = styled(ProfileImg)`
   img {
-    border:solid 3px rgba(68, 41, 242, 0.4);
+    border: solid 3px rgba(68, 41, 242, 0.4);
   }
 `
 const UserProfileImgLabel = styled(ProfileImgLabel)`
   background: #4429f2;
 `
 const UserTable = styled(Table)`
-  th {color: #4429f2;}
+  th {
+    color: #4429f2;
+  }
 `

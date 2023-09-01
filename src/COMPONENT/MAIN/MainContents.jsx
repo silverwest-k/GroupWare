@@ -1,9 +1,8 @@
 import MenuPage from "./MENU_ICON/MenuPage";
-import Profile from "./Profile";
-import ApprovalNotice from "./ApprovalNotice";
-import Notice from "./Notice";
+import Profile from "./components/Profile";
+import ApprovalNotice from "./components/ApprovalNotice";
 import Header from "../LAYOUT/Header";
-import Calender from "./Calender";
+import Calender from "./components/Calender";
 import {useCookies} from "react-cookie";
 import {ACCESS_TOKEN_COOKIE, REFRESH_TOKEN_COOKIE} from "../../constants/constants";
 import {useEffect} from "react";

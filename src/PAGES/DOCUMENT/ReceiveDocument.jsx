@@ -95,7 +95,7 @@ const Card = styled.div`
   min-width: 800px;
   width: 45%;
   height: 140px;
-  border: 1px solid #afb0b1;
+  border: 1.5px solid #afb0b1;
   border-radius: 15px;
   display: flex;
   flex-direction: row;
@@ -127,7 +127,7 @@ const CardLower = styled.div`
   padding: 0 20px;
 `
 const DivisionLine = styled.div`
-  border-right: 1px solid #afb0b1;
+  border-right: 1.5px solid #afb0b1;
   height: 110px;
   margin-top: 15px;
 `

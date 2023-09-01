@@ -18,7 +18,7 @@ const useStore = create(set => ({
         team: "",
         position: "",
         authority: "",
-        profileImg: ""
+        image: ""
     },
     selectAccount: (e) => set(state =>({account:e})),
 
@@ -27,7 +27,8 @@ const useStore = create(set => ({
         no: "",
         team: "",
         position: "",
-        authority: ""
+        authority: "",
+        image: ""
     },
     setMyAccountInfo: (e) => set(state=>({myAccount:e})),
 

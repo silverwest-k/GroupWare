@@ -4,10 +4,11 @@ import TeamModal from "./Modals/TeamModal";
 import useStore from "../../store";
 import PositionModal from "./Modals/PositionModal";
 import AccountModal from "./Modals/AccountModal";
+import defaultProfileImage from "../../IMAGES/profile.jpg";
 import {
     ACCOUNT_BLOCK_API,
     ACCOUNT_DELETE_API,
-    ACCOUNT_EDIT_API,
+    ACCOUNT_EDIT_API, CREATE_ID_API,
     MEMBER_LIST_INFO_API
 } from "../../constants/api_constans";
 import fetcher from "../../fetcher";
@@ -21,6 +22,7 @@ function AccountManagement() {
     const [showTeamModal, setShowTeamModal] = useState(false);
     const [showPositionModal, setShowPositionModal] = useState(false);
     const [imgFile, setImgFile] = useState("");
+    const [preview, setPreview] = useState("");
     const [radioValue, setRadioValue] = useState('1');
     const [password, setPassword] = useState("");
     const [team, setTeam] = useState("");
@@ -29,6 +31,8 @@ function AccountManagement() {
 
     const {account, selectAccount, teamName, positionName, selectTeam, selectPosition}
         = useStore(state => state);
+
+    const profileImg = "http://localhost:8080/member/image?imageName=" + account.image;
 
     const radioState = [
         {name: '일반계정', value: 'USER'},
@@ -45,6 +49,7 @@ function AccountManagement() {
         selectAccount("")
         selectTeam("")
         selectPosition("")
+        setPreview(null)
     }
 
     useEffect(() => {
@@ -57,15 +62,23 @@ function AccountManagement() {
         const reader = new FileReader();
         reader.readAsDataURL(file);
         reader.onload = () => {
-            setImgFile(reader.result);
+            setImgFile(file);
+            setPreview(reader.result);
         }
     }
 
     const editID = (id) => {
-        fetcher.post(`${ACCOUNT_EDIT_API}/${id}`, {
+        const formData = new FormData();
+        formData.append('post', JSON.stringify({
             newPassword: password ? password : null,
             team: teamName ? teamName : null,
             position: positionName ? positionName : null
+        }));
+        formData.append('image', imgFile);
+        fetcher.post(`${ACCOUNT_EDIT_API}/${id}`, formData, {
+            headers: {
+                'Content-Type': 'multipart/form-data'
+            }
         }).then(() => {
             Swal.fire({
                 position: 'center',
@@ -149,7 +162,7 @@ function AccountManagement() {
             }
         })
     }
-console.log(account)
+
     return (
         <Wrapper>
             <Container>
@@ -180,7 +193,7 @@ console.log(account)
                         <tr>
                             <th></th>
                             <ProfileImg>
-                                <img src={imgFile ? imgFile : require("../../IMAGES/profile.jpg")}
+                                <img src={account.image ? (preview || profileImg) : defaultProfileImage }
                                      alt="프로필 이미지"
                                 />
                                 <ProfileImgLabel htmlFor="profileImg">이미지 업로드</ProfileImgLabel>
@@ -276,10 +289,11 @@ export const Upper = styled.div`
   padding: 0 50px;
   font-size: 24px;
 `
-export const UpperButton = styled.div`
+const UpperButton = styled.div`
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+  margin-top: 10px;
 `
 export const Contents = styled.div`
   height: 60%;
@@ -305,11 +319,12 @@ export const Table = styled.table`
     font-weight: normal;
     color: #000000;
     text-align: left;
-    
+
   }
 `
 export const ProfileImg = styled.td`
   padding-bottom: 30px;
+
   img {
     width: 150px;
     height: 190px;

@@ -1,10 +1,10 @@
-import fetcher from "../../fetcher";
-import {STANDBY_APPROVAL_LIST_API} from "../../constants/api_constans";
+import fetcher from "../../../fetcher";
+import {STANDBY_APPROVAL_LIST_API} from "../../../constants/api_constans";
 import {useEffect, useState} from "react";
 import {useNavigate} from "react-router-dom";
-import {DOCUMENT_DETAIL_COMPONENT, LOGIN_COMPONENT} from "../../constants/component_constants";
+import {DOCUMENT_DETAIL_COMPONENT, LOGIN_COMPONENT} from "../../../constants/component_constants";
 import styled from "styled-components";
-import StateButton from "../StateButton";
+import StateButton from "../../StateButton";
 import Swal from "sweetalert2";
 
 function ApprovalNotice() {
