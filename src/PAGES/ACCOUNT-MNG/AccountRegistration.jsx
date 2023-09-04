@@ -148,7 +148,7 @@ function AccountRegistration() {
                         <tr>
                             <th>부서</th>
                             <td>
-                                <input value={teamName}/>
+                                <input value={teamName} placeholder="부서를 선택하세요"/>
                                 <IconImg src={require("../../IMAGES/more.png")}
                                          onClick={() => setShowTeamModal(true)}
                                 />
@@ -157,7 +157,7 @@ function AccountRegistration() {
                         <tr>
                             <th>직급</th>
                             <td>
-                                <input value={positionName}/>
+                                <input value={positionName} placeholder="직급을 선택하세요"/>
                                 <IconImg src={require("../../IMAGES/more.png")}
                                          onClick={() => setShowPositionModal(true)}
                                 />

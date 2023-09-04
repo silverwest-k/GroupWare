@@ -7,6 +7,7 @@ import {ACCESS_TOKEN_COOKIE, REFRESH_TOKEN_COOKIE} from "../constants/constants"
 import {LOGIN_API} from "../constants/api_constans";
 import {MAIN_COMPONENT} from "../constants/component_constants";
 import styled from "styled-components";
+import loginImg from "../IMAGES/login.jpg"
 
 function LogIn() {
     const [memberNo, setMemberNo] = useState("")
@@ -108,7 +109,7 @@ function LogIn() {
 export default LogIn
 
 const Wrapper = styled.div`
-  background: url('../IMAGES/login.jpg') no-repeat center fixed;
+  background: url(${loginImg}) no-repeat center fixed;
   background-size: cover;
   height: 100%;
   width: 100%;

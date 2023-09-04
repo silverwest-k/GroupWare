@@ -23,7 +23,6 @@ function AccountManagement() {
     const [showPositionModal, setShowPositionModal] = useState(false);
     const [imgFile, setImgFile] = useState("");
     const [preview, setPreview] = useState("");
-    const [radioValue, setRadioValue] = useState('1');
     const [password, setPassword] = useState("");
     const [team, setTeam] = useState("");
     const [position, setPosition] = useState("");
@@ -193,7 +192,7 @@ function AccountManagement() {
                         <tr>
                             <th></th>
                             <ProfileImg>
-                                <img src={account.image ? (preview || profileImg) : defaultProfileImage }
+                                <img src={account?.image ? preview || profileImg : preview || defaultProfileImage }
                                      alt="프로필 이미지"
                                 />
                                 <ProfileImgLabel htmlFor="profileImg">이미지 업로드</ProfileImgLabel>
@@ -209,7 +208,7 @@ function AccountManagement() {
                         </tr>
                         <tr>
                             <th>이름</th>
-                            <td>{account.name}</td>
+                            <td>{account?.name}</td>
                         </tr>
                         <tr>
                             <th>비밀번호</th>
@@ -222,12 +221,13 @@ function AccountManagement() {
                         </tr>
                         <tr>
                             <th>사번</th>
-                            <td>{account.no}</td>
+                            <td>{account?.no}</td>
                         </tr>
                         <tr>
                             <th>부서</th>
                             <td>
-                                <input value={teamName || account.team}
+                                <input value={teamName || account?.team}
+                                       placeholder="부서를 선택하세요"
                                        onChange={(e) => setTeam(e.target.value)}/>
                                 <IconImg src={require("../../IMAGES/more.png")}
                                          onClick={() => setShowTeamModal(true)}
@@ -237,7 +237,8 @@ function AccountManagement() {
                         <tr>
                             <th>직급</th>
                             <td>
-                                <input value={positionName || account.position}
+                                <input value={positionName || account?.position}
+                                       placeholder="직급을 선택하세요"
                                        onChange={(e) => setPosition(e.target.value)}
                                 />
                                 <IconImg src={require("../../IMAGES/more.png")}

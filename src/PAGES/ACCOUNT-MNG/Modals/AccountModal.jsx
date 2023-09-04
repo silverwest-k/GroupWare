@@ -4,7 +4,6 @@ import {useEffect, useState} from "react";
 import {MEMBER_LIST_INFO_API} from "../../../constants/api_constans";
 import fetcher from "../../../fetcher";
 import styled from "styled-components";
-import SearchBar from "../../../COMPONENT/SearchBar";
 
 function AccountModal({showAccountModal, handleAccountModalClose, fetchMemberList}) {
     const {selectAccount} = useStore(state => state)
@@ -54,7 +53,6 @@ function AccountModal({showAccountModal, handleAccountModalClose, fetchMemberLis
                         </Table>
                     </TableContainer>
                     <LowerContainer>
-                        <SearchBar/>
                         <ModalButton variant="secondary" onClick={handleAccountModalClose}>취소</ModalButton>
                     </LowerContainer>
                 </ModalContainer>
