@@ -8,12 +8,14 @@ import defaultProfileImage from "../../IMAGES/profile.jpg";
 import {
     ACCOUNT_BLOCK_API,
     ACCOUNT_DELETE_API,
-    ACCOUNT_EDIT_API, CREATE_ID_API,
+    ACCOUNT_EDIT_API,
     MEMBER_LIST_INFO_API
 } from "../../constants/api_constans";
 import fetcher from "../../fetcher";
 import Swal from "sweetalert2";
 import styled from "styled-components";
+import {useNavigate} from "react-router-dom";
+import {FORBIDDEN_COMPONENT} from "../../constants/component_constants";
 
 function AccountManagement() {
     const imgRef = useRef();
@@ -28,16 +30,19 @@ function AccountManagement() {
     const [position, setPosition] = useState("");
     const [member, setMember] = useState([]);
 
-    const {account, selectAccount, teamName, positionName, selectTeam, selectPosition}
+    const isAdmin = myAccount?.authority === "ADMIN";
+    const navigate = useNavigate();
+
+    useEffect(() => {
+        if (!isAdmin) {
+            navigate(FORBIDDEN_COMPONENT);
+        }
+    }, [])
+
+    const {myAccount, account, selectAccount, teamName, positionName, selectTeam, selectPosition}
         = useStore(state => state);
 
     const profileImg = "http://localhost:8080/member/image?imageName=" + account.image;
-
-    const radioState = [
-        {name: '일반계정', value: 'USER'},
-        {name: '관리자계정', value: 'ADMIN'},
-        {name: '접속차단', value: 'BLOCK'}
-    ];
 
     const fetchMemberList = () => {
         return fetcher.get(MEMBER_LIST_INFO_API)
@@ -192,7 +197,7 @@ function AccountManagement() {
                         <tr>
                             <th></th>
                             <ProfileImg>
-                                <img src={account?.image ? preview || profileImg : preview || defaultProfileImage }
+                                <img src={account?.image ? (preview || profileImg) : (preview || defaultProfileImage)}
                                      alt="프로필 이미지"
                                 />
                                 <ProfileImgLabel htmlFor="profileImg">이미지 업로드</ProfileImgLabel>

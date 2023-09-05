@@ -1,5 +1,5 @@
 import Sidebar from "../COMPONENT/LAYOUT/Sidebar/Sidebar";
-import {Route, Routes, useNavigate} from "react-router-dom";
+import {Route, Routes} from "react-router-dom";
 import Write from "./APPROVAL/Write";
 import ReceiveDocument from "./DOCUMENT/ReceiveDocument";
 import ReportDocument from "./DOCUMENT/ReportDocument";
@@ -15,7 +15,6 @@ import {
     DOCUMENT_DETAIL_COMPONENT,
     DOCUMENT_REGISTRATION_COMPONENT,
     DOCUMENT_WRITE_COMPONENT, EDIT_PAGE_COMPONENT,
-    FORBIDDEN_COMPONENT,
     MY_PAGE_COMPONENT,
     RECEIVE_DOCUMENT_COMPONENT,
     REPORT_DOCUMENT_COMPONENT,
@@ -24,18 +23,12 @@ import {
 import TempDocument from "./DOCUMENT/TempDocument";
 import DocumentDetail from "./DOCUMENT/DocumentDetail";
 import TempDocumentDetail from "./DOCUMENT/TempDocumentDetail";
-import useStore from "../store";
 import AllDocument from "./DOCUMENT-MNG/AllDocument";
 import styled from "styled-components";
 import {styleConstants} from "../STYLES/styleConstants";
 import EditPage from "./DOCUMENT/components/EditPage";
 
 function Page() {
-    const {myAccount} = useStore(state => state);
-
-    const isAdmin = myAccount?.authority === "ADMIN";
-    const navigate = useNavigate();
-
     return (
         <>
             <Header/>
@@ -51,15 +44,11 @@ function Page() {
                         <Route path={`${DOCUMENT_DETAIL_COMPONENT}/:id`} element={<DocumentDetail/>}/>
                         <Route path={`${TEMP_DOCUMENT_COMPONENT}/:id`} element={<TempDocumentDetail/>}/>
                         <Route path={`${EDIT_PAGE_COMPONENT}/:id`} element={<EditPage/>}/>
-                        {isAdmin ?
-                            <>
-                                <Route path={DOCUMENT_REGISTRATION_COMPONENT} element={<DocumentRegistration/>}/>
-                                <Route path={ALL_DOCUMENT_LIST_COMPONENT} element={<AllDocument/>}/>
-                                <Route path={ACCOUNT_MANAGEMENT_COMPONENT} element={<AccountManagement/>}/>
-                                <Route path={ACCOUNT_REGISTRATION_COMPONENT} element={<AccountRegistration/>}/>
-                            </>
-                            : navigate(FORBIDDEN_COMPONENT)
-                        }
+                        {/* 관리자 전용 PAGE ↓ */}
+                        <Route path={DOCUMENT_REGISTRATION_COMPONENT} element={<DocumentRegistration/>}/>
+                        <Route path={ALL_DOCUMENT_LIST_COMPONENT} element={<AllDocument/>}/>
+                        <Route path={ACCOUNT_MANAGEMENT_COMPONENT} element={<AccountManagement/>}/>
+                        <Route path={ACCOUNT_REGISTRATION_COMPONENT} element={<AccountRegistration/>}/>
                     </Routes>
                 </Container>
             </Wrapper>

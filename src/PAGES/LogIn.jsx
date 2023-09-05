@@ -20,11 +20,11 @@ function LogIn() {
 
     const navigate = useNavigate();
 
-    // useEffect(() => {
-    //     if ((ac !== {} || rc !== {})) {
-    //         navigate(MAIN_COMPONENT)
-    //     }
-    // }, [])
+    const pressEnter = (e) => {
+        if(e.key === 'Enter') {
+            loginBtn();
+        }
+    };
 
     //Refresh token: Cookie 저장, Access token: Read-Only cookie 필요시마다 호출해서 사용
     const loginBtn = () => {
@@ -92,6 +92,7 @@ function LogIn() {
                                id="password"
                                placeholder="비밀번호"
                                value={password}
+                               onKeyDown={(e)=>pressEnter(e)}
                                onChange={(e) => setPassword(e.currentTarget.value)}
                         />
                         <SubmitButton type="submit"

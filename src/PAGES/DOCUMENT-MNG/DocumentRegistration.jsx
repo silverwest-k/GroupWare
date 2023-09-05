@@ -10,12 +10,25 @@ import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
 import {CKEditor} from "@ckeditor/ckeditor5-react";
 import {Button} from "react-bootstrap";
 import {ButtonGroup, CategorySelect, DivisionLine, LowerContainer, UpperContainer, Wrapper} from "../APPROVAL/Write";
+import useStore from "../../store";
+import {useNavigate} from "react-router-dom";
+import {FORBIDDEN_COMPONENT} from "../../constants/component_constants";
 
 function DocumentRegistration() {
     const [categoryName, setCategoryName] = useState("")
     const [content, setContent] = useState("")
     const [category, setCategory] = useState("")
     const [categoryList, setCategoryList] = useState([])
+
+    const {myAccount} = useStore(state => state);
+    const isAdmin = myAccount?.authority === "ADMIN";
+    const navigate = useNavigate();
+
+    useEffect(()=>{
+        if(!isAdmin) {
+            navigate(FORBIDDEN_COMPONENT);
+        }
+    },[])
 
     const fetchCategoryList = () => {
         return fetcher.get(CATEGORY_LIST_API)

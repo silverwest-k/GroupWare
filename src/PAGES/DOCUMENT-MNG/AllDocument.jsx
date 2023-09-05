@@ -3,10 +3,11 @@ import {useEffect, useState} from "react";
 import {ALL_DOCUMENT_LIST_API} from "../../constants/api_constans";
 import fetcher from "../../fetcher";
 import {useNavigate} from "react-router-dom";
-import {DOCUMENT_DETAIL_COMPONENT} from "../../constants/component_constants";
+import {DOCUMENT_DETAIL_COMPONENT, FORBIDDEN_COMPONENT} from "../../constants/component_constants";
 import Pagination from "../../COMPONENT/Pagination";
 import StateButton from "../../COMPONENT/StateButton";
 import styled from "styled-components";
+import useStore from "../../store";
 
 function AllDocument() {
     const [listData, setListData] = useState([]);
@@ -15,12 +16,21 @@ function AllDocument() {
     const [page, setPage] = useState(1);
     const offset = (page - 1) * limit;
 
+    const navigate = useNavigate();
+    const {myAccount} = useStore(state => state);
+    const isAdmin = myAccount?.authority === "ADMIN";
+
+    useEffect(()=>{
+        if(!isAdmin) {
+            navigate(FORBIDDEN_COMPONENT);
+        }
+    },[])
+
     useEffect(() => {
         fetcher.get(ALL_DOCUMENT_LIST_API)
             .then((res) => setListData(res.data))
     }, [])
 
-    const navigate = useNavigate();
     const routeDetail = (id) => {
         navigate(`/page/${DOCUMENT_DETAIL_COMPONENT}/${id}`);
     }

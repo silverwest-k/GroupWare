@@ -1,4 +1,4 @@
-import React, {useRef, useState} from "react";
+import React, {useEffect, useRef, useState} from "react";
 import {Button} from "react-bootstrap";
 import {CREATE_ID_API} from "../../constants/api_constans";
 import fetcher from "../../fetcher";
@@ -17,6 +17,8 @@ import {
     Table, Upper,
     Wrapper
 } from "./AccountManagement";
+import {useNavigate} from "react-router-dom";
+import {FORBIDDEN_COMPONENT} from "../../constants/component_constants";
 
 function AccountRegistration() {
     const imgRef = useRef();
@@ -29,7 +31,15 @@ function AccountRegistration() {
     const [password, setPassword] = useState("");
     const [memberNo, setMemberNo] = useState("")
 
-    const {teamName, positionName, selectTeam, selectPosition} = useStore(state => state);
+    const {myAccount, teamName, positionName, selectTeam, selectPosition} = useStore(state => state);
+    const isAdmin = myAccount?.authority === "ADMIN";
+    const navigate = useNavigate();
+
+    useEffect(()=>{
+        if(!isAdmin) {
+            navigate(FORBIDDEN_COMPONENT);
+        }
+    },[])
 
     const saveImgFile = () => {
         const file = imgRef.current.files[0];

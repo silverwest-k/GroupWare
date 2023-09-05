@@ -2,7 +2,7 @@ import {useRef, useState} from "react";
 import useStore from "../../store";
 import {Button} from "react-bootstrap";
 import fetcher from "../../fetcher";
-import defaultProfileImage from "../../IMAGES/profile.png";
+import defaultProfileImage from "../../IMAGES/profile.jpg";
 import {MY_INFO_API, MY_INFO_CHANGE_API} from "../../constants/api_constans";
 import Swal from "sweetalert2";
 import styled from "styled-components";
@@ -71,14 +71,13 @@ function MyPage() {
                 <Upper>
                     <p>마이페이지</p>
                 </Upper>
-
                 <Contents>
                     <UserTable>
                         <tbody>
                         <tr>
                             <th></th>
                             <UserProfileImg>
-                                <img src={myAccount.image ? (preview || profileImg) : defaultProfileImage }
+                                <img src={myAccount.image ? (preview || profileImg) : (preview || defaultProfileImage) }
                                      alt="프로필 이미지"
                                 />
                                 <UserProfileImgLabel htmlFor="profileImg">이미지 업로드</UserProfileImgLabel>
