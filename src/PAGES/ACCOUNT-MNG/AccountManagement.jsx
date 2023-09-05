@@ -30,6 +30,8 @@ function AccountManagement() {
     const [position, setPosition] = useState("");
     const [member, setMember] = useState([]);
 
+    const {myAccount, account, selectAccount, teamName, positionName, selectTeam, selectPosition}
+        = useStore(state => state);
     const isAdmin = myAccount?.authority === "ADMIN";
     const navigate = useNavigate();
 
@@ -38,9 +40,6 @@ function AccountManagement() {
             navigate(FORBIDDEN_COMPONENT);
         }
     }, [])
-
-    const {myAccount, account, selectAccount, teamName, positionName, selectTeam, selectPosition}
-        = useStore(state => state);
 
     const profileImg = "http://localhost:8080/member/image?imageName=" + account.image;
 

@@ -41,7 +41,7 @@ function MyPage() {
     }
 
     const editInfo = () => {
-        const formData = new FormData
+        const formData = new FormData();
         formData.append('post', JSON.stringify({
             newPassword: password ? password : null,
         }));
