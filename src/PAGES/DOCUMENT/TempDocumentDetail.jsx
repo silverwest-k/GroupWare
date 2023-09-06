@@ -1,7 +1,7 @@
 import {useEffect, useState} from "react";
 import fetcher from "../../fetcher";
 import {
-    DOCUMENT_DELETE_API, TEMP_DOCUMENT_READ_API
+    DOCUMENT_DELETE_API, DOCUMENT_READ_API
 } from "../../constants/api_constans";
 import {useNavigate, useParams} from "react-router-dom";
 import {Button} from "react-bootstrap";
@@ -27,10 +27,11 @@ function TempDocumentDetail() {
     const [isCompleted, setIsCompleted] = useState(false);
 
     useEffect(() => {
-        fetcher.get(`${TEMP_DOCUMENT_READ_API}/${id}`)
+        fetcher.get(`${DOCUMENT_READ_API}/${id}`)
             .then((res) => {
+                const {document, groupedApprovals} = res.data
                 // 문서 정보
-                setDocumentData(res.data)
+                setDocumentData(document)
                 // TODO : 결재라인
                 // setSignLine(groupedApprovals[document.sno])
                 setIsCompleted(true)
@@ -72,7 +73,7 @@ function TempDocumentDetail() {
         <Wrapper>
             <UpperContainer>
                 <CategorySelect>
-                    <Button className="button" onClick={()=>routeEditPage(id)}>문서수정</Button>
+                    <Button className="button" onClick={() => routeEditPage(id)}>문서수정</Button>
                     <Button className="button" onClick={deleteBtn}>문서삭제</Button>
                 </CategorySelect>
                 <ButtonGroup>

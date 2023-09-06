@@ -5,7 +5,7 @@ import {
     SignInfo,
     SignLineContent,
     SignLineTitle,
-    SignTableWrapper,
+    SignTableWrapper, WriterContents,
     WriterTitle
 } from "../../APPROVAL/WriteSignTable";
 
@@ -49,11 +49,11 @@ function DocumentSignTable({documentData, signLine}) {
         <SignTableWrapper>
             <table>
                 <tbody>
-                {sign_Table_Left_data.map((data, index) => {
+                {sign_Table_Left_data.map((data) => {
                     return (
-                        <tr key={index}>
+                        <tr>
                             <WriterTitle>{data.title}</WriterTitle>
-                            <WriterTitle>{data.content}</WriterTitle>
+                            <WriterContents>{data.content}</WriterContents>
                         </tr>
                     )
                 })}
