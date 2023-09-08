@@ -1,10 +1,5 @@
 import useStore from "../../../store";
-import {
-    ReferContent, ReferTable, ReferTitle,
-    Sign, SignInfo, SignLineContent,
-    SignLineTitle, SignTableWrapper,
-    WriterContents, WriterTitle
-} from "../../APPROVAL/WriteSignTable";
+import SignTableComponent from "../../../COMPONENT/SignTableComponent";
 
 function EditSignTable({documentData, signLine}) {
     const {myAccount} = useStore(state => state)
@@ -19,13 +14,13 @@ function EditSignTable({documentData, signLine}) {
         day: time.getDate().toString().padStart(2, "0")
     }
 
-    const sign_Table_Left_data = [
+    const leftData = [
         {title: "기안자", content: `${myAccount.name}`},
         {title: "기안부서", content: `${myAccount.team}`},
         {title: "기안일", content: `${toDay.year}-${toDay.month}-${toDay.day}`},
         {title: "문서번호", content: `${documentData.dno ? documentData.dno : documentData.sno}`}
     ]
-    const sign_Table_Right_data = [
+    const rightData = [
         {
             signTurn: "작 성",
             sign: "",
@@ -44,46 +39,9 @@ function EditSignTable({documentData, signLine}) {
     ]
 
     return (
-        <SignTableWrapper>
-            <table>
-                <tbody>
-                {sign_Table_Left_data.map((data, index) => {
-                    return (
-                        <tr key={index}>
-                            <WriterTitle>{data.title}</WriterTitle>
-                            <WriterContents>{data.content}</WriterContents>
-                        </tr>
-                    )
-                })}
-                </tbody>
-            </table>
-
-            <div>
-                <table>
-                    <tbody>
-                    <tr>
-                        <SignLineTitle>결재</SignLineTitle>
-                        {sign_Table_Right_data.map((data, index) => {
-                            return (
-                                <SignLineContent key={index}>
-                                    <SignInfo>{data.signTurn}</SignInfo>
-                                    <Sign>{data.sign}</Sign>
-                                    <SignInfo>{data.signName}</SignInfo>
-                                </SignLineContent>
-                            )
-                        })}
-                    </tr>
-                    </tbody>
-                </table>
-
-                <ReferTable>
-                    <ReferTitle>참조</ReferTitle>
-                    <ReferContent>
-                        {signRefer ? `${signRefer?.name} ${signRefer?.position}` : null}
-                    </ReferContent>
-                </ReferTable>
-            </div>
-        </SignTableWrapper>
+        <>
+            <SignTableComponent leftData={leftData} rightData={rightData} signRefer={signRefer}/>
+        </>
     )
 }
 

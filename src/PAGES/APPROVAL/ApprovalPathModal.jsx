@@ -108,6 +108,10 @@ function ApprovalPathModal({showApprovalPathModal, handleApprovalPathModalClose}
             })
     }
     const removeBookmark = (id) => {
+        if (!id) {
+            Swal.fire("결재라인을 선택해 주세요.")
+            return
+        }
         fetcher.delete(`${APPROVAL_BOOKMARK_DELETE_API}/${id}`)
             .then(() => {
                     Swal.fire({
@@ -117,7 +121,9 @@ function ApprovalPathModal({showApprovalPathModal, handleApprovalPathModalClose}
                         showConfirmButton: false,
                         timer: 1500
                     })
-                    fetchBookmark()
+                    fetchBookmark().then(() => {
+                        setBookmarkId("")
+                    })
                 }
             )
     }
@@ -133,6 +139,10 @@ function ApprovalPathModal({showApprovalPathModal, handleApprovalPathModalClose}
 
     // 결재라인 적용
     const enterSignLine = () => {
+        if (approvalMembers.length < 2) {
+            Swal.fire("결재자를 선택해 주세요.")
+            return
+        }
         setSignLine({
             signTurn1: {
                 id: approvalMembers[0].id,
@@ -216,12 +226,13 @@ function ApprovalPathModal({showApprovalPathModal, handleApprovalPathModalClose}
                             <Title>결재선 정보</Title>
                             <BookmarkLine>
                                 <p>사용자 결재라인</p>
-                                <select onChange={(e) => {
-                                    const id = e.target.value;
-                                    bookmarkInfo(id)
-                                    setBookmarkId(id)
-                                }}>
-                                    <option selected disabled>결재라인 선택</option>
+                                <select value={bookmarkId || ""}
+                                        onChange={(e) => {
+                                            const id = e.target.value;
+                                            bookmarkInfo(id)
+                                            setBookmarkId(id)
+                                        }}>
+                                    <option value="" selected disabled>결재라인 선택</option>
                                     {bookmarkList?.map((data, index) => {
                                         return (
                                             <option key={index} value={data.id}>
@@ -230,7 +241,8 @@ function ApprovalPathModal({showApprovalPathModal, handleApprovalPathModalClose}
                                         )
                                     })}
                                 </select>
-                                <SmallButton className="button" onClick={() => removeBookmark(bookmarkId)}>삭제</SmallButton>
+                                <SmallButton className="button"
+                                             onClick={() => removeBookmark(bookmarkId)}>삭제</SmallButton>
                             </BookmarkLine>
 
                             <div>

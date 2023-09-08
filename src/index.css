@@ -14,4 +14,6 @@ code {
 
 .ck-editor__editable_inline {
   min-height: 600px;
+  height: 630px;
+  overflow: scroll;
 }
