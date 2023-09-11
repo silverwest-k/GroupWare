@@ -3,7 +3,7 @@ import {Button} from "react-bootstrap";
 import {useEffect, useState} from "react";
 import fetcher from "../../../fetcher";
 import {
-    CATEGORY_LIST_API, DOCUMENT_READ_API, DOCUMENT_UPDATE_API, SHOW_CATEGORY_API
+    CATEGORY_LIST_API, DOCUMENT_UPDATE_API, SHOW_CATEGORY_API, TEMP_DOCUMENT_READ_API
 } from "../../../constants/api_constans";
 import ApprovalPathModal from "../../APPROVAL/ApprovalPathModal";
 import useStore from "../../../store";
@@ -30,7 +30,6 @@ function EditPage() {
     const [category, setCategory] = useState("")
     const [categoryId, setCategoryId] = useState("")
     const [categoryList, setCategoryList] = useState([])
-    const [formerSignLine, setFormerSignLine] = useState([])
     const [showApprovalPathModal, setShowApprovalPathModal] = useState(false);
     const [documentData, setDocumentData] = useState({});
     const [isCompleted, setIsCompleted] = useState(false);
@@ -41,15 +40,16 @@ function EditPage() {
     }, [])
 
     useEffect(() => {
-        fetcher.get(`${DOCUMENT_READ_API}/${id}`)
+        fetcher.get(`${TEMP_DOCUMENT_READ_API}/${id}`)
             .then((res) => {
-                const {document, groupedApprovals} = res.data
                 // 문서 정보
-                setDocumentData(document)
-                setCategory(document?.template?.category)
-                setTitle(document?.title)
-                setContent(document?.content)
-                setFormerSignLine(groupedApprovals[document.dno])
+                const fetchData = (res.data)
+                setDocumentData(fetchData)
+                setCategory(fetchData?.template?.category)
+                setTitle(fetchData?.title)
+                setContent(fetchData?.content)
+                // TODO : 결재라인
+                // setSignLine(groupedApprovals[document.sno])
                 setIsCompleted(true)
             })
             .catch((err) => console.log(err))
@@ -132,7 +132,7 @@ function EditPage() {
                     <p>{category ? category : "양식을 선택하세요"}</p>
                 </CategoryTitle>
 
-                <EditSignTable documentData={documentData} signLine={formerSignLine ? formerSignLine : signLine}/>
+                <EditSignTable documentData={documentData}/>
 
                 <EditorContainer>
                     <DocumentTitle>

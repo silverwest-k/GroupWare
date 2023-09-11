@@ -13,7 +13,7 @@ import DocumentSignTable from "./components/DocumentSignTable";
 import parse from 'html-react-parser';
 import Swal from "sweetalert2";
 import useStore from "../../store";
-import {EDIT_PAGE_COMPONENT, TEMP_DOCUMENT_COMPONENT} from "../../constants/component_constants";
+import {TEMP_DOCUMENT_COMPONENT} from "../../constants/component_constants";
 import {
     ButtonGroup,
     CategorySelect,
@@ -129,10 +129,6 @@ function DocumentDetail() {
             })
     }
 
-    const routeEditPage = (id) => {
-        navigate(`/page/${EDIT_PAGE_COMPONENT}/${id}`);
-    }
-
     const deleteBtn = () => {
         if (!(isStandby)) {
             Swal.fire({
@@ -170,7 +166,7 @@ function DocumentDetail() {
         <Wrapper>
             <UpperContainer>
                 <CategorySelect>
-                    {isStandby && isWriter ? <Button className="button" onClick={()=>routeEditPage(id)}>문서수정</Button> : ""}
+                    {isStandby && isWriter ? <Button className="button">문서수정</Button> : ""}
                     {isStandby && isWriter ? <Button className="button" onClick={deleteBtn}>문서삭제</Button> : ""}
                     {isStandby && isWriter ? <Button className="button" onClick={recallBtn}>문서회수</Button> : ""}
                 </CategorySelect>

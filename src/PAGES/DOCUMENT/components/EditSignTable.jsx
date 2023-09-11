@@ -1,11 +1,18 @@
 import useStore from "../../../store";
-import SignTableComponent from "../../../COMPONENT/SignTableComponent";
+import {
+    ReferContent,
+    ReferTable, ReferTitle, Sign,
+    SignInfo,
+    SignLineContent,
+    SignLineTitle,
+    SignTableWrapper,
+    WriterContents,
+    WriterTitle
+} from "../../../COMPONENT/SignTableComponent";
 
-function EditSignTable({documentData, signLine}) {
-    const {myAccount} = useStore(state => state)
-    const signTurn1 = signLine[1];
-    const signTurn2 = signLine[2];
-    const signRefer = signLine[3];
+
+function EditSignTable({documentData}) {
+    const {myAccount, signLine} = useStore(state => state)
 
     const time = new Date();
     const toDay = {
@@ -18,7 +25,7 @@ function EditSignTable({documentData, signLine}) {
         {title: "기안자", content: `${myAccount.name}`},
         {title: "기안부서", content: `${myAccount.team}`},
         {title: "기안일", content: `${toDay.year}-${toDay.month}-${toDay.day}`},
-        {title: "문서번호", content: `${documentData.dno ? documentData.dno : documentData.sno}`}
+        {title: "문서번호", content: `${documentData.sno}`}
     ]
     const rightData = [
         {
@@ -29,19 +36,57 @@ function EditSignTable({documentData, signLine}) {
         {
             signTurn: "검 토",
             sign: "",
-            signName: signTurn1 ? `${signTurn1?.name} ${signTurn1?.position || ""}` : ""
+            signName: signLine.signTurn1 ? `${signLine.signTurn1.name} ${signLine.signTurn1.position}` : ""
         },
         {
             signTurn: "승 인",
             sign: "",
-            signName: signTurn2 ? `${signTurn2?.name} ${signTurn2?.position || ""}` : ""
+            signName: signLine.signTurn2 ? `${signLine.signTurn2.name} ${signLine.signTurn2.position}` : ""
         }
     ]
 
     return (
-        <>
-            <SignTableComponent leftData={leftData} rightData={rightData} signRefer={signRefer}/>
-        </>
+
+        <SignTableWrapper>
+            <table>
+                <tbody>
+                {leftData.map((data, index) => {
+                    return (
+                        <tr key={index}>
+                            <WriterTitle>{data.title}</WriterTitle>
+                            <WriterContents>{data.content}</WriterContents>
+                        </tr>
+                    )
+                })}
+                </tbody>
+            </table>
+            <div>
+                <table>
+                    <tbody>
+                    <tr>
+                        <SignLineTitle>결재</SignLineTitle>
+                        {rightData.map((data, index) => {
+                            return (
+                                <SignLineContent key={index}>
+                                    <SignInfo>{data.signTurn}</SignInfo>
+                                    <Sign>{data.sign}</Sign>
+                                    <SignInfo>{data.signName}</SignInfo>
+                                </SignLineContent>
+                            )
+                        })}
+                    </tr>
+                    </tbody>
+                </table>
+
+                <ReferTable>
+                    <ReferTitle>참조</ReferTitle>
+                    <ReferContent>
+                        {signLine.signRefer ? `${signLine.signRefer.name} ${signLine.signRefer.position}` : null}
+                    </ReferContent>
+                </ReferTable>
+            </div>
+        </SignTableWrapper>
+
     )
 }
 

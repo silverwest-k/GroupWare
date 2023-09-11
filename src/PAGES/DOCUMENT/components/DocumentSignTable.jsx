@@ -1,6 +1,14 @@
-import SignTableComponent from "../../../COMPONENT/SignTableComponent";
 import approvalStamp from "../../../IMAGES/approval.png"
 import returnStamp from "../../../IMAGES/return.png"
+import {
+    ReferContent,
+    ReferTable, ReferTitle, Sign,
+    SignInfo,
+    SignLineContent,
+    SignLineTitle,
+    SignTableWrapper,
+    WriterTitle
+} from "../../../COMPONENT/SignTableComponent";
 
 function DocumentSignTable({documentData, signLine}) {
     const writer = documentData.writer;
@@ -39,9 +47,49 @@ function DocumentSignTable({documentData, signLine}) {
     ]
 
     return (
-        <>
-            <SignTableComponent leftData={leftData} rightData={rightData} signRefer={signRefer}/>
-        </>
+
+        <SignTableWrapper>
+            <table>
+                <tbody>
+                {leftData.map((data, index) => {
+                    return (
+                        <tr key={index}>
+                            <WriterTitle>{data.title}</WriterTitle>
+                            <WriterTitle>{data.content}</WriterTitle>
+                        </tr>
+                    )
+                })}
+                </tbody>
+            </table>
+
+            <div>
+                <table>
+                    <tbody>
+                    <tr>
+                        <SignLineTitle>결재</SignLineTitle>
+                        {rightData.map((data, index) => {
+                            return (
+                                <SignLineContent key={index}>
+                                    <SignInfo> {data.signTurn} </SignInfo>
+                                    {data.sign !== null && (<Sign><img src={data.sign} alt="Sign"/></Sign>)}
+                                    {data.sign === null && (<Sign></Sign>)}
+                                    <SignInfo> {data.signName} </SignInfo>
+                                </SignLineContent>
+                            )
+                        })}
+                    </tr>
+                    </tbody>
+                </table>
+
+                <ReferTable>
+                    <ReferTitle>참조</ReferTitle>
+                    <ReferContent>
+                        {signRefer ? `${signRefer?.name} ${signRefer?.position}` : null}
+                    </ReferContent>
+                </ReferTable>
+            </div>
+        </SignTableWrapper>
+
     )
 }
 

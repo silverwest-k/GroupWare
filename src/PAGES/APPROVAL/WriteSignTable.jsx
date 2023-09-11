@@ -1,5 +1,15 @@
 import useStore from "../../store";
-import SignTableComponent from "../../COMPONENT/SignTableComponent";
+import SignTableComponent, {
+    ReferContent,
+    ReferTable, ReferTitle,
+    Sign,
+    SignInfo,
+    SignLineContent,
+    SignLineTitle,
+    SignTableWrapper,
+    WriterContents,
+    WriterTitle
+} from "../../COMPONENT/SignTableComponent";
 
 function WriteSignTable() {
     const {myAccount, signLine} = useStore(state => state)
@@ -36,9 +46,46 @@ function WriteSignTable() {
     ]
 
     return (
-        <>
-            <SignTableComponent leftData={leftData} rightData={rightData} signRefer={signLine.signRefer}/>
-        </>
+
+        <SignTableWrapper>
+            <table>
+                <tbody>
+                {leftData.map((data) => {
+                    return (
+                        <tr>
+                            <WriterTitle>{data.title}</WriterTitle>
+                            <WriterContents>{data.content}</WriterContents>
+                        </tr>
+                    )
+                })}
+                </tbody>
+            </table>
+            <div>
+                <table>
+                    <tbody>
+                    <tr>
+                        <SignLineTitle>결재</SignLineTitle>
+                        {rightData.map((data, index) => {
+                            return (
+                                <SignLineContent>
+                                    <SignInfo>{data.signTurn}</SignInfo>
+                                    <Sign>{data.sign}</Sign>
+                                    <SignInfo>{data.signName}</SignInfo>
+                                </SignLineContent>
+                            )
+                        })}
+                    </tr>
+                    </tbody>
+                </table>
+
+                <ReferTable>
+                    <ReferTitle>참조</ReferTitle>
+                    <ReferContent>
+                        {signLine.signRefer ? `${signLine.signRefer.name} ${signLine.signRefer.position}` : null}
+                    </ReferContent>
+                </ReferTable>
+            </div>
+        </SignTableWrapper>
     )
 }
 

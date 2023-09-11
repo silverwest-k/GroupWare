@@ -19,6 +19,7 @@ export const ALL_DOCUMENT_LIST_API = "/admin/listdone" // 모든 결재 완료 �
 export const DOCUMENT_CREATE_API="/documents/create"    // 문서작성
 export const DOCUMENT_UPDATE_API ="/documents/update"   // (+id) 문서수정
 export const DOCUMENT_READ_API ="/documents"   // (+id) 문서 상세보기
+export const TEMP_DOCUMENT_READ_API ="/documents/save"   // (+id) 임시저장문서 상세보기
 export const DOCUMENT_DELETE_API="/documents/delete"    // 문서 삭제
 export const REPORT_DOCUMENT_LIST_API = "/documents/mylist" // 상신문서함
 export const ONGOING_DOCUMENT_LIST_API ="/documents/mylist/ing" // 상신문서함 - 진행중
