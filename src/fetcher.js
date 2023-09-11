@@ -9,7 +9,7 @@ const cookies = new Cookies();
 
 const INSTANCE = () => {
     const instance = {
-        baseURL: "http://localhost:8080",
+        baseURL: "http://localhost:80",
         timeout: 100000,
     }
     const accessToken = cookies.get(ACCESS_TOKEN_COOKIE);

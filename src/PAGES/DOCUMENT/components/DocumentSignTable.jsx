@@ -1,4 +1,6 @@
 import SignTableComponent from "../../../COMPONENT/SignTableComponent";
+import approvalStamp from "../../../IMAGES/approval.png"
+import returnStamp from "../../../IMAGES/return.png"
 
 function DocumentSignTable({documentData, signLine}) {
     const writer = documentData.writer;
@@ -18,20 +20,20 @@ function DocumentSignTable({documentData, signLine}) {
     const rightData = [
         {
             signTurn: "작 성",
-            sign: approvalState(0) === "승인" ? require("../../../IMAGES/approval.png") :
-                approvalState(0) === "반려" ? require("../../../IMAGES/return.png") : null,
+            sign: approvalState(0) === "승인" ? approvalStamp :
+                approvalState(0) === "반려" ? returnStamp : null,
             signName: `${writer?.name || ""}${writer?.position || ""}`
         },
         {
             signTurn: "검 토",
-            sign: approvalState(1) === "승인" ? require("../../../IMAGES/approval.png") :
-                approvalState(1) === "반려" ? require("../../../IMAGES/return.png") : null,
+            sign: approvalState(1) === "승인" ? approvalStamp :
+                approvalState(1) === "반려" ? returnStamp : null,
             signName: signTurn1 ? `${signTurn1?.name} ${signTurn1?.position || ""}` : ""
         },
         {
             signTurn: "승 인",
-            sign: approvalState(2) === "승인" ? require("../../../IMAGES/approval.png") :
-                approvalState(2) === "반려" ? require("../../../IMAGES/return.png") : null,
+            sign: approvalState(2) === "승인" ? approvalStamp :
+                approvalState(2) === "반려" ? returnStamp : null,
             signName: signTurn2 ? `${signTurn2?.name} ${signTurn2?.position || ""}` : ""
         }
     ]
