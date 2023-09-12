@@ -41,7 +41,7 @@ function AccountManagement() {
         }
     }, [])
 
-    const profileImg = "http://211.252.85.109:80/member/image?imageName=" + account.image;
+    const profileImg = "http://211.252.85.109:90/member/image?imageName=" + account.image;
 
     const fetchMemberList = () => {
         return fetcher.get(MEMBER_LIST_INFO_API)

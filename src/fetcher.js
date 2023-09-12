@@ -9,7 +9,7 @@ const cookies = new Cookies();
 
 const INSTANCE = () => {
     const instance = {
-        baseURL: "http://211.252.85.109:80",
+        baseURL: "http://211.252.85.109:90",
         timeout: 100000,
     }
     const accessToken = cookies.get(ACCESS_TOKEN_COOKIE);
