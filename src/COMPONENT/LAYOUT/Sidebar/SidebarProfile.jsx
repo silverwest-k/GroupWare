@@ -10,7 +10,7 @@ function SidebarProfile() {
     return (
         <ProfileWrapper>
             <Profile isAdmin={isAdmin}>
-                <ProfileImg isAdmin={isAdmin} src={myAccount.image ? "http://localhost:8080/member/image?imageName=" + myAccount.image : defaultProfileImage } />
+                <ProfileImg isAdmin={isAdmin} src={myAccount.image ? "http://211.252.85.109:80/member/image?imageName=" + myAccount.image : defaultProfileImage } />
                 <p style={{marginTop: "20px"}}>{myAccount.name}</p>
                 <p style={{margin: "5px 0"}}>{myAccount.team} / {myAccount.position}</p>
                 <LogoutBtn/>

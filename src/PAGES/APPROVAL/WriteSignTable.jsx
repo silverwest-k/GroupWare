@@ -36,7 +36,6 @@ function WriteSignTable() {
     ]
 
     return (
-
         <>
             <SignTableComponent leftData={leftData} rightData={rightData} signRefer={signLine.signRefer}/>
         </>
