@@ -7,7 +7,7 @@ function Profile() {
     const {myAccount} = useStore(state => state)
     const isAdmin = myAccount.authority === "ADMIN";
 
-    const profileImg = "http://211.252.85.109:90/member/image?imageName=" + myAccount.image;
+    const profileImg = "http://222.119.100.90:80/member/image?imageName=" + myAccount.image;
 
     return (
         <Wrapper>
