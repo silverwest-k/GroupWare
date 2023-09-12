@@ -19,6 +19,12 @@ function AccountModal({showAccountModal, handleAccountModalClose, fetchMemberLis
         handleAccountModalClose();
     }
 
+    const accountState = {
+        "USER" : "일반",
+        "ADMIN" : "관리자",
+        "BLOCK" : "접속차단"
+    }
+
     return (
         <StyledModal show={showAccountModal} onHide={handleAccountModalClose} centered>
             <ModalHeader>
@@ -33,6 +39,7 @@ function AccountModal({showAccountModal, handleAccountModalClose, fetchMemberLis
                                 <th>이름</th>
                                 <th>직급</th>
                                 <th>부서</th>
+                                <th>계정상태</th>
                             </tr>
                         </TableHead>
                     </Table>
@@ -40,12 +47,14 @@ function AccountModal({showAccountModal, handleAccountModalClose, fetchMemberLis
                         <Table hover>
                             <TableBody>
                                 {member.map((data, index) => {
+                                    const accountStatus = accountState[data.authority]
                                     return (
                                         <tr key={index} onClick={() => pickAccount(data)}>
                                             <td>{data.no}</td>
                                             <td>{data.name}</td>
                                             <td>{data.position}</td>
                                             <td>{data.team}</td>
+                                            <td>{accountStatus}</td>
                                         </tr>
                                     )
                                 })}

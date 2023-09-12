@@ -51,6 +51,9 @@ function LogIn() {
                     case 403 :
                         setAlertMessage("접속이 차단된 계정입니다.");
                         break;
+                    case 410 :
+                        setAlertMessage("삭제된 계정입니다.");
+                        break;
                     default :
                         setAlertMessage("오류가 발생했습니다.");
                 }

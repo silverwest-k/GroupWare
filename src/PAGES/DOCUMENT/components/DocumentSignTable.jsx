@@ -6,7 +6,7 @@ import {
     SignInfo,
     SignLineContent,
     SignLineTitle,
-    SignTableWrapper,
+    SignTableWrapper, WriterContents,
     WriterTitle
 } from "../../../COMPONENT/SignTableComponent";
 
@@ -55,7 +55,7 @@ function DocumentSignTable({documentData, signLine}) {
                     return (
                         <tr key={index}>
                             <WriterTitle>{data.title}</WriterTitle>
-                            <WriterTitle>{data.content}</WriterTitle>
+                            <WriterContents>{data.content}</WriterContents>
                         </tr>
                     )
                 })}

@@ -21,7 +21,7 @@ function SignTableComponent({leftData, rightData, signRefer}) {
                 <table>
                     <tbody>
                     <tr>
-                        <SignLineTitle>결재</SignLineTitle>
+                        <SignLineTitle>결 재</SignLineTitle>
                         {rightData.map((data, index) => {
                             return (
                                 <SignLineContent key={index}>
@@ -66,7 +66,7 @@ export const WriterTitle = styled.td`
 export const WriterContents = styled.td`
   border: 1px solid #000000;
   width: 150px;
-  padding-left: 15px;
+  padding-left: 20px;
   text-align: left;
 `
 export const SignLineTitle = styled.th`
@@ -116,6 +116,6 @@ export const ReferTitle = styled.div`
   text-align: center;
 `
 export const ReferContent = styled.div`
-  padding-left: 15px;
+  padding-left: 20px;
   text-align: left;
 `
