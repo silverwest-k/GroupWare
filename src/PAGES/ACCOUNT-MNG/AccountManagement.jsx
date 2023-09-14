@@ -41,7 +41,7 @@ function AccountManagement() {
         }
     }, [])
 
-    const profileImg = "http://222.119.100.90:80/member/image?imageName=" + account.image;
+    const profileImg = "http://localhost:8080/member/image?imageName=" + account.image;
 
     const fetchMemberList = () => {
         return fetcher.get(MEMBER_LIST_INFO_API)

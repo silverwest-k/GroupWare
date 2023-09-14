@@ -41,11 +41,13 @@ function DocumentDetail() {
     const isDone = documentData?.result === "승인" || documentData?.result === "반려"
     const isWriter = documentData?.writer?.no === myAccount.no
     const isMyTurn = approvalStatus?.myCurrent === "Y"
+    const isMySign = approvalStatus?.myStatus === "승인"
     const nextTurnNotSign = approvalStatus?.nextStauts !== "승인" && approvalStatus?.nextStauts !== "반려"
 
     const fetchDocumentInfo = () => {
         return fetcher.get(`${DOCUMENT_READ_API}/${id}`)
             .then((res) => {
+                console.log(res.data)
                 const {document, groupedApprovals, appInfoForCancel} = res.data
                 // 문서 정보
                 setDocumentData(document)
@@ -177,7 +179,7 @@ function DocumentDetail() {
                     {isMyTurn && nextTurnNotSign && (
                         <Button variant="success" onClick={() => approvalBtn("승인")}>결재승인</Button>
                     )}
-                    {!isMyTurn && nextTurnNotSign && !isDone && (
+                    {isMySign && nextTurnNotSign && !isDone && (
                         <Button variant="warning" onClick={cancelBtn}>결재취소</Button>
                     )}
                     {isMyTurn && !isWriter && nextTurnNotSign ?
