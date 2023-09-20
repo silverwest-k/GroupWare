@@ -30,8 +30,8 @@ function EditPage() {
     const [category, setCategory] = useState("")
     const [categoryId, setCategoryId] = useState("")
     const [categoryList, setCategoryList] = useState([])
-    const [formerSignLine, setFormerSignLine] = useState([])
     const [showApprovalPathModal, setShowApprovalPathModal] = useState(false);
+    const [formerSignLine, setFormerSignLine] = useState([])
     const [documentData, setDocumentData] = useState({});
     const [isCompleted, setIsCompleted] = useState(false);
 
@@ -144,14 +144,14 @@ function EditPage() {
                         />
                     </DocumentTitle>
 
-                    {isCompleted && <CKEditor
+                  <CKEditor
                         editor={ClassicEditor}
                         data={content}
                         onChange={(event, editor) => {
                             const data = editor.getData();
                             setContent(data)
                         }}
-                    />}
+                    />
                 </EditorContainer>
             </LowerContainer>
 
