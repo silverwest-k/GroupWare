@@ -47,7 +47,6 @@ function DocumentDetail() {
     const fetchDocumentInfo = () => {
         return fetcher.get(`${DOCUMENT_READ_API}/${id}`)
             .then((res) => {
-                console.log(res.data)
                 const {document, groupedApprovals, appInfoForCancel} = res.data
                 // 문서 정보
                 setDocumentData(document)

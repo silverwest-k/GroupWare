@@ -33,7 +33,6 @@ function EditPage() {
     const [showApprovalPathModal, setShowApprovalPathModal] = useState(false);
     const [formerSignLine, setFormerSignLine] = useState([])
     const [documentData, setDocumentData] = useState({});
-    const [isCompleted, setIsCompleted] = useState(false);
 
     useEffect(() => {
         fetcher.get(CATEGORY_LIST_API)
@@ -50,7 +49,6 @@ function EditPage() {
                 setTitle(document?.title)
                 setContent(document?.content)
                 setFormerSignLine(groupedApprovals[document.dno])
-                setIsCompleted(true)
             })
             .catch((err) => console.log(err))
     }, [id])
@@ -132,7 +130,7 @@ function EditPage() {
                     <p>{category ? category : "양식을 선택하세요"}</p>
                 </CategoryTitle>
 
-                <EditSignTable documentData={documentData} signLine={formerSignLine ? formerSignLine : signLine}/>
+                <EditSignTable documentData={documentData} signLine={signLine} formerSignLine={formerSignLine}/>
 
                 <EditorContainer>
                     <DocumentTitle>
@@ -147,7 +145,7 @@ function EditPage() {
                   <CKEditor
                         editor={ClassicEditor}
                         data={content}
-                        onChange={(event, editor) => {
+                        onChange={(event, editor)  => {
                             const data = editor.getData();
                             setContent(data)
                         }}
